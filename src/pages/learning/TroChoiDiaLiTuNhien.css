@@ -106,6 +106,22 @@ body.page-tro-choi-dlt-active header nav ul li a.active::after {
   margin-bottom: 4px;
 }
 
+.dlt-title-text {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dlt-title-text span {
+  color: #0f172a;
+}
+
 .dlt-topbar-left p {
   color: rgba(15, 23, 42, 0.65);
   font-size: 0.9rem;
@@ -639,6 +655,12 @@ body.page-tro-choi-dlt-active header nav ul li a.active::after {
   }
   .dlt-title-img {
     max-width: 200px;
+  }
+  .dlt-title-text {
+    font-size: 1.6rem;
+  }
+  .dlt-title-text i {
+    font-size: 1.4rem;
   }
   .dlt-bag-grid {
     grid-template-columns: repeat(3, minmax(140px, 1fr));

@@ -4,9 +4,9 @@ import { fireConfetti } from "./confettiEffect";
 import "./TroChoiDiaLiTuNhien.css";
 
 function ConfettiOnMount() {
-  useEffect(() => { 
+  useEffect(() => {
     const randomType = Math.floor(Math.random() * 3) + 1;
-    fireConfetti(randomType); 
+    fireConfetti(randomType);
   }, []);
   return null;
 }
@@ -405,11 +405,10 @@ export default function TroChoiDiaLiTuNhien() {
               <i className="fa-solid fa-arrow-left" />
             </Link>
             <div>
-              <img
-                src="/images/tro_choi/dia_li_tu_nhien/ten_game.png"
-                alt="Túi mù bí ẩn"
-                className="dlt-title-img"
-              />
+              <h1 className="dlt-title-text">
+                <i className="fa-solid fa-leaf" style={{ color: '#22c55e', textShadow: 'none', WebkitTextFillColor: 'initial' }} />
+                <span>Truy Tìm Bí Ẩn Tự Nhiên!</span>
+              </h1>
               <p>Chọn túi mù, xé bí ẩn và trả lời câu hỏi địa lí</p>
             </div>
           </div>
@@ -481,11 +480,9 @@ export default function TroChoiDiaLiTuNhien() {
                 return (
                   <button
                     key={idx}
-                    className={`dlt-option${
-                      showResult && isCorrect ? " correct" : ""
-                    }${showResult && isChosen && !isCorrect ? " wrong" : ""}${
-                      showResult ? " disabled" : ""
-                    }`}
+                    className={`dlt-option${showResult && isCorrect ? " correct" : ""
+                      }${showResult && isChosen && !isCorrect ? " wrong" : ""}${showResult ? " disabled" : ""
+                      }`}
                     onClick={() => handleAnswer(idx)}
                   >
                     <span className="dlt-option-letter">
@@ -518,7 +515,7 @@ export default function TroChoiDiaLiTuNhien() {
             <div className="dlt-done-icon">
               <i className="fa-solid fa-trophy" />
             </div>
-            <h2>Hoàn thành <span>Túi Mù Bí Ẩn!</span></h2>
+            <h2>Hoàn Thành <span>Truy Tìm Bí Ẩn Tự Nhiên!</span></h2>
             <p>
               Bạn trả lời đúng <strong>{correctCount}/{TOTAL}</strong> câu hỏi.
             </p>
@@ -564,9 +561,9 @@ export default function TroChoiDiaLiTuNhien() {
           <div className="dlt-dialog" onClick={(e) => e.stopPropagation()}>
             <h3>Thông báo</h3>
             <p>{dialog.message}</p>
-            <div style={{display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px'}}>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
               {dialog.type === "confirm" && (
-                <button className="dlt-btn ghost" style={{background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1'}} onClick={closeDialog}>
+                <button className="dlt-btn ghost" style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1' }} onClick={closeDialog}>
                   Hủy
                 </button>
               )}

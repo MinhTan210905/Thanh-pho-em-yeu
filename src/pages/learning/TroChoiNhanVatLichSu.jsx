@@ -410,7 +410,7 @@ export default function TroChoiNhanVatLichSu() {
         open: true,
         type: "alert",
         title: "Hết lượt chơi",
-        message: "Bạn đã hết lượt chơi cho trò chơi này!",
+        message: "Bạn đã hết lượt chơi cho Giải mã bí ẩn!",
         action: "none",
       });
       return;
@@ -472,7 +472,7 @@ export default function TroChoiNhanVatLichSu() {
             <i className={`fa-solid ${endIcon}`} />
           </div>
           <h2>
-            Hoàn thành <span>Giải Mã Nhân Vật!</span>
+            Hoàn thành <span>Giải Mã Bí Ẩn!</span>
           </h2>
           <p>
             Bạn đã trả lời đúng <strong>{correctCount}/{QUESTIONS.length}</strong> câu hỏi về các nhân vật lịch sử.
@@ -580,7 +580,7 @@ export default function TroChoiNhanVatLichSu() {
           <div>
             <h1>
               <i className="fa-solid fa-font" />
-              Đảo Chữ Thông Thái
+              Giải Mã Bí Ẩn
             </h1>
             <p>Sắp xếp chữ cái để tìm tên nhân vật lịch sử</p>
           </div>

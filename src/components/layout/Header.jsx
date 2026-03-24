@@ -66,18 +66,18 @@ export default function Header({ currentPage }) {
     setCurrentLang(lang);
     localStorage.setItem('selectedLang', lang);
     setIsDropdownOpen(false);
-    
+
     // Hiện loading screen với spinner hình tròn xoay
     const loadingScreen = document.getElementById('translate-loading');
     if (loadingScreen) {
       loadingScreen.style.display = 'flex';
-      
+
       // Dùng 1 kiểu spinner cố định cho mượt
       const spinner = document.getElementById('spinner');
       if (spinner) {
         spinner.innerHTML = '<div class="spinner-circle1"></div>';
       }
-      
+
       // Trigger Google Translate
       if (lang === 'ENG') {
         const select = document.querySelector('.goog-te-combo');
@@ -92,7 +92,7 @@ export default function Header({ currentPage }) {
           select.dispatchEvent(new Event('change'));
         }
       }
-      
+
       // Reload trang sau 2 giây
       setTimeout(() => {
         window.location.reload();
@@ -116,7 +116,6 @@ export default function Header({ currentPage }) {
         <nav className="desktop-nav">
           <ul>
             <li><Link to="/" className={location.pathname === "/" ? "active" : ""}>Trang chủ</Link></li>
-            <li><a href="#">Giới thiệu</a></li>
             <li><Link to="/dia-ly" className={location.pathname === "/dia-ly" || location.pathname === "/vi-tri" || location.pathname === "/kinh-te" || location.pathname === "/tu-nhien" || location.pathname === "/dan-cu" ? "active" : ""}>Địa lý</Link></li>
             <li><Link to="/lich-su" className={location.pathname === "/lich-su" || location.pathname === "/di-tich" || location.pathname === "/nhan-vat" ? "active" : ""}>Lịch sử</Link></li>
             <li><Link to="/van-hoa" className={location.pathname === "/van-hoa" || location.pathname === "/lang-nghe" || location.pathname === "/am-thuc" || location.pathname === "/le-hoi" ? "active" : ""}>Văn hóa</Link></li>

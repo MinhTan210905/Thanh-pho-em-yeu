@@ -363,7 +363,7 @@ export default function TroChoiAmThuc() {
         open: true,
         type: "alert",
         title: "Hết lượt chơi",
-        message: "Bạn đã hết lượt chơi cho trò chơi này!",
+        message: "Bạn đã hết lượt chơi cho Đuổi hình bắt chữ!",
         action: "none",
       });
       return;
@@ -427,7 +427,7 @@ export default function TroChoiAmThuc() {
             <i className={`fa-solid ${endIcon}`} />
           </div>
           <h2>
-            Hoàn thành <span>Trò chơi!</span>
+            Hoàn Thành <span>Đuổi Hình Bắt Chữ!</span>
           </h2>
           <p>
             Bạn đã trả lời đúng <strong>{correctCount}/{QUESTIONS.length}</strong> câu hỏi về các

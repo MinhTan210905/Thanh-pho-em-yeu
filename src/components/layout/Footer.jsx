@@ -1,4 +1,6 @@
-﻿export default function Footer() {
+import { Link } from "react-router-dom";
+
+export default function Footer() {
   return (
     <footer className="footer-area">
       <div className="footer-container">
@@ -16,9 +18,9 @@
             <div className="footer-info">
               <h4>TRƯỜNG ĐẠI HỌC SƯ PHẠM TP.HỒ CHÍ MINH</h4>
               <p>280 An Dương Vương, Phường Chợ Quán, Quận 5, TP.HCM</p>
-              
+
               <br />
-              
+
               <h4>KHOA GIÁO DỤC TIỂU HỌC</h4>
               <a href="#" className="footer-link">Website thuộc nhóm NCKH khoa Giáo dục Tiểu học</a>
               <p>Liên hệ công tác: (0394) 952 938</p>
@@ -27,12 +29,11 @@
 
           <div className="footer-col middle">
             <ul className="footer-links">
-              <li><a href="#">Trang chủ</a></li>
-              <li><a href="#">Giới thiệu</a></li>
-              <li><a href="#">Địa lý</a></li>
-              <li><a href="#">Lịch sử</a></li>
-              <li><a href="#">Văn hóa</a></li>
-              <li><a href="#">Góc học tập</a></li>
+              <li><Link to="/">Trang chủ</Link></li>
+              <li><Link to="/dia-ly">Địa lý</Link></li>
+              <li><Link to="/lich-su">Lịch sử</Link></li>
+              <li><Link to="/van-hoa">Văn hóa</Link></li>
+              <li><Link to="/hoc-tap">Góc học tập</Link></li>
             </ul>
           </div>
 

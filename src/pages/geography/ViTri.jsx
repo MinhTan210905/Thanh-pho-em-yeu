@@ -17,16 +17,16 @@ export default function ViTri() {
 
       if (sectionWrappers.length === 0) return;
 
-      observer = new IntersectionObserver(
-        (entries) => {
+      observer = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+              obs.unobserve(entry.target);
               observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
       sectionWrappers.forEach((el) => observer.observe(el));
@@ -89,10 +89,10 @@ export default function ViTri() {
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <main className="vt-content">
+      <main className="vt-geo-content">
         <div className="section-wrapper vt-core-group">
           {/* Stats Dashboard */}
-          <section className="vt-stats">
+          <section className="vt-geo-stats">
             <div className="container">
               <div className="vt-stats-head reveal fade-up">
                 <span className="vt-tag">Tổng Quan</span>

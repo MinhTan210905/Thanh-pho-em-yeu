@@ -255,12 +255,18 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 /* ═══════ 2. CONTENT ═══════ */
-.vt-content {
+.vt-geo-content {
   background: #f6fafa;
+  width: 100%;
 }
 
 .vt-core-group {
   padding: 70px 0 0;
+}
+
+.vi-tri-page .container {
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 /* -- Section Tags & Titles -- */
@@ -278,20 +284,21 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 .vt-section-title {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   font-weight: 800;
   color: #063442;
   letter-spacing: -0.3px;
+  margin: 0;
 }
 
 /* ═══════ 3. STATS DASHBOARD ═══════ */
-.vt-stats {
-  margin-bottom: 64px;
+.vt-geo-stats {
+  padding-bottom: 48px;
 }
 
 .vt-stats-head {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .vt-stats-subtitle {
@@ -305,7 +312,7 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 .vt-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 18px;
 }
 
 .vt-stat-main {
@@ -316,12 +323,15 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 .vt-stat-card {
   background: #fff;
   border: 2px solid #e0eeec;
-  border-radius: 20px;
-  padding: 36px 24px 32px;
+  border-radius: 18px;
+  padding: 28px 22px;
   text-align: center;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .vt-stat-glow {
@@ -347,15 +357,15 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 
 .vt-stat-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(10, 110, 122, 0.12);
+  box-shadow: 0 14px 36px rgba(10, 110, 122, 0.1);
   border-color: #1abc9c;
 }
 
 .vt-stat-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 18px;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 14px;
   background: linear-gradient(135deg, rgba(10, 110, 122, 0.1) 0%, rgba(26, 188, 156, 0.1) 100%);
   display: grid;
   place-items: center;
@@ -367,7 +377,7 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 .vt-stat-number {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: #063442;
   line-height: 1;
@@ -376,22 +386,22 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 .vt-stat-unit {
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #0a6e7a;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
 }
 
 .vt-stat-label {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: #6b8f8a;
-  letter-spacing: 0.3px;
+  line-height: 1.65;
 }
 
 .vt-stat-breakdown {
-  margin-top: 10px;
+  margin-top: 14px;
   display: inline-block;
   font-size: 0.78rem;
   font-weight: 700;
@@ -438,32 +448,34 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 
 /* ═══════ 4. HIGHLIGHTS ═══════ */
 .vt-highlights {
-  margin-bottom: 64px;
+  padding-bottom: 36px;
 }
 
 .vt-highlights-head {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .vt-highlights-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 18px;
 }
 
 .vt-hl-card {
   background: #fff;
   border: 2px solid #e0eeec;
   border-radius: 18px;
-  padding: 32px 28px;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  padding: 26px 22px;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .vt-hl-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(10, 110, 122, 0.1);
+  box-shadow: 0 14px 36px rgba(10, 110, 122, 0.1);
   border-color: #1abc9c;
 }
 
@@ -483,17 +495,18 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 .vt-hl-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.08rem;
+  font-weight: 750;
   color: #063442;
   margin-bottom: 8px;
 }
 
 .vt-hl-card p {
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.7;
   color: #516b68;
   margin: 0;
+  flex: 1;
 }
 
 /* Accent highlight card */
@@ -556,7 +569,7 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 .vt-canvas-embed {
   position: relative;
   width: 100%;
-  padding-bottom: 141.43%;
+  padding-bottom: 141%;
   height: 0;
   overflow: hidden;
   border-radius: 12px;
@@ -605,6 +618,10 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 
 /* ═══════ RESPONSIVE ═══════ */
 @media (max-width: 1024px) {
+  .vi-tri-page .container {
+    padding: 0 24px;
+  }
+
   .vt-hero {
     padding: 60px 0 56px;
   }
@@ -624,6 +641,10 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 }
 
 @media (max-width: 768px) {
+  .vi-tri-page .container {
+    padding: 0 20px;
+  }
+
   .vt-hero {
     margin-top: 90px;
     padding: 50px 0 44px;
@@ -753,7 +774,7 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
     font-size: 1.35rem;
   }
 
-  .container {
+  .vi-tri-page .container {
     padding: 0 16px;
   }
 }

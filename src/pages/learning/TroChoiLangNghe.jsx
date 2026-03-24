@@ -174,7 +174,7 @@ export default function TroChoiLangNghe() {
         setSelectedLeft(null);
         return;
       }
-      
+
       // If the left item already has a link, remove it so it can be re-linked
       if (links[id]) {
         const newLinks = { ...links };
@@ -224,7 +224,7 @@ export default function TroChoiLangNghe() {
 
   const handleCheck = useCallback(() => {
     if (!isCompleteForm || isChecked) return;
-    
+
     let newCorrect = 0;
     const newResults = {};
     Object.keys(links).forEach((leftId) => {
@@ -314,7 +314,7 @@ export default function TroChoiLangNghe() {
             <i className={`fa-solid ${correctCount === TOTAL ? 'fa-trophy' : 'fa-star'}`} />
           </div>
           <h2>
-            Hoàn thành <span>Nối Làng Nghề!</span>
+            Hoàn Thành <span>Tìm Đúng Làng - Đoán Đúng Nghề</span>
           </h2>
           <p>
             Bạn đã ghép đúng <strong>{correctCount}/{TOTAL}</strong> cặp nghề truyền thống.
@@ -361,9 +361,9 @@ export default function TroChoiLangNghe() {
             <div className="lng-dialog" onClick={(e) => e.stopPropagation()}>
               <h3>Thông báo</h3>
               <p>{dialog.message}</p>
-              <div style={{display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px'}}>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
                 {dialog.type === "confirm" && (
-                  <button className="lng-btn ghost" style={{background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '999px', padding: '12px 24px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s ease'}} onClick={closeDialog}>
+                  <button className="lng-btn ghost" style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '999px', padding: '12px 24px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s ease' }} onClick={closeDialog}>
                     Hủy
                   </button>
                 )}
@@ -387,7 +387,7 @@ export default function TroChoiLangNghe() {
           </Link>
           <div>
             <h1>
-              <i className="fa-solid fa-link" /> Nối Làng Nghề
+              <i className="fa-solid fa-link" /> Tìm Đúng Làng - Đoán Đúng Nghề
             </h1>
             <p>Chọn một ảnh sau đó chọn tên nghề để ghép thành cặp</p>
           </div>
@@ -460,15 +460,15 @@ export default function TroChoiLangNghe() {
                 const leftLinked = Object.keys(links).find(
                   (l) => links[l] === id
                 );
-                
+
                 let cx = "lng-card label";
                 if (isSelected) cx += " selected";
-                
+
                 // If linked, inherit the color of the left item
                 if (leftLinked) {
                   cx += " linked " + leftColorClasses[leftLinked];
                 }
-                
+
                 if (isChecked && leftLinked) {
                   const res = results[leftLinked];
                   if (res === true) cx += " checked-correct";
@@ -530,9 +530,9 @@ export default function TroChoiLangNghe() {
           <div className="lng-dialog" onClick={(e) => e.stopPropagation()}>
             <h3>Thông báo</h3>
             <p>{dialog.message}</p>
-            <div style={{display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px'}}>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
               {dialog.type === "confirm" && (
-                <button className="lng-btn ghost" style={{background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '999px', padding: '12px 24px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s ease'}} onClick={closeDialog}>
+                <button className="lng-btn ghost" style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '999px', padding: '12px 24px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s ease' }} onClick={closeDialog}>
                   Hủy
                 </button>
               )}

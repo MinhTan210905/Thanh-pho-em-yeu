@@ -220,7 +220,7 @@ export default function BaiTap() {
         <div className="bt-games-header">
           <h2>
             <i className="fa-solid fa-list-check" />
-            Danh sách Trò chơi
+            Danh sách trò chơi
           </h2>
           <div className="bt-filter-pills">
             <button

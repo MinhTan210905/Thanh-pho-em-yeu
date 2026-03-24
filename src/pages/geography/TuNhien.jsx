@@ -19,16 +19,16 @@ export default function TuNhien() {
       const allTargets = [...sectionWrappers, ...heroReveals];
       if (allTargets.length === 0) return;
 
-      observer = new IntersectionObserver(
-        (entries) => {
+      observer = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+              obs.unobserve(entry.target);
               observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
       allTargets.forEach((el) => observer.observe(el));

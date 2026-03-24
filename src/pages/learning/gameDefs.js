@@ -1,7 +1,7 @@
 export const GAME_DEFS = [
   {
     id: "tro-choi-am-thuc",
-    title: "Đuổi Hình Bắt Chữ - Ẩm Thực",
+    title: "Đuổi Hình Bắt Chữ",
     category: "Văn hóa",
     description:
       "Nhìn hình ảnh món ăn Sài Gòn và đoán tên chính xác. Thử thách vốn hiểu biết ẩm thực của bạn!",
@@ -12,7 +12,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-di-tich-lich-su",
-    title: "Phân Loại Di Tích Lịch Sử",
+    title: "Phân Loại Di Tích",
     category: "Lịch sử",
     description:
       "Phân loại 9 di tích lịch sử vào đúng thời kỳ. Rèn luyện kiến thức lịch sử qua trò chơi tương tác!",
@@ -23,7 +23,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-dia-li-tu-nhien",
-    title: "Túi Mù Bí Ẩn - Địa Lí Tự Nhiên",
+    title: "Truy Tìm Bí Ẩn Tự Nhiên",
     category: "Địa lí",
     description:
       "Xé túi mù khám phá 10 câu hỏi địa lí tự nhiên về TP.HCM. Chọn đáp án đúng để ghi điểm!",
@@ -34,7 +34,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-lang-nghe",
-    title: "Kết Nối Làng Nghề - Tinh Hoa Truyền Thống",
+    title: "Tìm Đúng Làng - Đoán Đúng Nghề",
     category: "Văn hóa",
     description:
       "Ghép hình ảnh làng nghề và tên nghề truyền thống. Càng nhiều cặp đúng, điểm càng cao!",
@@ -45,7 +45,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-le-hoi",
-    title: "Giải Mã Lễ Hội",
+    title: "Dấu Ấn Lễ Hội Địa Phương Em",
     category: "Văn hóa",
     description:
       "Chọn từ khóa đúng cho 8 lễ hội truyền thống. Ôn tập kiến thức văn hóa lễ hội Việt Nam!",
@@ -56,7 +56,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-nhan-vat-lich-su",
-    title: "Đảo Chữ Thông Thái - Nhân Vật Lịch Sử",
+    title: "Giải Mã Bí Ẩn",
     category: "Lịch sử",
     description:
       "Đọc các gợi ý gợi nhớ lịch sử hào hùng và sắp xếp lại các chữ cái bị xáo trộn để tìm ra tên nhân vật.",
@@ -67,7 +67,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-dan-cu",
-    title: "Quán Ăn Vui Vẻ - Dân Cư",
+    title: "Quán Ăn Hạnh Phúc",
     category: "Địa lí",
     description:
       "Chọn món ăn và trả lời 5 câu hỏi về dân cư TP.HCM. Đúng thì hoàn thiện món, sai thì… khay vỡ!",
@@ -78,7 +78,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-kinh-te",
-    title: "Truy Tìm Ô Chữ - Kinh Tế",
+    title: "Truy Tìm Ô Chữ",
     category: "Địa lí",
     description:
       "Tìm 5 từ khóa về địa lí kinh tế được ẩn giấu trong bảng chữ cái.",
@@ -89,7 +89,7 @@ export const GAME_DEFS = [
   },
   {
     id: "tro-choi-vi-tri",
-    title: "Trắc Nghiệm Vị Trí Địa Lý",
+    title: "Cuộc Phiêu Lưu Của Táo Đỏ",
     category: "Địa lí",
     description:
       "Kiểm tra kiến thức của bạn về vị trí địa lý mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",

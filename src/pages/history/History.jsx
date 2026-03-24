@@ -74,19 +74,16 @@ export default function History() {
         return;
       }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
+      const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               console.log('Adding active class to:', entry.target.className.substring(0, 50));
               entry.target.classList.add('active');
+              obs.unobserve(entry.target);
             }
           });
         },
-        {
-          threshold: 0,
-          rootMargin: '0px 0px 100px 0px'
-        }
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
       revealElements.forEach((el) => {

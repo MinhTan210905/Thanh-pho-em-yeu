@@ -4,8 +4,8 @@ import { fireConfetti } from "./confettiEffect";
 import "./TroChoiDiTichLichSu.css";
 
 function ConfettiOnMount() {
-  useEffect(() => { 
-    fireConfetti(2); 
+  useEffect(() => {
+    fireConfetti(2);
   }, []);
   return null;
 }
@@ -299,7 +299,7 @@ export default function TroChoiLichSu() {
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
     if (attempts >= MAX_ATTEMPTS) {
-      setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho trò chơi này!", action: "" });
+      setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho Đoán tên di tích!", action: "" });
       return;
     }
     setDialog({
@@ -356,7 +356,7 @@ export default function TroChoiLichSu() {
             <i className={`fa-solid ${doneIcon}`} />
           </div>
           <h2>
-            Hoàn thành <span>Phân loại!</span>
+            Hoàn Thành <span>Phân Loại Di Tích!</span>
           </h2>
           <p>
             Bạn phân loại đúng <strong>{correctCount}/{TOTAL}</strong> di tích vào đúng thời kỳ lịch sử.
@@ -480,17 +480,17 @@ export default function TroChoiLichSu() {
                   const res = resultMap?.[site.id];
                   const correctEra = res === false ? ERAS.find((e) => e.id === site.era) : null;
                   return (
-              <div
-                key={site.id}
-                className={`tls-placed${dragging === site.id ? " dragging" : ""}${res === true ? " correct" : ""}${res === false ? " wrong" : ""}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (phase === "playing" && !suppressClickRef.current) {
-                    handleRemoveFromEra(site.id);
-                  }
-                }}
-                onPointerDown={(e) => handlePointerDown(e, site.id)}
-              >
+                    <div
+                      key={site.id}
+                      className={`tls-placed${dragging === site.id ? " dragging" : ""}${res === true ? " correct" : ""}${res === false ? " wrong" : ""}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (phase === "playing" && !suppressClickRef.current) {
+                          handleRemoveFromEra(site.id);
+                        }
+                      }}
+                      onPointerDown={(e) => handlePointerDown(e, site.id)}
+                    >
                       <img src={site.image} alt={site.name} draggable="false" />
                       <div className="tls-placed-info">
                         <span className="tls-placed-name">{site.name}</span>

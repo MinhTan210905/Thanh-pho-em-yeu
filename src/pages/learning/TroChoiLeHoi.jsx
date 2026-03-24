@@ -347,7 +347,7 @@ export default function TroChoiLeHoi() {
         open: true,
         type: "alert",
         title: "Hết lượt chơi",
-        message: "Bạn đã hết lượt chơi cho trò chơi này!",
+        message: "Bạn đã hết lượt chơi cho Dấu ấn lễ hội địa phương em!",
         action: "none",
       });
       return;
@@ -412,7 +412,7 @@ export default function TroChoiLeHoi() {
             <i className={`fa-solid ${endIcon}`} />
           </div>
           <h2>
-            Hoàn thành <span>Giải Mã Lễ Hội!</span>
+            Hoàn thành <span>Dấu Ấn Lễ Hội Địa Phương Em!</span>
           </h2>
           <p>
             Bạn đã trả lời đúng{" "}
@@ -505,7 +505,7 @@ export default function TroChoiLeHoi() {
           <div>
             <h1>
               <i className="fa-solid fa-masks-theater" />
-              Giải Mã Lễ Hội
+              Dấu Ấn Lễ Hội Địa Phương Em
             </h1>
             <p>Chọn đúng các từ khóa xoay quanh lễ hội</p>
           </div>

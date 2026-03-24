@@ -75,7 +75,7 @@ export default function TroChoiViTri() {
   const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
-    document.title = "Trò Chơi Vị Trí - Khám phá TPHCM";
+    document.title = "Cuộc phiêu lưu của táo đỏ - Khám phá TPHCM";
     const saved = sessionStorage.getItem(STATE_KEY);
     if (saved) {
       try {
@@ -177,7 +177,7 @@ export default function TroChoiViTri() {
 
       <div className="vt-content">
         {screen === "intro" && (
-          <div className="vt-intro fade-up">
+          <div key="intro" className="vt-intro vt-screen-enter">
             <div className="vt-intro-card">
               <div className="vt-intro-icon">
                 <i className="fa-solid fa-map-location-dot" />
@@ -192,7 +192,7 @@ export default function TroChoiViTri() {
         )}
 
         {screen === "playing" && (
-          <div className="vt-quiz fade-up">
+          <div key={`quiz-${currentQuestion}`} className="vt-quiz vt-screen-enter">
             <div className="vt-question-card">
               <h3 className="vt-question-text">{QUESTIONS[currentQuestion].question}</h3>
               <div className="vt-options">
@@ -226,7 +226,7 @@ export default function TroChoiViTri() {
         )}
 
         {screen === "finish" && (
-          <div className="vt-finish fade-up">
+          <div key="finish" className="vt-finish vt-screen-enter">
             <ConfettiOnMount />
             <div className="vt-finish-card">
               <div className="vt-finish-icon">

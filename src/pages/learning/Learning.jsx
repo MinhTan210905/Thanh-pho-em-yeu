@@ -6,12 +6,7 @@ export default function Learning() {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsInitialLoad(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
+  const [isHeroContentVisible, setIsHeroContentVisible] = useState(false);
 
   const heroImages = [
     {
@@ -62,27 +57,13 @@ export default function Learning() {
   };
 
   useEffect(() => {
-    const setupTimer = setTimeout(() => {
-      const revealElements = document.querySelectorAll(".reveal");
-      if (revealElements.length === 0) return;
+    setIsHeroContentVisible(false);
+    const rafId = requestAnimationFrame(() => {
+      setIsHeroContentVisible(true);
+    });
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0, rootMargin: "0px 0px 100px 0px" }
-      );
-
-      revealElements.forEach((el) => observer.observe(el));
-      return () => observer.disconnect();
-    }, 300);
-
-    return () => clearTimeout(setupTimer);
-  }, []);
+    return () => cancelAnimationFrame(rafId);
+  }, [currentImageIndex]);
 
   const currentHero = heroImages[currentImageIndex];
 
@@ -108,7 +89,7 @@ export default function Learning() {
         ></button>
 
         <section
-          className={`learning-hero-content clickable ${isInitialLoad ? "initial-animation" : ""}`}
+          className={`learning-hero-content clickable ${isHeroContentVisible ? "is-visible" : ""}`}
           onClick={() => navigate(currentHero.route)}
         >
           <h1>{currentHero.title}</h1>
