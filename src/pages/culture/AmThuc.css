@@ -1,0 +1,519 @@
+/* --- ẨM THỰC PAGE --- */
+
+/* Force header to be sticky style (white background) on this page */
+body.page-am-thuc-active header {
+    position: fixed !important;
+    top: 40px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    height: 80px !important;
+    transition: all 0.3s ease;
+}
+
+body.page-am-thuc-active header .logo-wrapper,
+body.page-am-thuc-active header nav,
+body.page-am-thuc-active header .search-wrapper {
+    padding-top: 0 !important;
+}
+
+body.page-am-thuc-active header nav ul li a {
+    color: #0099ff !important;
+}
+
+body.page-am-thuc-active header nav ul li a::after {
+    background-color: #ff6b6b !important;
+}
+
+body.page-am-thuc-active header nav ul li a:hover {
+    color: #ff6b6b !important;
+}
+
+body.page-am-thuc-active header nav ul li a.active {
+    color: #ff6b6b !important;
+}
+
+body.page-am-thuc-active header .search-box {
+    background: #f0f0f0 !important;
+    border: 1px solid #ccc !important;
+}
+
+body.page-am-thuc-active header .search-box i {
+    color: #666 !important;
+}
+
+body.page-am-thuc-active header .search-box input {
+    color: #333 !important;
+}
+
+body.page-am-thuc-active header .search-box input::placeholder {
+    color: #999 !important;
+}
+
+/* === 1. HERO === */
+.at-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 120px;
+    padding: 70px 0 60px;
+    background: linear-gradient(180deg, #f3f8ff 0%, #ffffff 65%, #fff9f2 100%);
+}
+
+.at-hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 26px;
+    align-items: center;
+}
+
+.at-hero-glow {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.at-glow-1 {
+    width: 360px;
+    height: 360px;
+    top: -100px;
+    right: -80px;
+    background: rgba(0, 153, 255, 0.22);
+}
+
+.at-glow-2 {
+    width: 320px;
+    height: 320px;
+    bottom: -120px;
+    left: -120px;
+    background: rgba(255, 107, 107, 0.2);
+}
+
+.at-hero-copy {
+    text-align: left;
+}
+
+.at-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(11, 134, 215, 0.06);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(11, 134, 215, 0.15);
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    color: #3c4f67;
+}
+
+.at-separator {
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+.at-current {
+    color: #0b86d7;
+    font-weight: 700;
+}
+
+.at-title {
+    font-size: 3.8rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(11, 134, 215, 0.16);
+    background: linear-gradient(to right, #0a3f74, #0b86d7, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.at-subtitle {
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.85;
+    color: #31455f;
+    max-width: 640px;
+    margin: 0 0 22px;
+}
+
+.at-hero-points {
+    display: grid;
+    gap: 8px;
+    color: #36516f;
+    font-weight: 600;
+}
+
+.at-hero-panel {
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid #d7e8f8;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(8px);
+    display: grid;
+    gap: 12px;
+}
+
+.at-stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f7fbff 100%);
+    border: 1px solid #dbebf8;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.at-stat-label {
+    display: block;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #60758d;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.at-stat-value {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #0d487f;
+    letter-spacing: -0.5px;
+}
+
+/* === 2. OVERVIEW === */
+.at-overview {
+    padding: 22px 0 34px;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+}
+
+.at-overview-top {
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.at-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #0b86d7 0%, #0a5e9d 55%, #ff6b6b 100%);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.at-section-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #11253b;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+}
+
+/* Quote + Cards grid (NhanVat style) */
+.at-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+}
+
+/* Summary panel (left column) */
+.at-bento-summary {
+    background: linear-gradient(145deg, #0b5fad 0%, #062240 60%, #0a4b8a 100%);
+    border-radius: 20px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.at-summary-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fbbf24;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.at-summary-badge i {
+    font-size: 0.85rem;
+}
+
+.at-summary-title {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 14px;
+    letter-spacing: -0.3px;
+}
+
+.at-summary-desc {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0 0 22px;
+}
+
+.at-summary-regions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.at-summary-regions span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.at-summary-regions span i {
+    font-size: 0.7rem;
+    color: #ff6b6b;
+}
+
+/* Cards stack (right column) */
+.at-bento-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.at-b-card {
+    background: #ffffff;
+    border: 1px solid #deebf8;
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.at-b-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(11, 91, 182, 0.1);
+}
+
+.at-b-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(11,134,215,0.1), rgba(255,107,107,0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #0b86d7;
+    font-size: 1.1rem;
+}
+
+.at-b-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #10263f;
+    margin-bottom: 4px;
+}
+
+.at-b-card p {
+    margin: 0;
+    color: #3f556f;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Accent card */
+.at-b-card-accent {
+    background: linear-gradient(145deg, #0b5fad 0%, #062240 55%, #ff6b6b 100%) !important;
+    border-color: transparent !important;
+}
+
+.at-b-card-accent .at-b-icon {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ff9a9a;
+}
+
+.at-b-card-accent h3 {
+    color: #ffffff;
+}
+
+.at-b-card-accent p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* === 3. CANVAS === */
+.at-canvas {
+    padding: 18px 0 110px;
+    background: linear-gradient(180deg, #fbfdff 0%, #f3f8ff 45%, #fff8f3 100%);
+}
+
+.at-canvas-head {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.at-canvas-head h3 {
+    font-size: 1.5rem;
+    color: #153657;
+    margin-bottom: 8px;
+}
+
+.at-canvas-head p {
+    margin: 0;
+    color: #5a7088;
+}
+
+.at-canvas-wrapper {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 18px;
+    border: 1px solid #d9e8f5;
+    overflow: hidden;
+    box-shadow: 0 14px 34px rgba(11, 48, 85, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    padding: 10px;
+}
+
+.at-canvas-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #fff;
+}
+
+.at-canvas-embed iframe {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 0;
+    outline: none;
+    display: block;
+    border-radius: 12px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .at-hero {
+        padding-top: 120px;
+        padding-bottom: 52px;
+    }
+
+    .at-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .at-title {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .at-subtitle {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .at-hero-copy {
+        text-align: center;
+    }
+
+    .at-breadcrumb {
+        justify-content: center;
+    }
+
+    .at-stat-value {
+        font-size: 1.3rem;
+    }
+
+    .at-section-title {
+        font-size: 1.95rem;
+    }
+
+    .at-bento-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .at-hero {
+        padding-top: 100px;
+    }
+
+    .at-breadcrumb {
+        font-size: 0.75rem;
+        gap: 8px;
+    }
+
+    .at-title {
+        font-size: 2rem;
+    }
+
+    .at-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .at-tag {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    .at-section-title {
+        font-size: 1.52rem;
+    }
+
+    .at-b-card {
+        border-radius: 12px;
+        padding: 18px;
+    }
+
+}
+
+/* === Highlight Văn Hóa menu on Am Thuc page === */
+body.page-am-thuc-active header nav ul li a.active {
+    color: #ff6b6b !important;
+}
+
+body.page-am-thuc-active header nav ul li a.active::after {
+    background-color: #ff6b6b !important;
+}
+
+body.page-am-thuc-active header nav ul li a.active:hover::after {
+    width: 100% !important;
+}

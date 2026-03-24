@@ -1,0 +1,14 @@
+﻿:root {
+  --color-primary: #c0392b;
+  --color-secondary: #2c3e50;
+  --color-accent: #e74c3c;
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Open Sans", sans-serif;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+}

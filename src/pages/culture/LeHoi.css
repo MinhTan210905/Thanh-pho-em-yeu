@@ -1,0 +1,505 @@
+/* ── LỄ HỘI PAGE ── */
+
+/* Header override — white sticky */
+body.page-le-hoi-active header {
+    position: fixed !important;
+    top: 40px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    height: 80px !important;
+    transition: all 0.3s ease;
+}
+
+body.page-le-hoi-active header .logo-wrapper,
+body.page-le-hoi-active header nav,
+body.page-le-hoi-active header .search-wrapper {
+    padding-top: 0 !important;
+}
+
+body.page-le-hoi-active header nav ul li a {
+    color: #0099ff !important;
+}
+
+body.page-le-hoi-active header nav ul li a::after {
+    background-color: #ff6b6b !important;
+}
+
+body.page-le-hoi-active header nav ul li a:hover {
+    color: #ff6b6b !important;
+}
+
+body.page-le-hoi-active header nav ul li a.active {
+    color: #ff6b6b !important;
+}
+
+body.page-le-hoi-active header .search-box {
+    background: #f0f0f0 !important;
+    border: 1px solid #ccc !important;
+}
+
+body.page-le-hoi-active header .search-box i { color: #666 !important; }
+body.page-le-hoi-active header .search-box input { color: #333 !important; }
+body.page-le-hoi-active header .search-box input::placeholder { color: #999 !important; }
+
+/* ═══════ 1. HERO ═══════ */
+.lh-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 120px;
+    padding: 80px 0 72px;
+    background: linear-gradient(160deg, #1e0a3c 0%, #3a1078 38%, #6c3ce0 72%, #00c9a7 100%);
+    color: #fff;
+    text-align: center;
+}
+
+/* Floating decoration circles */
+.lh-hero-deco {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Starfield */
+.lh-deco-stars {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background-image:
+        radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.9) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 16% 28%, rgba(255, 255, 255, 0.78) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 24% 10%, rgba(255, 255, 255, 0.88) 0 1.3px, transparent 1.9px),
+        radial-gradient(circle at 31% 22%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 39% 12%, rgba(255, 255, 255, 0.86) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 47% 27%, rgba(255, 255, 255, 0.74) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 56% 9%, rgba(255, 255, 255, 0.92) 0 1.4px, transparent 2px),
+        radial-gradient(circle at 64% 24%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 72% 14%, rgba(255, 255, 255, 0.85) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 81% 26%, rgba(255, 255, 255, 0.74) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 89% 11%, rgba(255, 255, 255, 0.9) 0 1.3px, transparent 1.9px),
+        radial-gradient(circle at 95% 22%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 12% 56%, rgba(255, 255, 255, 0.8) 0 1.1px, transparent 1.7px),
+        radial-gradient(circle at 21% 46%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 33% 52%, rgba(255, 255, 255, 0.86) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 44% 47%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 58% 55%, rgba(255, 255, 255, 0.82) 0 1.1px, transparent 1.7px),
+        radial-gradient(circle at 69% 49%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 78% 58%, rgba(255, 255, 255, 0.87) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 90% 50%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 7% 76%, rgba(255, 255, 255, 0.74) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 18% 86%, rgba(255, 255, 255, 0.85) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 30% 74%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 42% 82%, rgba(255, 255, 255, 0.82) 0 1.1px, transparent 1.7px),
+        radial-gradient(circle at 55% 78%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 67% 86%, rgba(255, 255, 255, 0.87) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle at 79% 74%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 91% 83%, rgba(255, 255, 255, 0.84) 0 1.1px, transparent 1.7px);
+    background-repeat: no-repeat;
+    animation: lh-twinkle 4s ease-in-out infinite alternate;
+}
+
+.lh-stars-2 {
+    opacity: 0.9;
+    background-image:
+        radial-gradient(circle at 13% 18%, rgba(255, 255, 255, 0.96) 0 1.7px, transparent 2.3px),
+        radial-gradient(circle at 27% 14%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle at 41% 20%, rgba(255, 255, 255, 0.94) 0 1.7px, transparent 2.3px),
+        radial-gradient(circle at 54% 16%, rgba(255, 255, 255, 0.88) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle at 68% 21%, rgba(255, 255, 255, 0.96) 0 1.7px, transparent 2.3px),
+        radial-gradient(circle at 82% 15%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle at 94% 19%, rgba(255, 255, 255, 0.94) 0 1.7px, transparent 2.3px),
+        radial-gradient(circle at 19% 63%, rgba(255, 255, 255, 0.92) 0 1.6px, transparent 2.2px),
+        radial-gradient(circle at 36% 57%, rgba(255, 255, 255, 0.86) 0 1.4px, transparent 2px),
+        radial-gradient(circle at 52% 66%, rgba(255, 255, 255, 0.94) 0 1.6px, transparent 2.2px),
+        radial-gradient(circle at 70% 61%, rgba(255, 255, 255, 0.88) 0 1.4px, transparent 2px),
+        radial-gradient(circle at 87% 65%, rgba(255, 255, 255, 0.95) 0 1.6px, transparent 2.2px),
+        radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle at 28% 84%, rgba(255, 255, 255, 0.96) 0 1.7px, transparent 2.3px),
+        radial-gradient(circle at 46% 92%, rgba(255, 255, 255, 0.88) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle at 63% 85%, rgba(255, 255, 255, 0.94) 0 1.6px, transparent 2.2px),
+        radial-gradient(circle at 81% 91%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.1px);
+    background-repeat: no-repeat;
+    animation: lh-twinkle 5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes lh-twinkle {
+    0%   { opacity: 0.5; }
+    50%  { opacity: 0.85; }
+    100% { opacity: 0.6; }
+}
+
+.lh-deco-1 {
+    width: 420px;
+    height: 420px;
+    top: -140px;
+    left: -60px;
+    background: radial-gradient(circle, rgba(0, 201, 167, 0.2) 0%, transparent 70%);
+}
+
+.lh-deco-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -80px;
+    right: -40px;
+    background: radial-gradient(circle, rgba(124, 77, 255, 0.25) 0%, transparent 70%);
+}
+
+.lh-deco-3 {
+    width: 180px;
+    height: 180px;
+    top: 45%;
+    right: 12%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
+}
+
+.lh-hero-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Breadcrumb badge */
+.lh-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.lh-dot {
+    opacity: 0.4;
+}
+
+.lh-badge-accent {
+    color: #00c9a7;
+    font-weight: 700;
+}
+
+/* Title */
+.lh-hero-title {
+    font-size: 4.2rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 1.2rem;
+    line-height: 1.08;
+    text-shadow: 0 6px 24px rgba(30, 10, 60, 0.4);
+}
+
+.lh-highlight {
+    background: linear-gradient(90deg, #00c9a7, #7cf5db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lh-hero-desc {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto 36px;
+    opacity: 0.93;
+    font-weight: 400;
+}
+
+/* Hero chips row */
+.lh-hero-chips {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.lh-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-align: left;
+    min-width: 195px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.lh-chip:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.17);
+}
+
+.lh-chip i {
+    font-size: 1.4rem;
+    color: #00c9a7;
+    flex-shrink: 0;
+}
+
+.lh-chip strong {
+    display: block;
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+}
+
+.lh-chip span {
+    display: block;
+    font-size: 0.78rem;
+    opacity: 0.75;
+    font-weight: 400;
+}
+
+/* ═══════ 2. FEATURE STRIP ═══════ */
+.lh-features {
+    padding: 64px 0 40px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
+}
+
+.lh-features-head {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.lh-tag {
+    display: inline-block;
+    padding: 8px 22px;
+    background: linear-gradient(135deg, #6c3ce0 0%, #3a1078 55%, #00c9a7 100%);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.lh-section-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #1a0e2e;
+    letter-spacing: -1px;
+}
+
+/* Strip cards — horizontal row */
+.lh-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.lh-strip-card {
+    background: #ffffff;
+    border: 1px solid #e8dff5;
+    border-radius: 18px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lh-strip-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(108, 60, 224, 0.12);
+}
+
+.lh-strip-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #6c3ce0, #00c9a7);
+}
+
+.lh-strip-num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #d4c4f7;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.lh-strip-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a0e2e;
+    margin-bottom: 10px;
+}
+
+.lh-strip-card p {
+    margin: 0;
+    color: #4a3f5e;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Accent card — gradient fill */
+.lh-strip-accent {
+    background: linear-gradient(145deg, #6c3ce0 0%, #3a1078 60%, #00c9a7 100%);
+    border-color: transparent;
+}
+
+.lh-strip-accent .lh-strip-num {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.lh-strip-accent h3,
+.lh-strip-accent p {
+    color: #ffffff;
+}
+
+.lh-strip-accent::before {
+    display: none;
+}
+
+.lh-strip-wide {
+    background: linear-gradient(135deg, #faf8ff 0%, #ffffff 100%);
+}
+
+/* ═══════ 3. CANVAS ═══════ */
+.lh-canvas {
+    padding: 18px 0 110px;
+    background: linear-gradient(180deg, #faf8ff 0%, #f2edff 50%, #f8f5ff 100%);
+}
+
+.lh-canvas-intro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.lh-canvas-intro h3 {
+    font-size: 1.5rem;
+    color: #21123e;
+    margin-bottom: 8px;
+}
+
+.lh-canvas-intro p {
+    margin: 0;
+    color: #5e4d7a;
+}
+
+.lh-canvas-frame {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 18px;
+    border: 1px solid #ddd2f0;
+    overflow: hidden;
+    box-shadow: 0 14px 34px rgba(58, 16, 120, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    padding: 10px;
+}
+
+.lh-canvas-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 141.43%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.lh-canvas-embed iframe {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border: 0;
+    outline: none;
+    display: block;
+}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media (max-width: 768px) {
+    .lh-hero {
+        padding-top: 120px;
+        padding-bottom: 56px;
+    }
+
+    .lh-hero-title {
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+    }
+
+    .lh-hero-desc {
+        font-size: 1rem;
+        margin-bottom: 28px;
+    }
+
+    .lh-hero-chips {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .lh-chip {
+        min-width: 260px;
+    }
+
+    .lh-section-title {
+        font-size: 1.95rem;
+    }
+
+    .lh-strip {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lh-hero {
+        padding-top: 100px;
+    }
+
+    .lh-hero-badge {
+        font-size: 0.75rem;
+    }
+
+    .lh-hero-title {
+        font-size: 2.1rem;
+    }
+
+    .lh-hero-desc {
+        font-size: 0.93rem;
+    }
+
+    .lh-tag {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    .lh-section-title {
+        font-size: 1.55rem;
+    }
+
+    .lh-strip-card {
+        border-radius: 14px;
+        padding: 20px;
+    }
+}
+
+/* ═══════ Menu highlight ═══════ */
+body.page-le-hoi-active header nav ul li a.active {
+    color: #ff6b6b !important;
+}
+
+body.page-le-hoi-active header nav ul li a.active::after {
+    background-color: #ff6b6b !important;
+}
+
+body.page-le-hoi-active header nav ul li a.active:hover::after {
+    width: 100% !important;
+}

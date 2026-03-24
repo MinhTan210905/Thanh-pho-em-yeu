@@ -1,0 +1,724 @@
+/* ============================================================
+   DanCu.css  ·  "Civic Sunset" — Demographics Explorer
+   Palette: deep #1c1210 | orange #ea580c | peach #fb923c | cream #fff7ed
+   ============================================================ */
+
+/* ── HEADER OVERRIDE — white sticky ── */
+body.page-dan-cu-active header {
+  position: fixed !important;
+  top: 40px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  height: 80px !important;
+  transition: all 0.3s ease;
+}
+
+body.page-dan-cu-active header .logo-wrapper,
+body.page-dan-cu-active header nav,
+body.page-dan-cu-active header .search-wrapper {
+  padding-top: 0 !important;
+}
+
+body.page-dan-cu-active header nav ul li a {
+  color: #0099ff !important;
+}
+
+body.page-dan-cu-active header nav ul li a::after {
+  background-color: #ff6b6b !important;
+}
+
+body.page-dan-cu-active header nav ul li a:hover {
+  color: #ff6b6b !important;
+}
+
+body.page-dan-cu-active header nav ul li a.active {
+  color: #ff6b6b !important;
+}
+
+body.page-dan-cu-active header .search-box {
+  background: #f0f0f0 !important;
+  border: 1px solid #ccc !important;
+}
+
+body.page-dan-cu-active header .search-box i {
+  color: #666 !important;
+}
+
+body.page-dan-cu-active header .search-box input {
+  color: #333 !important;
+}
+
+body.page-dan-cu-active header .search-box input::placeholder {
+  color: #999 !important;
+}
+
+body.page-dan-cu-active header nav ul li a.active {
+  color: #ff6b6b !important;
+}
+
+body.page-dan-cu-active header nav ul li a.active::after {
+  background-color: #ff6b6b !important;
+}
+
+body.page-dan-cu-active header nav ul li a.active:hover::after {
+  width: 100% !important;
+}
+
+/* ── PAGE ROOT ── */
+.dan-cu-page {
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════
+   1. HERO
+   ══════════════════════════════════════════════ */
+.dc-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 160px 0 100px;
+  background: linear-gradient(160deg, #1c1210 0%, #3d1e0a 35%, #7c2d12 65%, #ea580c 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Hero decorations */
+.dc-hero-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dc-deco-circles {
+  top: -60px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(251, 146, 60, 0.12);
+  box-shadow:
+    0 0 0 60px rgba(251, 146, 60, 0.04),
+    0 0 0 120px rgba(251, 146, 60, 0.02);
+}
+
+.dc-deco-dots {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle 1.5px at 10% 15%, rgba(255,255,255,0.06) 100%, transparent 100%),
+    radial-gradient(circle 1px   at 25% 55%, rgba(255,255,255,0.04) 100%, transparent 100%),
+    radial-gradient(circle 1.5px at 45% 10%, rgba(255,255,255,0.06) 100%, transparent 100%),
+    radial-gradient(circle 1px   at 60% 70%, rgba(255,255,255,0.04) 100%, transparent 100%),
+    radial-gradient(circle 1.5px at 78% 25%, rgba(255,255,255,0.06) 100%, transparent 100%),
+    radial-gradient(circle 1px   at 90% 60%, rgba(255,255,255,0.04) 100%, transparent 100%);
+}
+
+.dc-deco-glow {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.12) 0%, transparent 65%);
+  animation: dc-pulse 6s ease-in-out infinite alternate;
+}
+
+/* Subtle grid pattern overlay */
+.dc-deco-grid {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Diagonal accent stripe */
+.dc-deco-stripe {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg,
+      transparent 30%,
+      rgba(251, 146, 60, 0.04) 30.5%,
+      rgba(251, 146, 60, 0.04) 31.5%,
+      transparent 32%
+    ),
+    linear-gradient(135deg,
+      transparent 55%,
+      rgba(251, 146, 60, 0.03) 55.5%,
+      rgba(251, 146, 60, 0.03) 56.5%,
+      transparent 57%
+    );
+}
+
+@keyframes dc-pulse {
+  from { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  to   { opacity: 1; transform: translateX(-50%) scale(1.12); }
+}
+
+/* Hero content */
+.dc-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.dc-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+}
+
+.dc-dot {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dc-badge-accent {
+  color: #fed7aa;
+}
+
+.dc-hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.12;
+  margin: 0 0 18px;
+  letter-spacing: -0.5px;
+}
+
+.dc-highlight {
+  background: linear-gradient(90deg, #fb923c, #fed7aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dc-hero-desc {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+
+/* ── DASHBOARD STAT BAR — inline card grouped with hero content ── */
+.dc-stat-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 16px 8px;
+}
+
+.dc-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px;
+}
+
+.dc-bar-item i {
+  font-size: 1.15rem;
+  color: #fb923c;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(251, 146, 60, 0.12);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.dc-bar-num {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.dc-bar-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.dc-bar-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   2. CONTENT AREA
+   ══════════════════════════════════════════════ */
+.dc-content {
+  background: #fff7ed;
+}
+
+.dc-core-group {
+  padding: 70px 0 0;
+}
+
+/* ── SHARED SECTION ELEMENTS ── */
+.dc-stats-head,
+.dc-ethnic-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.dc-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  background: linear-gradient(135deg, #ea580c, #fb923c);
+  border-radius: 999px;
+  padding: 6px 20px;
+  margin-bottom: 12px;
+}
+
+.dc-section-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  color: #431407;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════
+   3. OVERVIEW STATS GRID
+   ══════════════════════════════════════════════ */
+.dc-stats {
+  padding-bottom: 48px;
+}
+
+.dc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.dc-stat-card {
+  background: #fff;
+  border: 2px solid #fde5d0;
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.dc-stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(234, 88, 12, 0.1);
+  border-color: #ea580c;
+}
+
+.dc-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.08), rgba(251, 146, 60, 0.12));
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  font-size: 1.15rem;
+  color: #ea580c;
+}
+
+.dc-stat-num {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ea580c;
+  margin-bottom: 4px;
+}
+
+.dc-stat-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #9a3412;
+  margin-bottom: 10px;
+}
+
+.dc-stat-card p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #78350f;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Accent stat card */
+.dc-stat-accent {
+  background: linear-gradient(155deg, #1c1210 0%, #7c2d12 50%, #ea580c 100%) !important;
+  border: none !important;
+  color: #fff;
+}
+
+.dc-stat-accent .dc-stat-icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fed7aa;
+}
+
+.dc-stat-accent .dc-stat-num {
+  color: #fed7aa;
+}
+
+.dc-stat-accent .dc-stat-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dc-stat-accent p {
+  color: rgba(255, 255, 255, 0.82) !important;
+  opacity: 1 !important;
+}
+
+/* ══════════════════════════════════════════════
+   4. ETHNIC DIVERSITY CARDS
+   ══════════════════════════════════════════════ */
+.dc-ethnic {
+  padding-bottom: 36px;
+}
+
+.dc-ethnic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.dc-ethnic-main {
+  grid-column: span 2;
+}
+
+.dc-ethnic-card {
+  background: #fff;
+  border: 2px solid #fde5d0;
+  border-radius: 18px;
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.dc-ethnic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(234, 88, 12, 0.1);
+  border-color: #fb923c;
+}
+
+.dc-ethnic-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.08), rgba(251, 146, 60, 0.12));
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+  color: #ea580c;
+}
+
+.dc-ethnic-card h3 {
+  font-size: 1.08rem;
+  font-weight: 750;
+  color: #431407;
+  margin: 0 0 8px;
+}
+
+.dc-ethnic-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #78350f;
+  margin: 0 0 14px;
+  flex: 1;
+  opacity: 0.85;
+}
+
+.dc-deco-motif {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.dc-deco-motif::before,
+.dc-deco-motif::after,
+.dc-deco-motif {
+  content: "";
+}
+
+.dc-deco-motif::before {
+  width: 12px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(234, 88, 12, 0.2);
+}
+
+.dc-deco-motif::after {
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(234, 88, 12, 0.4);
+}
+
+/* Main ethnic card — warm accent bg */
+.dc-ethnic-main {
+  background: linear-gradient(155deg, #431407 0%, #9a3412 50%, #ea580c 100%) !important;
+  border: none !important;
+}
+
+.dc-ethnic-main .dc-ethnic-icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fed7aa;
+}
+
+.dc-ethnic-main h3 {
+  color: #fff;
+}
+
+.dc-ethnic-main p {
+  color: rgba(255, 255, 255, 0.84);
+  opacity: 1;
+}
+
+.dc-ethnic-main .dc-deco-motif::before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dc-ethnic-main .dc-deco-motif::after {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ══════════════════════════════════════════════
+   5. CANVA EMBED
+   ══════════════════════════════════════════════ */
+.dc-canvas {
+  padding: 18px 0 110px;
+}
+
+.dc-canvas-intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dc-canvas-intro h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #431407;
+  margin: 0 0 8px;
+}
+
+.dc-canvas-intro p {
+  font-size: 0.93rem;
+  color: #9a3412;
+  margin: 0;
+}
+
+.dc-canvas-frame {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid #fde5d0;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(234, 88, 12, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px;
+}
+
+.dc-canvas-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.dc-canvas-embed iframe {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border: 0;
+  outline: none;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════════ */
+.dan-cu-page .fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dan-cu-page .fade-up.active,
+.dan-cu-page .section-wrapper.active .fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.dan-cu-page .delay-100 { transition-delay: 0.1s; }
+.dan-cu-page .delay-200 { transition-delay: 0.2s; }
+.dan-cu-page .delay-300 { transition-delay: 0.3s; }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .dc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dc-ethnic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dc-ethnic-main {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .dc-hero {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+
+  .dc-hero-title {
+    font-size: 2.4rem;
+  }
+
+  .dc-hero-desc {
+    font-size: 1rem;
+  }
+
+  .dc-stat-bar {
+    inline-size: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  .dc-bar-divider {
+    display: none;
+  }
+
+  .dc-bar-item {
+    padding: 6px 12px;
+    min-width: calc(50% - 10px);
+  }
+
+  .dc-section-title {
+    font-size: 1.5rem;
+  }
+
+  .dc-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .dc-ethnic-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .dc-ethnic-main {
+    grid-column: span 1;
+  }
+
+  .dc-canvas-frame {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dc-hero {
+    padding: 110px 0 48px;
+  }
+
+  .dc-hero-title {
+    font-size: 2rem;
+  }
+
+  .dc-hero-desc {
+    font-size: 0.93rem;
+  }
+
+  .dc-stat-bar {
+    flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .dc-bar-item {
+    width: 100%;
+    padding: 6px 10px;
+    min-width: unset;
+  }
+
+  .dc-bar-num {
+    font-size: 1rem;
+  }
+
+  .dc-tag {
+    font-size: 0.72rem;
+    padding: 5px 16px;
+  }
+
+  .dc-section-title {
+    font-size: 1.35rem;
+  }
+
+  .dc-stat-card {
+    padding: 22px 18px;
+  }
+
+  .dc-ethnic-card {
+    padding: 20px 18px;
+  }
+}

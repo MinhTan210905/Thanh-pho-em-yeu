@@ -1,0 +1,430 @@
+/* Geography Page */
+.geography-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.geography-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.geography-hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 600ms ease-in-out, transform 1200ms ease;
+  will-change: opacity, transform;
+}
+
+.geography-hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.geography-hero-bg>.geography-hero-slide:nth-child(4) {
+  background-position: center -10%;
+}
+
+.geography-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 11, 23, 0.88) 0%, rgba(7, 11, 23, 0.45) 45%, rgba(7, 11, 23, 0) 100%);
+  z-index: 1;
+}
+
+.geography-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 100px;
+  max-width: 60%;
+  color: white;
+  margin-left: 50px;
+}
+
+.geography-hero-content.initial-animation {
+  animation: heroFadeUp 0.8s ease-out;
+}
+
+.geography-hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.geography-hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 500px;
+  opacity: 0.95;
+}
+
+.geography-read-more {
+  background: linear-gradient(135deg, #ff3b30 0%, #ff6b6b 55%, #ff9a62 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 24px rgba(255, 59, 48, 0.25);
+}
+
+.geography-read-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(255, 59, 48, 0.35);
+}
+
+.geography-read-more {
+  text-decoration: none;
+}
+
+/* Clickzone for navigable slides */
+.geography-hero-clickzone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.geography-hero-content.clickable {
+  cursor: pointer;
+}
+
+.geography-read-more-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geography-read-more-icon i {
+  font-size: 0.8rem;
+}
+
+/* Geography Dots / Pagination */
+.geography-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 170px;
+  display: flex;
+  gap: 16px;
+  z-index: 3;
+}
+
+.geography-dots .dot {
+  --progress: 0%;
+  --ring: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  appearance: none;
+  outline: none;
+  position: relative;
+}
+
+.geography-dots .dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      rgba(255, 255, 255, 0.9) 0 100%);
+  -webkit-mask: radial-gradient(farthest-side,
+      transparent calc(100% - var(--ring) - 0.6px),
+      #000 calc(100% - var(--ring) + 0.1px));
+  mask: radial-gradient(farthest-side,
+      transparent calc(100% - var(--ring) - 0.6px),
+      #000 calc(100% - var(--ring) + 0.1px));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.geography-dots .dot.active {
+  background: transparent;
+  transform: scale(1.12);
+  box-shadow: 0 4px 12px rgba(255, 59, 48, 0.22);
+}
+
+.geography-dots .dot.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      #ff3b30 0 var(--progress),
+      transparent var(--progress) 100%);
+  -webkit-mask: radial-gradient(farthest-side,
+      transparent calc(100% - var(--ring) - 0.6px),
+      #000 calc(100% - var(--ring) + 0.1px));
+  mask: radial-gradient(farthest-side,
+      transparent calc(100% - var(--ring) - 0.6px),
+      #000 calc(100% - var(--ring) + 0.1px));
+  z-index: 2;
+  pointer-events: none;
+}
+
+.geography-dots .dot-center {
+  display: none;
+}
+
+.geography-dots .dot.active .dot-center {
+  display: none;
+}
+
+
+/* Geography Main Cards Section */
+.geography-main {
+  background: #f5f5f5;
+  padding: 80px 0;
+  min-height: auto;
+}
+
+.geography-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.geography-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 50px;
+  justify-items: center;
+}
+
+.geo-card-item {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.geo-card-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+.geo-card-item.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.geo-card-item.fade-up.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+.card-border {
+  background: #fbbf24;
+  padding: 16px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.card-border:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(251, 191, 36, 0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.card-button {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3c72 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: 100%;
+  max-width: 250px;
+}
+
+.card-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+}
+
+/* Animations */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .geography-hero-content {
+    padding: 40px 60px;
+    max-width: 70%;
+  }
+
+  .geography-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .geography-dots {
+    left: 60px;
+    bottom: 30px;
+  }
+
+  .geography-dots .dot {
+    width: 22px;
+    height: 22px;
+  }
+
+  .geography-grid-container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .geography-hero {
+    min-height: 60vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .geography-hero-content {
+    padding: 30px 20px;
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .geography-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .geography-hero-content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .geography-dots {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+
+  .geography-dots .dot {
+    width: 22px;
+    height: 22px;
+  }
+
+  .geography-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+
+  .geography-grid-container {
+    padding: 0 20px;
+  }
+
+  .geography-main {
+    padding: 50px 0;
+  }
+
+  .card-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .geography-hero {
+    min-height: 50vh;
+  }
+
+  .geography-hero-content {
+    padding: 20px 15px;
+  }
+
+  .geography-hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .geography-hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .geography-dots {
+    gap: 8px;
+  }
+
+  .geography-dots .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .geography-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .card-button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}

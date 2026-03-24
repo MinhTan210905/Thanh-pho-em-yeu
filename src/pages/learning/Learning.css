@@ -1,0 +1,343 @@
+﻿/* ===== LEARNING HUB (GÓC HỌC TẬP) ===== */
+
+/* --- HERO --- */
+.learning-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.learning-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.learning-hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 600ms ease-in-out, transform 1200ms ease;
+  will-change: opacity, transform;
+}
+
+.learning-hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.learning-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 11, 23, 0.88) 0%, rgba(7, 11, 23, 0.45) 45%, rgba(7, 11, 23, 0) 100%);
+  z-index: 1;
+}
+
+.learning-hero-clickzone {
+  position: absolute;
+  top: 0;
+  left: 35%;
+  right: 0;
+  height: 100%;
+  z-index: 2;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.learning-hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 60px 100px;
+  max-width: 60%;
+  color: white;
+  margin-left: 50px;
+}
+
+.learning-hero-content.clickable,
+.learning-hero-content.clickable h1,
+.learning-hero-content.clickable p {
+  cursor: pointer;
+}
+
+.learning-hero-content.initial-animation {
+  animation: heroFadeUp 0.8s ease-out;
+}
+
+.learning-hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.learning-hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 500px;
+  opacity: 0.95;
+}
+
+/* --- Accent: Teal / Cyan gradient --- */
+.learning-read-more {
+  background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 55%, #67e8f9 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.25);
+  text-decoration: none;
+}
+
+.learning-read-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(14, 165, 233, 0.35);
+}
+
+a.learning-read-more {
+  display: inline-flex;
+}
+
+.learning-read-more-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.learning-read-more-icon i {
+  font-size: 0.8rem;
+}
+
+/* --- DOTS --- */
+.learning-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 170px;
+  display: flex;
+  gap: 16px;
+  z-index: 3;
+}
+
+.learning-dots .dot {
+  --progress: 0%;
+  --ring: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  appearance: none;
+  outline: none;
+  position: relative;
+}
+
+.learning-dots .dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(255, 255, 255, 0.9) 0 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring) - 0.6px), #000 calc(100% - var(--ring) + 0.1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring) - 0.6px), #000 calc(100% - var(--ring) + 0.1px));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.learning-dots .dot.active {
+  background: transparent;
+  transform: scale(1.12);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.22);
+}
+
+.learning-dots .dot.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #0ea5e9 0 var(--progress), transparent var(--progress) 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring) - 0.6px), #000 calc(100% - var(--ring) + 0.1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring) - 0.6px), #000 calc(100% - var(--ring) + 0.1px));
+  z-index: 2;
+  pointer-events: none;
+}
+
+.learning-dots .dot .dot-center {
+  display: none;
+}
+
+.learning-dots .dot.active .dot-center {
+  display: none;
+}
+
+/* --- GAME GROUP --- */
+.learning-games {
+  padding: 70px 100px 90px;
+  background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+}
+
+.learning-games-head {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #fff;
+}
+
+.learning-games-head h2 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.learning-games-head h2 i {
+  color: #38bdf8;
+  margin-right: 10px;
+}
+
+.learning-games-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #38bdf8;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.learning-games-link:hover {
+  transform: translateX(2px);
+  color: #67e8f9;
+}
+
+.learning-games-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.learning-game-card {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #e2e8f0;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.learning-game-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 20px 36px rgba(15, 23, 42, 0.55);
+}
+
+.learning-game-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.learning-game-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.learning-game-body {
+  padding: 16px 18px 20px;
+}
+
+.learning-game-category {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: rgba(148, 163, 184, 0.85);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.learning-game-body h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #f8fafc;
+}
+
+.learning-game-body p {
+  font-size: 0.88rem;
+  color: rgba(226, 232, 240, 0.75);
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .learning-hero-content {
+    padding: 40px 60px;
+    max-width: 70%;
+  }
+  .learning-hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .learning-games {
+    padding: 50px 24px 70px;
+  }
+  .learning-games-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .learning-games-head h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .learning-hero-content {
+    padding: 30px 24px;
+    max-width: 90%;
+    margin-left: 20px;
+  }
+  .learning-hero-content h1 {
+    font-size: 2rem;
+  }
+  .learning-hero-content p {
+    font-size: 1rem;
+  }
+  .learning-dots {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,5 @@
+/* Reveal animations - removed temporary override to allow scroll animations */
+body.page-hide-chatbot .chatbot-toggler,
+body.page-hide-chatbot .chatbot-window {
+  display: none !important;
+}

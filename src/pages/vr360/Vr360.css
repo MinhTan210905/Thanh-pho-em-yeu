@@ -1,0 +1,223 @@
+html, body {
+  height: 100%;
+}
+
+body.vr360-body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+body.vr360-body #panorama {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+body.vr360-body .pnlm-controls-container {
+  display: none !important;
+}
+
+body.vr360-body .ui-container {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+body.vr360-body .ui-element {
+  pointer-events: auto;
+}
+
+body.vr360-body .top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 25px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.vr360-body .page-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.vr360-body .menu-toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+body.vr360-body .menu-toggle-btn:hover {
+  transform: rotate(90deg);
+}
+
+body.vr360-body .sidebar {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  padding: 15px 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.vr360-body .sidebar-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.vr360-body .sidebar-btn:hover {
+  background: white;
+  color: #0061f2;
+  box-shadow: 0 0 15px rgba(0, 97, 242, 0.5);
+}
+
+body.vr360-body .sidebar-btn.active {
+  background: #ff0055;
+  color: white;
+}
+
+body.vr360-body .bottom-bar-container {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+body.vr360-body .bottom-bar {
+  display: flex;
+  gap: 15px;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 80%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.vr360-body .bottom-bar::-webkit-scrollbar {
+  display: none;
+}
+
+body.vr360-body .thumb-card {
+  position: relative;
+  width: 140px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+body.vr360-body .thumb-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  transition: 0.3s;
+}
+
+body.vr360-body .thumb-card .thumb-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 5px 5px 5px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.vr360-body .thumb-card:hover,
+body.vr360-body .thumb-card.active {
+  border-color: #00c6ff;
+  transform: translateY(-5px);
+}
+
+body.vr360-body .thumb-card:hover img,
+body.vr360-body .thumb-card.active img {
+  filter: brightness(1);
+}
+
+body.vr360-body .mini-map-widget {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+  width: 150px;
+  height: 100px;
+  background-image: url("https://i.imgur.com/Q8Q7836.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  border: 3px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body.vr360-body .mini-map-widget:hover {
+  transform: scale(1.05);
+}
+
+body.vr360-body .mini-map-label {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(2px);
+}

@@ -1,0 +1,550 @@
+/* ── NHÂN VẬT LỊCH SỬ PAGE ── */
+
+/* Header override — white sticky */
+body.page-nhan-vat-active header {
+  position: fixed !important;
+  top: 40px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  height: 80px !important;
+  transition: all 0.3s ease;
+}
+
+body.page-nhan-vat-active header .logo-wrapper,
+body.page-nhan-vat-active header nav,
+body.page-nhan-vat-active header .search-wrapper {
+  padding-top: 0 !important;
+}
+
+body.page-nhan-vat-active header nav ul li a {
+  color: #0099ff !important;
+}
+
+body.page-nhan-vat-active header nav ul li a::after {
+  background-color: #ff6b6b !important;
+}
+
+body.page-nhan-vat-active header nav ul li a:hover {
+  color: #ff6b6b !important;
+}
+
+body.page-nhan-vat-active header nav ul li a.active {
+  color: #ff6b6b !important;
+}
+
+body.page-nhan-vat-active header .search-box {
+  background: #f0f0f0 !important;
+  border: 1px solid #ccc !important;
+}
+
+body.page-nhan-vat-active header .search-box i {
+  color: #666 !important;
+}
+
+body.page-nhan-vat-active header .search-box input {
+  color: #333 !important;
+}
+
+body.page-nhan-vat-active header .search-box input::placeholder {
+  color: #999 !important;
+}
+
+/* Menu highlight */
+body.page-nhan-vat-active header nav ul li a.active {
+  color: #ff6b6b !important;
+}
+
+body.page-nhan-vat-active header nav ul li a.active::after {
+  background-color: #ff6b6b !important;
+}
+
+body.page-nhan-vat-active header nav ul li a.active:hover::after {
+  width: 100% !important;
+}
+
+/* ═══════ 1. HERO ═══════ */
+.nv-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 120px;
+  padding: 80px 0 72px;
+  background: linear-gradient(155deg,
+      #0a0f1e 0%,
+      #1b2a4a 35%,
+      #2c4470 65%,
+      #c87533 100%);
+  color: #fff;
+  text-align: center;
+}
+
+/* Parallel lines (banner motif) */
+.nv-hero-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nv-deco-lines {
+  top: 20%;
+  left: -30px;
+  width: 220px;
+  height: 160px;
+  background: repeating-linear-gradient(135deg,
+      rgba(200, 117, 51, 0.12) 0px,
+      rgba(200, 117, 51, 0.12) 2px,
+      transparent 2px,
+      transparent 14px);
+  border-radius: 8px;
+}
+
+.nv-deco-bar {
+  bottom: 0;
+  right: 10%;
+  width: 6px;
+  height: 45%;
+  background: linear-gradient(to top,
+      rgba(200, 117, 51, 0.35) 0%,
+      rgba(200, 117, 51, 0) 100%);
+  border-radius: 3px;
+}
+
+.nv-deco-glow {
+  width: 350px;
+  height: 350px;
+  top: -100px;
+  right: -80px;
+  background: radial-gradient(circle,
+      rgba(200, 117, 51, 0.12) 0%,
+      transparent 70%);
+  border-radius: 999px;
+}
+
+.nv-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Breadcrumb badge */
+.nv-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.nv-dot {
+  opacity: 0.4;
+}
+
+.nv-badge-accent {
+  color: #e8a54b;
+  font-weight: 700;
+}
+
+/* Title */
+.nv-hero-title {
+  font-size: 4.2rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin-bottom: 1.2rem;
+  line-height: 1.08;
+  text-shadow: 0 6px 24px rgba(10, 15, 30, 0.5);
+}
+
+.nv-highlight {
+  background: linear-gradient(90deg, #e8a54b, #f5d08e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nv-hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto 36px;
+  opacity: 0.93;
+  font-weight: 400;
+}
+
+/* Hero pills */
+.nv-hero-pills {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nv-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 14px 20px;
+  text-align: left;
+  min-width: 195px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.nv-pill:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nv-pill i {
+  font-size: 1.4rem;
+  color: #e8a54b;
+  flex-shrink: 0;
+}
+
+.nv-pill strong {
+  display: block;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+
+.nv-pill span {
+  display: block;
+  font-size: 0.78rem;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* ═══════ 2. TRIBUTE SECTION ═══════ */
+.nv-tribute {
+  padding: 64px 0 40px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f0ea 100%);
+}
+
+.nv-tribute-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.nv-tag {
+  display: inline-block;
+  padding: 8px 22px;
+  background: linear-gradient(135deg, #1b2a4a 0%, #2c4470 55%, #c87533 100%);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.nv-section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #12203a;
+  letter-spacing: -1px;
+}
+
+/* Quote + Cards grid */
+.nv-tribute-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Quote block */
+.nv-tribute-quote {
+  background: linear-gradient(145deg, #1b2a4a 0%, #0a0f1e 60%, #2c4470 100%);
+  border-radius: 20px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nv-quote-mark {
+  font-size: 2.8rem;
+  color: rgba(232, 165, 75, 0.35);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.nv-tribute-quote blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.nv-quote-text {
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+  opacity: 0.95;
+}
+
+.nv-quote-author {
+  margin-top: 24px;
+  font-size: 1.4rem;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nv-quote-dash {
+  color: rgba(232, 165, 75, 0.7);
+  font-weight: 300;
+}
+
+.nv-quote-author strong {
+  background: linear-gradient(90deg, #e8a54b, #fde0a6, #e8a54b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  animation: shine 3s linear infinite;
+  text-shadow: 0 4px 14px rgba(232, 165, 75, 0.3);
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Tribute cards stack */
+.nv-tribute-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nv-t-card {
+  background: #ffffff;
+  border: 1px solid #e6ddd0;
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nv-t-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(27, 42, 74, 0.1);
+}
+
+.nv-t-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(27, 42, 74, 0.08), rgba(200, 117, 51, 0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #c87533;
+  font-size: 1.1rem;
+}
+
+.nv-t-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #12203a;
+  margin-bottom: 4px;
+}
+
+.nv-t-card p {
+  margin: 0;
+  color: #5a4e3e;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Accent card */
+.nv-t-card-accent {
+  background: linear-gradient(145deg, #1b2a4a 0%, #0a0f1e 55%, #c87533 100%) !important;
+  border-color: transparent !important;
+}
+
+.nv-t-card-accent .nv-t-icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8a54b;
+}
+
+.nv-t-card-accent h3 {
+  color: #ffffff;
+}
+
+.nv-t-card-accent p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ═══════ 3. CANVAS ═══════ */
+.nv-canvas {
+  padding: 18px 0 110px;
+  background: linear-gradient(180deg, #f5f0ea 0%, #ede4d8 50%, #f5f0ea 100%);
+}
+
+.nv-canvas-intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nv-canvas-intro h3 {
+  font-size: 1.5rem;
+  color: #12203a;
+  margin-bottom: 8px;
+}
+
+.nv-canvas-intro p {
+  margin: 0;
+  color: #5a4e3e;
+}
+
+.nv-canvas-frame {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid #d9cfc0;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(27, 42, 74, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px;
+}
+
+.nv-canvas-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.nv-canvas-embed iframe {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border: 0;
+  outline: none;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ═══════ SCROLL REVEAL ═══════ */
+.nhan-vat-page .section-wrapper {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nhan-vat-page .section-wrapper.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media (max-width: 768px) {
+  .nv-hero {
+    padding-top: 120px;
+    padding-bottom: 56px;
+  }
+
+  .nv-hero-title {
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+  }
+
+  .nv-hero-desc {
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+
+  .nv-hero-pills {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nv-pill {
+    min-width: 260px;
+  }
+
+  .nv-section-title {
+    font-size: 1.95rem;
+  }
+
+  .nv-tribute-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nv-tribute-quote {
+    padding: 28px 24px;
+  }
+
+  .nv-tribute-quote blockquote {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nv-hero {
+    padding-top: 100px;
+  }
+
+  .nv-hero-badge {
+    font-size: 0.75rem;
+  }
+
+  .nv-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .nv-hero-desc {
+    font-size: 0.93rem;
+  }
+
+  .nv-tag {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+  }
+
+  .nv-section-title {
+    font-size: 1.55rem;
+  }
+
+  .nv-t-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .nv-t-card h3 {
+    font-size: 0.95rem;
+  }
+}
