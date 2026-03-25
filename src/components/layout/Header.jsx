@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 export default function Header({ currentPage }) {
@@ -119,7 +119,14 @@ export default function Header({ currentPage }) {
             <li><Link to="/dia-ly" className={location.pathname === "/dia-ly" || location.pathname === "/vi-tri" || location.pathname === "/kinh-te" || location.pathname === "/tu-nhien" || location.pathname === "/dan-cu" ? "active" : ""}>Địa lý</Link></li>
             <li><Link to="/lich-su" className={location.pathname === "/lich-su" || location.pathname === "/di-tich" || location.pathname === "/nhan-vat" ? "active" : ""}>Lịch sử</Link></li>
             <li><Link to="/van-hoa" className={location.pathname === "/van-hoa" || location.pathname === "/lang-nghe" || location.pathname === "/am-thuc" || location.pathname === "/le-hoi" ? "active" : ""}>Văn hóa</Link></li>
-            <li><Link to="/hoc-tap" className={location.pathname === "/hoc-tap" || location.pathname === "/bai-tap" || location.pathname === "/tro-choi-am-thuc" ? "active" : ""}>Góc học tập</Link></li>
+            <li><Link to="/hoc-tap" className={[
+              "/hoc-tap", "/bai-tap", "/tai-lieu", 
+              "/tro-choi-am-thuc", "/tro-choi-di-tich-lich-su", 
+              "/tro-choi-dia-li-tu-nhien", "/tro-choi-dan-cu", 
+              "/tro-choi-lang-nghe", "/tro-choi-le-hoi", 
+              "/tro-choi-nhan-vat-lich-su", "/tro-choi-kinh-te", 
+              "/tro-choi-vi-tri"
+            ].includes(location.pathname) ? "active" : ""}>Góc học tập</Link></li>
           </ul>
         </nav>
 

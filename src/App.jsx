@@ -26,6 +26,7 @@ import TroChoiNhanVatLichSu from "./pages/learning/TroChoiNhanVatLichSu";
 import TroChoiKinhTe from "./pages/learning/TroChoiKinhTe";
 import TroChoiViTri from "./pages/learning/TroChoiViTri";
 import Chatbot from "./components/chatbot/Chatbot";
+import TaiLieuHocTap from "./pages/learning/TaiLieuHocTap";
 
 import "./styles/variables.css";
 import "./styles/global.css";
@@ -69,6 +70,7 @@ function App() {
           <Route path="/dan-cu" element={<DanCu />} />
           <Route path="/vr360" element={<Vr360 />} />
           <Route path="/hoc-tap" element={<Learning />} />
+          <Route path="/tai-lieu" element={<TaiLieuHocTap />} />
           <Route path="/bai-tap" element={<BaiTap />} />
           <Route path="/tro-choi-am-thuc" element={<TroChoiAmThuc />} />
           <Route path="/tro-choi-di-tich-lich-su" element={<TroChoiDiTichLichSu />} />

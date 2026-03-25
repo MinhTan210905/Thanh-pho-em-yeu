@@ -72,13 +72,14 @@ body.page-tu-nhien-active header nav ul li a.active:hover::after {
 /* ── HERO ── */
 .tn-hero {
   position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 140px 0 80px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 120px;
+  padding: 80px 0 72px;
   background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 40%, #2563eb 80%, #38bdf8 100%);
   color: #fff;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 /* Decorations */

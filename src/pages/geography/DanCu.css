@@ -74,15 +74,16 @@ body.page-dan-cu-active header nav ul li a.active:hover::after {
    ══════════════════════════════════════════════ */
 .dc-hero {
   position: relative;
-  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 120px;
+  padding: 80px 0 72px;
+  background: linear-gradient(160deg, #1c1210 0%, #3d1e0a 35%, #7c2d12 65%, #ea580c 100%);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 160px 0 100px;
-  background: linear-gradient(160deg, #1c1210 0%, #3d1e0a 35%, #7c2d12 65%, #ea580c 100%);
-  color: #fff;
-  overflow: hidden;
 }
 
 /* Hero decorations */

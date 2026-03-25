@@ -230,14 +230,13 @@ export default function TroChoiDanCu() {
   }, []);
 
   const handleRestart = useCallback(() => {
-    sessionStorage.removeItem(STATE_KEY);
-    finishedRef.current = false;
-    setScreen("intro1");
-    setSelectedDish(null);
-    setResults(Array(TOTAL).fill(null));
-    setPicked(null);
-    setReveal(false);
-    setJustFinished(false);
+    setDialog({
+      open: true,
+      type: "confirm",
+      title: "Chơi lại",
+      message: "Bạn có chắc chắn muốn chơi lại từ đầu không? Toàn bộ tiến trình hiện tại sẽ bị xóa.",
+      action: "restart",
+    });
   }, []);
 
   const closeDialog = useCallback(() => setDialog({ open: false, type: "", title: "", message: "", action: "" }), []);
@@ -261,16 +260,13 @@ export default function TroChoiDanCu() {
   if (screen === "finish") {
     const score = Math.round((correctCount / TOTAL) * 100);
     return (
-      <div className="dc-page" style={{ "--dc-bg": `url(${ASSETS.bg})` }}>
+      <div className="dc-page finish-page" style={{ backgroundImage: `url(${ASSETS.bg})`, backgroundColor: 'transparent' }}>
         {justFinished && <ConfettiOnMount />}
         <div className="dc-finish">
           <div className="dc-finish-badge">
             <i className="fa-solid fa-utensils" />
             Hoàn thành thực đơn
           </div>
-          <h2 className="dc-finish-congrats">
-            🎉 Chúc mừng bạn!
-          </h2>
           <h2>
             Bạn đã hoàn thành <span>Quán Ăn Hạnh Phúc</span>
           </h2>
@@ -289,12 +285,32 @@ export default function TroChoiDanCu() {
             </Link>
           </div>
         </div>
+
+        {dialog.open && (
+          <div className="tk-dialog-overlay" onClick={closeDialog}>
+            <div className="tk-dialog" onClick={(e) => e.stopPropagation()}>
+              <h3>{dialog.title}</h3>
+              <p>{dialog.message}</p>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
+                <button className="dc-btn ghost" onClick={closeDialog} style={{ padding: '12px 24px', fontSize: '1.2rem' }}>
+                  Hủy
+                </button>
+                <button className="dc-btn primary" onClick={confirmDialog} style={{ padding: '12px 24px', fontSize: '1.2rem' }}>
+                  Đồng ý
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="dc-page" style={{ "--dc-bg": `url(${screen === "question" ? ASSETS.bg2 : ASSETS.bg})` }}>
+    <div className="dc-page" style={{
+      backgroundImage: screen === "question" ? `url(${ASSETS.bg2})` : (screen === "menu" ? 'none' : `url(${ASSETS.bg})`),
+      backgroundColor: screen === "menu" ? '#ffe4e1' : 'transparent'
+    }}>
       <div className="dc-topbar">
         <div className="dc-topbar-left">
           <Link to="/bai-tap" className="dc-back">
@@ -352,7 +368,7 @@ export default function TroChoiDanCu() {
       )}
 
       {screen === "menu" && (
-        <section className="dc-stage dc-menu">
+        <section className="dc-stage dc-menu dc-menu-layout">
           <div className="dc-menu-left">
             <div className="dc-bubble">
               Hãy chọn một món ăn để chế biến thực đơn nhé!
@@ -439,7 +455,11 @@ export default function TroChoiDanCu() {
                   onClick={() => handleChoose(idx)}
                   disabled={reveal}
                 >
-                  <img src={ASSETS.tray} className="dc-answer-cloche" alt="" />
+                  {reveal && isCorrect ? (
+                    <img src={ASSETS.dishes[selectedDish]} className="dc-answer-cloche dc-answer-dish" alt="" />
+                  ) : (
+                    <img src={ASSETS.tray} className="dc-answer-cloche" alt="" />
+                  )}
                   <span className="dc-answer-letter">{letter}</span>
                   <span className="dc-answer-text">{txt}</span>
                 </button>
