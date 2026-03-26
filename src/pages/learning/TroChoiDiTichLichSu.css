@@ -1,58 +1,5 @@
 /* ===== TRÒ CHƠI LỊCH SỬ — PHÂN LOẠI DI TÍCH (BRIGHT MODERN) ===== */
 
-/* ═══════ HEADER OVERRIDE ═══════ */
-body.page-tro-choi-ls-active header {
-  position: fixed !important;
-  top: 40px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-  height: 80px !important;
-  transition: all 0.3s ease;
-}
-
-body.page-tro-choi-ls-active header .logo-wrapper,
-body.page-tro-choi-ls-active header nav,
-body.page-tro-choi-ls-active header .search-wrapper {
-  padding-top: 0 !important;
-}
-
-body.page-tro-choi-ls-active header nav ul li a {
-  color: #0099ff !important;
-}
-
-body.page-tro-choi-ls-active header nav ul li a::after {
-  background-color: #ff6b6b !important;
-}
-
-body.page-tro-choi-ls-active header nav ul li a:hover {
-  color: #ff6b6b !important;
-}
-
-body.page-tro-choi-ls-active header nav ul li a.active {
-  color: #ff6b6b !important;
-}
-
-body.page-tro-choi-ls-active header .search-box {
-  background: #f0f0f0 !important;
-  border: 1px solid #ccc !important;
-}
-
-body.page-tro-choi-ls-active header .search-box i {
-  color: #666 !important;
-}
-
-body.page-tro-choi-ls-active header .search-box input {
-  color: #333 !important;
-}
-
-body.page-tro-choi-ls-active header .search-box input::placeholder {
-  color: #999 !important;
-}
-
-body.page-tro-choi-ls-active header nav ul li a.active::after {
-  background-color: #ff6b6b !important;
-}
-
 /* ═══════ PAGE ═══════ */
 .tls-page {
   min-height: 100vh;

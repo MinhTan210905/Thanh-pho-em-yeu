@@ -12,6 +12,20 @@ function ConfettiOnMount() {
 
 const DISH_NAMES = ["Mì ý", "Pizza", "Gà quay", "Canh bò", "Bò bít tết"];
 
+const playAudio = (type) => {
+  const audioMap = {
+    start: "/audio/start.mp3",
+    correct: "/audio/correct.mp3",
+    wrong: "/audio/wrong.mp3",
+    finish: "/audio/finish.mp3",
+  };
+  const path = audioMap[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 const ASSETS = {
   bg: "/images/tro_choi/dan_cu/nen.jpg",
   bg2: "/images/tro_choi/dan_cu/nen_2.jpg",
@@ -186,6 +200,7 @@ export default function TroChoiDanCu() {
       incrementAttempts();
       finishedRef.current = true;
     }
+    playAudio("finish"); // Added audio for finish
     setJustFinished(true);
     setScreen("finish");
   }, []);
@@ -199,6 +214,7 @@ export default function TroChoiDanCu() {
       setScreen("menu");
       return;
     }
+    playAudio("start"); // Added audio for start
     setScreen("menu");
   }, [attemptsLeft]);
 
@@ -216,6 +232,11 @@ export default function TroChoiDanCu() {
     const qIdx = selectedDish;
     const q = QUESTIONS[qIdx];
     const isCorrect = ansIdx === q.correctIndex;
+    if (isCorrect) {
+      playAudio("correct"); // Added audio for correct answer
+    } else {
+      playAudio("wrong"); // Added audio for wrong answer
+    }
     setResults((prev) => {
       const next = [...prev];
       next[qIdx] = isCorrect;

@@ -1,5 +1,54 @@
-/* Reveal animations - removed temporary override to allow scroll animations */
 body.page-hide-chatbot .chatbot-toggler,
 body.page-hide-chatbot .chatbot-window {
   display: none !important;
+}
+
+/* Header General Override for Learning & Game Pages */
+body[class*="-active"] header {
+  position: fixed !important;
+  top: 40px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  height: 80px !important;
+  transition: all 0.3s ease;
+}
+
+body[class*="-active"] header .logo-wrapper,
+body[class*="-active"] header nav,
+body[class*="-active"] header .search-wrapper {
+  padding-top: 0 !important;
+}
+
+body[class*="-active"] header nav ul li a {
+  color: #0099ff !important;
+}
+
+body[class*="-active"] header nav ul li a::after {
+  background-color: #ff6b6b !important;
+}
+
+body[class*="-active"] header nav ul li a:hover,
+body[class*="-active"] header nav ul li a.active {
+  color: #ff6b6b !important;
+}
+
+body[class*="-active"] header nav ul li a.active::after {
+  background-color: #ff6b6b !important;
+}
+
+body[class*="-active"] header .search-box {
+  background: #f0f0f0 !important;
+  border: 1px solid #ccc !important;
+}
+
+body[class*="-active"] header .search-box i {
+  color: #666 !important;
+}
+
+body[class*="-active"] header .search-box input {
+  color: #333 !important;
+}
+
+body[class*="-active"] header .search-box input::placeholder {
+  color: #999 !important;
 }

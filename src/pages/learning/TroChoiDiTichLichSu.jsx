@@ -10,6 +10,20 @@ function ConfettiOnMount() {
   return null;
 }
 
+const playAudio = (type) => {
+  const audioMap = {
+    start: "/audio/start.mp3",
+    correct: "/audio/correct.mp3",
+    wrong: "/audio/wrong.mp3",
+    finish: "/audio/finish.mp3",
+  };
+  const path = audioMap[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 /* ═══════════ DATA ═══════════ */
 const ERAS = [
   { id: "oc-eo", name: "Thời kỳ Óc Eo", period: "Thế kỷ I – VII", icon: "fa-gopuram", color: "#d4a24e" },
@@ -225,6 +239,8 @@ export default function TroChoiLichSu() {
       const eraId = eraEl?.dataset?.eraId || null;
       if (phase === "playing" && eraId) {
         setPlacements((prev) => {
+          const isCorrect = SITES.find(s => s.id === ds.siteId)?.era === eraId;
+          playAudio(isCorrect ? "correct" : "wrong");
           const next = { ...prev, [ds.siteId]: eraId };
           syncPartialProgress(Object.keys(next).length);
           return next;
@@ -264,6 +280,7 @@ export default function TroChoiLichSu() {
   }, [allPlaced, placements, timer]);
 
   const handleFinish = useCallback(() => {
+    playAudio("finish");
     setPhase("done");
     setJustFinished(true);
   }, []);

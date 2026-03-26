@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/home/Home";
 import History from "./pages/history/History";
@@ -52,7 +52,7 @@ function ChatbotGate() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -84,7 +84,7 @@ function App() {
         </Route>
       </Routes>
       <ChatbotGate />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

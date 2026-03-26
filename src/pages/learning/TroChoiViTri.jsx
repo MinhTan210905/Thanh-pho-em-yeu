@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiViTri.css";
@@ -14,6 +14,37 @@ const GAME_ID = "tro-choi-vi-tri";
 const STATE_KEY = "tc_vi_tri_state";
 const BT_KEY = "bt_game_progress";
 const MAX_ATTEMPTS = 3;
+
+// Hàm phát âm thanh
+const playAudio = (type) => {
+  const audioMap = {
+    start: "/audio/start.mp3",
+    correct: "/audio/correct.mp3",
+    wrong: "/audio/wrong.mp3",
+    finish: "/audio/finish.mp3",
+  };
+  const path = audioMap[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
+const ASSETS = {
+  nen1: "/images/tro_choi/vi_tri/nen.png",
+  nen3: "/images/tro_choi/vi_tri/nen.png",
+  taoIdle: "/images/tro_choi/vi_tri/tao_do.png",
+  taoRun: "/images/tro_choi/vi_tri/tao_do_di_chuyen.gif",
+  taoWait: "/images/tro_choi/vi_tri/tao_do_di_chuyen_xong.gif",
+  taoAtk: "/images/tro_choi/vi_tri/tao_do_tan_cong.gif",
+  obstacles: [
+    "/images/tro_choi/vi_tri/chuong_ngai_1.png",
+    "/images/tro_choi/vi_tri/chuong_ngai_2.png",
+    "/images/tro_choi/vi_tri/chuong_ngai_3.png",
+    "/images/tro_choi/vi_tri/chuong_ngai_4.png",
+    "/images/tro_choi/vi_tri/chuong_ngai_5.png",
+  ]
+};
 
 const QUESTIONS = [
   {
@@ -75,6 +106,18 @@ const QUESTIONS = [
 
 const TOTAL = QUESTIONS.length;
 
+function loadState() {
+  try {
+    const raw = sessionStorage.getItem(STATE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return null;
+}
+
+function saveState(state) {
+  sessionStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
 function getAttempts() {
   try {
     return (JSON.parse(sessionStorage.getItem(BT_KEY)) || {})[GAME_ID]?.attempts || 0;
@@ -94,13 +137,14 @@ function incrementAttempts() {
 }
 
 function syncProgress(results) {
+  const answered = results.filter((r) => r !== null).length;
   const correctCount = results.filter((r) => r === true).length;
   const score = Math.round((correctCount / TOTAL) * 100);
   try {
     const data = JSON.parse(sessionStorage.getItem(BT_KEY)) || {};
     const prev = data[GAME_ID] || { answered: 0, correctCount: 0, score: 0, attempts: 0 };
     data[GAME_ID] = {
-      answered: Math.max(prev.answered || 0, correctCount),
+      answered: Math.max(prev.answered || 0, answered),
       correctCount: Math.max(prev.correctCount || 0, correctCount),
       score: Math.max(prev.score || 0, score),
       attempts: prev.attempts || 0,
@@ -110,34 +154,26 @@ function syncProgress(results) {
 }
 
 export default function TroChoiViTri() {
-  const [screen, setScreen] = useState("intro"); // intro, play, finish
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [results, setResults] = useState(Array(TOTAL).fill(null)); // true = correct, false = wrong, null = not answered
-  
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [showFeedback, setShowFeedback] = useState(false);
-  
+  const saved = useMemo(() => loadState(), []);
+
+  const [screen, setScreen] = useState(saved?.screen ?? "intro"); // intro, story, play, finish
+  const [currentQ, setCurrentQ] = useState(saved?.currentQ ?? 0);
+  const [results, setResults] = useState(() => saved?.results ?? Array(TOTAL).fill(null));
+
+  // Anim state specifically for 'play'
+  const [animState, setAnimState] = useState(saved?.animState ?? "moving"); // moving, idle, attacking, broken
+  const [picked, setPicked] = useState(saved?.picked ?? null);
+  const [reveal, setReveal] = useState(saved?.reveal ?? false);
+  const [showNextObj, setShowNextObj] = useState(saved?.showNextObj ?? false); // Currently wait for user to click next
   const [justFinished, setJustFinished] = useState(false);
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
-  const finishedRef = useRef(false);
+
+  const finishedRef = useRef(saved?.finishedOnce ?? false);
 
   const correctCount = results.filter((r) => r === true).length;
   const attemptsLeft = MAX_ATTEMPTS - getAttempts();
 
   useEffect(() => {
-    document.title = "Cuộc phiêu lưu của táo đỏ - Khám phá TPHCM";
-    const saved = sessionStorage.getItem(STATE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setScreen(parsed.screen || "intro");
-        setCurrentQuestion(parsed.currentQuestion || 0);
-        setResults(parsed.results || Array(TOTAL).fill(null));
-        finishedRef.current = parsed.finishedOnce || false;
-      } catch (e) {
-        console.error(e);
-      }
-    }
     document.body.classList.add("page-tro-choi-vi-tri-active");
     return () => {
       document.body.classList.remove("page-tro-choi-vi-tri-active");
@@ -145,59 +181,90 @@ export default function TroChoiViTri() {
   }, []);
 
   useEffect(() => {
-    if (selectedOption === null) {
-      sessionStorage.setItem(
-        STATE_KEY,
-        JSON.stringify({ screen, currentQuestion, results, finishedOnce: finishedRef.current })
-      );
-      syncProgress(results);
+    saveState({ screen, currentQ, results, animState, picked, reveal, showNextObj, finishedOnce: finishedRef.current });
+    syncProgress(results);
+  }, [screen, currentQ, results, animState, picked, reveal, showNextObj]);
+
+  // Rút ngắn thời gian chạy của Táo xuống còn 1.2s vì chướng ngại vật gần hơn
+  useEffect(() => {
+    if (screen === 'play' && animState === 'moving') {
+      const timer = setTimeout(() => {
+        setAnimState("idle");
+      }, 1200);
+      return () => clearTimeout(timer);
     }
-  }, [screen, currentQuestion, results, selectedOption]);
+  }, [screen, animState, currentQ]);
 
   const handleStart = () => {
     if (attemptsLeft <= 0 && !finishedRef.current) {
       setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho trò này!" });
       return;
     }
-    setScreen("play");
+    playAudio("start");
+    setScreen("story");
   };
 
-  const handleSelectOption = (index) => {
-    if (showFeedback) return;
-    setSelectedOption(index);
-    setShowFeedback(true);
+  const handleContinueToPlay = () => {
+    setScreen("play");
+    setAnimState("moving");
+  };
 
-    const isCorrect = index === QUESTIONS[currentQuestion].correct;
+  const advanceQuestion = () => {
+    if (currentQ < TOTAL - 1) {
+      setCurrentQ(q => q + 1);
+      setPicked(null);
+      setReveal(false);
+      setShowNextObj(false);
+      setAnimState("moving"); // Chạy qua chướng ngại tiếp theo
+    } else {
+      if (!finishedRef.current) {
+        incrementAttempts();
+        finishedRef.current = true;
+      }
+      playAudio("finish");
+      setJustFinished(true);
+      setScreen("finish");
+    }
+  };
+
+  const handleChoose = useCallback((idx) => {
+    if (reveal || animState !== "idle") return; // Ngăn bấm lúc đang chạy
+    setPicked(idx);
+    setReveal(true);
+
+    const isCorrect = idx === QUESTIONS[currentQ].correct;
     setResults(prev => {
-        const next = [...prev];
-        next[currentQuestion] = isCorrect;
-        return next;
+      const next = [...prev];
+      next[currentQ] = isCorrect;
+      return next;
     });
 
-    setTimeout(() => {
-      if (currentQuestion < QUESTIONS.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedOption(null);
-        setShowFeedback(false);
-      } else {
-        if (!finishedRef.current) {
-          incrementAttempts();
-          finishedRef.current = true;
-        }
-        setJustFinished(true);
-        setScreen("finish");
-      }
-    }, 1500);
-  };
+    if (isCorrect) {
+      playAudio("correct");
+      setAnimState("attacking");
+      // Tấn công 1s, rồi bể chướng ngại -> thả ra nút chuyển câu
+      setTimeout(() => {
+        setAnimState("broken"); // táo red idle lại, chướng ngại bể
+        setShowNextObj(true);
+      }, 1000);
+    } else {
+      playAudio("wrong");
+      // Bấm sai -> táo đỏ k làm gì, chỉ báo sai
+      setAnimState("idle");
+      setShowNextObj(true);
+    }
+  }, [reveal, animState, currentQ]);
 
   const doRestart = useCallback(() => {
     sessionStorage.removeItem(STATE_KEY);
     finishedRef.current = false;
-    setScreen("play");
+    setScreen("story");
     setResults(Array(TOTAL).fill(null));
-    setCurrentQuestion(0);
-    setSelectedOption(null);
-    setShowFeedback(false);
+    setCurrentQ(0);
+    setPicked(null);
+    setReveal(false);
+    setShowNextObj(false);
+    setAnimState("moving");
     setJustFinished(false);
   }, []);
 
@@ -211,7 +278,7 @@ export default function TroChoiViTri() {
     setDialog({
       open: true,
       type: "confirm",
-      title: "Bắt đầu lượt mới?",
+      title: "Chơi lại từ đầu?",
       message: `Đây sẽ là lượt chơi mới, không giữ lại kết quả cũ. Sau lượt này, bạn còn ${remaining} lượt nữa.`,
       action: "restart",
     });
@@ -226,211 +293,228 @@ export default function TroChoiViTri() {
 
   if (screen === "finish") {
     const score = Math.round((correctCount / TOTAL) * 100);
-    const stars = correctCount >= 4 ? 3 : correctCount >= 3 ? 2 : correctCount >= 1 ? 1 : 0;
-    
-    return (
-      <div className="vt-page">
-        {justFinished && correctCount >= 3 && <ConfettiOnMount />}
-        <div className="vt-done">
-          <div className="vt-done-icon">
-            <i className="fa-solid fa-map-location-dot" />
-          </div>
-          <h2>
-            Hoàn thành <span>Cuộc Phiêu Lưu Của Táo Đỏ!</span>
-          </h2>
-          <p>
-            Bạn đã trả lời đúng <strong>{correctCount}/{TOTAL} câu hỏi</strong> trắc nghiệm.
-          </p>
-          
-          <div className="vt-done-stats">
-              <div className="vt-done-stat">
-                  <div className="vt-done-stat-num">{score}</div>
-                  <div className="vt-done-stat-label">Điểm</div>
-              </div>
-              <div className="vt-done-stat">
-                  <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
-                  <div className="vt-done-stat-label">Chính xác</div>
-              </div>
-              <div className="vt-done-stat">
-                  <div className="vt-done-stat-num">
-                      {stars === 3 ? "⭐⭐⭐" : stars === 2 ? "⭐⭐" : stars === 1 ? "⭐" : "—"}
-                  </div>
-                  <div className="vt-done-stat-label">Đánh giá</div>
-              </div>
-          </div>
 
-          <div className="vt-done-actions">
-            {attemptsLeft > 0 ? (
-              <button className="vt-btn primary" onClick={handleRestart}>
-                <i className="fa-solid fa-rotate-right" /> Chơi lại ({attemptsLeft} lượt)
-              </button>
-            ) : (
-              <span className="vt-btn disabled">
-                <i className="fa-solid fa-lock" /> Hết lượt
-              </span>
-            )}
-            <Link to="/bai-tap" className="vt-btn ghost">
-              <i className="fa-solid fa-arrow-left" /> Quay về Bài tập
+    return (
+      <div className="vt-page finish-page-new" style={{ backgroundImage: `url(${ASSETS.nen3})` }}>
+        {justFinished && correctCount >= 3 && <ConfettiOnMount />}
+
+        <div className="vt-topbar">
+          <div className="vt-topbar-left">
+            <Link to="/bai-tap" className="vt-back">
+              <i className="fa-solid fa-arrow-left" />
             </Link>
+            <div className="vt-topbar-title">
+              <h1>
+                <i className="fa-solid fa-apple-whole" /> Cuộc Phiêu Lưu Của Táo Đỏ
+              </h1>
+              <p>Khám phá Hành chính Thành phố Hồ Chí Minh</p>
+            </div>
+          </div>
+          <div className="vt-topbar-right">
+            <div className="vt-chip">
+              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> Tiến độ: {TOTAL}/{TOTAL}
+            </div>
+            <div className="vt-chip">
+              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> Lượt chơi: {getAttempts()}/{MAX_ATTEMPTS}
+            </div>
           </div>
         </div>
 
-        {dialog.open && (
-            <div className="vt-dialog-overlay" onClick={closeDialog}>
-                <div className="vt-dialog" onClick={(e) => e.stopPropagation()}>
-                    <h3>{dialog.title}</h3>
-                    <p>{dialog.message}</p>
-                    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
-                        {dialog.type === "confirm" && (
-                            <button className="vt-dlg-btn ghost" onClick={closeDialog}>
-                                Hủy
-                            </button>
-                        )}
-                        <button className="vt-dlg-btn blue" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                            {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
-                        </button>
-                    </div>
-                </div>
+        <section className="vt-stage vt-finish-new">
+          <div className="vt-scene-area" style={{ height: '350px' }}>
+            <div className="vt-apple idle" style={{ left: '45%' }}>
+              <img src={ASSETS.taoWait} alt="Táo Đỏ" />
             </div>
-        )}
+          </div>
+
+          <div className="vt-done">
+            <div className="vt-finish-badge">
+              <i className="fa-solid fa-flag-checkered" /> Vế đích thành công!
+            </div>
+            <h2>Tuyệt vời!</h2>
+            <p>
+              Bạn đã đến nơi rồi, cảm ơn các bạn rất nhiều vì đã giúp mình vượt qua các chướng ngại vật nhé!
+            </p>
+
+            <div className="vt-done-stats">
+              <div className="vt-done-stat">
+                <div className="vt-done-stat-num">{score}</div>
+                <div className="vt-done-stat-label">Điểm</div>
+              </div>
+              <div className="vt-done-stat">
+                <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
+                <div className="vt-done-stat-label">Câu đúng</div>
+              </div>
+            </div>
+
+            <div className="vt-done-actions">
+              <button className="vt-btn primary" onClick={handleRestart}>
+                <i className="fa-solid fa-rotate-right" /> Bắt đầu lượt chơi mới
+              </button>
+              <Link to="/bai-tap" className="vt-btn ghost">
+                <i className="fa-solid fa-list" /> Danh sách bài tập
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
 
+  const q = QUESTIONS[currentQ];
+
+  /* ── UI RENDER ── */
   return (
-    <div className="vt-page">
-      <div className="vt-topbar">
-        <div className="vt-topbar-left">
+    <div className="vt-page" style={{ backgroundImage: `url(${ASSETS.nen3})` }}>
+      {screen !== "intro" && (
+        <div className="vt-topbar">
+          <div className="vt-topbar-left">
             <Link to="/bai-tap" className="vt-back">
-                <i className="fa-solid fa-arrow-left" />
+              <i className="fa-solid fa-arrow-left" />
             </Link>
-            <div>
-                <h1>
-                    <i className="fa-solid fa-map-location-dot" /> Cuộc Phiêu Lưu Của Táo Đỏ
-                </h1>
-                <p>Khám phá vị trí địa lý của Thành phố Hồ Chí Minh</p>
+            <div className="vt-topbar-title">
+              <h1>
+                <i className="fa-solid fa-apple-whole" /> Cuộc Phiêu Lưu Của Táo Đỏ
+              </h1>
+              <p>Khám phá Hành chính Thành phố Hồ Chí Minh</p>
             </div>
-        </div>
-        <div className="vt-topbar-right">
-            <div className="vt-chip vt-chip-score">
-                <i className="fa-solid fa-circle-check" /> Đúng: {correctCount}/{currentQuestion}
+          </div>
+          <div className="vt-topbar-right">
+            <div className="vt-chip">
+              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> Tiến độ: {currentQ + (screen === 'play' && reveal ? 1 : 0)}/{TOTAL}
             </div>
-            {screen === "play" && (
-              <button className="vt-chip" onClick={handleRestart} style={{cursor: "pointer", border: "1px dashed #3b82f6"}} title="Chơi lại từ đầu">
-                  <i className="fa-solid fa-rotate" /> {getAttempts()}/{MAX_ATTEMPTS}
-              </button>
-            )}
+            <div className="vt-chip">
+              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> Lượt chơi: {getAttempts()}/{MAX_ATTEMPTS}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       {screen === "intro" && (
-        <section className="vt-stage vt-intro-stage">
+        <div className="vt-page intro-page-wrap" style={{
+          backgroundImage: `url(${ASSETS.nen1})`,
+          position: 'absolute',
+          inset: 0,
+          paddingBottom: 0,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
+          <section className="vt-stage vt-intro">
             <div className="vt-intro-card">
-              <div className="vt-intro-icon-large">
-                <i className="fa-solid fa-earth-asia" />
+              <div className="vt-intro-content">
+                <h2 style={{ fontSize: '2.5rem', textShadow: '2px 2px 4px rgba(0,0,0,0.2)' }}>Khởi hành!</h2>
+                <p style={{ fontSize: '1.3rem' }}>Cùng tham gia vào <strong>Cuộc Phiêu Lưu Của Táo Đỏ</strong>. Vượt qua các câu hỏi hóc búa để phá tan chướng ngại vật nhé!</p>
+                <button className="vt-btn primary vt-big-btn" onClick={handleStart} style={{ padding: '20px 50px', fontSize: '1.4rem' }}>
+                  <i className="fa-solid fa-play" /> Bắt đầu phiêu lưu
+                </button>
               </div>
-              <h2>Chào mừng bạn đến với Bài tập Vị trí</h2>
-              <p>Bạn sẽ trả lời {TOTAL} câu hỏi trắc nghiệm liên quan đến vị trí địa lý của TP.HCM sau sáp nhập. Hãy đọc kỹ các lựa chọn và bấm vào đáp án đúng nhất nhé!</p>
-              <button className="vt-btn primary" onClick={handleStart}>
-                <i className="fa-solid fa-play" /> Bắt đầu chơi ngay
+            </div>
+          </section>
+        </div>
+      )}
+
+      {screen === "story" && (
+        <section className="vt-stage vt-story-new">
+          <div className="vt-scene-area" style={{ height: '350px' }}>
+            <div className="vt-apple idle" style={{ left: '15%' }}>
+              <img src={ASSETS.taoWait} alt="Táo Đỏ" />
+            </div>
+          </div>
+          <div className="vt-story-layout">
+            <div className="vt-story-bubble-new">
+              <p>Mình đang trên đường phiêu lưu đến vùng đất thần kì. Nhưng trên đường đi mình gặp rất nhiều chướng ngại vật.</p>
+              <p>Các bạn hãy giải đáp những câu hỏi để loại bỏ các chướng ngại vật đó giúp mình nhé!</p>
+              <button className="vt-btn primary" onClick={handleContinueToPlay} style={{ marginTop: '20px' }}>
+                <i className="fa-solid fa-arrow-right" /> Lên đường thôi!
               </button>
             </div>
+          </div>
         </section>
       )}
 
       {screen === "play" && (
         <section className="vt-stage vt-play">
-            <div className="vt-game-layout">
-                {/* Board: Question & Options */}
-                <div className="vt-board-container">
-                    <div className="vt-question-box">
-                      <span className="vt-q-badge" style={{marginBottom: "10px", display: "inline-block"}}>Câu hỏi {currentQuestion + 1}/{TOTAL}</span>
-                      <h3 className="vt-question-text">{QUESTIONS[currentQuestion].question}</h3>
-                    </div>
-                    
-                    <div className="vt-options-grid">
-                      {QUESTIONS[currentQuestion].options.map((opt, i) => {
-                        const isSelected = selectedOption === i;
-                        const isCorrectResp = showFeedback && i === QUESTIONS[currentQuestion].correct;
-                        const isWrongResp = showFeedback && isSelected && !isCorrectResp;
-                        let btnClass = "vt-option-item";
-                        if (isSelected) btnClass += " selected";
-                        if (isCorrectResp) btnClass += " correct";
-                        if (isWrongResp) btnClass += " wrong";
-                        if (showFeedback && !isSelected && !isCorrectResp) btnClass += " disabled";
-
-                        return (
-                          <button
-                            key={i}
-                            className={btnClass}
-                            onClick={() => handleSelectOption(i)}
-                            disabled={showFeedback}
-                          >
-                            <span className="vt-opt-letter">{["A", "B", "C", "D"][i]}</span>
-                            <span className="vt-opt-text">{opt}</span>
-                            {isCorrectResp && <i className="fa-solid fa-circle-check vt-opt-icon" />}
-                            {isWrongResp && <i className="fa-solid fa-circle-xmark vt-opt-icon" />}
-                          </button>
-                        );
-                      })}
-                    </div>
-                </div>
-
-                {/* Sidebar: Progress */}
-                <div className="vt-sidebar">
-                    <h3 className="vt-sidebar-title">Tiến trình bài tập</h3>
-                    <ul className="vt-q-list">
-                        {QUESTIONS.map((q, i) => {
-                            const isPast = i < currentQuestion;
-                            const isCurrent = i === currentQuestion;
-                            const statusObj = results[i]; // true, false, null
-
-                            let liClass = "vt-q-item";
-                            if (isCurrent) liClass += " active";
-                            
-                            let icon = <i className="fa-regular fa-circle vt-q-uncheck"></i>;
-                            if (statusObj === true) {
-                              liClass += " found";
-                              icon = <i className="fa-solid fa-check-circle vt-q-check"></i>;
-                            } else if (statusObj === false) {
-                              liClass += " incorrect";
-                              icon = <i className="fa-solid fa-times-circle vt-q-cross"></i>;
-                            } else if (isCurrent) {
-                              icon = <i className="fa-solid fa-dot-circle vt-q-current"></i>;
-                            }
-
-                            return (
-                                <li key={q.id} className={liClass}>
-                                    {icon}
-                                    <span>Câu hỏi {i + 1}</span>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
+          <div className="vt-board-area">
+            <div className="vt-question-board">
+              <div className="vt-qb-badge"><i className="fa-solid fa-star" /> Câu hỏi {currentQ + 1}</div>
+              <h3>{q.question}</h3>
             </div>
+
+            <div className="vt-options-grid">
+              {q.options.map((opt, i) => {
+                const isPicked = picked === i;
+                const isCorrectOption = i === q.correct;
+
+                let cls = "vt-option-board";
+                if (reveal) {
+                  if (isPicked && isCorrectOption) cls += " correct";
+                  else if (isPicked && !isCorrectOption) cls += " wrong";
+                  else if (isCorrectOption) cls += " missed";
+                  else cls += " disabled";
+                } else if (animState === "moving") {
+                  cls += " locked";
+                }
+
+                return (
+                  <button
+                    key={i}
+                    className={cls}
+                    onClick={() => handleChoose(i)}
+                    disabled={reveal || animState !== "idle"}
+                  >
+                    <div className="vt-opt-icon-wrap">
+                      {reveal && isPicked && isCorrectOption && <i className="fa-solid fa-check" />}
+                      {reveal && isPicked && !isCorrectOption && <i className="fa-solid fa-xmark" />}
+                    </div>
+                    <span>{opt}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Nút tiếp tục xuất hiện khi user chọn xong thay vì tự động chạy */}
+            {showNextObj && (
+              <div className="vt-next-btn-wrap">
+                <button className="vt-btn primary animate-pop" onClick={advanceQuestion}>
+                  {currentQ < TOTAL - 1 ? "Đến chướng ngại vật tiếp theo" : "Xem kết quả cuối cùng"}
+                  <i className="fa-solid fa-chevron-right" style={{ marginLeft: "8px" }} />
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="vt-scene-area">
+            {/* Táo Đỏ */}
+            <div className={`vt-apple ${animState}`}>
+              {animState === "moving" && <img src={ASSETS.taoRun} alt="Chạy" />}
+              {(animState === "idle" || animState === "broken") && <img src={ASSETS.taoWait} alt="Chờ" />}
+              {animState === "attacking" && <img src={ASSETS.taoAtk} alt="Đánh" className="vt-atk-blend" />}
+            </div>
+
+            {/* Chướng ngại vật */}
+            <div className={`vt-obstacle ${animState === "broken" ? "broken-state" : (animState === "attacking" ? "breaking" : "")}`}>
+              <img src={ASSETS.obstacles[currentQ % 5]} alt="Chướng ngại vật" />
+            </div>
+          </div>
         </section>
       )}
 
       {dialog.open && (
         <div className="vt-dialog-overlay" onClick={closeDialog}>
-            <div className="vt-dialog" onClick={(e) => e.stopPropagation()}>
-                <h3>{dialog.title}</h3>
-                <p>{dialog.message}</p>
-                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
-                    {dialog.type === "confirm" && (
-                        <button className="vt-dlg-btn ghost" onClick={closeDialog}>
-                            Hủy
-                        </button>
-                    )}
-                    <button className="vt-dlg-btn blue" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                        {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
-                    </button>
-                </div>
+          <div className="vt-dialog" onClick={(e) => e.stopPropagation()}>
+            <h3>{dialog.title}</h3>
+            <p>{dialog.message}</p>
+            <div className="vt-dlg-actions">
+              {dialog.type === "confirm" && (
+                <button className="vt-dlg-btn ghost" onClick={closeDialog}>Hủy</button>
+              )}
+              <button className="vt-dlg-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
+                {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+              </button>
             </div>
+          </div>
         </div>
       )}
-
     </div>
   );
 }
