@@ -23,7 +23,7 @@ export default function Footer() {
 
               <h4>KHOA GIÁO DỤC TIỂU HỌC</h4>
               <a href="#" className="footer-link">Website thuộc nhóm NCKH khoa Giáo dục Tiểu học</a>
-              <p>Liên hệ công tác: (0394) 952 938</p>
+              <p>Liên hệ công tác: (0395) 952 938</p>
             </div>
           </div>
 
