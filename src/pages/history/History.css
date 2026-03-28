@@ -252,19 +252,10 @@
 }
 
 @media (max-width: 768px) {
-  .history-hero {
-    min-height: 60vh;
-    align-items: center;
-    justify-content: center;
-  }
-
   .history-hero-content {
-    padding: 30px 20px;
-    max-width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px 24px;
+    max-width: 90%;
+    margin-left: 20px;
     z-index: 2;
   }
 
@@ -280,38 +271,5 @@
   .history-dots {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px;
-  }
-
-  .history-dots .dot {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  .history-hero {
-    min-height: 50vh;
-  }
-
-  .history-hero-content {
-    padding: 20px 15px;
-  }
-
-  .history-hero-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .history-hero-content p {
-    font-size: 0.9rem;
-  }
-
-  .history-dots {
-    gap: 8px;
-  }
-
-  .history-dots .dot {
-    width: 10px;
-    height: 10px;
   }
 }

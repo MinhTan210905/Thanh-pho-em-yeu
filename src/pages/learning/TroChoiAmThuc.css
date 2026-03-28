@@ -60,6 +60,7 @@ body.page-tro-choi-active header nav ul li a.active::after {
     radial-gradient(circle at 80% 15%, rgba(251, 146, 60, 0.25), transparent 45%),
     radial-gradient(circle at 25% 85%, rgba(244, 114, 182, 0.25), transparent 50%),
     linear-gradient(135deg, #f8fafc 0%, #f0f9ff 45%, #fff1f2 100%);
+  background-attachment: fixed;
   padding-bottom: 80px;
 }
 
@@ -331,10 +332,23 @@ body.page-tro-choi-active header nav ul li a.active::after {
 }
 
 @keyframes tc-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  50% { transform: translateX(6px); }
-  75% { transform: translateX(-4px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
 }
 
 /* Right: letter tiles + controls */
@@ -483,6 +497,21 @@ body.page-tro-choi-active header nav ul li a.active::after {
   box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
 }
 
+/* Feedback wrapper to reserve space */
+.tc-feedback-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 160px;
+  /* Reserves space for feedback + actions */
+  justify-content: flex-end;
+}
+
+.tc-feedback-placeholder {
+  height: 60px;
+  /* Match tc-feedback height approximately */
+}
+
 /* Result feedback */
 .tc-feedback {
   text-align: center;
@@ -497,17 +526,34 @@ body.page-tro-choi-active header nav ul li a.active::after {
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.3);
   color: #16a34a;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .tc-feedback.fail {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: #dc2626;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 @keyframes tc-fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Question dots nav */
@@ -527,7 +573,7 @@ body.page-tro-choi-active header nav ul li a.active::after {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tc-dot.active {
@@ -675,13 +721,31 @@ body.page-tro-choi-active header nav ul li a.active::after {
 }
 
 @keyframes tc-doneEnter {
-  from { opacity: 0; transform: scale(0.95) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
+
 @keyframes tc-bounce {
-  0% { transform: translateY(-15px); opacity: 0; }
-  50% { transform: translateY(5px); }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* In-app dialog */
@@ -795,9 +859,11 @@ body.page-tro-choi-active header nav ul li a.active::after {
     gap: 28px;
     padding: 0 20px;
   }
+
   .tc-topbar {
     padding: 120px 20px 30px;
   }
+
   .tc-topbar-left h1 {
     font-size: 1.6rem;
   }
@@ -810,17 +876,21 @@ body.page-tro-choi-active header nav ul li a.active::after {
     font-size: 0.95rem;
     border-radius: 8px;
   }
+
   .tc-answer-space {
     width: 14px;
   }
+
   .tc-tile {
     width: 44px;
     height: 48px;
     font-size: 0.95rem;
   }
+
   .tc-score-bar {
     gap: 10px;
   }
+
   .tc-score-item {
     padding: 8px 12px;
     font-size: 0.8rem;
@@ -835,8 +905,15 @@ body.page-tro-choi-active header nav ul li a.active::after {
 }
 
 @keyframes tc-enterDown {
-  from { opacity: 0; transform: translateY(-18px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Game area fades up */
@@ -845,8 +922,15 @@ body.page-tro-choi-active header nav ul li a.active::after {
 }
 
 @keyframes tc-enterUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* End screen entrance */
@@ -855,8 +939,15 @@ body.page-tro-choi-active header nav ul li a.active::after {
 }
 
 @keyframes tc-endEnter {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Score bar items stagger */
@@ -864,11 +955,26 @@ body.page-tro-choi-active header nav ul li a.active::after {
   animation: tc-chipPop 0.4s ease both;
 }
 
-.tc-score-item:nth-child(1) { animation-delay: 0.2s; }
-.tc-score-item:nth-child(2) { animation-delay: 0.3s; }
-.tc-score-item:nth-child(3) { animation-delay: 0.4s; }
+.tc-score-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.tc-score-item:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.tc-score-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes tc-chipPop {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

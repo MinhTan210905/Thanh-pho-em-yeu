@@ -298,6 +298,7 @@ nav ul li a::after {
     left: 0;
     background-color: #ffcc00;
     transition: width 0.3s ease-in-out;
+    display: none;
 }
 
 nav ul li a:hover {
@@ -305,7 +306,7 @@ nav ul li a:hover {
 }
 
 nav ul li a:hover::after {
-    width: 100%;
+    width: 0;
 }
 
 /* Active link (current page) */
@@ -320,7 +321,7 @@ nav ul li a.active::after {
 }
 
 nav ul li a.active:hover::after {
-    width: 100%;
+    width: 0;
 }
 
 /* Sticky Header Styles */
@@ -1793,7 +1794,7 @@ header.sticky .search-box input::placeholder {
         text-transform: uppercase;
         transition: all 0.3s ease;
         padding: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: none;
     }
 
     .mobile-nav-links a:hover {

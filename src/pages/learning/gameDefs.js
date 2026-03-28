@@ -93,7 +93,7 @@ export const GAME_DEFS = [
     category: "Địa lí",
     description:
       "Kiểm tra kiến thức của bạn về vị trí địa lý mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",
-    image: "/images/dia_ly_1.jfif",
+    image: "/images/tro_choi/vi_tri/tao_do.png",
     totalQuestions: 5,
     route: "/tro-choi-vi-tri",
     storageKey: "tc_vi_tri_state",

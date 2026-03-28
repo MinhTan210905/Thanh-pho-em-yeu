@@ -613,50 +613,54 @@ export default function TroChoiAmThuc() {
             <div className="tc-answer-row">{answerWordGroups}</div>
           </div>
 
-          {/* Feedback */}
-          {feedback && (
-            <div className={`tc-feedback ${feedback === "correct" ? "success" : "fail"}`}>
-              {feedback === "correct" ? (
+          {/* Feedback & Actions container to reserve space */}
+          <div className="tc-feedback-wrap">
+            {feedback && (
+              <div className={`tc-feedback ${feedback === "correct" ? "success" : "fail"}`}>
+                {feedback === "correct" ? (
+                  <>
+                    <i className="fa-solid fa-check-circle" /> Chính xác! 🎉
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-times-circle" /> Sai rồi! Đáp án: {cleanAnswer}
+                  </>
+                )}
+              </div>
+            )}
+
+            {!feedback && <div className="tc-feedback-placeholder" />}
+
+            {/* Actions */}
+            <div className="tc-actions">
+              {!feedback ? (
                 <>
-                  <i className="fa-solid fa-check-circle" /> Chính xác! 🎉
+                  <button
+                    className="tc-btn tc-btn-check"
+                    onClick={handleCheck}
+                    disabled={placed.some((v) => v === null)}
+                  >
+                    <i className="fa-solid fa-paper-plane" />
+                    Kiểm tra
+                  </button>
+                  <button className="tc-btn tc-btn-clear" onClick={handleClear}>
+                    <i className="fa-solid fa-eraser" />
+                    Xoá hết
+                  </button>
                 </>
               ) : (
                 <>
-                  <i className="fa-solid fa-times-circle" /> Sai rồi! Đáp án: {cleanAnswer}
+                  <button className="tc-btn tc-btn-next" onClick={handleNext}>
+                    <i className="fa-solid fa-arrow-right" />
+                    {results.some((r) => r === null) ? "Câu tiếp theo" : "Xem kết quả"}
+                  </button>
+                  <button className="tc-btn tc-btn-clear" onClick={handleRestart}>
+                    <i className="fa-solid fa-rotate-right" />
+                    Chơi lại từ đầu
+                  </button>
                 </>
               )}
             </div>
-          )}
-
-          {/* Actions */}
-          <div className="tc-actions">
-            {!feedback ? (
-              <>
-                <button
-                  className="tc-btn tc-btn-check"
-                  onClick={handleCheck}
-                  disabled={placed.some((v) => v === null)}
-                >
-                  <i className="fa-solid fa-paper-plane" />
-                  Kiểm tra
-                </button>
-                <button className="tc-btn tc-btn-clear" onClick={handleClear}>
-                  <i className="fa-solid fa-eraser" />
-                  Xoá hết
-                </button>
-              </>
-            ) : (
-              <>
-                <button className="tc-btn tc-btn-next" onClick={handleNext}>
-                  <i className="fa-solid fa-arrow-right" />
-                  {results.some((r) => r === null) ? "Câu tiếp theo" : "Xem kết quả"}
-                </button>
-                <button className="tc-btn tc-btn-clear" onClick={handleRestart}>
-                  <i className="fa-solid fa-rotate-right" />
-                  Chơi lại từ đầu
-                </button>
-              </>
-            )}
           </div>
 
           {/* Question dots */}

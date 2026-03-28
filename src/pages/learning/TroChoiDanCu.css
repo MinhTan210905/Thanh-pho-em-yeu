@@ -702,8 +702,8 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
   width: 100%;
   max-width: 800px;
   margin: 30px auto 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
 }
@@ -807,17 +807,13 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
 
 .dc-question {
   position: relative;
-  padding-bottom: 200px;
-  /* Bắt buộc để chừa không gian đệm cho khối .dc-after */
+  padding-bottom: 24px;
 }
 
 .dc-after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: static;
   max-width: 860px;
-  margin: 0 auto;
+  margin: 12px auto 0;
   text-align: center;
 }
 
@@ -859,11 +855,8 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
 }
 
 .dc-after-actions.not-revealed {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
-  margin-top: 0;
+  position: static;
+  margin-top: 12px;
 }
 
 .dc-finish {

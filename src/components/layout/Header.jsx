@@ -10,6 +10,10 @@ export default function Header({ currentPage }) {
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
+  const closeMobileMenu = () => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu?.classList.remove('active');
+  };
 
   useEffect(() => {
     // === STICKY HEADER ===
@@ -148,13 +152,11 @@ export default function Header({ currentPage }) {
           <div className="close-btn" id="closeBtn"><i className="fas fa-times"></i></div>
         </div>
         <ul className="mobile-nav-links">
-          <li><Link to="/">Trang chủ</Link></li>
-          <li><a href="#">Giới thiệu</a></li>
-          <li><Link to="/dia-ly">Địa lý</Link></li>
-          <li><Link to="/lich-su">Lịch sử</Link></li>
-          <li><Link to="/van-hoa">Văn hóa</Link></li>
-          <li><Link to="/hoc-tap">Góc học tập</Link></li>
-          <li><a href="#">Tài liệu tham khảo</a></li>
+          <li><Link to="/" onClick={closeMobileMenu}>Trang chủ</Link></li>
+          <li><Link to="/dia-ly" onClick={closeMobileMenu}>Địa lý</Link></li>
+          <li><Link to="/lich-su" onClick={closeMobileMenu}>Lịch sử</Link></li>
+          <li><Link to="/van-hoa" onClick={closeMobileMenu}>Văn hóa</Link></li>
+          <li><Link to="/hoc-tap" onClick={closeMobileMenu}>Góc học tập</Link></li>
         </ul>
         <div className="mobile-socials">
           <a href="#"><i className="fab fa-facebook-f"></i></a>

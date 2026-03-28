@@ -335,19 +335,10 @@
 }
 
 @media (max-width: 768px) {
-  .geography-hero {
-    min-height: 60vh;
-    align-items: center;
-    justify-content: center;
-  }
-
   .geography-hero-content {
-    padding: 30px 20px;
-    max-width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px 24px;
+    max-width: 90%;
+    margin-left: 20px;
     z-index: 2;
   }
 
@@ -363,68 +354,5 @@
   .geography-dots {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px;
-  }
-
-  .geography-dots .dot {
-    width: 22px;
-    height: 22px;
-  }
-
-  .geography-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-  }
-
-  .geography-grid-container {
-    padding: 0 20px;
-  }
-
-  .geography-main {
-    padding: 50px 0;
-  }
-
-  .card-image {
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .geography-hero {
-    min-height: 50vh;
-  }
-
-  .geography-hero-content {
-    padding: 20px 15px;
-  }
-
-  .geography-hero-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .geography-hero-content p {
-    font-size: 0.9rem;
-  }
-
-  .geography-dots {
-    gap: 8px;
-  }
-
-  .geography-dots .dot {
-    width: 10px;
-    height: 10px;
-  }
-
-  .geography-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card-image {
-    height: 180px;
-  }
-
-  .card-button {
-    padding: 10px 20px;
-    font-size: 0.85rem;
   }
 }

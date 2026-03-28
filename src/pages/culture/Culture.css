@@ -252,19 +252,10 @@ a.culture-read-more {
 }
 
 @media (max-width: 768px) {
-  .culture-hero {
-    min-height: 60vh;
-    align-items: center;
-    justify-content: center;
-  }
-
   .culture-hero-content {
-    padding: 30px 20px;
-    max-width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px 24px;
+    max-width: 90%;
+    margin-left: 20px;
     z-index: 2;
   }
 
@@ -280,38 +271,5 @@ a.culture-read-more {
   .culture-dots {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px;
-  }
-
-  .culture-dots .dot {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  .culture-hero {
-    min-height: 50vh;
-  }
-
-  .culture-hero-content {
-    padding: 20px 15px;
-  }
-
-  .culture-hero-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .culture-hero-content p {
-    font-size: 0.9rem;
-  }
-
-  .culture-dots {
-    gap: 8px;
-  }
-
-  .culture-dots .dot {
-    width: 10px;
-    height: 10px;
   }
 }
