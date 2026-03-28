@@ -237,15 +237,9 @@ export default function TroChoiLangNghe() {
     setResults(newResults);
     setIsChecked(true);
 
-    // Always finish the round on check
+    // Always sync progress on check
     syncProgress(TOTAL, newCorrect * 20);
     incrementAttempts();
-
-    // Small delay to let the user see the results before transitioning
-    setTimeout(() => {
-      setAllDone(true);
-      if (newCorrect > 0) setJustFinished(true);
-    }, 2000);
   }, [links, isCompleteForm, isChecked]);
 
   const handleRestartFull = useCallback(() => {
@@ -517,9 +511,19 @@ export default function TroChoiLangNghe() {
                 </div>
               ) : (
                 <div className="lng-feedback-error">
-                  <i className="fa-solid fa-circle-info" /> Bạn nối đúng {correctCount}/{TOTAL} cặp. Đang chuyển sang kết quả...
+                  <i className="fa-solid fa-circle-info" /> Bạn nối đúng {correctCount}/{TOTAL} cặp. Xem lại kết quả bên trên nhé!
                 </div>
               )}
+              <button
+                className="lng-btn primary scale-up"
+                style={{ marginTop: '12px' }}
+                onClick={() => {
+                  setAllDone(true);
+                  if (correctCount > 0) setJustFinished(true);
+                }}
+              >
+                <i className="fa-solid fa-star" /> Xem tổng kết
+              </button>
             </div>
           )}
         </div>

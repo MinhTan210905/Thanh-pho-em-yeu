@@ -488,33 +488,25 @@ export default function TroChoiDanCu() {
             })}
           </div>
 
-          {reveal && (
-            <div className="dc-after">
-              {picked === question.correctIndex ? (
-                <div className="dc-feedback ok">
-                  <i className="fa-solid fa-circle-check" /> Chính xác! Món ăn đã hoàn thiện.
-                </div>
-              ) : (
-                <div className="dc-feedback no">
-                  <i className="fa-solid fa-circle-xmark" /> Chưa đúng rồi! Khay bị vỡ mất…
+          <div className="dc-feedback-area">
+            <div className="dc-feedback-msg-box">
+              {reveal && (
+                <div className={`dc-feedback ${picked === question.correctIndex ? 'ok' : 'no'}`}>
+                  {picked === question.correctIndex ? (
+                    <><i className="fa-solid fa-circle-check" /> Chính xác! Món ăn đã hoàn thiện.</>
+                  ) : (
+                    <><i className="fa-solid fa-circle-xmark" /> Chưa đúng rồi! Khay bị vỡ mất…</>
+                  )}
                 </div>
               )}
-
-              <div className="dc-after-actions">
-                <button className="dc-btn primary" onClick={backToMenu}>
-                  <i className="fa-solid fa-arrow-left" /> Quay lại chọn món
-                </button>
-              </div>
             </div>
-          )}
 
-          {!reveal && (
-            <div className="dc-after-actions not-revealed">
-              <button className="dc-btn ghost" onClick={backToMenu}>
+            <div className="dc-after-actions">
+              <button className={`dc-btn ${reveal ? 'primary' : 'ghost'}`} onClick={backToMenu}>
                 <i className="fa-solid fa-arrow-left" /> Quay lại chọn món
               </button>
             </div>
-          )}
+          </div>
         </section>
       )}
 

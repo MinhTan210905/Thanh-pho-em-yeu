@@ -93,7 +93,7 @@ const QUESTIONS = [
   },
   {
     id: 5,
-    question: "Quy mô dân số của Thành phố Hồ Chí Minh sau sáp nhập khoảng bao nhiêu người?",
+    question: "Quy mô dân số của TP. Hồ Chí Minh sau sáp nhập khoảng bao nhiêu người?",
     options: [
       "Hơn 14 triệu người",
       "Hơn 12 triệu người",
@@ -275,7 +275,7 @@ export default function TroChoiViTri() {
       setTimeout(() => {
         setAnimState("broken"); // Chuyển sang trạng thái đã phá vỡ
         setShowNextObj(true);
-      }, 700); // Rút ngắn lại một chút để cảm giác va chạm nhanh hơn
+      }, 400); // Rút ngắn lại để khớp với Dash của CSS (0.4s)
     } else {
       playAudio("wrong");
       // Bấm sai -> táo đỏ k làm gì, chỉ báo sai
@@ -322,6 +322,17 @@ export default function TroChoiViTri() {
 
   if (screen === "finish") {
     const score = Math.round((correctCount / TOTAL) * 100);
+    const stars = correctCount === TOTAL ? 3 : (correctCount >= 3 ? 2 : (correctCount >= 1 ? 1 : 0));
+
+    let greeting = "Cố gắng lên!";
+    let message = "Táo Đỏ vẫn cần bạn giúp sức thêm để vượt qua các chướng ngại vật đấy. Đừng bỏ cuộc nhé!";
+    if (stars === 3) {
+      greeting = "Xuất sắc!";
+      message = "Bạn là một nhà thám hiểm tài ba! Táo Đỏ đã về đích an toàn nhờ sự thông minh của bạn.";
+    } else if (stars === 2) {
+      greeting = "Làm tốt lắm!";
+      message = "Bạn đã giúp Táo Đỏ vượt qua hầu hết các thử thách. Một chút nữa thôi là hoàn hảo rồi!";
+    }
 
     return (
       <div className="vt-page finish-page-new" style={{ backgroundImage: `url(${ASSETS.nen3})` }}>
@@ -336,7 +347,7 @@ export default function TroChoiViTri() {
               <h1>
                 <i className="fa-solid fa-apple-whole" /> CUỘC PHIÊU LƯU CỦA TÁO ĐỎ
               </h1>
-              <p>TRÒ CHƠI VỊ TRÍ</p>
+              <p>Chúc mừng bạn đã hoàn thành chuyến đi!</p>
             </div>
           </div>
           <div className="vt-topbar-right">
@@ -351,38 +362,45 @@ export default function TroChoiViTri() {
 
         <section className="vt-stage vt-finish-new">
           <div className="vt-finish-center">
-            <div className="vt-finish-apple-frame">
-              <div className="vt-finish-apple">
+            <div className="vt-done">
+              <div className="vt-stars">
+                {[1, 2, 3].map((s) => (
+                  <i
+                    key={s}
+                    className={`fa-solid fa-star vt-star-item ${s <= stars ? 'active' : ''}`}
+                    style={{ animationDelay: `${s * 0.15}s` }}
+                  />
+                ))}
+              </div>
+
+              <div className="vt-finish-apple-mini">
                 <img src={ASSETS.taoWait} alt="Táo Đỏ" />
               </div>
-            </div>
 
-            <div className="vt-done">
-              <div className="vt-finish-badge">
-                <i className="fa-solid fa-flag-checkered" /> Về đích thành công!
-              </div>
-              <h2>Tuyệt vời!</h2>
-              <p>
-                Bạn đã đến nơi rồi, cảm ơn các bạn rất nhiều vì đã giúp mình vượt qua các chướng ngại vật nhé!
-              </p>
+              <h2>{greeting}</h2>
+              <p>{message}</p>
 
               <div className="vt-done-stats">
-                <div className="vt-done-stat">
+                <div className="vt-done-stat" style={{ animationDelay: '0.5s' }}>
                   <div className="vt-done-stat-num">{score}</div>
-                  <div className="vt-done-stat-label">Điểm</div>
+                  <div className="vt-done-stat-label">Điểm số</div>
                 </div>
-                <div className="vt-done-stat">
+                <div className="vt-done-stat" style={{ animationDelay: '0.6s' }}>
                   <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
                   <div className="vt-done-stat-label">Câu đúng</div>
                 </div>
               </div>
 
               <div className="vt-done-actions">
-                <button className="vt-btn primary" onClick={handleRestart} style={{ background: 'linear-gradient(135deg, #d32f2f, #b71c1c)', boxShadow: '0 8px 0 #7e1212' }}>
-                  <i className="fa-solid fa-rotate-right" /> Bắt đầu lượt chơi mới
+                <button
+                  className="vt-btn primary"
+                  onClick={handleRestart}
+                  style={{ background: 'linear-gradient(135deg, #ff4d4d, #dc3545)' }}
+                >
+                  <i className="fa-solid fa-rotate-right" /> Chơi lại lần nữa
                 </button>
                 <Link to="/bai-tap" className="vt-btn ghost">
-                  <i className="fa-solid fa-house" /> Quay về Bài tập
+                  <i className="fa-solid fa-house" /> Về trang chủ
                 </Link>
               </div>
             </div>
@@ -427,7 +445,7 @@ export default function TroChoiViTri() {
               <h1>
                 <i className="fa-solid fa-apple-whole" /> CUỘC PHIÊU LƯU CỦA TÁO ĐỎ
               </h1>
-              <p>TRÒ CHƠI VỊ TRÍ</p>
+              <p>Hãy giải đố để giúp Táo Đỏ vượt qua chướng ngại vật nhé!</p>
             </div>
           </div>
           <div className="vt-topbar-right">

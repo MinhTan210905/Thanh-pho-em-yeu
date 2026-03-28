@@ -165,6 +165,7 @@ export default function TroChoiKinhTe() {
   const [dragStart, setDragStart] = useState(null);
   const [dragEnd, setDragEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isTwoClickMode, setIsTwoClickMode] = useState(false);
   const [justFinished, setJustFinished] = useState(false);
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
 
@@ -246,61 +247,98 @@ export default function TroChoiKinhTe() {
     closeDialog();
   }, [dialog, doRestart, closeDialog]);
 
-  // UI drag handlers
+  // UI drag/click handlers
   const handlePointerDown = (r, c) => {
     if (screen !== "play") return;
+
+    if (isTwoClickMode && dragStart) {
+      // This is the second click in Two-Click mode
+      const finalEnd = { r, c };
+      processWord(dragStart, finalEnd);
+      return;
+    }
+
+    // Start a new potential selection (could be drag or start of two-click)
     setIsDragging(true);
+    setIsTwoClickMode(false);
     setDragStart({ r, c });
     setDragEnd({ r, c });
   };
 
   const handlePointerEnter = (r, c) => {
-    if (!isDragging || !dragStart) return;
-    setDragEnd({ r, c });
+    if (screen !== "play") return;
+    if (isDragging || isTwoClickMode) {
+      setDragEnd({ r, c });
+    }
   };
 
-  const handlePointerUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    if (!dragStart || !dragEnd) return;
-
-    const line = getLineCells(dragStart.r, dragStart.c, dragEnd.r, dragEnd.c);
+  const processWord = (start, end) => {
+    const line = getLineCells(start.r, start.c, end.r, end.c);
     const wordFormed = line.map(cell => grid[cell.r][cell.c]).join('');
     const wordReversed = wordFormed.split('').reverse().join('');
 
     let matchIdx = -1;
     for (let i = 0; i < TARGET_WORDS.length; i++) {
-      if (results[i] === true) continue;
-      if (TARGET_WORDS[i].text === wordFormed || TARGET_WORDS[i].text === wordReversed) {
-        matchIdx = i;
-        break;
-      }
+        if (results[i] === true) continue;
+        if (TARGET_WORDS[i].text === wordFormed || TARGET_WORDS[i].text === wordReversed) {
+            matchIdx = i;
+            break;
+        }
     }
 
     if (matchIdx !== -1) {
-      setResults(prev => {
-        const next = [...prev];
-        next[matchIdx] = true;
-        return next;
-      });
-      setFoundPaths(prev => [...prev, line]);
+        setResults(prev => {
+            const next = [...prev];
+            next[matchIdx] = true;
+            return next;
+        });
+        setFoundPaths(prev => [...prev, line]);
     }
 
     setDragStart(null);
     setDragEnd(null);
+    setIsDragging(false);
+    setIsTwoClickMode(false);
+  };
+
+  const handlePointerUp = () => {
+    if (!isDragging || !dragStart || !dragEnd) return;
+
+    const isSameCell = dragStart.r === dragEnd.r && dragStart.c === dragEnd.c;
+
+    if (isSameCell) {
+      // It was a simple click, enter Two-Click mode
+      setIsDragging(false);
+      setIsTwoClickMode(true);
+    } else {
+      // It was a drag, process immediately
+      processWord(dragStart, dragEnd);
+    }
   };
 
   useEffect(() => {
-    const onGlobalMouseUp = () => handlePointerUp();
+    const onGlobalMouseUp = () => {
+        if (isDragging) handlePointerUp();
+    };
+    const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+            setDragStart(null);
+            setDragEnd(null);
+            setIsDragging(false);
+            setIsTwoClickMode(false);
+        }
+    };
     window.addEventListener("pointerup", onGlobalMouseUp);
     window.addEventListener("pointercancel", onGlobalMouseUp);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("pointerup", onGlobalMouseUp);
       window.removeEventListener("pointercancel", onGlobalMouseUp);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, [isDragging, dragStart, dragEnd]);
 
-  const currentSelectionLine = (isDragging && dragStart && dragEnd) 
+  const currentSelectionLine = (dragStart && dragEnd) 
     ? getLineCells(dragStart.r, dragStart.c, dragEnd.r, dragEnd.c)
     : [];
 
@@ -402,7 +440,7 @@ export default function TroChoiKinhTe() {
                 <h1>
                     <i className="fa-solid fa-search" /> Truy Tìm Ô Chữ
                 </h1>
-                <p>Kéo chọn các chữ cái để tìm {TOTAL} từ khóa Địa lí kinh tế</p>
+                <p>Kéo chọn hoặc nhấn điểm đầu - điểm cuối để tìm {TOTAL} từ khóa Địa lí kinh tế</p>
             </div>
         </div>
         <div className="tk-topbar-right">
@@ -427,9 +465,12 @@ export default function TroChoiKinhTe() {
                           row.map((letter, c) => {
                               const selected = isCellSelected(r, c);
                               const foundIdx = getFoundColorIndex(r, c);
+                              const isStartPivot = isTwoClickMode && dragStart && dragStart.r === r && dragStart.c === c;
+
                               let cls = "tk-cell";
                               if (selected) cls += " selected";
-                              else if (foundIdx !== -1) cls += ` found found-color-${foundIdx % 5}`;
+                              if (isStartPivot) cls += " start-pivot";
+                              if (!selected && foundIdx !== -1) cls += ` found found-color-${foundIdx % 5}`;
 
                               return (
                                   <div 

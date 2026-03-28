@@ -18,11 +18,13 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   position: relative;
   z-index: 1;
-  background-size: cover;
+  background-size: 120% auto;
+  /* Chỉ co giãn theo chiều ngang, không theo chiều cao */
   background-position: top center;
   background-repeat: no-repeat;
-  min-height: 85vh;
-  /* Ngăn lỗi background "zoom" khi nội dung bất ngờ dài ra lúc trả lời câu hỏi */
+  background-attachment: scroll;
+  /* Để nền đi theo nội dung */
+  min-height: 100vh;
 }
 
 .dc-topbar {
@@ -776,9 +778,20 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
 }
 
 @keyframes dc-dish-pop {
-  0% { transform: translateY(-50%) scale(0); opacity: 0; }
-  75% { transform: translateY(-50%) scale(1.15); opacity: 1; }
-  100% { transform: translateY(-50%) scale(1); opacity: 1; }
+  0% {
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
+  }
+
+  75% {
+    transform: translateY(-50%) scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
 }
 
 .dc-answer-letter {
@@ -805,16 +818,29 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
   color: #065f46;
 }
 
-.dc-question {
-  position: relative;
-  padding-bottom: 24px;
+.dc-feedback-area {
+  width: 100%;
+  max-width: 860px;
+  margin: 12px auto 0;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dc-feedback-msg-box {
+  min-height: 60px;
+  /* Chừa sẵn chỗ cho thông báo Chính xác! */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 .dc-after {
-  position: static;
-  max-width: 860px;
-  margin: 12px auto 0;
-  text-align: center;
+  width: 100%;
 }
 
 .dc-feedback {
@@ -827,7 +853,7 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(15, 23, 42, 0.12);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .dc-feedback.ok {
@@ -851,12 +877,12 @@ body.page-tro-choi-dan-cu-active .chatbot-window {
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  width: 100%;
+  min-height: 60px;
 }
 
 .dc-after-actions.not-revealed {
-  position: static;
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .dc-finish {

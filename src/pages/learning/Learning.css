@@ -1,4 +1,4 @@
-﻿/* ===== LEARNING HUB (GÓC HỌC TẬP) ===== */
+/* ===== LEARNING HUB (GÓC HỌC TẬP) ===== */
 
 /* --- HERO --- */
 .learning-hero {
@@ -314,6 +314,18 @@ a.learning-read-more {
   }
   .learning-hero-content h1 {
     font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .learning-dots {
+    left: 60px;
+    bottom: 30px;
+  }
+
+  .learning-dots .dot {
+    width: 22px;
+    height: 22px;
   }
 }
 
