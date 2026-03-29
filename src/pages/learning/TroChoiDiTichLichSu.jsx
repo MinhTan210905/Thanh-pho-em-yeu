@@ -10,19 +10,22 @@ function ConfettiOnMount() {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startDiTich.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
 const playAudio = (type) => {
-  const audioMap = {
-    start: "/audio/start.mp3",
-    correct: "/audio/correct.mp3",
-    wrong: "/audio/wrong.mp3",
-    finish: "/audio/finish.mp3",
-  };
-  const path = audioMap[type];
+  const path = AUDIO_MAP[type];
   if (path) {
     const audio = new Audio(path);
     audio.play().catch(e => console.log("Audio play failed:", e));
   }
 };
+
+
 
 /* ═══════════ DATA ═══════════ */
 const ERAS = [
@@ -132,6 +135,39 @@ export default function TroChoiLichSu() {
 
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
   const [justFinished, setJustFinished] = useState(false);
+
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (phase !== "done") {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [phase, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
+
   const [dragging, setDragging] = useState(null);
   const [dragGhost, setDragGhost] = useState(null);
   const suppressClickRef = useRef(false);
@@ -240,7 +276,7 @@ export default function TroChoiLichSu() {
       if (phase === "playing" && eraId) {
         setPlacements((prev) => {
           const isCorrect = SITES.find(s => s.id === ds.siteId)?.era === eraId;
-          playAudio(isCorrect ? "correct" : "wrong");
+
           const next = { ...prev, [ds.siteId]: eraId };
           syncPartialProgress(Object.keys(next).length);
           return next;
@@ -280,27 +316,12 @@ export default function TroChoiLichSu() {
   }, [allPlaced, placements, timer]);
 
   const handleFinish = useCallback(() => {
+
+    stopBGM();
     playAudio("finish");
     setPhase("done");
     setJustFinished(true);
-  }, []);
-
-  const handleQuickComplete = useCallback(() => {
-    incrementAttempts();
-    const allPlacements = {};
-    SITES.forEach((site) => {
-      allPlacements[site.id] = site.era;
-    });
-    const map = {};
-    SITES.forEach((site) => { map[site.id] = true; });
-    setPlacements(allPlacements);
-    setSelected(null);
-    setResultMap(map);
-    setFinalTime(timer);
-    syncProgress(TOTAL);
-    setPhase("done");
-    setJustFinished(true);
-  }, [timer]);
+  }, [stopBGM]);
 
   const doRestart = useCallback(() => {
     setPlacements({});
@@ -311,7 +332,8 @@ export default function TroChoiLichSu() {
     setFinalTime(null);
     setOrder(shuffle(SITES.map((_, i) => i)));
     sessionStorage.removeItem(STATE_KEY);
-  }, []);
+    playBGM();
+  }, [playBGM]);
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
@@ -416,7 +438,10 @@ export default function TroChoiLichSu() {
 
   /* ══════ PLAYING / RESULTS SCREEN ══════ */
   return (
-    <div className={`tls-page${dragging ? " dragging" : ""}`}>
+    <div className={`tls-page${dragging ? " dragging" : ""}`} onClick={() => {
+      // Đảm bảo nhạc phát sau khi tương tác lần đầu
+      if (phase !== "done") playBGM();
+    }}>
       {/* ── Top Bar ── */}
       <div className="tls-topbar">
         <div className="tls-topbar-left">
@@ -445,10 +470,6 @@ export default function TroChoiLichSu() {
               {correctCount}/{TOTAL}
             </div>
           )}
-          <button className="tls-dev-btn" onClick={handleQuickComplete}>
-            <i className="fa-solid fa-bolt" />
-            Xong nhanh
-          </button>
         </div>
       </div>
 

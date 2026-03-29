@@ -89,13 +89,7 @@ body.page-tro-choi-lang-nghe-active .chatbot-window { display: none !important; 
 .lng-topbar-left h1 i { color: #10b981; margin-right: 10px; }
 .lng-topbar-left p { color: rgba(15,23,42,0.6); font-weight: 600; font-size: 0.95rem; }
 
-.lng-dev-btn {
-  padding: 8px 14px; border-radius: 999px;
-  border: 1px dashed rgba(15,23,42,0.2); background: #fff;
-  font-weight: 700; font-size: 0.8rem; cursor: pointer;
-  display: flex; gap: 6px; align-items: center;
-}
-.lng-dev-btn:hover { border-color: #0f172a; }
+
 
 /* ── LAYOUT ── */
 .lng-layout-container {

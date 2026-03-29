@@ -1,5 +1,6 @@
 import './KinhTe.css';
 import { useEffect } from 'react';
+import GameRedirect from '../../components/common/GameRedirect';
 
 export default function KinhTe() {
   useEffect(() => {
@@ -58,9 +59,9 @@ export default function KinhTe() {
           </h1>
 
           <p className="kt-hero-desc reveal fade-up delay-200">
-            Thành phố Hồ Chí Minh là trung tâm kinh tế lớn nhất cả nước
-            với 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp
-            quy mô lớn và nông nghiệp ứng dụng công nghệ cao, giữ vai trò
+            Thành phố Hồ chí Minh là trung tâm kinh tế lớn nhất cả nước
+            with 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp
+            quy mô lớn and nông nghiệp ứng dụng công nghệ cao, giữ vai trò
             đầu tàu phát triển kinh tế quốc gia.
           </p>
 
@@ -156,7 +157,7 @@ export default function KinhTe() {
                   <h3>Công nghiệp – Xây dựng</h3>
                   <p>
                     Thu hút hàng nghìn doanh nghiệp; nổi bật ở cơ khí, dệt may,
-                    giày da, nhựa – cao su, điện tử, chế biến thực phẩm và
+                    giày da, nhựa – cao su, điện tử, chế biến thực phẩm and
                     thủy – hải sản. Nhiều KCN lớn: Hiệp Phước, Vĩnh Lộc,
                     Tân Phú Trung, Linh Trung…
                   </p>
@@ -188,9 +189,9 @@ export default function KinhTe() {
                   <h3>Tầm nhìn & Thách thức</h3>
                   <p>
                     Thành phố tiếp tục mở rộng nghiên cứu khoa học trong lĩnh vực công nghệ,
-                    đẩy mạnh liên kết vùng và phấn đấu giữ vững vai trò đầu tàu kinh tế cả nước.
+                    đẩy mạnh liên kết vùng and phấn đấu giữ vững vai trò đầu tàu kinh tế cả nước.
                     Song song đó, TP.HCM đang đối mặt thách thức môi trường - ô nhiễm nước,
-                    không khí, rác thải - và đẩy mạnh giải pháp đô thị xanh, đô thị thông minh,
+                    không khí, rác thải - and đẩy mạnh giải pháp đô thị xanh, đô thị thông minh,
                     phát triển phương tiện công cộng.
                   </p>
                 </div>
@@ -203,7 +204,7 @@ export default function KinhTe() {
             <div className="container">
               <div className="kt-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Tổng quan cấu trúc kinh tế, các khu công nghiệp và tiềm năng phát triển của TP.HCM.</p>
+                <p>Tổng quan cấu trúc kinh tế, các khu công nghiệp and tiềm năng phát triển của TP.HCM.</p>
               </div>
               <div className="kt-canvas-frame reveal fade-up delay-200">
                 <div className="kt-canvas-embed">
@@ -217,6 +218,8 @@ export default function KinhTe() {
                 </div>
               </div>
             </div>
+
+            <GameRedirect to="/tro-choi-kinh-te" gameName="Truy tìm ô chữ" />
           </section>
         </div>
       </main>

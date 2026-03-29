@@ -466,7 +466,7 @@ body.page-di-tich-active header nav ul li a.active:hover::after {
 
 /* ═══════ 3. CANVAS ═══════ */
 .dt-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
   background: linear-gradient(180deg, #fdf8f4 0%, #f9ece0 50%, #fdf8f4 100%);
 }
 

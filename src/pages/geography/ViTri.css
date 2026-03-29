@@ -537,7 +537,7 @@ body.page-vi-tri-active header nav ul li a.active:hover::after {
 
 /* ═══════ 5. CANVA ═══════ */
 .vt-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
 }
 
 .vt-canvas-intro {

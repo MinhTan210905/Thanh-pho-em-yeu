@@ -1,5 +1,6 @@
 import './LeHoi.css';
 import { useEffect } from 'react';
+import GameRedirect from '../../components/common/GameRedirect';
 
 export default function LeHoi() {
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function LeHoi() {
           </h1>
 
           <p className="lh-hero-desc reveal fade-up delay-200">
-            Đa dạng, kết hợp giữa truyền thống và hiện đại - phản ánh đời sống văn&nbsp;hóa phong phú, sôi động của người dân thành phố.
+            Đa dạng, kết hợp giữa truyền thống and hiện đại - phản ánh đời sống văn&nbsp;hóa phong phú, sôi động của người dân thành phố.
           </p>
 
           <div className="lh-hero-chips reveal fade-up delay-300">
@@ -107,7 +108,7 @@ export default function LeHoi() {
                 <p>
                   Từ lễ hội Nguyên Tiêu, Tết Nguyên Đán, lễ hội Nghinh&nbsp;Ông đến
                   những sự kiện âm nhạc quốc tế, hội chợ đa văn hóa - tất cả
-                  hòa quyện trong nhịp sống thành phố.
+                  hòa quyện with nhịp sống thành phố.
                 </p>
               </div>
               <div className="lh-strip-card">
@@ -115,7 +116,7 @@ export default function LeHoi() {
                 <h3>Đời sống văn hóa phong phú</h3>
                 <p>
                   Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian
-                  để mọi&nbsp;người cùng tôn vinh, trải nghiệm và chia sẻ.
+                  để mọi&nbsp;người cùng tôn vinh, trải nghiệm and chia sẻ.
                 </p>
               </div>
               <div className="lh-strip-card lh-strip-accent">
@@ -127,12 +128,12 @@ export default function LeHoi() {
           </div>
         </section>
 
-        {/* Canvas */}
+        {/* Canva */}
         <section className="lh-canvas">
           <div className="container">
             <div className="lh-canvas-intro reveal fade-up">
               <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-              <p>Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
+              <p>Hình ảnh and câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
             </div>
             <div className="lh-canvas-frame reveal fade-up delay-200">
               <div className="lh-canvas-embed">
@@ -146,6 +147,8 @@ export default function LeHoi() {
               </div>
             </div>
           </div>
+
+          <GameRedirect to="/tro-choi-le-hoi" gameName="Dấu ấn lễ hội địa phương" />
         </section>
         </div>
       </main>

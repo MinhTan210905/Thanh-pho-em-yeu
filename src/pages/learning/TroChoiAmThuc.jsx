@@ -10,6 +10,21 @@ function ConfettiOnMount() {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startAmThuc.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 /* ═══════════ DATA ═══════════ */
 const QUESTIONS = [
   { image: "/images/tro_choi/am_thuc/p01_a7m2q.jpg", answer: "CƠM TẤM" },
@@ -19,7 +34,7 @@ const QUESTIONS = [
   { image: "/images/tro_choi/am_thuc/p05_m3p7d.jpg", answer: "KEM CHIÊN" },
   { image: "/images/tro_choi/am_thuc/p06_h8s2l.jpg", answer: "BÁNH BÔNG LAN TRỨNG MUỐI" },
   { image: "/images/tro_choi/am_thuc/p07_t5n9b.jpg", answer: "CHÈ CHUỐI" },
-  { image: "/images/tro_choi/am_thuc/p08_q4y6f.jpg", answer: "GỎI GÀ MĂNG CUỐN" },
+  { image: "/images/tro_choi/am_thuc/p08_q4y6f.jpg", answer: "GỎI GÀ MĂNG CỤT" },
   { image: "/images/tro_choi/am_thuc/p09_u1k3e.jpg", answer: "BÁNH KHỌT" },
   { image: "/images/tro_choi/am_thuc/p10_z7c5r.jpg", answer: "PHỞ" },
 ];
@@ -144,6 +159,38 @@ export default function TroChoiAmThuc() {
   const [hintsUsed, setHintsUsed] = useState(saved?.hintsUsed ?? Array(QUESTIONS.length).fill(false));
   const [finished, setFinished] = useState(saved?.finished ?? false);
   const [justFinished, setJustFinished] = useState(false);
+
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc
+  useEffect(() => {
+    if (!finished) {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [finished, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
 
   const question = QUESTIONS[order[currentQ]];
   const cleanAnswer = sanitizeAnswer(question.answer);
@@ -281,6 +328,11 @@ export default function TroChoiAmThuc() {
       .join("");
 
     const isCorrect = playerAnswer === cleanAnswer;
+    if (isCorrect) {
+      playAudio("correct");
+    } else {
+      playAudio("wrong");
+    }
     setFeedback(isCorrect ? "correct" : "wrong");
     setResults((prev) => {
       const next = [...prev];
@@ -311,10 +363,12 @@ export default function TroChoiAmThuc() {
       } else {
         // All answered -> finish + count attempt
         incrementAttempts();
+        stopBGM();
+        playAudio("finish");
         setFinished(true);
       }
     }
-  }, [currentQ, results, nonSpaceCount]);
+  }, [currentQ, results, nonSpaceCount, stopBGM]);
 
   const handleGoTo = useCallback(
     (idx) => {
@@ -378,17 +432,7 @@ export default function TroChoiAmThuc() {
     });
   }, []);
 
-  const handleQuickComplete = useCallback(() => {
-    if (finished) return;
-    incrementAttempts();
-    setResults(Array(QUESTIONS.length).fill(true));
-    setHintsUsed(Array(QUESTIONS.length).fill(false));
-    setFeedback(null);
-    setCurrentQ(0);
-    setPlaced(Array(nonSpaceCount).fill(null));
-    setFinished(true);
-    setJustFinished(true);
-  }, [nonSpaceCount, finished]);
+
 
   const closeDialog = useCallback(() => {
     setDialog((d) => ({ ...d, open: false }));
@@ -408,9 +452,10 @@ export default function TroChoiAmThuc() {
       setJustFinished(false);
       setOrder(shuffle(QUESTIONS.map((_, i) => i)));
       sessionStorage.removeItem(STORAGE_KEY);
+      playBGM();
     }
     closeDialog();
-  }, [dialog, closeDialog, nonSpaceCount]);
+  }, [dialog, closeDialog, nonSpaceCount, playBGM]);
 
   /* ── Render END screen ── */
   if (finished) {
@@ -554,10 +599,6 @@ export default function TroChoiAmThuc() {
             <i className="fa-solid fa-circle-xmark tc-wrong" />
             {wrongCount}
           </div>
-          <button className="tc-dev-btn" onClick={handleQuickComplete}>
-            <i className="fa-solid fa-bolt" />
-            Xong nhanh
-          </button>
         </div>
       </div>
 

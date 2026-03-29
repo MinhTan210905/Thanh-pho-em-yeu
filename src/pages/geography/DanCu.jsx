@@ -1,5 +1,6 @@
 import './DanCu.css';
 import { useEffect } from 'react';
+import GameRedirect from '../../components/common/GameRedirect';
 
 export default function DanCu() {
   useEffect(() => {
@@ -63,8 +64,8 @@ export default function DanCu() {
 
           <p className="dc-hero-desc reveal fade-up delay-200">
             Khám phá bức tranh dân số sống động của Thành phố Hồ Chí Minh -
-            đô thị đặc biệt với hơn 14 triệu cư dân, 168 đơn vị hành chính
-            và sự hòa quyện của 54 dân tộc anh em.
+            đô thị đặc biệt with hơn 14 triệu cư dân, 168 đơn vị hành chính
+            and sự hòa quyện của 54 dân tộc anh em.
           </p>
 
           {/* Dashboard stat bar — grouped with hero content */}
@@ -113,7 +114,7 @@ export default function DanCu() {
             <div className="container">
               <div className="dc-stats-head">
                 <span className="dc-tag reveal fade-up">Tổng Quan</span>
-                <h2 className="dc-section-title reveal fade-up delay-100">Dân Số &amp; Hành Chính</h2>
+                <h2 className="dc-section-title reveal fade-up delay-100">Dân Số & Hành Chính</h2>
               </div>
 
               <div className="dc-stats-grid reveal fade-up delay-200">
@@ -125,7 +126,7 @@ export default function DanCu() {
                   <span className="dc-stat-label">Phân loại đô thị</span>
                   <p>
                     TP.HCM là đô thị đặc biệt trực thuộc Trung ương,
-                    giữ vai trò trung tâm kinh tế lớn nhất cả nước với tốc độ phát triển vượt trội.
+                    giữ vai trò trung tâm kinh tế lớn nhất cả nước with tốc độ phát triển vượt trội.
                   </p>
                 </div>
 
@@ -136,7 +137,7 @@ export default function DanCu() {
                   <span className="dc-stat-num">14+ triệu</span>
                   <span className="dc-stat-label">Quy mô dân số</span>
                   <p>
-                    Hơn 14 triệu người sinh sống, làm việc và học tập,
+                    Hơn 14 triệu người sinh sống, làm việc and học tập,
                     tạo nên đô thị sôi động bậc nhất Việt Nam.
                   </p>
                 </div>
@@ -148,7 +149,7 @@ export default function DanCu() {
                   <span className="dc-stat-num">168</span>
                   <span className="dc-stat-label">Đơn vị hành chính</span>
                   <p>
-                    Gồm các quận, thành phố trực thuộc, phường và xã -
+                    Gồm các quận, thành phố trực thuộc, phường and xã -
                     hệ thống hành chính hoàn chỉnh.
                   </p>
                 </div>
@@ -183,7 +184,7 @@ export default function DanCu() {
                   <p>
                     Chiếm tỉ lệ đa số trong cơ cấu dân số thành phố,
                     đóng vai trò chủ đạo trong phát triển kinh tế - xã hội
-                    và văn hóa đô thị.
+                    and văn hóa đô thị.
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
@@ -193,7 +194,7 @@ export default function DanCu() {
                   <h3>Người Hoa</h3>
                   <p>
                     Cộng đồng dân tộc thiểu số lớn nhất,
-                    tập trung chủ yếu ở thành phố Hồ Chí Minh với nền văn hóa phong phú
+                    tập trung chủ yếu ở thành phố Hồ Chí Minh with nền văn hóa phong phú
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
@@ -212,15 +213,15 @@ export default function DanCu() {
                   <div className="dc-ethnic-icon"><i className="fas fa-gopuram"></i></div>
                   <h3>Người Khmer</h3>
                   <p>
-                    Cộng đồng người Khmer với bản sắc văn hóa đặc trưng
-                    và các lễ hội truyền thống riêng biệt.
+                    Cộng đồng người Khmer with bản sắc văn hóa đặc trưng
+                    and các lễ hội truyền thống riêng biệt.
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
 
                 <div className="dc-ethnic-card">
                   <div className="dc-ethnic-icon"><i className="fas fa-mountain-sun"></i></div>
-                  <h3>Người Tày &amp; Các dân tộc khác</h3>
+                  <h3>Người Tày & Các dân tộc khác</h3>
                   <p>
                     Cùng nhiều dân tộc khác từ khắp mọi miền,
                     tạo nên bức tranh cộng đồng đa sắc tộc phong phú.
@@ -250,6 +251,8 @@ export default function DanCu() {
                 </div>
               </div>
             </div>
+
+            <GameRedirect to="/tro-choi-dan-cu" gameName="Quán ăn hạnh phúc" />
           </section>
         </div>
       </main>

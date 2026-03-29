@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiLangNghe.css";
@@ -9,6 +9,19 @@ function ConfettiOnMount() {
   }, []);
   return null;
 }
+
+const AUDIO_MAP = {
+  start: "/audio/startLangNghe.mp3",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
 
 const PAIRS = [
   {
@@ -133,6 +146,38 @@ export default function TroChoiLangNghe() {
   const [dialog, setDialog] = useState({ open: false, message: "" });
   const [allDone, setAllDone] = useState(saved?.allDone ?? false);
   const [justFinished, setJustFinished] = useState(false);
+
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (!allDone) {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [allDone, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
 
   const pairsById = useMemo(() => {
     const map = {};
@@ -273,17 +318,8 @@ export default function TroChoiLangNghe() {
     setJustFinished(false);
     sessionStorage.removeItem(STATE_KEY);
     closeDialog();
-  }, [allDone, closeDialog]);
-
-  const handleQuickComplete = useCallback(() => {
-    const newLinks = {};
-    PAIRS.forEach((p) => {
-      newLinks[p.id] = p.id;
-    });
-    setLinks(newLinks);
-    setSelectedLeft(null);
-    setSelectedRight(null);
-  }, []);
+    playBGM();
+  }, [allDone, closeDialog, playBGM]);
 
   const attemptsLeft = MAX_ATTEMPTS - getAttempts();
 
@@ -373,7 +409,10 @@ export default function TroChoiLangNghe() {
   }
 
   return (
-    <div className="lng-page">
+    <div className="lng-page" onClick={() => {
+      // Đảm bảo nhạc phát sau khi người dùng tương tác lần đầu
+      if (!allDone) playBGM();
+    }}>
       <div className="lng-topbar">
         <div className="lng-topbar-left">
           <Link to="/bai-tap" className="lng-back">
@@ -387,10 +426,6 @@ export default function TroChoiLangNghe() {
           </div>
         </div>
         <div className="lng-topbar-right">
-          <button className="lng-dev-btn" onClick={handleQuickComplete}>
-            <i className="fa-solid fa-bolt" />
-            Nối Tự Động
-          </button>
         </div>
       </div>
 
@@ -518,8 +553,12 @@ export default function TroChoiLangNghe() {
                 className="lng-btn primary scale-up"
                 style={{ marginTop: '12px' }}
                 onClick={() => {
+                  stopBGM();
+                  if (correctCount > 0) {
+                    playAudio("finish");
+                    setJustFinished(true);
+                  }
                   setAllDone(true);
-                  if (correctCount > 0) setJustFinished(true);
                 }}
               >
                 <i className="fa-solid fa-star" /> Xem tổng kết

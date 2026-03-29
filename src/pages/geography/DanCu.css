@@ -529,7 +529,7 @@ body.page-dan-cu-active header nav ul li a.active:hover::after {
    5. CANVA EMBED
    ══════════════════════════════════════════════ */
 .dc-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
 }
 
 .dc-canvas-intro {

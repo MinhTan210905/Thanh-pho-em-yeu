@@ -1,5 +1,6 @@
 import './DiTich.css';
 import { useEffect } from 'react';
+import GameRedirect from '../../components/common/GameRedirect';
 
 export default function DiTich() {
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function DiTich() {
       <section className="dt-hero">
         <div className="dt-hero-deco dt-deco-diamond"></div>
         <div className="dt-hero-deco dt-deco-stripe"></div>
-        <div className="dt-hero-deco dt-deco-corner"></div>
+        <div className="dt-hero-deco dt-deco-bottom-right"></div>
 
         <div className="container section-wrapper dt-hero-inner">
           <div className="dt-hero-badge reveal fade-up">
@@ -58,8 +59,8 @@ export default function DiTich() {
           </h1>
 
           <p className="dt-hero-desc reveal fade-up delay-200">
-            Di tích lịch sử – văn hoá là những công trình, địa điểm và hiện vật
-            có giá trị lịch sử, văn hoá, khoa học được xếp hạng và bảo tồn qua các thời kì.
+            Di tích lịch sử – văn hoá là những công trình, địa điểm and hiện vật
+            có giá trị lịch sử, văn hoá, khoa học được xếp hạng and bảo tồn qua các thời kì.
           </p>
 
           <div className="dt-hero-stats reveal fade-up delay-300">
@@ -113,7 +114,7 @@ export default function DiTich() {
                     <p>
                       Nền văn hóa Óc Eo phát triển từ thế kỉ I đến thế kỉ VII, để lại
                       nhiều di tích khảo cổ quý giá trên vùng đất Nam Bộ - minh chứng cho
-                      sự giao thương và phát triển sớm của cộng đồng cư dân cổ.
+                      sự giao thương and phát triển sớm của cộng đồng cư dân cổ.
                     </p>
                   </div>
                 </div>
@@ -129,7 +130,7 @@ export default function DiTich() {
                     <p>
                       Từ cuối thế kỉ XVI, các lưu dân người Việt bắt đầu khai hoang lập ấp,
                       mở rộng lãnh thổ về phía Nam, hình thành nên vùng đất Sài Gòn – Gia Định
-                      với những công trình, đình chùa ghi dấu buổi đầu lập nghiệp.
+                      with những công trình, đình chùa ghi dấu buổi đầu lập nghiệp.
                     </p>
                   </div>
                 </div>
@@ -144,7 +145,7 @@ export default function DiTich() {
                     <h3>Kháng chiến chống Pháp</h3>
                     <p>
                       Trong gần một thế kỉ đô hộ của thực dân Pháp, nhiều phong trào yêu nước
-                      đã nổ ra, để lại những di tích gắn liền với tinh thần bất khuất
+                      đã nổ ra, để lại những di tích gắn liền with tinh thần bất khuất
                       của nhân dân Sài Gòn – Chợ Lớn.
                     </p>
                   </div>
@@ -160,7 +161,7 @@ export default function DiTich() {
                     <h3>Kháng chiến chống Mỹ</h3>
                     <p>
                       Giai đoạn 1954–1975, Sài Gòn là trung tâm của cuộc đấu tranh giải phóng
-                      miền Nam, với nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi
+                      miền Nam, with nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi
                       ghi dấu chiến thắng vẻ vang.
                     </p>
                   </div>
@@ -169,12 +170,12 @@ export default function DiTich() {
             </div>
           </section>
 
-          {/* Canvas */}
+          {/* Canva */}
           <section className="dt-canvas">
             <div className="container">
               <div className="dt-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Hình ảnh và câu chuyện về các di tích lịch sử nổi bật tại TP.HCM.</p>
+                <p>Hình ảnh and câu chuyện về các di tích lịch sử nổi bật tại TP.HCM.</p>
               </div>
               <div className="dt-canvas-frame reveal fade-up delay-200">
                 <div className="dt-canvas-embed">
@@ -188,6 +189,8 @@ export default function DiTich() {
                 </div>
               </div>
             </div>
+
+            <GameRedirect to="/tro-choi-di-tich-lich-su" gameName="Phân loại di tích" />
           </section>
         </div>
       </main>

@@ -11,6 +11,21 @@ function ConfettiOnMount() {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startDiaLi.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 const QUESTIONS = [
   {
     question: "Các dạng địa hình chính của Thành phố Hồ Chí Minh?",
@@ -272,6 +287,38 @@ export default function TroChoiDiaLiTuNhien() {
   );
   const [justFinished, setJustFinished] = useState(false);
 
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (stage !== "done") {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [stage, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
+
   useEffect(() => {
     document.body.classList.add("page-tro-choi-dlt-active");
     return () => document.body.classList.remove("page-tro-choi-dlt-active");
@@ -327,6 +374,8 @@ export default function TroChoiDiaLiTuNhien() {
     (idx) => {
       if (!currentQuestion || selectedAnswer !== null) return;
       const isCorrect = idx === currentQuestion.correctIndex;
+      if (isCorrect) playAudio("correct");
+      else playAudio("wrong");
       setSelectedAnswer(idx);
       setResults((prev) => {
         const next = [...prev];
@@ -344,6 +393,8 @@ export default function TroChoiDiaLiTuNhien() {
 
   const handleBackToBags = useCallback(() => {
     if (allDone) {
+      stopBGM();
+      playAudio("finish");
       setStage("done");
       setJustFinished(true);
       return;
@@ -352,16 +403,7 @@ export default function TroChoiDiaLiTuNhien() {
     setActiveBagId(null);
   }, [allDone]);
 
-  const handleQuickComplete = useCallback(() => {
-    incrementAttempts();
-    setResults(Array(TOTAL).fill(true));
-    setBags((prev) => prev.map((b) => ({ ...b, status: "done" })));
-    setStage("done");
-    setActiveBagId(null);
-    setSelectedAnswer(null);
-    finishedRef.current = true;
-    setJustFinished(true);
-  }, []);
+
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
@@ -392,7 +434,8 @@ export default function TroChoiDiaLiTuNhien() {
     setJustFinished(false);
     sessionStorage.removeItem(STATE_KEY);
     closeDialog();
-  }, [closeDialog]);
+    playBGM();
+  }, [closeDialog, playBGM]);
 
   const attemptsLeft = MAX_ATTEMPTS - getAttempts();
 
@@ -421,10 +464,7 @@ export default function TroChoiDiaLiTuNhien() {
               <i className="fa-solid fa-circle-check" />
               {correctCount}
             </div>
-            <button className="dlt-dev-btn" onClick={handleQuickComplete}>
-              <i className="fa-solid fa-bolt" />
-              Xong nhanh
-            </button>
+
           </div>
         </div>
       )}

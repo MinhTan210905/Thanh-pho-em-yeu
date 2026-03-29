@@ -523,7 +523,7 @@ body.page-kinh-te-active header nav ul li a.active:hover::after {
 
 /* ═══════ 6. CANVA ═══════ */
 .kt-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
 }
 
 .kt-canvas-intro {

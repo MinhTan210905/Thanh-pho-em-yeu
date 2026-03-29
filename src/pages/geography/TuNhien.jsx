@@ -1,5 +1,6 @@
 import './TuNhien.css';
 import { useEffect } from 'react';
+import GameRedirect from '../../components/common/GameRedirect';
 
 export default function TuNhien() {
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function TuNhien() {
 
             <p className="tn-subtitle reveal fade-up delay-200">
               Khám phá hệ sinh thái phong phú, địa hình đa dạng, khí hậu
-              nhiệt đới và mạng lưới sông ngòi dày đặc của TP.HCM.
+              nhiệt đới and mạng lưới sông ngòi dày đặc của TP.HCM.
             </p>
 
             <div className="tn-hero-points reveal fade-up delay-300">
@@ -85,7 +86,7 @@ export default function TuNhien() {
               </div>
               <div className="tn-point">
                 <i className="fas fa-water"></i>
-                <span>5+ sông ngòi &amp; 7+ kênh rạch</span>
+                <span>5+ sông ngòi & 7+ kênh rạch</span>
               </div>
             </div>
           </div>
@@ -121,7 +122,7 @@ export default function TuNhien() {
             <div className="container">
               <div className="tn-biomes-head reveal fade-up">
                 <span className="tn-tag">Khám Phá</span>
-                <h2 className="tn-section-title">Hệ Sinh Thái &amp; Tài Nguyên</h2>
+                <h2 className="tn-section-title">Hệ Sinh Thái & Tài Nguyên</h2>
               </div>
               <div className="tn-biome-chips reveal fade-up delay-100">
                 <div className="tn-chip"><i className="fas fa-paw"></i><span>Sinh vật</span></div>
@@ -145,7 +146,7 @@ export default function TuNhien() {
                   <h3>Sinh vật</h3>
                   <p>
                     Hơn 2.000 loài sinh vật đa dạng, bao gồm thực vật, động vật
-                    và vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.
+                    and vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.
                   </p>
                   <span className="tn-mosaic-badge">2000+ loài</span>
                 </div>
@@ -154,7 +155,7 @@ export default function TuNhien() {
                   <h3>Đất</h3>
                   <p>
                     Nhiều loại đất khác nhau phù hợp nông nghiệp, xây dựng
-                    và phát triển đô thị.
+                    and phát triển đô thị.
                   </p>
                   <span className="tn-mosaic-badge">Đa dạng</span>
                 </div>
@@ -164,7 +165,7 @@ export default function TuNhien() {
                   <div className="tn-mosaic-icon"><i className="fas fa-gem"></i></div>
                   <h3>Khoáng sản</h3>
                   <p>
-                    Tài nguyên khoáng sản gồm cát, sỏi, đá, sét và nhiều loại
+                    Tài nguyên khoáng sản gồm cát, sỏi, đá, sét and nhiều loại
                     khác phục vụ xây dựng, công nghiệp.
                   </p>
                   <span className="tn-mosaic-badge">8+ loại</span>
@@ -173,7 +174,7 @@ export default function TuNhien() {
                   <div className="tn-mosaic-icon"><i className="fas fa-cloud-sun"></i></div>
                   <h3>Khí hậu</h3>
                   <p>
-                    Thành phố Hồ Chí Minh chỉ có hai mùa: mùa khô và mùa mưa,
+                    Thành phố Hồ chí Minh chỉ có hai mùa: mùa khô and mùa mưa,
                     chịu ảnh hưởng của gió mùa.
                   </p>
                   <span className="tn-mosaic-badge">27.6°C · 1.500–1.979 mm</span>
@@ -191,7 +192,7 @@ export default function TuNhien() {
                 </div>
                 <div className="tn-mosaic-card">
                   <div className="tn-mosaic-icon"><i className="fas fa-water"></i></div>
-                  <h3>Sông ngòi &amp; Kênh rạch</h3>
+                  <h3>Sông ngòi & Kênh rạch</h3>
                   <p>
                     Hệ thống sông ngòi, kênh rạch vô cùng đa dạng thuận lợi cho
                     các hoạt động giao thông đường thủy,
@@ -204,7 +205,7 @@ export default function TuNhien() {
                   <h3>Biển</h3>
                   <p>
                     Tiếp giáp biển Đông với hơn 2 vùng biển, tạo điều kiện
-                    phát triển kinh tế biển và giao thương quốc tế.
+                    phát triển kinh tế biển and giao thương quốc tế.
                   </p>
                   <span className="tn-mosaic-badge">2+ vùng</span>
                 </div>
@@ -231,6 +232,8 @@ export default function TuNhien() {
                 </div>
               </div>
             </div>
+
+            <GameRedirect to="/tro-choi-dia-li-tu-nhien" gameName="Truy tìm bí ẩn tự nhiên" />
           </section>
         </div>
       </main>

@@ -1,0 +1,135 @@
+/* Game Redirect Container - Subtle & Modern */
+.gr-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px 40px;
+  background: transparent;
+}
+
+.gr-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px; /* Slightly more space for elegance but still close */
+  padding: 30px 40px; 
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  width: auto; /* Shrink to fit content */
+  min-width: 500px;
+}
+
+.gr-wrapper:hover {
+  background: rgba(255, 255, 255, 0.05); /* Very subtle hover */
+  transform: translateY(-2px);
+}
+
+.gr-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gr-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.gr-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.gr-text span {
+  font-size: 0.75rem;
+  color: rgba(15, 23, 42, 0.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gr-text h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.2px;
+}
+
+.gr-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: #0f172a;
+  color: white;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.gr-button:hover {
+  background: #334155;
+  transform: translateX(4px);
+}
+
+.gr-button i {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.gr-button:hover i {
+  transform: translateX(4px);
+}
+
+/* Page context specific tweaks */
+.page-vi-tri-active .gr-icon { background: linear-gradient(135deg, #e11d48, #fb7185); }
+.page-kinh-te-active .gr-icon { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+.page-tu-nhien-active .gr-icon { background: linear-gradient(135deg, #059669, #34d399); }
+.page-dan-cu-active .gr-icon { background: linear-gradient(135deg, #d97706, #fbbf24); }
+
+.page-di-tich-active .gr-icon { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+.page-nhan-vat-active .gr-icon { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+
+.page-am-thuc-active .gr-icon { background: linear-gradient(135deg, #ea580c, #fb923c); }
+.page-lang-nghe-active .gr-icon { background: linear-gradient(135deg, #0d9488, #2dd4bf); }
+.page-le-hoi-active .gr-icon { background: linear-gradient(135deg, #db2777, #f472b6); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gr-wrapper {
+    gap: 30px;
+    min-width: unset;
+    width: 95%;
+  }
+}
+
+@media (max-width: 580px) {
+  .gr-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  .gr-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gr-button span {
+    display: inline; /* Keep button text since it's now vertical info */
+  }
+}
+

@@ -10,6 +10,21 @@ function ConfettiOnMount({ amount = 3 }) {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startLeHoi.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 /* ═══════════ DATA ═══════════ */
 const FESTIVALS = [
   {
@@ -19,12 +34,12 @@ const FESTIVALS = [
     options: [
       { text: "Người Chơ Ro", isCorrect: true },
       { text: "Người Tày", isCorrect: false },
-      { text: "Người Ê đê", isCorrect: true },
+      { text: "Người Ê đê", isCorrect: false },
       { text: "Tháng 3 đến tháng 4 âm lịch", isCorrect: true },
       { text: "Tháng 5 đến tháng 6 âm lịch", isCorrect: false },
       { text: "Thờ thần Lúa", isCorrect: true },
-      { text: "Thờ thần Rừng", isCorrect: true },
-      { text: "Thờ Thần Lửa", isCorrect: true },
+      { text: "Thờ thần Rừng", isCorrect: false },
+      { text: "Thờ Thần Lửa", isCorrect: false },
     ],
   },
   {
@@ -36,7 +51,7 @@ const FESTIVALS = [
       { text: "Ngày 10 đến ngày 12 tháng 4 âm lịch", isCorrect: false },
       { text: "Ước nguyện bội thu tôm cá", isCorrect: true },
       { text: "Ước nguyện lúa nảy hạt, ra bông", isCorrect: false },
-      { text: "Lăng Cá Ông", isCorrect: true },
+      { text: "Lăng Cá Ông", isCorrect: false },
     ],
   },
   {
@@ -89,7 +104,7 @@ const FESTIVALS = [
     options: [
       {
         text: "Lễ thỉnh và cung nghinh các vị thần, thánh như Nguyễn Hữu Cảnh, Thiên Hậu Thánh Mẫu,…",
-        isCorrect: true,
+        isCorrect: false,
       },
       { text: "Lễ cầu an và lễ tế Thành hoàng", isCorrect: true },
       {
@@ -226,6 +241,38 @@ export default function TroChoiLeHoi() {
   const [finished, setFinished] = useState(saved?.finished ?? false);
   const [justFinished, setJustFinished] = useState(false);
 
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (!finished) {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [finished, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
+
   /* Per-question state: which tags are selected and checked */
   const [selected, setSelected] = useState(() => saved?.selected ?? {});
   const [checked, setChecked] = useState(saved?.checked ?? false);
@@ -304,6 +351,9 @@ export default function TroChoiLeHoi() {
     );
     const isCorrect = allCorrectSelected && noWrongSelected;
 
+    if (isCorrect) playAudio("correct");
+    else playAudio("wrong");
+
     setChecked(true);
     setResults((prev) => {
       const next = [...prev];
@@ -325,11 +375,13 @@ export default function TroChoiLeHoi() {
         setCurrentQ(beforeUnanswered);
       } else {
         incrementAttempts();
+        stopBGM();
+        playAudio("finish");
         setFinished(true);
         setJustFinished(true);
       }
     }
-  }, [currentQ, results]);
+  }, [currentQ, results, stopBGM]);
 
   /* ── Go to specific question ── */
   const handleGoTo = useCallback(
@@ -362,18 +414,6 @@ export default function TroChoiLeHoi() {
     });
   }, []);
 
-  /* ── Quick complete (dev) ── */
-  const handleQuickComplete = useCallback(() => {
-    if (finished) return;
-    incrementAttempts();
-    setResults(Array(TOTAL).fill(true));
-    setSelected({});
-    setChecked(false);
-    setCurrentQ(0);
-    setFinished(true);
-    setJustFinished(true);
-  }, [finished]);
-
   const closeDialog = useCallback(() => {
     setDialog((d) => ({ ...d, open: false }));
   }, []);
@@ -391,9 +431,10 @@ export default function TroChoiLeHoi() {
       setJustFinished(false);
       setOrder(shuffle(FESTIVALS.map((_, i) => i)));
       sessionStorage.removeItem(STATE_KEY);
+      playBGM();
     }
     closeDialog();
-  }, [dialog, closeDialog, finished]);
+  }, [dialog, closeDialog, finished, playBGM]);
 
   /* ═══════ FINISHED SCREEN ═══════ */
   if (finished) {
@@ -523,10 +564,6 @@ export default function TroChoiLeHoi() {
             <i className="fa-solid fa-circle-xmark lh-wrong" />
             {wrongCount}
           </div>
-          <button className="lh-dev-btn" onClick={handleQuickComplete}>
-            <i className="fa-solid fa-bolt" />
-            Xong nhanh
-          </button>
         </div>
       </div>
 

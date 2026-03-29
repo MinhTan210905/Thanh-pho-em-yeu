@@ -448,7 +448,7 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
 
 /* ═══════ 5. CANVA ═══════ */
 .ln-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
 }
 
 .ln-canvas-intro {

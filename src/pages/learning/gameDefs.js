@@ -1,15 +1,51 @@
 export const GAME_DEFS = [
+  // ── ĐỊA LÝ ──
   {
-    id: "tro-choi-am-thuc",
-    title: "Đuổi Hình Bắt Chữ",
-    category: "Văn hóa",
+    id: "tro-choi-vi-tri",
+    title: "Cuộc Phiêu Lưu Của Táo Đỏ",
+    category: "Địa lý",
     description:
-      "Nhìn hình ảnh món ăn Sài Gòn và đoán tên chính xác. Thử thách vốn hiểu biết ẩm thực của bạn!",
-    image: "/images/tro_choi/am_thuc/p01_a7m2q.jpg",
-    totalQuestions: 10,
-    route: "/tro-choi-am-thuc",
-    storageKey: "tc_amthuc_state",
+      "Kiểm tra kiến thức của bạn về vị trí địa lý mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",
+    image: "/images/tro_choi/vi_tri/tao_do.png",
+    totalQuestions: 5,
+    route: "/tro-choi-vi-tri",
+    storageKey: "tc_vi_tri_state",
   },
+  {
+    id: "tro-choi-kinh-te",
+    title: "Truy Tìm Ô Chữ",
+    category: "Địa lý",
+    description:
+      "Tìm 5 từ khóa về địa lí kinh tế được ẩn giấu trong bảng chữ cái.",
+    image: "/images/dia_ly_3.jpg",
+    totalQuestions: 5,
+    route: "/tro-choi-kinh-te",
+    storageKey: "tc_kinh_te_state_v2",
+  },
+  {
+    id: "tro-choi-dia-li-tu-nhien",
+    title: "Truy Tìm Bí Ẩn Tự Nhiên",
+    category: "Địa lý",
+    description:
+      "Xé túi mù khám phá 10 câu hỏi địa lí tự nhiên về TP.HCM. Chọn đáp án đúng để ghi điểm!",
+    image: "/images/tro_choi/dia_li_tu_nhien/tui_mu_hong.png",
+    totalQuestions: 10,
+    route: "/tro-choi-dia-li-tu-nhien",
+    storageKey: "tc_dia_li_tu_nhien_state_v2",
+  },
+  {
+    id: "tro-choi-dan-cu",
+    title: "Quán Ăn Hạnh Phúc",
+    category: "Địa lý",
+    description:
+      "Chọn món ăn và trả lời 5 câu hỏi về dân cư TP.HCM. Đúng thì hoàn thiện món, sai thì… khay vỡ!",
+    image: "/images/tro_choi/dan_cu/dau_bep_1.png",
+    totalQuestions: 5,
+    route: "/tro-choi-dan-cu",
+    storageKey: "tc_dan_cu_state",
+  },
+
+  // ── LỊCH SỬ ──
   {
     id: "tro-choi-di-tich-lich-su",
     title: "Phân Loại Di Tích",
@@ -22,15 +58,28 @@ export const GAME_DEFS = [
     storageKey: "tc_ditichlichsu_state",
   },
   {
-    id: "tro-choi-dia-li-tu-nhien",
-    title: "Truy Tìm Bí Ẩn Tự Nhiên",
-    category: "Địa lí",
+    id: "tro-choi-nhan-vat-lich-su",
+    title: "Giải Mã Bí Ẩn",
+    category: "Lịch sử",
     description:
-      "Xé túi mù khám phá 10 câu hỏi địa lí tự nhiên về TP.HCM. Chọn đáp án đúng để ghi điểm!",
-    image: "/images/tro_choi/dia_li_tu_nhien/tui_mu_hong.png",
+      "Đọc các gợi ý gợi nhớ lịch sử hào hùng và sắp xếp lại các chữ cái bị xáo trộn để tìm ra tên nhân vật.",
+    image: "/images/lich_su_3.jpg",
+    totalQuestions: 14,
+    route: "/tro-choi-nhan-vat-lich-su",
+    storageKey: "tc_nhanvatlichsu_state",
+  },
+
+  // ── VĂN HÓA ──
+  {
+    id: "tro-choi-am-thuc",
+    title: "Đuổi Hình Bắt Chữ",
+    category: "Văn hóa",
+    description:
+      "Nhìn hình ảnh món ăn Sài Gòn và đoán tên chính xác. Thử thách vốn hiểu biết ẩm thực của bạn!",
+    image: "/images/tro_choi/am_thuc/p01_a7m2q.jpg",
     totalQuestions: 10,
-    route: "/tro-choi-dia-li-tu-nhien",
-    storageKey: "tc_dia_li_tu_nhien_state_v2",
+    route: "/tro-choi-am-thuc",
+    storageKey: "tc_amthuc_state",
   },
   {
     id: "tro-choi-lang-nghe",
@@ -53,49 +102,5 @@ export const GAME_DEFS = [
     totalQuestions: 8,
     route: "/tro-choi-le-hoi",
     storageKey: "tc_le_hoi_state",
-  },
-  {
-    id: "tro-choi-nhan-vat-lich-su",
-    title: "Giải Mã Bí Ẩn",
-    category: "Lịch sử",
-    description:
-      "Đọc các gợi ý gợi nhớ lịch sử hào hùng và sắp xếp lại các chữ cái bị xáo trộn để tìm ra tên nhân vật.",
-    image: "/images/lich_su_3.jpg",
-    totalQuestions: 14,
-    route: "/tro-choi-nhan-vat-lich-su",
-    storageKey: "tc_nhanvatlichsu_state",
-  },
-  {
-    id: "tro-choi-dan-cu",
-    title: "Quán Ăn Hạnh Phúc",
-    category: "Địa lí",
-    description:
-      "Chọn món ăn và trả lời 5 câu hỏi về dân cư TP.HCM. Đúng thì hoàn thiện món, sai thì… khay vỡ!",
-    image: "/images/tro_choi/dan_cu/dau_bep_1.png",
-    totalQuestions: 5,
-    route: "/tro-choi-dan-cu",
-    storageKey: "tc_dan_cu_state",
-  },
-  {
-    id: "tro-choi-kinh-te",
-    title: "Truy Tìm Ô Chữ",
-    category: "Địa lí",
-    description:
-      "Tìm 5 từ khóa về địa lí kinh tế được ẩn giấu trong bảng chữ cái.",
-    image: "/images/dia_ly_3.jpg",
-    totalQuestions: 5,
-    route: "/tro-choi-kinh-te",
-    storageKey: "tc_kinh_te_state_v2",
-  },
-  {
-    id: "tro-choi-vi-tri",
-    title: "Cuộc Phiêu Lưu Của Táo Đỏ",
-    category: "Địa lí",
-    description:
-      "Kiểm tra kiến thức của bạn về vị trí địa lý mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",
-    image: "/images/tro_choi/vi_tri/tao_do.png",
-    totalQuestions: 5,
-    route: "/tro-choi-vi-tri",
-    storageKey: "tc_vi_tri_state",
   },
 ];

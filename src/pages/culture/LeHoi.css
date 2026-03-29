@@ -369,7 +369,7 @@ body.page-le-hoi-active header .search-box input::placeholder { color: #999 !imp
 
 /* ═══════ 3. CANVAS ═══════ */
 .lh-canvas {
-    padding: 18px 0 110px;
+    padding: 18px 0 20px;
     background: linear-gradient(180deg, #faf8ff 0%, #f2edff 50%, #f8f5ff 100%);
 }
 

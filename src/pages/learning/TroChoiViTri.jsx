@@ -16,14 +16,16 @@ const BT_KEY = "bt_game_progress";
 const MAX_ATTEMPTS = 3;
 
 // Hàm phát âm thanh
+const AUDIO_MAP = {
+  start: "/audio/start.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+  attack: "/audio/attack.wav",
+};
+
 const playAudio = (type) => {
-  const audioMap = {
-    start: "/audio/start.mp3",
-    correct: "/audio/correct.mp3",
-    wrong: "/audio/wrong.mp3",
-    finish: "/audio/finish.mp3",
-  };
-  const path = audioMap[type];
+  const path = AUDIO_MAP[type];
   if (path) {
     const audio = new Audio(path);
     audio.play().catch(e => console.log("Audio play failed:", e));
@@ -170,6 +172,24 @@ export default function TroChoiViTri() {
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
 
   const finishedRef = useRef(saved?.finishedOnce ?? false);
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked by browser."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
 
   const correctCount = results.filter((r) => r === true).length;
   const attemptsLeft = MAX_ATTEMPTS - getAttempts();
@@ -178,8 +198,16 @@ export default function TroChoiViTri() {
     document.body.classList.add("page-tro-choi-vi-tri-active");
     return () => {
       document.body.classList.remove("page-tro-choi-vi-tri-active");
+      stopBGM(); // Dừng nhạc khi thoát khỏi trang
     };
-  }, []);
+  }, [stopBGM]);
+
+  // Tự động phát lại nhạc nền nếu đang trong game
+  useEffect(() => {
+    if (screen === "story" || screen === "play") {
+      playBGM();
+    }
+  }, [screen, playBGM]);
 
   useEffect(() => {
     saveState({ screen, currentQ, results, animState, picked, reveal, showNextObj, finishedOnce: finishedRef.current });
@@ -201,7 +229,7 @@ export default function TroChoiViTri() {
       setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho trò này!" });
       return;
     }
-    playAudio("start");
+    playBGM(); // Phát nhạc nền thay cho playAudio("start")
     setScreen("story");
   };
 
@@ -211,6 +239,9 @@ export default function TroChoiViTri() {
   };
 
   const advanceQuestion = () => {
+    if (!showNextObj) return; // Chặn nhấn liên tục
+    setShowNextObj(false); // Ẩn nút ngay để không bị nhấn lần 2
+    setShowObstacle(false); // Ẩn vật cũ
     const isCorrect = results[currentQ] === true;
 
     if (isCorrect) {
@@ -221,8 +252,6 @@ export default function TroChoiViTri() {
           setCurrentQ(q => q + 1);
           setPicked(null);
           setReveal(false);
-          setShowNextObj(false);
-          setShowObstacle(false); // Ẩn vật cũ đi trước khi chạy
           setAnimState("moving");
           // Hiện lại vật mới sau khi bắt đầu chạy một chút
           setTimeout(() => setShowObstacle(true), 100);
@@ -236,8 +265,6 @@ export default function TroChoiViTri() {
         setCurrentQ(q => q + 1);
         setPicked(null);
         setReveal(false);
-        setShowNextObj(false);
-        setShowObstacle(false);
         setAnimState("moving");
         setTimeout(() => setShowObstacle(true), 100);
       } else {
@@ -251,6 +278,7 @@ export default function TroChoiViTri() {
       incrementAttempts();
       finishedRef.current = true;
     }
+    stopBGM(); // Dừng nhạc nền
     playAudio("finish");
     setJustFinished(true);
     setScreen("finish");
@@ -270,6 +298,7 @@ export default function TroChoiViTri() {
 
     if (isCorrect) {
       playAudio("correct");
+      setTimeout(() => playAudio("attack"), 100); // Phát tiếng tấn công sau tiếng correct một chút
       setAnimState("attacking");
       // Tăng thời gian tấn công lên một chút hoặc căn chỉnh để bớt "ảo"
       setTimeout(() => {
@@ -285,6 +314,7 @@ export default function TroChoiViTri() {
   }, [reveal, animState, currentQ]);
 
   const doRestart = useCallback(() => {
+    stopBGM();
     sessionStorage.removeItem(STATE_KEY);
     finishedRef.current = false;
     setScreen("story");
@@ -293,9 +323,11 @@ export default function TroChoiViTri() {
     setPicked(null);
     setReveal(false);
     setShowNextObj(false);
+    setShowObstacle(true);
     setAnimState("moving");
     setJustFinished(false);
-  }, []);
+    playBGM(); // Phát lại từ đầu nếu chơi lại
+  }, [playBGM, stopBGM]);
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
@@ -352,10 +384,10 @@ export default function TroChoiViTri() {
           </div>
           <div className="vt-topbar-right">
             <div className="vt-chip">
-              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> Tiến độ: {TOTAL}/{TOTAL}
+              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> {TOTAL}/{TOTAL}
             </div>
             <div className="vt-chip">
-              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> Lượt chơi: {getAttempts()}/{MAX_ATTEMPTS}
+              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> {getAttempts()}/{MAX_ATTEMPTS}
             </div>
           </div>
         </div>
@@ -382,12 +414,12 @@ export default function TroChoiViTri() {
 
               <div className="vt-done-stats">
                 <div className="vt-done-stat" style={{ animationDelay: '0.5s' }}>
-                  <div className="vt-done-stat-num">{score}</div>
                   <div className="vt-done-stat-label">Điểm số</div>
+                  <div className="vt-done-stat-num">{score}</div>
                 </div>
                 <div className="vt-done-stat" style={{ animationDelay: '0.6s' }}>
-                  <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
                   <div className="vt-done-stat-label">Câu đúng</div>
+                  <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
                 </div>
               </div>
 
@@ -450,10 +482,10 @@ export default function TroChoiViTri() {
           </div>
           <div className="vt-topbar-right">
             <div className="vt-chip">
-              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> Tiến độ: {progressValue}/{TOTAL}
+              <i className="fa-solid fa-circle-question" style={{ color: '#007bff' }} /> {progressValue}/{TOTAL}
             </div>
             <div className="vt-chip">
-              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> Lượt chơi: {getAttempts()}/{MAX_ATTEMPTS}
+              <i className="fa-solid fa-rotate" style={{ color: '#f59e0b' }} /> {getAttempts()}/{MAX_ATTEMPTS}
             </div>
           </div>
         </div>
@@ -560,7 +592,10 @@ export default function TroChoiViTri() {
                 )}
               </div>
 
-              <div className={`vt-obstacle ${animState === "broken" ? "broken-state" : (animState === "attacking" ? "breaking" : "")}`} style={{ visibility: showObstacle ? "visible" : "hidden" }}>
+              <div
+                className={`vt-obstacle ${["broken", "leaving"].includes(animState) ? "broken-state" : (animState === "attacking" ? "breaking" : "")}`}
+                style={{ display: showObstacle ? "block" : "none" }}
+              >
                 <img src={ASSETS.obstacles[currentQ % 5]} alt="Chướng ngại vật" />
               </div>
             </div>

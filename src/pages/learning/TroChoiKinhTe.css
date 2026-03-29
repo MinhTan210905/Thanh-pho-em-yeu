@@ -187,27 +187,6 @@ body.page-tro-choi-kinh-te-active header .search-box input::placeholder {
   gap: 10px;
 }
 
-.tk-dev-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px dashed rgba(15, 23, 42, 0.2);
-  background: #fff;
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-}
-
-.tk-dev-btn:hover {
-  border-color: rgba(15, 23, 42, 0.4);
-  transform: translateY(-2px);
-}
-
 .tk-chip {
   display: flex;
   align-items: center;

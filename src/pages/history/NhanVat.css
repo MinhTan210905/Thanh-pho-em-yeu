@@ -402,7 +402,7 @@ body.page-nhan-vat-active header nav ul li a.active:hover::after {
 
 /* ═══════ 3. CANVAS ═══════ */
 .nv-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
   background: linear-gradient(180deg, #f5f0ea 0%, #ede4d8 50%, #f5f0ea 100%);
 }
 

@@ -850,10 +850,24 @@ body.page-tro-choi-vi-tri-active .chatbot-window {
   animation: vtFloat 3s ease-in-out infinite;
 }
 
+@keyframes vtFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 .vt-finish-apple-mini img {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
+  margin-top: 0px;
+  transform: translateX(8px);
 }
 
 @keyframes vtPopUp {
@@ -953,12 +967,15 @@ body.page-tro-choi-vi-tri-active .chatbot-window {
   background: white;
   border: 2px solid #f3f4f6;
   border-radius: 20px;
-  padding: 16px;
+  padding: 12px 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  gap: 12px;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-width: 160px;
 }
 
 .vt-done-stat:hover {
@@ -967,10 +984,10 @@ body.page-tro-choi-vi-tri-active .chatbot-window {
 }
 
 .vt-done-stat-num {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 900;
   color: #dc3545;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 .vt-done-stat-label {
@@ -978,6 +995,7 @@ body.page-tro-choi-vi-tri-active .chatbot-window {
   font-weight: 700;
   color: #9ca3af;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .vt-done-actions {

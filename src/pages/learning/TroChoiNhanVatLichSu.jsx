@@ -10,6 +10,21 @@ function ConfettiOnMount() {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startLichSu.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 /* ═══════════ DATA ═══════════ */
 const QUESTIONS = [
   {
@@ -191,6 +206,38 @@ export default function TroChoiNhanVatLichSu() {
   const [finished, setFinished] = useState(saved?.finished ?? false);
   const [justFinished, setJustFinished] = useState(false);
 
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (!finished) {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [finished, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
+
   const question = QUESTIONS[order[currentQ]];
   const cleanAnswer = sanitizeAnswer(question.answer);
   const answerChars = cleanAnswer.split("");
@@ -330,6 +377,8 @@ export default function TroChoiNhanVatLichSu() {
       .join("");
 
     const isCorrect = playerAnswer === cleanAnswer;
+    if (isCorrect) playAudio("correct");
+    else playAudio("wrong");
     setFeedback(isCorrect ? "correct" : "wrong");
     setResults((prev) => {
       const next = [...prev];
@@ -360,10 +409,13 @@ export default function TroChoiNhanVatLichSu() {
       } else {
         // All answered -> finish + count attempt
         incrementAttempts();
+        stopBGM();
+        playAudio("finish");
+        setJustFinished(true);
         setFinished(true);
       }
     }
-  }, [currentQ, results, nonSpaceCount]);
+  }, [currentQ, results, nonSpaceCount, stopBGM]);
 
   const handleGoTo = useCallback(
     (idx) => {
@@ -425,18 +477,6 @@ export default function TroChoiNhanVatLichSu() {
     });
   }, []);
 
-  const handleQuickComplete = useCallback(() => {
-    if (finished) return;
-    incrementAttempts();
-    setResults(Array(QUESTIONS.length).fill(true));
-    setHintsUsed(Array(QUESTIONS.length).fill(false));
-    setFeedback(null);
-    setCurrentQ(0);
-    setPlaced(Array(nonSpaceCount).fill(null));
-    setFinished(true);
-    setJustFinished(true);
-  }, [nonSpaceCount, finished]);
-
   const closeDialog = useCallback(() => {
     setDialog((d) => ({ ...d, open: false }));
   }, []);
@@ -454,9 +494,10 @@ export default function TroChoiNhanVatLichSu() {
       setFinished(false);
       setOrder(shuffle(QUESTIONS.map((_, i) => i)));
       sessionStorage.removeItem(STORAGE_KEY);
+      playBGM();
     }
     closeDialog();
-  }, [dialog, closeDialog, nonSpaceCount, finished]);
+  }, [dialog, closeDialog, nonSpaceCount, finished, playBGM]);
 
   /* ── Render END screen ── */
   if (finished) {
@@ -598,10 +639,6 @@ export default function TroChoiNhanVatLichSu() {
             <i className="fa-solid fa-circle-xmark tcnv-wrong" />
             {wrongCount}
           </div>
-          <button className="tcnv-dev-btn" onClick={handleQuickComplete}>
-            <i className="fa-solid fa-bolt" />
-            Xong nhanh
-          </button>
         </div>
       </div>
 

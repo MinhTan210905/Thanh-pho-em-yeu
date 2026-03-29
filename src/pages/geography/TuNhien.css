@@ -556,7 +556,7 @@ body.page-tu-nhien-active header nav ul li a.active:hover::after {
 
 /* ── CANVA EMBED ── */
 .tn-canvas {
-  padding: 18px 0 110px;
+  padding: 18px 0 20px;
 }
 
 .tn-canvas-intro {

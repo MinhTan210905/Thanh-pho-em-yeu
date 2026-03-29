@@ -120,27 +120,6 @@ body.page-tro-choi-le-hoi-active .chatbot-window {
   flex-wrap: wrap;
 }
 
-.lh-dev-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.6);
-  color: #475569;
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.lh-dev-btn:hover {
-  border-color: rgba(15, 23, 42, 0.2);
-  background: #fff;
-  transform: translateY(-1px);
-}
-
 .lh-score-item {
   display: flex;
   align-items: center;

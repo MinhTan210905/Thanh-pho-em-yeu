@@ -124,27 +124,7 @@ export default function BaiTap() {
     setAnimKey((k) => k + 1);
   }, []);
 
-  /* [DEV] Reset all game data for testing */
-  const handleResetAllData = useCallback(() => {
-    setProgress((prev) => {
-      const next = {};
-      Object.keys(prev).forEach((id) => {
-        next[id] = {
-          ...prev[id],
-          answered: 0,
-          correctCount: 0,
-          score: 0,
-          attempts: 0,
-        };
-      });
-      saveProgress(next);
-      GAME_DEFS.forEach((d) => {
-        if (d.storageKey) sessionStorage.removeItem(d.storageKey);
-      });
-      return next;
-    });
-    setAnimKey((k) => k + 1);
-  }, []);
+
 
   /* aggregate stats */
   const stats = useMemo(() => {
@@ -191,9 +171,7 @@ export default function BaiTap() {
           thành chuyên gia Sài Gòn!
         </p>
 
-        <button className="bt-dev-reset" onClick={handleResetAllData}>
-          <i className="fa-solid fa-rotate-right" /> Reset tất cả (Dev)
-        </button>
+
 
         <div className="bt-stats">
           <div className="bt-stat-card">
@@ -257,7 +235,7 @@ export default function BaiTap() {
             const displayAnswered = game.displayAnswered ?? game.answered;
 
             return (
-              <div key={game.id} className="bt-game-card">
+              <div key={game.id} className="bt-game-card" data-game-id={game.id}>
                 {/* Banner */}
                 <div className="bt-card-banner">
                   <img src={game.image} alt={game.title} />

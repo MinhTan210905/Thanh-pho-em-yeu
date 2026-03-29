@@ -12,14 +12,15 @@ function ConfettiOnMount() {
 
 const DISH_NAMES = ["Mì ý", "Pizza", "Gà quay", "Canh bò", "Bò bít tết"];
 
+const AUDIO_MAP = {
+  start: "/audio/startQuanAnHanhPhuc.mp3",
+  correct: "/audio/correctQuanAnHanhPhuc.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
 const playAudio = (type) => {
-  const audioMap = {
-    start: "/audio/start.mp3",
-    correct: "/audio/correct.mp3",
-    wrong: "/audio/wrong.mp3",
-    finish: "/audio/finish.mp3",
-  };
-  const path = audioMap[type];
+  const path = AUDIO_MAP[type];
   if (path) {
     const audio = new Audio(path);
     audio.play().catch(e => console.log("Audio play failed:", e));
@@ -178,6 +179,33 @@ export default function TroChoiDanCu() {
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
 
   const finishedRef = useRef(saved?.finishedOnce ?? false);
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    // Only play if not already playing
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked by browser, waiting for interaction."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát lại nhạc nền nếu đang trong game (trường hợp load lại trang)
+  useEffect(() => {
+    const activeScreens = ["intro2", "menu", "question"];
+    if (activeScreens.includes(screen)) {
+      playBGM();
+    }
+  }, [screen, playBGM]);
 
   const correctCount = results.filter((r) => r === true).length;
   const allDone = results.every((r) => r !== null);
@@ -186,8 +214,11 @@ export default function TroChoiDanCu() {
 
   useEffect(() => {
     document.body.classList.add("page-tro-choi-dan-cu-active");
-    return () => document.body.classList.remove("page-tro-choi-dan-cu-active");
-  }, []);
+    return () => {
+      document.body.classList.remove("page-tro-choi-dan-cu-active");
+      stopBGM(); // Dừng nhạc khi thoát khỏi trang
+    };
+  }, [stopBGM]);
 
   useEffect(() => {
     saveState({ screen, selectedDish, results, picked, reveal, finishedOnce: finishedRef.current });
@@ -200,10 +231,11 @@ export default function TroChoiDanCu() {
       incrementAttempts();
       finishedRef.current = true;
     }
+    stopBGM(); // Dừng nhạc nền
     playAudio("finish"); // Added audio for finish
     setJustFinished(true);
     setScreen("finish");
-  }, []);
+  }, [stopBGM]);
 
   const goIntro2 = useCallback(() => setScreen("intro2"), []);
   const goMenu = useCallback(() => setScreen("menu"), []);
@@ -214,9 +246,9 @@ export default function TroChoiDanCu() {
       setScreen("menu");
       return;
     }
-    playAudio("start"); // Added audio for start
+    playBGM(); // Phát nhạc nền (thay cho playAudio("start"))
     setScreen("menu");
-  }, [attemptsLeft]);
+  }, [attemptsLeft, playBGM]);
 
   const handlePickDish = useCallback((idx) => {
     setSelectedDish(idx);
@@ -264,6 +296,7 @@ export default function TroChoiDanCu() {
 
   const confirmDialog = useCallback(() => {
     if (dialog.action === "restart") {
+      stopBGM();
       sessionStorage.removeItem(STATE_KEY);
       finishedRef.current = false;
       setScreen("intro1");
@@ -274,7 +307,7 @@ export default function TroChoiDanCu() {
       setJustFinished(false);
     }
     closeDialog();
-  }, [dialog, closeDialog]);
+  }, [dialog, closeDialog, stopBGM]);
 
   const question = selectedDish !== null ? QUESTIONS[selectedDish] : null;
 

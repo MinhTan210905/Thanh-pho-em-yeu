@@ -10,6 +10,21 @@ function ConfettiOnMount() {
   return null;
 }
 
+const AUDIO_MAP = {
+  start: "/audio/startKinhTe.mp3",
+  correct: "/audio/correct.mp3",
+  wrong: "/audio/wrong.wav",
+  finish: "/audio/finish.mp3",
+};
+
+const playAudio = (type) => {
+  const path = AUDIO_MAP[type];
+  if (path) {
+    const audio = new Audio(path);
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+};
+
 const TARGET_WORDS = [
   { id: 0, text: "GIAOTHÔNGVẬNTẢI", display: "Giao thông vận tải" },
   { id: 1, text: "DULỊCH", display: "Du lịch" },
@@ -169,6 +184,38 @@ export default function TroChoiKinhTe() {
   const [justFinished, setJustFinished] = useState(false);
   const [dialog, setDialog] = useState({ open: false, type: "", title: "", message: "", action: "" });
 
+  const bgmRef = useRef(null);
+
+  const playBGM = useCallback(() => {
+    if (!bgmRef.current) {
+      bgmRef.current = new Audio(AUDIO_MAP.start);
+      bgmRef.current.loop = true;
+    }
+    if (bgmRef.current.paused) {
+      bgmRef.current.play().catch(e => console.log("BGM auto-play blocked."));
+    }
+  }, []);
+
+  const stopBGM = useCallback(() => {
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Tự động phát nhạc nếu đang trong game
+  useEffect(() => {
+    if (screen !== "finish") {
+      playBGM();
+    } else {
+      stopBGM();
+    }
+  }, [screen, playBGM, stopBGM]);
+
+  useEffect(() => {
+    return () => stopBGM();
+  }, [stopBGM]);
+
   const finishedRef = useRef(saved?.finishedOnce ?? false);
 
   const correctCount = results.filter((r) => r === true).length;
@@ -189,27 +236,13 @@ export default function TroChoiKinhTe() {
       incrementAttempts();
       finishedRef.current = true;
     }
+    stopBGM();
+    playAudio("finish");
     setJustFinished(true);
     setScreen("finish");
-  }, []);
+  }, [stopBGM]);
 
-  const handleQuickComplete = useCallback(() => {
-    // Fill all results
-    setResults(Array(TOTAL).fill(true));
-    // Provide a dummy path for each target word so the grid shows color
-    const allPaths = TARGET_WORDS.map((w, idx) => {
-      // Just visually filling the first available row with correct length
-      return getLineCells(idx, 0, idx, w.text.length - 1);
-    });
-    setFoundPaths(allPaths);
-    
-    if (!finishedRef.current) {
-      incrementAttempts();
-      finishedRef.current = true;
-    }
-    setJustFinished(true);
-    setScreen("finish");
-  }, []);
+
 
   const doRestart = useCallback(() => {
     sessionStorage.removeItem(STATE_KEY);
@@ -218,11 +251,10 @@ export default function TroChoiKinhTe() {
     setResults(Array(TOTAL).fill(null));
     setFoundPaths([]);
     setGrid(generateWordSearch(TARGET_WORDS));
-    setDragStart(null);
-    setDragEnd(null);
-    setIsDragging(false);
+    setIsTwoClickMode(false);
     setJustFinished(false);
-  }, []);
+    playBGM();
+  }, [playBGM]);
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
@@ -287,6 +319,7 @@ export default function TroChoiKinhTe() {
     }
 
     if (matchIdx !== -1) {
+        playAudio("correct");
         setResults(prev => {
             const next = [...prev];
             next[matchIdx] = true;
@@ -449,9 +482,6 @@ export default function TroChoiKinhTe() {
             </div>
             <button className="tk-chip" onClick={handleRestart} style={{cursor: "pointer", border: "1px dashed var(--tk-primary)"}} title="Chơi lại từ đầu">
                 <i className="fa-solid fa-rotate" /> {getAttempts()}/{MAX_ATTEMPTS}
-            </button>
-            <button className="tk-dev-btn" onClick={handleQuickComplete}>
-                <i className="fa-solid fa-bolt" /> Xong nhanh
             </button>
         </div>
       </div>
