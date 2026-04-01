@@ -72,7 +72,7 @@ export default function TuNhien() {
 
             <p className="tn-subtitle reveal fade-up delay-200">
               Khám phá hệ sinh thái phong phú, địa hình đa dạng, khí hậu
-              nhiệt đới and mạng lưới sông ngòi dày đặc của TP.HCM.
+              nhiệt đới và mạng lưới sông ngòi dày đặc của TP.HCM.
             </p>
 
             <div className="tn-hero-points reveal fade-up delay-300">
@@ -146,7 +146,7 @@ export default function TuNhien() {
                   <h3>Sinh vật</h3>
                   <p>
                     Hơn 2.000 loài sinh vật đa dạng, bao gồm thực vật, động vật
-                    and vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.
+                    và vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.
                   </p>
                   <span className="tn-mosaic-badge">2000+ loài</span>
                 </div>
@@ -155,7 +155,7 @@ export default function TuNhien() {
                   <h3>Đất</h3>
                   <p>
                     Nhiều loại đất khác nhau phù hợp nông nghiệp, xây dựng
-                    and phát triển đô thị.
+                    và phát triển đô thị.
                   </p>
                   <span className="tn-mosaic-badge">Đa dạng</span>
                 </div>
@@ -165,7 +165,7 @@ export default function TuNhien() {
                   <div className="tn-mosaic-icon"><i className="fas fa-gem"></i></div>
                   <h3>Khoáng sản</h3>
                   <p>
-                    Tài nguyên khoáng sản gồm cát, sỏi, đá, sét and nhiều loại
+                    Tài nguyên khoáng sản gồm cát, sỏi, đá, sét và nhiều loại
                     khác phục vụ xây dựng, công nghiệp.
                   </p>
                   <span className="tn-mosaic-badge">8+ loại</span>
@@ -174,7 +174,7 @@ export default function TuNhien() {
                   <div className="tn-mosaic-icon"><i className="fas fa-cloud-sun"></i></div>
                   <h3>Khí hậu</h3>
                   <p>
-                    Thành phố Hồ chí Minh chỉ có hai mùa: mùa khô and mùa mưa,
+                    Thành phố Hồ chí Minh chỉ có hai mùa: mùa khô và mùa mưa,
                     chịu ảnh hưởng của gió mùa.
                   </p>
                   <span className="tn-mosaic-badge">27.6°C · 1.500–1.979 mm</span>
@@ -205,7 +205,7 @@ export default function TuNhien() {
                   <h3>Biển</h3>
                   <p>
                     Tiếp giáp biển Đông với hơn 2 vùng biển, tạo điều kiện
-                    phát triển kinh tế biển and giao thương quốc tế.
+                    phát triển kinh tế biển và giao thương quốc tế.
                   </p>
                   <span className="tn-mosaic-badge">2+ vùng</span>
                 </div>

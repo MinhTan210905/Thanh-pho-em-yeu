@@ -62,7 +62,7 @@ export default function LangNghe() {
 
           <p className="ln-hero-desc reveal fade-up delay-200">
             Những làng nghề lâu đời tại TP.HCM lưu giữ kỹ thuật thủ công<br/>
-            tinh xảo, mang đậm giá trị văn hóa and kinh tế địa phương.
+            tinh xảo, mang đậm giá trị văn hóa và kinh tế địa phương.
           </p>
 
           <div className="ln-hero-pills reveal fade-up delay-300">
@@ -84,7 +84,7 @@ export default function LangNghe() {
               <i className="fas fa-award"></i>
               <div>
                 <strong>Giá trị</strong>
-                <span>Di sản and tinh thần</span>
+                <span>Di sản và tinh thần</span>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function LangNghe() {
                   <div className="ln-ribbon-body">
                     <h3>Thủ công tỉ mỉ</h3>
                     <p>Quy trình sản xuất trải qua nhiều<br/>
-                    công đoạn thủ công, đòi hỏi sự kiên nhẫn and kỹ thuật cao từ nghệ nhân.</p>
+                    công đoạn thủ công, đòi hỏi sự kiên nhẫn và kỹ thuật cao từ nghệ nhân.</p>
                   </div>
                   <span className="ln-ribbon-badge">Kỹ thuật</span>
                 </div>
@@ -131,7 +131,7 @@ export default function LangNghe() {
                   </div>
                   <div className="ln-ribbon-body">
                     <h3>Giá trị văn hóa & kinh tế</h3>
-                    <p>Sản phẩm mang giá trị văn hóa truyền đời, đồng thời tạo sinh kế ổn định and mở rộng ra thị trường trong nước, xuất khẩu.</p>
+                    <p>Sản phẩm mang giá trị văn hóa truyền đời, đồng thời tạo sinh kế ổn định và mở rộng ra thị trường trong nước, xuất khẩu.</p>
                   </div>
                   <span className="ln-ribbon-badge">Di sản</span>
                 </div>

@@ -65,7 +65,7 @@ export default function DanCu() {
           <p className="dc-hero-desc reveal fade-up delay-200">
             Khám phá bức tranh dân số sống động của Thành phố Hồ Chí Minh -
             đô thị đặc biệt with hơn 14 triệu cư dân, 168 đơn vị hành chính
-            and sự hòa quyện của 54 dân tộc anh em.
+            và sự hòa quyện của 54 dân tộc anh em.
           </p>
 
           {/* Dashboard stat bar — grouped with hero content */}
@@ -137,7 +137,7 @@ export default function DanCu() {
                   <span className="dc-stat-num">14+ triệu</span>
                   <span className="dc-stat-label">Quy mô dân số</span>
                   <p>
-                    Hơn 14 triệu người sinh sống, làm việc and học tập,
+                    Hơn 14 triệu người sinh sống, làm việc và học tập,
                     tạo nên đô thị sôi động bậc nhất Việt Nam.
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export default function DanCu() {
                   <span className="dc-stat-num">168</span>
                   <span className="dc-stat-label">Đơn vị hành chính</span>
                   <p>
-                    Gồm các quận, thành phố trực thuộc, phường and xã -
+                    Gồm các quận, thành phố trực thuộc, phường và xã -
                     hệ thống hành chính hoàn chỉnh.
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export default function DanCu() {
                   <p>
                     Chiếm tỉ lệ đa số trong cơ cấu dân số thành phố,
                     đóng vai trò chủ đạo trong phát triển kinh tế - xã hội
-                    and văn hóa đô thị.
+                    và văn hóa đô thị.
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
@@ -214,7 +214,7 @@ export default function DanCu() {
                   <h3>Người Khmer</h3>
                   <p>
                     Cộng đồng người Khmer with bản sắc văn hóa đặc trưng
-                    and các lễ hội truyền thống riêng biệt.
+                    và các lễ hội truyền thống riêng biệt.
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>

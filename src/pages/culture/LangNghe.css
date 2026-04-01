@@ -65,13 +65,11 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
   overflow: hidden;
   margin-top: 120px;
   padding: 80px 0 72px;
-  background: linear-gradient(
-    155deg,
-    #1c0f07 0%,
-    #3a1e0e 25%,
-    #8B4513 60%,
-    #cd7f32 100%
-  );
+  background: linear-gradient(155deg,
+      #1c0f07 0%,
+      #3a1e0e 25%,
+      #8B4513 60%,
+      #cd7f32 100%);
   color: #fff;
   text-align: center;
 }
@@ -89,20 +87,16 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
   width: 100%;
   height: 100%;
   background:
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       transparent,
       transparent 40px,
       rgba(222, 184, 135, 0.04) 40px,
-      rgba(222, 184, 135, 0.04) 41px
-    ),
-    repeating-linear-gradient(
-      -45deg,
+      rgba(222, 184, 135, 0.04) 41px),
+    repeating-linear-gradient(-45deg,
       transparent,
       transparent 40px,
       rgba(205, 127, 50, 0.03) 40px,
-      rgba(205, 127, 50, 0.03) 41px
-    );
+      rgba(205, 127, 50, 0.03) 41px);
 }
 
 /* Grain texture: soft noise effect */
@@ -116,14 +110,12 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
       transparent 30%,
       rgba(222, 184, 135, 0.06) 30.5%,
       rgba(222, 184, 135, 0.06) 31%,
-      transparent 31.5%
-    ),
+      transparent 31.5%),
     linear-gradient(155deg,
       transparent 50%,
       rgba(139, 69, 19, 0.05) 50.5%,
       rgba(139, 69, 19, 0.05) 51%,
-      transparent 51.5%
-    );
+      transparent 51.5%);
 }
 
 /* Warm glow */
@@ -138,8 +130,15 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
 }
 
 @keyframes ln-glow {
-  0%   { transform: scale(0.88); opacity: 0.5; }
-  100% { transform: scale(1.15); opacity: 1; }
+  0% {
+    transform: scale(0.88);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
 }
 
 /* -- Hero inner -- */
@@ -522,9 +521,17 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
   transform: translateY(0);
 }
 
-.lang-nghe-page .delay-100 { transition-delay: 0.1s; }
-.lang-nghe-page .delay-200 { transition-delay: 0.2s; }
-.lang-nghe-page .delay-300 { transition-delay: 0.3s; }
+.lang-nghe-page .delay-100 {
+  transition-delay: 0.1s;
+}
+
+.lang-nghe-page .delay-200 {
+  transition-delay: 0.2s;
+}
+
+.lang-nghe-page .delay-300 {
+  transition-delay: 0.3s;
+}
 
 /* ═══════ RESPONSIVE ═══════ */
 @media (max-width: 1024px) {
@@ -661,4 +668,3 @@ body.page-lang-nghe-active header nav ul li a.active:hover::after {
     padding: 0 16px;
   }
 }
-

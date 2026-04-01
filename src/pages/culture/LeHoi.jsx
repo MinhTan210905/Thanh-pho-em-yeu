@@ -61,7 +61,7 @@ export default function LeHoi() {
           </h1>
 
           <p className="lh-hero-desc reveal fade-up delay-200">
-            Đa dạng, kết hợp giữa truyền thống and hiện đại - phản ánh đời sống văn&nbsp;hóa phong phú, sôi động của người dân thành phố.
+            Đa dạng, kết hợp giữa truyền thống và hiện đại - phản ánh đời sống văn&nbsp;hóa phong phú, sôi động của người dân thành phố.
           </p>
 
           <div className="lh-hero-chips reveal fade-up delay-300">
@@ -116,7 +116,7 @@ export default function LeHoi() {
                 <h3>Đời sống văn hóa phong phú</h3>
                 <p>
                   Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian
-                  để mọi&nbsp;người cùng tôn vinh, trải nghiệm and chia sẻ.
+                  để mọi&nbsp;người cùng tôn vinh, trải nghiệm và chia sẻ.
                 </p>
               </div>
               <div className="lh-strip-card lh-strip-accent">
@@ -133,7 +133,7 @@ export default function LeHoi() {
           <div className="container">
             <div className="lh-canvas-intro reveal fade-up">
               <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-              <p>Hình ảnh and câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
+              <p>Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
             </div>
             <div className="lh-canvas-frame reveal fade-up delay-200">
               <div className="lh-canvas-embed">

@@ -59,8 +59,8 @@ export default function ViTri() {
           </h1>
 
           <p className="vt-hero-desc reveal fade-up delay-200">
-            TP.HCM giáp các tỉnh Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh and Biển Đông;
-            tạo động lực phát triển của khu vực đồng bằng Đông Nam Bộ, Tây Nam Bộ and cả nước.
+            TP.HCM giáp các tỉnh Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông;
+            tạo động lực phát triển của khu vực đồng bằng Đông Nam Bộ, Tây Nam Bộ và cả nước.
           </p>
 
           <div className="vt-hero-pills reveal fade-up delay-300">
@@ -100,7 +100,7 @@ export default function ViTri() {
                 <h2 className="vt-section-title">Bức Tranh Địa Lý Mở Rộng</h2>
                 <p className="vt-stats-subtitle">
                   Quy mô mới của TP.HCM sau sắp xếp hành chính with diện tích lớn, dân số cao
-                  and mạng lưới đơn vị cơ sở dày đặc.
+                  và mạng lưới đơn vị cơ sở dày đặc.
                 </p>
               </div>
 
@@ -152,8 +152,8 @@ export default function ViTri() {
                   </div>
                   <h3>Vị trí liên kết vùng</h3>
                   <p>
-                    TP.HCM giáp Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh and Biển Đông,
-                    tạo trục kết nối liên hoàn giữa cao nguyên, đồng bằng and biển.
+                    TP.HCM giáp Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông,
+                    tạo trục kết nối liên hoàn giữa cao nguyên, đồng bằng và biển.
                   </p>
                 </div>
 
@@ -185,7 +185,7 @@ export default function ViTri() {
                   </div>
                   <h3>Cửa ngõ quốc tế</h3>
                   <p>
-                    Kết nối Đông Nam Á and thế giới, là một trong những đô thị
+                    Kết nối Đông Nam Á và thế giới, là một trong những đô thị
                     năng động của khu vực with hạ tầng hiện đại đang phát triển mạnh.
                   </p>
                 </div>
@@ -198,7 +198,7 @@ export default function ViTri() {
             <div className="container">
               <div className="vt-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Tổng hợp thông tin vị trí địa lý, đặc điểm tự nhiên and đơn vị hành chính TP.HCM.</p>
+                <p>Tổng hợp thông tin vị trí địa lý, đặc điểm tự nhiên và đơn vị hành chính TP.HCM.</p>
               </div>
               <div className="vt-canvas-frame reveal fade-up delay-200">
                 <div className="vt-canvas-embed">

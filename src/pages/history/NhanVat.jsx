@@ -60,7 +60,7 @@ export default function NhanVat() {
 
           <p className="nv-hero-desc reveal fade-up delay-200">
             Thành phố Hồ chí Minh — vùng đất giàu truyền thống lịch sử, có đóng góp
-            to lớn trong công cuộc xây dựng and bảo vệ Tổ quốc.
+            to lớn trong công cuộc xây dựng và bảo vệ Tổ quốc.
           </p>
 
           <div className="nv-hero-pills reveal fade-up delay-300">
@@ -122,7 +122,7 @@ export default function NhanVat() {
                       <i className="fas fa-medal"></i>
                     </div>
                     <h3>Anh hùng dân tộc</h3>
-                    <p>Những vị tướng, chiến sĩ kiên trung đã chiến đấu and hy sinh vì Tổ quốc.</p>
+                      <p>Những vị tướng, chiến sĩ kiên trung đã chiến đấu và hy sinh vì Tổ quốc.</p>
                   </div>
                   <div className="nv-t-card">
                     <div className="nv-t-icon">
@@ -148,7 +148,7 @@ export default function NhanVat() {
             <div className="container">
               <div className="nv-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Chân dung and câu chuyện về các nhân vật lịch sử nổi bật tại TP.HCM.</p>
+                <p>Chân dung và câu chuyện về các nhân vật lịch sử nổi bật tại TP.HCM.</p>
               </div>
               <div className="nv-canvas-frame reveal fade-up delay-200">
                 <div className="nv-canvas-embed">

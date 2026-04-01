@@ -59,8 +59,8 @@ export default function DiTich() {
           </h1>
 
           <p className="dt-hero-desc reveal fade-up delay-200">
-            Di tích lịch sử – văn hoá là những công trình, địa điểm and hiện vật
-            có giá trị lịch sử, văn hoá, khoa học được xếp hạng and bảo tồn qua các thời kì.
+            Di tích lịch sử – văn hoá là những công trình, địa điểm và hiện vật
+            có giá trị lịch sử, văn hoá, khoa học được xếp hạng và bảo tồn qua các thời kì.
           </p>
 
           <div className="dt-hero-stats reveal fade-up delay-300">
@@ -114,7 +114,7 @@ export default function DiTich() {
                     <p>
                       Nền văn hóa Óc Eo phát triển từ thế kỉ I đến thế kỉ VII, để lại
                       nhiều di tích khảo cổ quý giá trên vùng đất Nam Bộ - minh chứng cho
-                      sự giao thương and phát triển sớm của cộng đồng cư dân cổ.
+                      sự giao thương và phát triển sớm của cộng đồng cư dân cổ.
                     </p>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function DiTich() {
             <div className="container">
               <div className="dt-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Hình ảnh and câu chuyện về các di tích lịch sử nổi bật tại TP.HCM.</p>
+                <p>Hình ảnh và câu chuyện về các di tích lịch sử nổi bật tại TP.HCM.</p>
               </div>
               <div className="dt-canvas-frame reveal fade-up delay-200">
                 <div className="dt-canvas-embed">

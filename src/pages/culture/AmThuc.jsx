@@ -56,7 +56,7 @@ export default function AmThuc() {
             <h1 className="at-title reveal fade-up delay-100">Ẩm Thực TP.HCM</h1>
             <p className="at-subtitle reveal fade-up delay-200">
               Top 20 thành phố có ẩm thực ngon nhất thế giới. Nơi đây là sự kết tinh,
-              hội tụ tinh hoa ẩm thực Bắc - Trung - Nam and cả sắc vị phương Đông.
+                hội tụ tinh hoa ẩm thực Bắc - Trung - Nam và cả sắc vị phương Đông.
             </p>
             <div className="at-hero-points reveal fade-up delay-300">
               <span>• Đa dạng món ăn đường phố</span>
@@ -102,7 +102,7 @@ export default function AmThuc() {
                 </h3>
                 <p className="at-summary-desc">
                   Ẩm thực nơi đây là sự kết tinh, hội tụ nền ẩm thực từ khắp
-                  mọi miền Bắc - Trung - Nam and cả ẩm thực phương Đông.
+                  mọi miền Bắc - Trung - Nam và cả ẩm thực phương Đông.
                 </p>
                 <div className="at-summary-regions">
                   <span><i className="fas fa-location-dot"></i> Bắc</span>

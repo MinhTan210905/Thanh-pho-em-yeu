@@ -5,7 +5,7 @@ body.page-am-thuc-active header {
     position: fixed !important;
     top: 40px !important;
     background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
     height: 80px !important;
     transition: all 0.3s ease;
 }
@@ -341,7 +341,7 @@ body.page-am-thuc-active header .search-box input::placeholder {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255,160,0,0.1), rgba(67,160,71,0.1));
+    background: linear-gradient(135deg, rgba(255, 160, 0, 0.1), rgba(67, 160, 71, 0.1));
     display: flex;
     align-items: center;
     justify-content: center;
