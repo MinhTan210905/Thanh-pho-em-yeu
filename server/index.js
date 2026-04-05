@@ -20,12 +20,7 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
 
 // Middleware
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Origin không được phép bởi CORS'));
-  },
+  origin: true,
   credentials: true
 }));
 app.use(express.json());
