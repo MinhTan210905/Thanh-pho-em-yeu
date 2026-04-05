@@ -21,14 +21,14 @@ export default function LangNghe() {
       if (allTargets.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -61,7 +61,7 @@ export default function LangNghe() {
           </h1>
 
           <p className="ln-hero-desc reveal fade-up delay-200">
-            Những làng nghề lâu đời tại TP.HCM lưu giữ kỹ thuật thủ công<br/>
+            Những làng nghề lâu đời tại TP.HCM lưu giữ kỹ thuật thủ công<br />
             tinh xảo, mang đậm giá trị văn hóa và kinh tế địa phương.
           </p>
 
@@ -110,8 +110,8 @@ export default function LangNghe() {
                   </div>
                   <div className="ln-ribbon-body">
                     <h3>Thủ công tỉ mỉ</h3>
-                    <p>Quy trình sản xuất trải qua nhiều<br/>
-                    công đoạn thủ công, đòi hỏi sự kiên nhẫn và kỹ thuật cao từ nghệ nhân.</p>
+                    <p>Quy trình sản xuất trải qua nhiều<br />
+                      công đoạn thủ công, đòi hỏi sự kiên nhẫn và kỹ thuật cao từ nghệ nhân.</p>
                   </div>
                   <span className="ln-ribbon-badge">Kỹ thuật</span>
                 </div>
@@ -121,7 +121,7 @@ export default function LangNghe() {
                   </div>
                   <div className="ln-ribbon-body">
                     <h3>Nguyên liệu bản địa</h3>
-                    <p>Sử dụng nguyên liệu gần gũi thiên nhiên, khai thác từ nguồn tài nguyên địa phương, gắn liền with vùng đất.</p>
+                    <p>Sử dụng nguyên liệu gần gũi thiên nhiên, khai thác từ nguồn tài nguyên địa phương, gắn liền với vùng đất.</p>
                   </div>
                   <span className="ln-ribbon-badge">Tự nhiên</span>
                 </div>

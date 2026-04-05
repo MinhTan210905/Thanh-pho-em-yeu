@@ -14,7 +14,7 @@ const MODEL_FALLBACKS = [
 const MAX_WORD_EXTRACT_CHARS = 50000;
 const OUT_OF_KB_MARKER = "__OUT_OF_KB__";
 const SYSTEM_PROMPT = `
-Bạn là "Trợ lý Sài Gòn" - một hướng dẫn viên du lịch người bản địa cực kỳ am hiểu, thân thiện, xưng hô "mình" và "bạn".
+Bạn là "Trợ lí Sài Gòn" - một hướng dẫn viên du lịch người bản địa cực kỳ am hiểu, thân thiện, xưng hô "mình" và "bạn".
 
 QUY TẮC TRẢ LỜI:
 
@@ -28,14 +28,14 @@ Trình bày dễ nhìn, in đậm các ý chính, ngắn gọn.
 `.trim();
 
 const GREETINGS = [
-  "Xin chào! Mình là 'Thành phố kể em nghe' - trợ lý thông tin TP.HCM đây. Hôm nay bạn muốn khám phá ngõ ngách nào của Sài Gòn nè?",
+  "Xin chào! Mình là 'Thành phố kể em nghe' - trợ lí thông tin TP.HCM đây. Hôm nay bạn muốn khám phá ngõ ngách nào của Sài Gòn nè?",
   "Chào bạn nha! Cần tìm chỗ ăn chơi, lặn lội di tích hay hóng chuyện lịch sử Sài Gòn thì cứ hú 'Thành phố kể em nghe' một tiếng!",
   "Hello bạn! 'Thành phố kể em nghe' đã sẵn sàng. Bạn đang tò mò về địa danh hay món ngon nào ở Sài Gòn vậy?",
   "Dạ chào bạn! Mình là thổ địa Sài Gòn đây. Bạn muốn đi đâu, ăn gì hay nghe kể chuyện ngày xưa thì cứ nhắn mình nha!"
 ];
 
 const REJECTIONS = [
-  "Trời ơi, câu này hơi nằm ngoài vùng phủ sóng của mình rồi! 😅 Mình là Trợ lý Sài Gòn nên chỉ rành về du lịch, văn hóa và ẩm thực thôi. Hỏi chủ đề khác nha!",
+  "Trời ơi, câu này hơi nằm ngoài vùng phủ sóng của mình rồi! 😅 Mình là Trợ lí Sài Gòn nên chỉ rành về du lịch, văn hóa và ẩm thực thôi. Hỏi chủ đề khác nha!",
   "Món này khó quá mình xin lùi bước nha! 🤣 Tui chỉ là 'thổ địa' Sài Gòn thôi, rành ăn rành chơi chứ mấy vụ này tui mù tịt. Hỏi tui đi chơi đâu ngon đi!",
   "Ây da, vụ này hông thuộc chuyên môn của mình rồi! 🥲 Bạn hỏi gì về đường sá, di tích hay đồ ăn Sài Gòn thì mình bao cân hết nha!",
   "Chết dở, câu này làm khó thổ địa Sài Gòn rồi! 😂 Mình chỉ biết kể chuyện thành phố thôi, mấy cái khác mình hông dám chém gió đâu nha bạn ơi."
@@ -272,7 +272,7 @@ export default function Chatbot() {
         ...prev,
         {
           type: "bot",
-          content: "Mình chưa xử lý được yêu cầu này. Bạn thử lại hoặc kiểm tra kết nối mạng nhé.",
+          content: "Mình chưa xử lí được yêu cầu này. Bạn thử lại hoặc kiểm tra kết nối mạng nhé.",
           time: getCurrentTime(),
         },
       ]);

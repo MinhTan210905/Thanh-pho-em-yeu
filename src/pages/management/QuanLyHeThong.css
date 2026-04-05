@@ -1,0 +1,964 @@
+/* ============================================================
+   Trang Quản Trị — Pastel Wow Dashboard
+   ============================================================ */
+
+.ql-page {
+  min-height: 100vh;
+  padding: 32px;
+  background: linear-gradient(160deg, #f0f4ff 0%, #faf5ff 35%, #fef5f0 70%, #f0f9ff 100%);
+  font-family: inherit;
+}
+
+.ql-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Header ── */
+.ql-head {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle decorative gradient bar at top */
+.ql-head::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #818cf8, #a78bfa, #c084fc, #f472b6, #fb923c, #818cf8);
+  background-size: 200% 100%;
+  animation: shimmer 6s ease-in-out infinite;
+  border-radius: 24px 24px 0 0;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.ql-head-content {
+  min-width: 0;
+}
+
+.ql-head-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #7c3aed;
+  background: linear-gradient(135deg, #ede9fe, #f3e8ff);
+  margin-bottom: 14px;
+}
+
+.ql-head-content h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: #1e1b4b;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.ql-head-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.ql-head-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.ql-head-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(.4,0,.2,1);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.ql-head-actions button:active {
+  transform: scale(0.97);
+}
+
+.ql-btn-home {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1.5px solid #e9e5ff !important;
+}
+
+.ql-btn-home:hover {
+  background: #ede9fe;
+  border-color: #c4b5fd !important;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.1);
+}
+
+.ql-btn-refresh {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1.5px solid #d1fae5 !important;
+}
+
+.ql-btn-refresh:hover {
+  background: #d1fae5;
+  border-color: #a7f3d0 !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.1);
+}
+
+.ql-btn-logout {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1.5px solid #ffe4e6 !important;
+}
+
+.ql-btn-logout:hover {
+  background: #ffe4e6;
+  border-color: #fda4af !important;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.1);
+}
+
+/* ── Alerts ── */
+.ql-alert {
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 0.93rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeSlide 0.35s ease-out;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ql-alert.success {
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.ql-alert.error {
+  background: linear-gradient(135deg, #fff1f2, #fef2f2);
+  border: 1px solid #fecaca;
+  color: #9f1239;
+}
+
+/* ── Grid ── */
+.ql-grid {
+  display: grid;
+  gap: 24px;
+}
+
+/* ── Cards ── */
+.ql-card {
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(139, 92, 246, 0.06);
+  box-shadow: 0 2px 16px rgba(99, 102, 241, 0.04);
+  padding: 32px;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  animation: cardFadeIn 0.5s ease-out both;
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ql-card:hover {
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08);
+  border-color: rgba(139, 92, 246, 0.12);
+}
+
+.ql-card h2 {
+  margin: 0 0 24px;
+  color: #1e1b4b;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ql-card h2::before {
+  content: '';
+  width: 4px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #818cf8, #a78bfa);
+  flex-shrink: 0;
+}
+
+.ql-card-wide {
+  grid-column: 1 / -1;
+}
+
+/* ── Profile Grid ── */
+.ql-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.ql-profile-grid div {
+  background: linear-gradient(145deg, #faf5ff, #f5f3ff);
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid #ede9fe;
+  transition: all 0.2s ease;
+}
+
+.ql-profile-grid div:hover {
+  border-color: #c4b5fd;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
+}
+
+.ql-profile-grid dt {
+  color: #7c3aed;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ql-profile-grid dd {
+  margin: 0;
+  color: #1e1b4b;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* ── Forms ── */
+.ql-create-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+  background: linear-gradient(145deg, #faf5ff, #f8fafc);
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid #ede9fe;
+}
+
+.ql-create-form input,
+.ql-create-form select {
+  font-family: inherit;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #1e293b;
+  font-weight: 500;
+  font-size: 0.93rem;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.ql-create-form input:focus,
+.ql-create-form select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+.ql-create-form button {
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 12px 18px;
+  font-size: 0.93rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(129, 140, 248, 0.25);
+}
+
+.ql-create-form button:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(129, 140, 248, 0.35);
+}
+
+.ql-create-form button:active {
+  transform: translateY(0);
+}
+
+/* ── Password Toggle ── */
+.ql-pwd-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ql-pwd-field input {
+  flex: 1;
+  padding-right: 44px !important;
+}
+
+.ql-pwd-toggle {
+  position: absolute;
+  right: 8px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px 8px !important;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.ql-pwd-toggle:hover {
+  color: #6d28d9;
+  background: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Class Filter ── */
+.ql-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.ql-filter-bar label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ql-filter-bar select {
+  font-family: inherit;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: #fff;
+  min-width: 160px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ql-filter-bar select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+/* ── Tables ── */
+.ql-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+}
+
+.ql-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  background: #fff;
+}
+
+.ql-table-wrap th,
+.ql-table-wrap td {
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+  padding: 14px 16px;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.ql-table-wrap th {
+  color: #6b7280;
+  font-size: 0.73rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: linear-gradient(180deg, #faf5ff, #f5f3ff);
+}
+
+.ql-table-wrap tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.ql-table-wrap tbody tr:last-child th,
+.ql-table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ql-table-wrap tbody tr:hover {
+  background-color: #faf5ff;
+}
+
+.ql-table-wrap td input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  padding: 8px 10px;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+.ql-table-wrap td input:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+}
+
+/* ── Badges ── */
+.badge-role, .badge-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: inline-block;
+}
+
+.badge-admin { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.badge-school { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.badge-teacher { background: #eef2ff; color: #6366f1; border: 1px solid #c7d2fe; }
+.badge-student { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+
+.badge-status-approved { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+.badge-status-pending { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.badge-status-rejected { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+/* ── Table Actions ── */
+.ql-actions-cell {
+  white-space: nowrap;
+}
+
+.ql-actions-cell button {
+  font-family: inherit;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  margin-right: 6px;
+  cursor: pointer;
+  color: #4b5563;
+  background: #f3f4f6;
+  transition: all 0.2s ease;
+}
+
+.ql-actions-cell button:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.ql-actions-cell button.danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.ql-actions-cell button.danger:hover {
+  background: #fee2e2;
+}
+
+.ql-actions-cell button.ghost {
+  background: transparent;
+  color: #6b7280;
+  border: 1.5px solid #d1d5db;
+}
+
+.ql-actions-cell button.ghost:hover {
+  background: #f9fafb;
+  color: #374151;
+}
+
+/* ── Score View Tabs ── */
+.ql-score-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: #f3f4f6;
+  border-radius: 14px;
+  padding: 4px;
+  width: fit-content;
+}
+
+.ql-score-tab {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  background: transparent;
+  color: #6b7280;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: inherit;
+}
+
+.ql-score-tab:hover {
+  color: #374151;
+}
+
+.ql-score-tab.active {
+  background: #fff;
+  color: #6d28d9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Class-based View ── */
+.ql-class-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ql-class-section {
+  border: 1px solid #ede9fe;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ql-class-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #1e1b4b;
+  border-bottom: 1px solid #ede9fe;
+}
+
+.ql-class-header i {
+  color: #7c3aed;
+  font-size: 1rem;
+}
+
+.ql-class-count {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7c3aed;
+  background: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #ede9fe;
+}
+
+.ql-student-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ql-student-card {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.ql-student-card:last-child {
+  border-bottom: none;
+}
+
+.ql-student-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ql-student-card-head:hover {
+  background: #faf5ff;
+}
+
+.ql-student-card-head.expanded {
+  background: #f5f3ff;
+}
+
+.ql-student-card-head > i {
+  color: #9ca3af;
+  font-size: 0.7rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.ql-student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ql-student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ql-student-name {
+  font-weight: 700;
+  color: #1e1b4b;
+  font-size: 0.95rem;
+}
+
+.ql-student-meta {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* ── Expanded Detail ── */
+.ql-student-detail {
+  padding: 0 22px 18px;
+  animation: fadeSlide 0.25s ease-out;
+}
+
+.ql-game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.ql-game-item {
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1px solid #f3f4f6;
+  transition: all 0.15s ease;
+}
+
+.ql-game-item.played {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.ql-game-item.not-played {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.ql-game-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ql-game-item-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1e1b4b;
+}
+
+.ql-game-item-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ql-game-item-badge.yes {
+  background: #dcfce7;
+  color: #059669;
+}
+
+.ql-game-item-badge.no {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.ql-game-item-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.ql-game-item-stats.muted {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.ql-game-item-stats strong {
+  color: #059669;
+  font-weight: 800;
+}
+
+/* ── Student History Blocks (kept) ── */
+.ql-student-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ql-student-block {
+  border: 1px solid #ede9fe;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.04);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.ql-student-block:hover {
+  border-color: #c4b5fd;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+}
+
+.ql-student-block h3 {
+  margin: 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #faf5ff, #f5f3ff);
+  color: #1e1b4b;
+  font-size: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid #ede9fe;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ql-student-block h3::before {
+  content: '👤';
+  font-size: 0.9rem;
+}
+
+.ql-student-block > p {
+  padding: 16px 20px;
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.93rem;
+}
+
+.ql-student-block .ql-table-wrap {
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Modals ── */
+.ql-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 27, 75, 0.3);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1600;
+  padding: 16px;
+  animation: overlayFade 0.2s ease;
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ql-modal-card {
+  width: min(440px, 100%);
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid #ede9fe;
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.12);
+  padding: 28px;
+  animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ql-modal-card h3 {
+  margin: 0 0 12px;
+  color: #1e1b4b;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.ql-modal-card p {
+  margin: 0 0 20px;
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 0.93rem;
+}
+
+.ql-modal-card select {
+  width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.93rem;
+  font-family: inherit;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.ql-modal-card select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+.ql-modal-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.ql-modal-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.ql-modal-actions button:hover {
+  background: #e5e7eb;
+}
+
+.ql-modal-actions button:first-child {
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(129, 140, 248, 0.25);
+}
+
+.ql-modal-actions button:first-child:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 6px 16px rgba(129, 140, 248, 0.35);
+}
+
+/* ── Responsiveness ── */
+@media (max-width: 1024px) {
+  .ql-page {
+    padding: 20px;
+  }
+
+  .ql-head {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .ql-head-actions {
+    width: 100%;
+  }
+
+  .ql-head-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .ql-create-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .ql-page {
+    padding: 14px;
+  }
+
+  .ql-head, .ql-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .ql-head-content h1 {
+    font-size: 1.35rem;
+  }
+
+  .ql-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+
+  .ql-profile-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .ql-table-wrap th,
+  .ql-table-wrap td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .badge-role, .badge-status {
+    padding: 4px 8px;
+    font-size: 0.68rem;
+  }
+
+  .ql-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ql-filter-bar select {
+    min-width: 100%;
+  }
+}

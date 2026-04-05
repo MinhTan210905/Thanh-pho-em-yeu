@@ -19,14 +19,14 @@ export default function KinhTe() {
       if (sectionWrappers.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -49,7 +49,7 @@ export default function KinhTe() {
 
         <div className="container section-wrapper kt-hero-inner">
           <div className="kt-hero-badge reveal fade-up">
-            <span>Địa Lý</span>
+            <span>Địa Lí</span>
             <span className="kt-dot">·</span>
             <span className="kt-badge-accent">Kinh Tế</span>
           </div>
@@ -60,7 +60,7 @@ export default function KinhTe() {
 
           <p className="kt-hero-desc reveal fade-up delay-200">
             Thành phố Hồ chí Minh là trung tâm kinh tế lớn nhất cả nước
-            with 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp
+            với 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp
             quy mô lớn và nông nghiệp ứng dụng công nghệ cao, giữ vai trò
             đầu tàu phát triển kinh tế quốc gia.
           </p>

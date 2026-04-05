@@ -36,7 +36,7 @@ const QUESTIONS = [
     answer: "TRẦN CÔNG AN",
   },
   {
-    clue: "Trong lễ kỷ niệm Cách mạng tháng mười Nga, Ông phát biểu kêu gọi nhân dân ủng hộ Liên bang Xô viết, kêu gọi tinh thần Cách mạng tháng Mười Nga và tinh thần yêu nước, chống Pháp. Sau đó, Ông bị bắt và phải lãnh án 5 năm tù giam, 10 năm đày biệt xứ.\nĐó là ai?",
+    clue: "Trong lễ kỉ niệm Cách mạng tháng mười Nga, Ông phát biểu kêu gọi nhân dân ủng hộ Liên bang Xô viết, kêu gọi tinh thần Cách mạng tháng Mười Nga và tinh thần yêu nước, chống Pháp. Sau đó, Ông bị bắt và phải lãnh án 5 năm tù giam, 10 năm đày biệt xứ.\nĐó là ai?",
     answer: "NGUYỄN VĂN TIẾT",
   },
   {
@@ -44,7 +44,7 @@ const QUESTIONS = [
     answer: "TÔN ĐỨC THẮNG",
   },
   {
-    clue: "“Thà hy sinh chứ không để thương binh bị thương lần thứ hai”\nNgười đã nói câu nói này là ai?",
+    clue: "“Thà hi sinh chứ không để thương binh bị thương lần thứ hai”\nNgười đã nói câu nói này là ai?",
     answer: "ĐOÀN THỊ LIÊN",
   },
   {
@@ -72,7 +72,7 @@ const QUESTIONS = [
     answer: "HUỲNH THỊ CHẤU",
   },
   {
-    clue: "Nhân vật nào là tác giả của bộ Gia Định thành thông chí - bộ sách lịch sử, địa lý, văn hóa ra đời sớm và giá trị nhất về miền Nam Bộ thời bấy giờ?",
+    clue: "Nhân vật nào là tác giả của bộ Gia Định thành thông chí - bộ sách lịch sử, địa lí, văn hóa ra đời sớm và giá trị nhất về miền Nam Bộ thời bấy giờ?",
     answer: "TRỊNH HOÀI ĐỨC",
   },
   {

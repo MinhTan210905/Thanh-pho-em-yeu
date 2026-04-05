@@ -21,14 +21,14 @@ export default function DanCu() {
       if (allTargets.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -53,7 +53,7 @@ export default function DanCu() {
 
         <div className="container dc-hero-inner">
           <span className="dc-hero-badge reveal fade-up">
-            Địa Lý
+            Địa Lí
             <span className="dc-dot">·</span>
             <span className="dc-badge-accent">Dân Cư</span>
           </span>
@@ -64,7 +64,7 @@ export default function DanCu() {
 
           <p className="dc-hero-desc reveal fade-up delay-200">
             Khám phá bức tranh dân số sống động của Thành phố Hồ Chí Minh -
-            đô thị đặc biệt with hơn 14 triệu cư dân, 168 đơn vị hành chính
+            đô thị đặc biệt với hơn 14 triệu cư dân, 168 đơn vị hành chính
             và sự hòa quyện của 54 dân tộc anh em.
           </p>
 
@@ -126,7 +126,7 @@ export default function DanCu() {
                   <span className="dc-stat-label">Phân loại đô thị</span>
                   <p>
                     TP.HCM là đô thị đặc biệt trực thuộc Trung ương,
-                    giữ vai trò trung tâm kinh tế lớn nhất cả nước with tốc độ phát triển vượt trội.
+                    giữ vai trò trung tâm kinh tế lớn nhất cả nước với tốc độ phát triển vượt trội.
                   </p>
                 </div>
 
@@ -194,7 +194,7 @@ export default function DanCu() {
                   <h3>Người Hoa</h3>
                   <p>
                     Cộng đồng dân tộc thiểu số lớn nhất,
-                    tập trung chủ yếu ở thành phố Hồ Chí Minh with nền văn hóa phong phú
+                    tập trung chủ yếu ở thành phố Hồ Chí Minh với nền văn hóa phong phú
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
@@ -213,7 +213,7 @@ export default function DanCu() {
                   <div className="dc-ethnic-icon"><i className="fas fa-gopuram"></i></div>
                   <h3>Người Khmer</h3>
                   <p>
-                    Cộng đồng người Khmer with bản sắc văn hóa đặc trưng
+                    Cộng đồng người Khmer với bản sắc văn hóa đặc trưng
                     và các lễ hội truyền thống riêng biệt.
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>

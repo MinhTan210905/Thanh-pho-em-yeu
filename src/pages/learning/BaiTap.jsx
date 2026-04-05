@@ -164,7 +164,7 @@ export default function BaiTap() {
           Trung tâm Bài tập
         </div>
         <h1>
-          Quản lý <span>Trò chơi Ôn tập</span>
+          Quản lí <span>Trò chơi Ôn tập</span>
         </h1>
         <p>
           Theo dõi tiến trình học tập, điểm số và số lần thử của bạn. Hoàn thành tất cả thử thách để trở

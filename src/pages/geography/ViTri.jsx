@@ -19,14 +19,14 @@ export default function ViTri() {
       if (sectionWrappers.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -49,13 +49,13 @@ export default function ViTri() {
 
         <div className="container section-wrapper vt-hero-inner">
           <div className="vt-hero-badge reveal fade-up">
-            <span>Địa Lý</span>
+            <span>Địa Lí</span>
             <span className="vt-dot">·</span>
             <span className="vt-badge-accent">Vị Trí</span>
           </div>
 
           <h1 className="vt-hero-title reveal fade-up delay-100">
-            Vị Trí Địa Lý <span className="vt-highlight">TP.HCM</span>
+            Vị Trí Địa Lí <span className="vt-highlight">TP.HCM</span>
           </h1>
 
           <p className="vt-hero-desc reveal fade-up delay-200">
@@ -97,9 +97,9 @@ export default function ViTri() {
             <div className="container">
               <div className="vt-stats-head reveal fade-up">
                 <span className="vt-tag">Tổng Quan</span>
-                <h2 className="vt-section-title">Bức Tranh Địa Lý Mở Rộng</h2>
+                <h2 className="vt-section-title">Bức Tranh Địa Lí Mở Rộng</h2>
                 <p className="vt-stats-subtitle">
-                  Quy mô mới của TP.HCM sau sắp xếp hành chính with diện tích lớn, dân số cao
+                  Quy mô mới của TP.HCM sau sắp xếp hành chính với diện tích lớn, dân số cao
                   và mạng lưới đơn vị cơ sở dày đặc.
                 </p>
               </div>
@@ -186,7 +186,7 @@ export default function ViTri() {
                   <h3>Cửa ngõ quốc tế</h3>
                   <p>
                     Kết nối Đông Nam Á và thế giới, là một trong những đô thị
-                    năng động của khu vực with hạ tầng hiện đại đang phát triển mạnh.
+                    năng động của khu vực với hạ tầng hiện đại đang phát triển mạnh.
                   </p>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function ViTri() {
             <div className="container">
               <div className="vt-canvas-intro reveal fade-up">
                 <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Tổng hợp thông tin vị trí địa lý, đặc điểm tự nhiên và đơn vị hành chính TP.HCM.</p>
+                <p>Tổng hợp thông tin vị trí địa lí, đặc điểm tự nhiên và đơn vị hành chính TP.HCM.</p>
               </div>
               <div className="vt-canvas-frame reveal fade-up delay-200">
                 <div className="vt-canvas-embed">
@@ -207,7 +207,7 @@ export default function ViTri() {
                     src="https://www.canva.com/design/DAG6jKSZUe0/DCjgreIvm-qjpmn5JVA_lw/view?embed"
                     allowFullScreen
                     allow="fullscreen"
-                    title="VỊ TRÍ ĐỊA LÝ TPHCM"
+                    title="VỊ TRÍ ĐỊA LÍ TPHCM"
                   ></iframe>
                 </div>
               </div>

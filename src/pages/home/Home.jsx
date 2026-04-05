@@ -7,6 +7,10 @@ export default function Home() {
   const counterRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
+  useEffect(() => {
     // === SLIDER LOGIC (INFINITE LOOP - FIXED) ===
     const track = sliderTrackRef.current;
     const nextBtn = document.getElementById('nextBtn');
@@ -257,7 +261,7 @@ export default function Home() {
                           <img src="/images/trang_chu_5.jpg" alt="Bảo tàng Thành phố Hồ Chí Minh" />
                           <div className="slide-caption">
                             <h3>Bảo tàng TP. Hồ Chí Minh</h3>
-                            <p>Nơi lưu giữ ký ức lịch sử</p>
+                            <p>Nơi lưu giữ kí ức lịch sử</p>
                           </div>
                         </div>
 
@@ -318,7 +322,7 @@ export default function Home() {
                         <span className="badge-num count" data-start="0" data-target="300" ref={counterRef}>0</span>
                         <span className="badge-plus">+</span>
                       </div>
-                      <span className="badge-text">Năm hình thành<br />&amp; phát triển</span>
+                      <span className="badge-text">Năm hình thành<br />và phát triển</span>
                     </div>
                   </div>
                 </div>
@@ -332,15 +336,15 @@ export default function Home() {
                   </h2>
 
                   <p className="desc-text fade-up delay-400">
-                    Chào mừng bạn đến với website <strong>Khám Phá Thành Phố Hồ Chí Minh</strong>, một
-                    không gian học tập trực tuyến sinh động về lịch sử, địa lý, văn hóa - xã hội của thành
+                    Chào mừng bạn đến với website <strong>Thành Phố Em Yêu</strong>, một
+                    không gian học tập trực tuyến sinh động về lịch sử, địa lí, văn hóa - xã hội của thành
                     phố mang tên Bác.
                   </p>
 
                   <p className="desc-text fade-up delay-500">
                     Website được thiết kế dành cho giáo viên, học sinh và những ai yêu thích tìm hiểu về vùng
                     đất này. Tại đây, bạn sẽ được bước vào hành trình khám phá những trang sử hào hùng, các
-                    đặc điểm địa lý nổi bật và nét đẹp trong đời sống của người dân nơi đây.
+                    đặc điểm địa lí nổi bật và nét đẹp trong đời sống của người dân nơi đây.
                   </p>
 
                   <div className="btn-wrapper fade-up delay-600">
@@ -360,7 +364,7 @@ export default function Home() {
                   <h4 className="sub-title fade-up">TỔNG QUAN</h4>
 
                   <h2 className="main-title">
-                    <span className="split-text fade-up delay-100">Địa Lý Thành phố</span> <br />
+                    <span className="split-text fade-up delay-100">Địa Lí Thành phố</span> <br />
                     <span className="split-text fade-up delay-200">Hồ Chí Minh</span>
                   </h2>
 
@@ -385,7 +389,7 @@ export default function Home() {
 
                 <div className="geo-grid">
                   <Link to="/vi-tri" className="geo-card fade-up delay-600">
-                    <img src="/images/dia_ly_1.jfif" alt="Vị trí địa lý" />
+                    <img src="/images/dia_ly_1.jfif" alt="Vị trí địa lí" />
                     <div className="geo-tag">
                       <i className="fas fa-map-marked-alt"></i>
                       <span>Vị trí</span>
@@ -431,7 +435,7 @@ export default function Home() {
                 >
                   DÒNG CHẢY THỜI GIAN
                 </h4>
-                <h2 className="main-title text-white fade-up delay-200">Lịch sử Hào hùng</h2>
+                <h2 className="main-title text-white fade-up delay-200">Lịch sử hào hùng</h2>
                 <p className="desc-text text-white-50 fade-up delay-400">
                   Khám phá chiều sâu lịch sử Thành phố Hồ Chí Minh là một hành trình ngược dòng thời gian đầy thú vị.
                   Nơi đưa bạn trở về với những bước chân khai phá đầu tiên để chứng kiến sự hình thành, phát triển của một vùng đất kiên cường.
@@ -475,7 +479,7 @@ export default function Home() {
             <div className="container">
               <div className="culture-wrapper">
                 <div className="culture-content">
-                  <h4 className="sub-title fade-up">ĐA DẠNG &amp; BẢN SẮC</h4>
+                  <h4 className="sub-title fade-up">ĐA DẠNG và BẢN SẮC</h4>
                   <h2 className="main-title fade-up delay-200">Văn hóa - Xã hội</h2>
                   <p className="desc-text fade-up delay-400">
                     Không chỉ là đầu tàu kinh tế của cả nước, Thành phố Hồ Chí Minh còn là bức tranh sống động nơi bản sắc truyền thống hòa quyện cùng nhịp sống hiện đại. Từ những ngôi chùa cổ kính nép mình bên tòa nhà chọc trời, đến gánh hàng rong bánh đa giữa phố thị phồn hoa.
@@ -521,7 +525,7 @@ export default function Home() {
             <div className="container">
               <div className="learning-header">
                 <h4 className="sub-title fade-up">KHO TÀNG TRI THỨC</h4>
-                <h2 className="main-title fade-up delay-200">Tài liệu &amp; Ôn tập</h2>
+                <h2 className="main-title fade-up delay-200">Tài liệu và Ôn tập</h2>
                 <p className="desc-text fade-up delay-400">
                   Truy cập kho tàng tài liệu phong phú từ sách tham khảo đến các trò chơi ôn tập kiến thức đầy hấp dẫn.
                 </p>
@@ -533,7 +537,7 @@ export default function Home() {
                   <div className="overlay-dark"></div>
                   <div className="card-content">
                     <div className="icon-small"><i className="fas fa-book-reader"></i></div>
-                    <h3>Thư viện Tài liệu</h3>
+                    <h3>Thư viện tài liệu</h3>
                     <p>Tổng hợp sách, bài báo và tư liệu quý về lịch sử, văn hóa Sài Gòn xưa và nay.</p>
                     <a href="#" className="btn-outline-white">Xem ngay <i className="fas fa-arrow-right"></i></a>
                   </div>
@@ -544,7 +548,7 @@ export default function Home() {
                   <div className="overlay-dark"></div>
                   <div className="card-content">
                     <div className="icon-small"><i className="fas fa-gamepad"></i></div>
-                    <h3>Trò chơi Ôn tập</h3>
+                    <h3>Trò chơi ôn tập</h3>
                     <p>Thử thách kiến thức qua các bài Quiz vui nhộn, vừa học vừa chơi cực đã.</p>
                     <Link to="/bai-tap" className="btn-outline-white">Chơi ngay <i className="fas fa-arrow-right"></i></Link>
                   </div>

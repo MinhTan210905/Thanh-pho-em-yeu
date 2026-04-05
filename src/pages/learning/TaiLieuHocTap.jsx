@@ -13,10 +13,10 @@ const DOCUMENTS = [
   {
     id: 2,
     title: "Tài Liệu Học Tập Bà Rịa - Vũng Tàu",
-    description: "Tìm hiểu vùng đất biển Bà Rịa - Vũng Tàu qua góc nhìn lịch sử, địa lý và đặc sản nổi tiếng.",
+    description: "Tìm hiểu vùng đất biển Bà Rịa - Vũng Tàu qua góc nhìn lịch sử, địa lí và đặc sản nổi tiếng.",
     fileUrl: "/documents/LOP 4 - BA RIA - VUNG TAU.pdf",
     coverImage: "/images/tailieu_hoctap_4.png",
-    tags: ["Bà Rịa - Vũng Tàu", "Địa lý"]
+    tags: ["Bà Rịa - Vũng Tàu", "Địa lí"]
   },
   {
     id: 3,
@@ -100,7 +100,7 @@ export default function TaiLieuHocTap() {
           </h1>
 
           <p className="tl-hero-desc reveal fade-up delay-200">
-            Thư viện tri thức thu nhỏ giúp bạn khám phá trọn vẹn về địa lý, lịch sử và văn hóa đa dạng của vùng đất Nam Bộ yêu thương.
+            Thư viện tri thức thu nhỏ giúp bạn khám phá trọn vẹn về địa lí, lịch sử và văn hóa đa dạng của vùng đất Nam Bộ yêu thương.
           </p>
 
           <div className="tl-hero-stats reveal fade-up delay-300">

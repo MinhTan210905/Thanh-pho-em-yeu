@@ -21,14 +21,14 @@ export default function TuNhien() {
       if (allTargets.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -61,7 +61,7 @@ export default function TuNhien() {
           {/* Left: Copy */}
           <div className="tn-hero-copy">
             <span className="tn-hero-badge reveal fade-up">
-              Địa Lý
+              Địa Lí
               <span className="tn-dot">·</span>
               <span className="tn-badge-accent">Tự Nhiên</span>
             </span>

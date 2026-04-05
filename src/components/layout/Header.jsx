@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useAuth, ROLE_LABELS } from "../../context/AuthContext";
 
 export default function Header({ currentPage }) {
+  const { isAuthenticated, user, logout } = useAuth();
+  const canOpenManagement = user?.role === 'admin' || user?.role === 'school' || user?.role === 'teacher';
+  const navigate = useNavigate();
   const [currentLang, setCurrentLang] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('selectedLang') || "VIE";
@@ -13,6 +17,17 @@ export default function Header({ currentPage }) {
   const closeMobileMenu = () => {
     const mobileMenu = document.getElementById('mobileMenu');
     mobileMenu?.classList.remove('active');
+  };
+
+  const goTop = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const handleLogout = () => {
+    logout();
+    goTop();
+    closeMobileMenu();
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
@@ -119,16 +134,16 @@ export default function Header({ currentPage }) {
 
         <nav className="desktop-nav">
           <ul>
-            <li><Link to="/" className={location.pathname === "/" ? "active" : ""}>Trang chủ</Link></li>
-            <li><Link to="/dia-ly" className={location.pathname === "/dia-ly" || location.pathname === "/vi-tri" || location.pathname === "/kinh-te" || location.pathname === "/tu-nhien" || location.pathname === "/dan-cu" ? "active" : ""}>Địa lý</Link></li>
+            <li><Link to="/" onClick={goTop} className={location.pathname === "/" ? "active" : ""}>Trang chủ</Link></li>
+            <li><Link to="/dia-ly" className={location.pathname === "/dia-ly" || location.pathname === "/vi-tri" || location.pathname === "/kinh-te" || location.pathname === "/tu-nhien" || location.pathname === "/dan-cu" ? "active" : ""}>Địa lí</Link></li>
             <li><Link to="/lich-su" className={location.pathname === "/lich-su" || location.pathname === "/di-tich" || location.pathname === "/nhan-vat" ? "active" : ""}>Lịch sử</Link></li>
             <li><Link to="/van-hoa" className={location.pathname === "/van-hoa" || location.pathname === "/lang-nghe" || location.pathname === "/am-thuc" || location.pathname === "/le-hoi" ? "active" : ""}>Văn hóa</Link></li>
             <li><Link to="/hoc-tap" className={[
-              "/hoc-tap", "/bai-tap", "/tai-lieu", 
-              "/tro-choi-am-thuc", "/tro-choi-di-tich-lich-su", 
-              "/tro-choi-dia-li-tu-nhien", "/tro-choi-dan-cu", 
-              "/tro-choi-lang-nghe", "/tro-choi-le-hoi", 
-              "/tro-choi-nhan-vat-lich-su", "/tro-choi-kinh-te", 
+              "/hoc-tap", "/bai-tap", "/tai-lieu",
+              "/tro-choi-am-thuc", "/tro-choi-di-tich-lich-su",
+              "/tro-choi-dia-li-tu-nhien", "/tro-choi-dan-cu",
+              "/tro-choi-lang-nghe", "/tro-choi-le-hoi",
+              "/tro-choi-nhan-vat-lich-su", "/tro-choi-kinh-te",
               "/tro-choi-vi-tri"
             ].includes(location.pathname) ? "active" : ""}>Góc học tập</Link></li>
           </ul>
@@ -152,11 +167,19 @@ export default function Header({ currentPage }) {
           <div className="close-btn" id="closeBtn"><i className="fas fa-times"></i></div>
         </div>
         <ul className="mobile-nav-links">
-          <li><Link to="/" onClick={closeMobileMenu}>Trang chủ</Link></li>
-          <li><Link to="/dia-ly" onClick={closeMobileMenu}>Địa lý</Link></li>
+          <li><Link to="/" onClick={() => { goTop(); closeMobileMenu(); }}>Trang chủ</Link></li>
+          <li><Link to="/dia-ly" onClick={closeMobileMenu}>Địa lí</Link></li>
           <li><Link to="/lich-su" onClick={closeMobileMenu}>Lịch sử</Link></li>
           <li><Link to="/van-hoa" onClick={closeMobileMenu}>Văn hóa</Link></li>
           <li><Link to="/hoc-tap" onClick={closeMobileMenu}>Góc học tập</Link></li>
+          {isAuthenticated ? (
+            <>
+              {canOpenManagement ? <li><Link to="/quan-ly" onClick={closeMobileMenu}>Trang quản lí</Link></li> : null}
+              <li><button type="button" className="mobile-logout-btn" onClick={handleLogout}>Đăng xuất</button></li>
+            </>
+          ) : (
+            <li><Link to="/dang-nhap" onClick={closeMobileMenu}>Đăng nhập</Link></li>
+          )}
         </ul>
         <div className="mobile-socials">
           <a href="#"><i className="fab fa-facebook-f"></i></a>
@@ -174,26 +197,47 @@ export default function Header({ currentPage }) {
           <a href="#"><i className="fab fa-tiktok"></i></a>
         </div>
 
-        <div className="lang-container notranslate">
-          <div className="current-lang notranslate" id="currentLang" onClick={toggleDropdown}>
-            <img
-              src={currentLang === "VIE"
-                ? "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg"
-                : "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"}
-              className="flag-img"
-              alt={currentLang}
-            />
-            {currentLang}
-            <i className="fas fa-chevron-down" style={{ fontSize: "0.7rem", marginLeft: "5px" }}></i>
+        <div className="top-bar-right">
+          <div className="auth-quick-links">
+            {isAuthenticated ? (
+              <>
+                <span className="auth-user-name">
+                  {user?.full_name || user?.username}
+                  {user?.role ? ` (${ROLE_LABELS[user.role] || user.role})` : ''}
+                </span>
+                {canOpenManagement ? <Link to="/quan-ly" className="auth-quick-link">Quản lí</Link> : null}
+                <button type="button" className="auth-quick-link auth-quick-logout" onClick={handleLogout}>
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <Link to="/dang-nhap" className="auth-quick-link">Đăng nhập</Link>
+            )}
           </div>
-          <div className={`lang-dropdown notranslate ${isDropdownOpen ? 'show' : ''}`}>
-            <div className="lang-option notranslate" onClick={() => changeLang('VIE')}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="VN" />
-              Tiếng Việt
+
+          <span className="top-bar-divider" aria-hidden="true">|</span>
+
+          <div className="lang-container notranslate">
+            <div className="current-lang notranslate" id="currentLang" onClick={toggleDropdown}>
+              <img
+                src={currentLang === "VIE"
+                  ? "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg"
+                  : "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"}
+                className="flag-img"
+                alt={currentLang}
+              />
+              {currentLang}
+              <i className="fas fa-chevron-down" style={{ fontSize: "0.7rem", marginLeft: "5px" }}></i>
             </div>
-            <div className="lang-option notranslate" onClick={() => changeLang('ENG')}>
-              <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US" />
-              English
+            <div className={`lang-dropdown notranslate ${isDropdownOpen ? 'show' : ''}`}>
+              <div className="lang-option notranslate" onClick={() => changeLang('VIE')}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="VN" />
+                Tiếng Việt
+              </div>
+              <div className="lang-option notranslate" onClick={() => changeLang('ENG')}>
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US" />
+                English
+              </div>
             </div>
           </div>
         </div>

@@ -19,14 +19,14 @@ export default function LeHoi() {
       if (sectionWrappers.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -93,63 +93,63 @@ export default function LeHoi() {
       {/* ── MAIN CONTENT ── */}
       <main className="lh-content">
         <div className="section-wrapper lh-core-group">
-        {/* Feature Strip */}
-        <section className="lh-features">
-          <div className="container">
-            <div className="lh-features-head reveal fade-up">
-              <span className="lh-tag">Đặc Sắc Lễ Hội</span>
-              <h2 className="lh-section-title">Sắc Màu Thành Phố</h2>
+          {/* Feature Strip */}
+          <section className="lh-features">
+            <div className="container">
+              <div className="lh-features-head reveal fade-up">
+                <span className="lh-tag">Đặc Sắc Lễ Hội</span>
+                <h2 className="lh-section-title">Sắc Màu Thành Phố</h2>
+              </div>
+
+              <div className="lh-strip reveal fade-up delay-200">
+                <div className="lh-strip-card lh-strip-wide">
+                  <div className="lh-strip-num">01</div>
+                  <h3>Kết hợp truyền thống và hiện đại</h3>
+                  <p>
+                    Từ lễ hội Nguyên Tiêu, Tết Nguyên Đán, lễ hội Nghinh&nbsp;Ông đến
+                    những sự kiện âm nhạc quốc tế, hội chợ đa văn hóa - tất cả
+                    hòa quyện với nhịp sống thành phố.
+                  </p>
+                </div>
+                <div className="lh-strip-card">
+                  <div className="lh-strip-num">02</div>
+                  <h3>Đời sống văn hóa phong phú</h3>
+                  <p>
+                    Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian
+                    để mọi&nbsp;người cùng tôn vinh, trải nghiệm và chia sẻ.
+                  </p>
+                </div>
+                <div className="lh-strip-card lh-strip-accent">
+                  <div className="lh-strip-num">03</div>
+                  <h3>Sôi động quanh năm</h3>
+                  <p>Gần như tháng nào cũng có lễ hội, sự kiện văn hóa lớn nhỏ diễn ra khắp thành phố.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Canva */}
+          <section className="lh-canvas">
+            <div className="container">
+              <div className="lh-canvas-intro reveal fade-up">
+                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
+                <p>Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
+              </div>
+              <div className="lh-canvas-frame reveal fade-up delay-200">
+                <div className="lh-canvas-embed">
+                  <iframe
+                    loading="lazy"
+                    src="https://www.canva.com/design/DAG_qp2TOAw/s9BdksGn9vWOZmC9yRzAaw/watch?embed"
+                    allowFullScreen
+                    allow="fullscreen"
+                    title="LỄ HỘI TP.HCM"
+                  ></iframe>
+                </div>
+              </div>
             </div>
 
-            <div className="lh-strip reveal fade-up delay-200">
-              <div className="lh-strip-card lh-strip-wide">
-                <div className="lh-strip-num">01</div>
-                <h3>Kết hợp truyền thống & hiện đại</h3>
-                <p>
-                  Từ lễ hội Nguyên Tiêu, Tết Nguyên Đán, lễ hội Nghinh&nbsp;Ông đến
-                  những sự kiện âm nhạc quốc tế, hội chợ đa văn hóa - tất cả
-                  hòa quyện with nhịp sống thành phố.
-                </p>
-              </div>
-              <div className="lh-strip-card">
-                <div className="lh-strip-num">02</div>
-                <h3>Đời sống văn hóa phong phú</h3>
-                <p>
-                  Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian
-                  để mọi&nbsp;người cùng tôn vinh, trải nghiệm và chia sẻ.
-                </p>
-              </div>
-              <div className="lh-strip-card lh-strip-accent">
-                <div className="lh-strip-num">03</div>
-                <h3>Sôi động quanh năm</h3>
-                <p>Gần như tháng nào cũng có lễ hội, sự kiện văn hóa lớn nhỏ diễn ra khắp thành phố.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Canva */}
-        <section className="lh-canvas">
-          <div className="container">
-            <div className="lh-canvas-intro reveal fade-up">
-              <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-              <p>Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
-            </div>
-            <div className="lh-canvas-frame reveal fade-up delay-200">
-              <div className="lh-canvas-embed">
-                <iframe
-                  loading="lazy"
-                  src="https://www.canva.com/design/DAG_qp2TOAw/s9BdksGn9vWOZmC9yRzAaw/watch?embed"
-                  allowFullScreen
-                  allow="fullscreen"
-                  title="LỄ HỘI TP.HCM"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-
-          <GameRedirect to="/tro-choi-le-hoi" gameName="Dấu ấn lễ hội địa phương" />
-        </section>
+            <GameRedirect to="/tro-choi-le-hoi" gameName="Dấu ấn lễ hội địa phương" />
+          </section>
         </div>
       </main>
     </div>

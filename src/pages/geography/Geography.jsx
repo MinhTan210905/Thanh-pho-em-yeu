@@ -18,28 +18,28 @@ export default function Geography() {
     {
       id: 1,
       image: "/images/dia_ly_1.jfif",
-      title: "Vị trí Địa lý",
+      title: "Vị trí địa lí",
       description: "Khám phá vị trí chiến lược của Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
       route: "/vi-tri"
     },
     {
       id: 2,
       image: "/images/dia_ly_3.jpg",
-      title: "Địa lí Kinh tế",
+      title: "Địa lí kinh tế",
       description: "Khám phá các ngành kinh tế chủ lực của thành phố",
       route: "/kinh-te"
     },
     {
       id: 3,
       image: "/images/dia_ly_2.svg",
-      title: "Địa lí Tự nhiên",
+      title: "Địa lí tự nhiên",
       description: "Tìm hiểu về địa hình, khí hậu, hệ thống sông ngòi, kênh rạch, biển, sinh vật, đất và khoáng sản",
       route: "/tu-nhien"
     },
     {
       id: 4,
       image: "/images/dia_ly_4.jpg",
-      title: "Địa lí Dân cư",
+      title: "Địa lí dân cư",
       description: "Tìm hiểu phân bố dân cư và đặc điểm đô thị của Thành phố Hồ Chí Minh",
       route: "/dan-cu"
     }
@@ -79,7 +79,7 @@ export default function Geography() {
   useEffect(() => {
     // === REVEAL ANIMATIONS (Delayed to ensure initial hidden state) ===
     console.log('Setting up reveal animations...');
-    
+
     // Delay to let elements render in hidden state
     const setupTimer = setTimeout(() => {
       const revealElements = document.querySelectorAll('.reveal');
@@ -91,14 +91,14 @@ export default function Geography() {
       }
 
       const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              console.log('Adding active class to:', entry.target.className.substring(0, 50));
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('Adding active class to:', entry.target.className.substring(0, 50));
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -133,7 +133,7 @@ export default function Geography() {
           <button
             type="button"
             className="geography-hero-clickzone"
-            aria-label="Mở chi tiết nội dung địa lý"
+            aria-label="Mở chi tiết nội dung địa lí"
             onClick={() => navigate(currentRoute)}
           ></button>
         )}

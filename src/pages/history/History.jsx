@@ -18,13 +18,13 @@ export default function History() {
     {
       id: 1,
       image: "/images/lich_su_2.jpg",
-      title: "Di tích Lịch sử",
+      title: "Di tích lịch sử",
       description: "Những công trình kiến trúc ghi dấu ấn thời gian"
     },
     {
       id: 2,
       image: "/images/lich_su_3.jpg",
-      title: "Nhân vật Lịch sử",
+      title: "Nhân vật lịch sử",
       description: "Những người con ưu tú đã làm rạng danh vùng đất này"
     }
   ];
@@ -63,7 +63,7 @@ export default function History() {
   useEffect(() => {
     // === REVEAL ANIMATIONS (Delayed to ensure initial hidden state) ===
     console.log('Setting up reveal animations...');
-    
+
     // Delay to let elements render in hidden state
     const setupTimer = setTimeout(() => {
       const revealElements = document.querySelectorAll('.reveal');
@@ -75,14 +75,14 @@ export default function History() {
       }
 
       const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              console.log('Adding active class to:', entry.target.className.substring(0, 50));
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('Adding active class to:', entry.target.className.substring(0, 50));
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 

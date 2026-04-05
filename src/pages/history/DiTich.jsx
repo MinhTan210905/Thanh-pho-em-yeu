@@ -130,7 +130,7 @@ export default function DiTich() {
                     <p>
                       Từ cuối thế kỉ XVI, các lưu dân người Việt bắt đầu khai hoang lập ấp,
                       mở rộng lãnh thổ về phía Nam, hình thành nên vùng đất Sài Gòn – Gia Định
-                      with những công trình, đình chùa ghi dấu buổi đầu lập nghiệp.
+                      với những công trình, đình chùa ghi dấu buổi đầu lập nghiệp.
                     </p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export default function DiTich() {
                     <h3>Kháng chiến chống Pháp</h3>
                     <p>
                       Trong gần một thế kỉ đô hộ của thực dân Pháp, nhiều phong trào yêu nước
-                      đã nổ ra, để lại những di tích gắn liền with tinh thần bất khuất
+                      đã nổ ra, để lại những di tích gắn liền với tinh thần bất khuất
                       của nhân dân Sài Gòn – Chợ Lớn.
                     </p>
                   </div>
@@ -161,7 +161,7 @@ export default function DiTich() {
                     <h3>Kháng chiến chống Mỹ</h3>
                     <p>
                       Giai đoạn 1954–1975, Sài Gòn là trung tâm của cuộc đấu tranh giải phóng
-                      miền Nam, with nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi
+                      miền Nam, với nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi
                       ghi dấu chiến thắng vẻ vang.
                     </p>
                   </div>

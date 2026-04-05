@@ -18,19 +18,19 @@ export default function Culture() {
     {
       id: 1,
       image: "/images/vanhoa_xahoi_1.jpg",
-      title: "Ẩm thực Sài Gòn",
+      title: "Ẩm thực Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
       description: "Khám phá những hương vị đặc trưng của thành\u00A0phố"
     },
     {
       id: 2,
       image: "/images/vanhoa_xahoi_4.svg",
-      title: "Làng nghề Truyền thống",
+      title: "Làng nghề truyền thống",
       description: "Giữ gìn những nghề thủ công cổ xưa"
     },
     {
       id: 3,
       image: "/images/vanhoa_xahoi_3.svg",
-      title: "Lễ hội Truyền thống",
+      title: "Lễ hội truyền thống",
       description: "Những sự kiện văn hóa sôi động trong năm"
     }
   ];
@@ -69,7 +69,7 @@ export default function Culture() {
   useEffect(() => {
     // === REVEAL ANIMATIONS (Delayed to ensure initial hidden state) ===
     console.log('Setting up reveal animations...');
-    
+
     // Delay to let elements render in hidden state
     const setupTimer = setTimeout(() => {
       const revealElements = document.querySelectorAll('.reveal');
@@ -81,14 +81,14 @@ export default function Culture() {
       }
 
       const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              console.log('Adding active class to:', entry.target.className.substring(0, 50));
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('Adding active class to:', entry.target.className.substring(0, 50));
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 

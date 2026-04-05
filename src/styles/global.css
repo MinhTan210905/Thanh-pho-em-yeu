@@ -70,16 +70,22 @@ body.scroll-freeze {
     height: 40px;
     background-color: #051429;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 150px;
     z-index: 1001;
     overflow: visible;
 }
 
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .social-icons a {
     color: white;
-    margin-left: 30px;
+    margin-left: 0;
     transition: 0.3s;
     font-size: 1rem;
 }
@@ -88,11 +94,76 @@ body.scroll-freeze {
     color: #ffcc00;
 }
 
+.auth-quick-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.top-bar-divider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.auth-user-name {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.auth-quick-link {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 5px 12px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.auth-quick-link:hover {
+    background: #fff;
+    color: #08213c;
+}
+
+.auth-quick-logout {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mobile-logout-btn {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.mobile-logout-btn:hover {
+    color: #fbbf24;
+}
+
 .lang-container {
     position: relative;
-    margin-left: 20px;
-    padding-left: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -428,6 +499,36 @@ header.sticky .search-box input::placeholder {
     min-height: auto;
 }
 
+.auth-loading-wrap {
+    min-height: 100vh;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f4f8fb 0%, #edf4fa 100%);
+}
+
+.auth-loading-card {
+    max-width: 420px;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #dbe8f5;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 10px 24px rgba(14, 39, 59, 0.08);
+}
+
+.auth-loading-card h2 {
+    color: #173652;
+    margin-bottom: 8px;
+}
+
+.auth-loading-card p {
+    color: #5f7589;
+}
+
 /* --- FOOTER STYLES (GIỐNG MẪU) --- */
 .footer-area {
     background-color: #f2f2f2;
@@ -456,12 +557,18 @@ header.sticky .search-box input::placeholder {
 
 /* CỘT 1: LOGO & INFO */
 .footer-logo {
-    height: 60px;
+    height: 76px;
     margin-bottom: 20px;
 }
 
 .footer-socials {
     margin-bottom: 30px;
+}
+
+/* Đẩy 2 cột này xuống để canh ngang với hàng social bên trái */
+.footer-col.middle,
+.footer-col.right {
+    padding-top: 110px;
 }
 
 .footer-socials a {
@@ -766,7 +873,7 @@ header.sticky .search-box input::placeholder {
     transform: translateY(-3px);
 }
 
-/* --- GEO SECTION (ĐỊA LÝ) --- */
+/* --- GEO SECTION (ĐỊA LÍ) --- */
 .geo-area {
     padding: 100px 0;
     background-color: #f4f7fa;
@@ -1618,6 +1725,18 @@ header.sticky .search-box input::placeholder {
         gap: 15px;
     }
 
+    .auth-quick-links {
+        display: none;
+    }
+
+    .top-bar-right {
+        gap: 10px;
+    }
+
+    .top-bar-divider {
+        display: none;
+    }
+
     .social-icons a {
         color: rgba(255, 255, 255, 0.8) !important;
         font-size: 0.95rem;
@@ -1722,6 +1841,11 @@ header.sticky .search-box input::placeholder {
 
     .footer-row {
         grid-template-columns: 1fr;
+    }
+
+    .footer-col.middle,
+    .footer-col.right {
+        padding-top: 0;
     }
 
     .about-grid,
@@ -1874,7 +1998,7 @@ header.sticky .search-box input::placeholder {
         padding-bottom: 50px !important;
     }
 
-    /* Nếu các phần khác (Địa lý, Lịch sử...) cũng bị hở thì thêm vào đây luôn */
+    /* Nếu các phần khác (Địa lí, Lịch sử...) cũng bị hở thì thêm vào đây luôn */
     .geo-area,
     .history-area,
     .culture-area,

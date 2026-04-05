@@ -12,14 +12,14 @@ export default function Learning() {
     {
       id: 1,
       image: "/images/tailieu_hoctap_1.jpg",
-      title: "Tài liệu Học tập",
+      title: "Tài liệu học tập",
       description: "Hệ thống bài giảng, tài liệu tham khảo giúp bạn tìm hiểu sâu về TP.HCM",
       route: "/tai-lieu",
     },
     {
       id: 2,
       image: "/images/tailieu_hoctap_2.jpg",
-      title: "Trò chơi Ôn tập",
+      title: "Trò chơi ôn tập",
       description: "Ôn luyện kiến thức qua các trò chơi tương tác thú vị và bài tập trắc nghiệm",
       route: "/bai-tap",
     },

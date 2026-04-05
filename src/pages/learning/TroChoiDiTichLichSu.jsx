@@ -29,9 +29,9 @@ const playAudio = (type) => {
 
 /* ═══════════ DATA ═══════════ */
 const ERAS = [
-  { id: "oc-eo", name: "Thời kỳ Óc Eo", period: "Thế kỷ I – VII", icon: "fa-gopuram", color: "#d4a24e" },
-  { id: "khai-pha", name: "Khai phá phương Nam", period: "Thế kỷ XVII – XIX", icon: "fa-compass", color: "#22c55e" },
-  { id: "chong-phap-my", name: "Chống Pháp & Mỹ", period: "1858 – 1975", icon: "fa-fist-raised", color: "#ef4444" },
+  { id: "oc-eo", name: "Thời kì Óc Eo", period: "Thế kì I – VII", icon: "fa-gopuram", color: "#d4a24e" },
+  { id: "khai-pha", name: "Khai phá phương Nam", period: "Thế kì XVII – XIX", icon: "fa-compass", color: "#22c55e" },
+  { id: "chong-phap-my", name: "Chống Pháp và Mĩ", period: "1858 – 1975", icon: "fa-fist-raised", color: "#ef4444" },
 ];
 
 const SITES = [
@@ -398,7 +398,7 @@ export default function TroChoiLichSu() {
             Hoàn Thành <span>Phân Loại Di Tích!</span>
           </h2>
           <p>
-            Bạn phân loại đúng <strong>{correctCount}/{TOTAL}</strong> di tích vào đúng thời kỳ lịch sử.
+            Bạn phân loại đúng <strong>{correctCount}/{TOTAL}</strong> di tích vào đúng thời kì lịch sử.
           </p>
 
           <div className="tls-done-stats">
@@ -452,7 +452,7 @@ export default function TroChoiLichSu() {
             <h1>
               <i className="fa-solid fa-layer-group" /> Phân Loại Di Tích
             </h1>
-            <p>Chọn di tích và xếp vào thời kỳ phù hợp</p>
+            <p>Chọn di tích và xếp vào thời kì phù hợp</p>
           </div>
         </div>
         <div className="tls-topbar-right">
@@ -478,8 +478,8 @@ export default function TroChoiLichSu() {
         <div className="tls-instruction">
           <i className={`fa-solid ${selected || dragging ? "fa-arrow-up" : "fa-hand-pointer"}`} />
           {selected || dragging
-            ? "Bấm vào thời kỳ ở trên hoặc kéo thả để xếp di tích"
-            : "Chọn hoặc kéo thả di tích vào ô thời kỳ phù hợp"}
+            ? "Bấm vào thời kì ở trên hoặc kéo thả để xếp di tích"
+            : "Chọn hoặc kéo thả di tích vào ô thời kì phù hợp"}
         </div>
       )}
 

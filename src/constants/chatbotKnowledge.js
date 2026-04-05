@@ -79,7 +79,7 @@ Làm heo đất là một trong những ngành nghề truyền thống xuất hi
 ### Nghề đúc lư đồng An Hội
 Là một làng nghề truyền thống có lịch sử hơn 200 năm. Nguyên liệu chính được sử dụng trong nghề đúc lư gồm đồng thau, đồng đỏ và đất để làm khuôn khi nung.
 Quy trình đúc lư đồng An Hội được thực hiện qua nhiều công đoạn thủ công tỉ mỉ. Trước hết, người thợ làm khuôn đúc bằng đất sét trộn với tro và trấu để tạo độ bền và thoát khí tốt. Sau đó, khuôn được phơi khô trong khoảng từ 7 đến 10 ngày. Khi khuôn đã đạt yêu cầu, đồng được nấu chảy và đổ vào khuôn. Tiếp theo, người thợ đập bỏ lớp khuôn đất để lấy sản phẩm ra và chuyển sang khâu làm nguội. Cuối cùng, lư đồng được mài giũa, đánh bóng cẩn thận nhằm hoàn thiện sản phẩm với vẻ đẹp tinh xảo.
-Làng nghề An Hội nằm ở phường An Hội Tây TP.HCM đã tạo ra nhiều sản phẩm tiêu biểu như bộ lư vuông, bát hương, bộ lư đồng đi kèm với lư và đôi chim hạc, mang giá trị thẩm mỹ cao và đậm nét văn hóa truyền thống.
+Làng nghề An Hội nằm ở phường An Hội Tây TP.HCM đã tạo ra nhiều sản phẩm tiêu biểu như bộ lư vuông, bát hương, bộ lư đồng đi kèm với lư và đôi chim hạc, mang giá trị thẩm mĩ cao và đậm nét văn hóa truyền thống.
 
 ### Làng nghề đúc đồng truyền thống Long Điền
 Thuộc xã Long Điền, TP.HCM đã hình thành và phát triển trên 300 năm, sản phẩm của làng nghề này nổi tiếng không chỉ ở miền Đông Nam Bộ mà ở cả khu vực Đồng bằng sông Cửu Long. Làng nghề đúc đồng Long Điền tạo ra những sản phẩm đồ đồng đẹp, tinh xảo như đồ thờ cúng (lư đồng, chân đèn, hoa hồng thường, hoa hồng nhỏ, chũm choẹ, chuông, chiêng,...), hoặc các vật dụng sử dụng trong đời sống hằng ngày (khay, chậu, bát ăn cơm đựng trầu, đĩa, bát,...).
@@ -137,7 +137,7 @@ Di tích lịch sử – văn hoá là công trình xây dựng, địa điểm 
 - ANH HÙNG LÊ THỊ RIÊNG (1925 - 1968): Phó Hội trưởng Ban Chấp hành Trung ương Hội Liên hiệp Phụ nữ giải phóng. Bị địch bí mật thủ tiêu 1968.
 - Anh hùng VÕ THỊ SÁU (1933 - 1952): Nhận nhiệm vụ diệt ác trừ gian lúc 14 tuổi. Bị thực dân Pháp hành quyết.
 - LIỆT SĨ HUỲNH THỊ CHẤU (1939 – 1969): Tham gia phong trào Đồng Khởi, hi sinh khi đi kêu gọi nhân dân góp gạo nuôi quân.
-- LIỆT SĨ ĐOÀN THỊ LIÊN (1944 – 1966): Nữ thanh niên xung phong với câu nói bất hủ “Thà hy sinh chứ không để thương binh bị thương lần thứ hai”.
+- LIỆT SĨ ĐOÀN THỊ LIÊN (1944 – 1966): Nữ thanh niên xung phong với câu nói bất hủ “Thà hi sinh chứ không để thương binh bị thương lần thứ hai”.
 - Anh hùng Lực lượng vũ trang nhân dân Châu Văn Biếc (1951 - 1973): Bảo vệ Khu căn cứ kháng chiến Minh Đạm. Dùng lựu đạn gài dưới thân mình để tiêu diệt giặc.
 
 ## Lễ hội

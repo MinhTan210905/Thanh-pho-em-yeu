@@ -3,9 +3,9 @@ export const GAME_DEFS = [
   {
     id: "tro-choi-vi-tri",
     title: "Cuộc Phiêu Lưu Của Táo Đỏ",
-    category: "Địa lý",
+    category: "Địa lí",
     description:
-      "Kiểm tra kiến thức của bạn về vị trí địa lý mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",
+      "Kiểm tra kiến thức của bạn về vị trí địa lí mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị.",
     image: "/images/tro_choi/vi_tri/tao_do.png",
     totalQuestions: 5,
     route: "/tro-choi-vi-tri",
@@ -14,7 +14,7 @@ export const GAME_DEFS = [
   {
     id: "tro-choi-kinh-te",
     title: "Truy Tìm Ô Chữ",
-    category: "Địa lý",
+    category: "Địa lí",
     description:
       "Tìm 5 từ khóa về địa lí kinh tế được ẩn giấu trong bảng chữ cái.",
     image: "/images/dia_ly_3.jpg",
@@ -25,7 +25,7 @@ export const GAME_DEFS = [
   {
     id: "tro-choi-dia-li-tu-nhien",
     title: "Truy Tìm Bí Ẩn Tự Nhiên",
-    category: "Địa lý",
+    category: "Địa lí",
     description:
       "Xé túi mù khám phá 10 câu hỏi địa lí tự nhiên về TP.HCM. Chọn đáp án đúng để ghi điểm!",
     image: "/images/tro_choi/dia_li_tu_nhien/tui_mu_hong.png",
@@ -36,7 +36,7 @@ export const GAME_DEFS = [
   {
     id: "tro-choi-dan-cu",
     title: "Quán Ăn Hạnh Phúc",
-    category: "Địa lý",
+    category: "Địa lí",
     description:
       "Chọn món ăn và trả lời 5 câu hỏi về dân cư TP.HCM. Đúng thì hoàn thiện món, sai thì… khay vỡ!",
     image: "/images/tro_choi/dan_cu/dau_bep_1.png",
@@ -51,7 +51,7 @@ export const GAME_DEFS = [
     title: "Phân Loại Di Tích",
     category: "Lịch sử",
     description:
-      "Phân loại 9 di tích lịch sử vào đúng thời kỳ. Rèn luyện kiến thức lịch sử qua trò chơi tương tác!",
+      "Phân loại 9 di tích lịch sử vào đúng thời kì. Rèn luyện kiến thức lịch sử qua trò chơi tương tác!",
     image: "/images/tro_choi/di_tich_lich_su/ĐÌNH THẦN THẮNG TAM.jpg",
     totalQuestions: 9,
     route: "/tro-choi-di-tich-lich-su",
