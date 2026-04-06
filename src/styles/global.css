@@ -306,6 +306,91 @@ header {
     display: block;
 }
 
+/* NAV ITEM WRAP - chứa dropdown */
+.nav-item-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NAV SUBMENU DROPDOWN - Thiết kế hiện đại (Glassmorphism & Soft Shadow) */
+.nav-submenu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border-radius: 16px;
+    box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    min-width: 180px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2000;
+    padding: 8px;
+}
+
+/* Bridge trong suốt nối liền khoảng cách giữa text và dropdown - giữ hover khi rê chuột qua gap */
+.nav-submenu::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: -10px;
+    right: -10px;
+    height: 24px;
+    background: transparent;
+}
+
+.nav-submenu.nav-submenu--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-submenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-submenu ul li a {
+    display: block;
+    padding: 10px 16px;
+    color: #4b5563 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 0.2s ease !important;
+    border-radius: 8px;
+}
+
+.nav-submenu ul li a:hover {
+    background: #f0f6ff;
+    color: #0073e6 !important;
+    transform: translateX(4px);
+}
+
+.nav-submenu ul li a::after {
+    display: none !important;
+}
+
+.nav-submenu ul li a.sub-active {
+    background: #e8f2ff;
+    color: #0055cc !important;
+    font-weight: 700 !important;
+}
+
+/* Sticky: submenu cũng được giữ ổn định */
+header.sticky .nav-submenu {
+    top: calc(100% + 10px);
+}
+
 .search-wrapper {
     display: block;
 }
@@ -346,6 +431,8 @@ nav ul {
     display: flex;
     list-style: none;
     gap: 50px;
+    align-items: center;
+    position: relative;
 }
 
 nav ul li a {

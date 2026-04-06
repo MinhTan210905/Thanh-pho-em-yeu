@@ -1,6 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useAuth, ROLE_LABELS } from "../../context/AuthContext";
+
+// Dữ liệu submenu cho từng mục
+const NAV_ITEMS = [
+  { id: "trang-chu", label: "Trang chủ", to: "/", subPages: [] },
+  {
+    id: "dia-ly",
+    label: "Địa lí",
+    to: "/dia-ly",
+    activeRoutes: ["/dia-ly", "/vi-tri", "/kinh-te", "/tu-nhien", "/dan-cu"],
+    subPages: [
+      { label: "Vị trí", to: "/vi-tri" },
+      { label: "Kinh tế", to: "/kinh-te" },
+      { label: "Tự nhiên", to: "/tu-nhien" },
+      { label: "Dân cư", to: "/dan-cu" },
+    ],
+  },
+  {
+    id: "lich-su",
+    label: "Lịch sử",
+    to: "/lich-su",
+    activeRoutes: ["/lich-su", "/di-tich", "/nhan-vat"],
+    subPages: [
+      { label: "Di tích lịch sử", to: "/di-tich" },
+      { label: "Nhân vật lịch sử", to: "/nhan-vat" },
+    ],
+  },
+  {
+    id: "van-hoa",
+    label: "Văn hóa",
+    to: "/van-hoa",
+    activeRoutes: ["/van-hoa", "/lang-nghe", "/am-thuc", "/le-hoi"],
+    subPages: [
+      { label: "Ẩm thực", to: "/am-thuc" },
+      { label: "Làng nghề", to: "/lang-nghe" },
+      { label: "Lễ hội", to: "/le-hoi" },
+    ],
+  },
+  {
+    id: "hoc-tap",
+    label: "Góc học tập",
+    to: "/hoc-tap",
+    activeRoutes: [
+      "/hoc-tap", "/bai-tap", "/tai-lieu",
+      "/tro-choi-am-thuc", "/tro-choi-di-tich-lich-su",
+      "/tro-choi-dia-li-tu-nhien", "/tro-choi-dan-cu",
+      "/tro-choi-lang-nghe", "/tro-choi-le-hoi",
+      "/tro-choi-nhan-vat-lich-su", "/tro-choi-kinh-te",
+      "/tro-choi-vi-tri",
+    ],
+    subPages: [
+      { label: "Tài liệu học tập", to: "/tai-lieu" },
+      { label: "Trò chơi ôn tập", to: "/bai-tap" },
+    ],
+  },
+];
 
 export default function Header({ currentPage }) {
   const { isAuthenticated, user, logout } = useAuth();
@@ -14,6 +69,14 @@ export default function Header({ currentPage }) {
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
+
+  // === NAV DROPDOWN STATE ===
+  // openNav: id của nav item đang mở dropdown (null = không mở cái nào)
+  const [openNav, setOpenNav] = useState(null);
+  // anyOpen: true khi đang có ít nhất 1 dropdown hiện - dùng để bỏ delay
+  const hoverTimerRef = useRef(null);
+  const isAnyOpenRef = useRef(false);
+
   const closeMobileMenu = () => {
     const mobileMenu = document.getElementById('mobileMenu');
     mobileMenu?.classList.remove('active');
@@ -76,6 +139,39 @@ export default function Header({ currentPage }) {
     };
   }, []);
 
+  // Sync ref khi openNav thay đổi
+  useEffect(() => {
+    isAnyOpenRef.current = openNav !== null;
+  }, [openNav]);
+
+  const handleNavMouseEnter = (itemId) => {
+    // Xóa timer cũ nếu có
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+
+    if (isAnyOpenRef.current) {
+      // Đã có dropdown đang mở → hiện ngay
+      setOpenNav(itemId);
+    } else {
+      // Chưa có dropdown → đợi 700ms
+      hoverTimerRef.current = setTimeout(() => {
+        setOpenNav(itemId);
+        hoverTimerRef.current = null;
+      }, 500);
+    }
+  };
+
+  const handleNavMouseLeave = () => {
+    // Xóa timer nếu chưa kịp mở
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    setOpenNav(null);
+  };
+
   const toggleDropdown = (e) => {
     e.stopPropagation();
     setIsDropdownOpen(!isDropdownOpen);
@@ -86,18 +182,15 @@ export default function Header({ currentPage }) {
     localStorage.setItem('selectedLang', lang);
     setIsDropdownOpen(false);
 
-    // Hiện loading screen với spinner hình tròn xoay
     const loadingScreen = document.getElementById('translate-loading');
     if (loadingScreen) {
       loadingScreen.style.display = 'flex';
 
-      // Dùng 1 kiểu spinner cố định cho mượt
       const spinner = document.getElementById('spinner');
       if (spinner) {
         spinner.innerHTML = '<div class="spinner-circle1"></div>';
       }
 
-      // Trigger Google Translate
       if (lang === 'ENG') {
         const select = document.querySelector('.goog-te-combo');
         if (select) {
@@ -112,11 +205,15 @@ export default function Header({ currentPage }) {
         }
       }
 
-      // Reload trang sau 2 giây
       setTimeout(() => {
         window.location.reload();
       }, 2000);
     }
+  };
+
+  const isNavActive = (item) => {
+    if (item.id === 'trang-chu') return location.pathname === '/';
+    return item.activeRoutes?.includes(location.pathname);
   };
 
   return (
@@ -132,20 +229,43 @@ export default function Header({ currentPage }) {
           </a>
         </div>
 
-        <nav className="desktop-nav">
+        {/* Desktop Nav with hover dropdowns */}
+        <nav className="desktop-nav" onMouseLeave={handleNavMouseLeave}>
           <ul>
-            <li><Link to="/" onClick={goTop} className={location.pathname === "/" ? "active" : ""}>Trang chủ</Link></li>
-            <li><Link to="/dia-ly" className={location.pathname === "/dia-ly" || location.pathname === "/vi-tri" || location.pathname === "/kinh-te" || location.pathname === "/tu-nhien" || location.pathname === "/dan-cu" ? "active" : ""}>Địa lí</Link></li>
-            <li><Link to="/lich-su" className={location.pathname === "/lich-su" || location.pathname === "/di-tich" || location.pathname === "/nhan-vat" ? "active" : ""}>Lịch sử</Link></li>
-            <li><Link to="/van-hoa" className={location.pathname === "/van-hoa" || location.pathname === "/lang-nghe" || location.pathname === "/am-thuc" || location.pathname === "/le-hoi" ? "active" : ""}>Văn hóa</Link></li>
-            <li><Link to="/hoc-tap" className={[
-              "/hoc-tap", "/bai-tap", "/tai-lieu",
-              "/tro-choi-am-thuc", "/tro-choi-di-tich-lich-su",
-              "/tro-choi-dia-li-tu-nhien", "/tro-choi-dan-cu",
-              "/tro-choi-lang-nghe", "/tro-choi-le-hoi",
-              "/tro-choi-nhan-vat-lich-su", "/tro-choi-kinh-te",
-              "/tro-choi-vi-tri"
-            ].includes(location.pathname) ? "active" : ""}>Góc học tập</Link></li>
+            {NAV_ITEMS.map((item) => (
+              <li
+                key={item.id}
+                className={`nav-item-wrap ${openNav === item.id ? 'nav-open' : ''}`}
+                onMouseEnter={() => handleNavMouseEnter(item.id)}
+              >
+                <Link
+                  to={item.to}
+                  onClick={item.id === 'trang-chu' ? goTop : undefined}
+                  className={isNavActive(item) ? "active" : ""}
+                >
+                  {item.label}
+                </Link>
+
+                {/* Submenu dropdown */}
+                {item.subPages.length > 0 && (
+                  <div className={`nav-submenu ${openNav === item.id ? 'nav-submenu--open' : ''}`}>
+                    <ul>
+                      {item.subPages.map((sub) => (
+                        <li key={sub.to}>
+                          <Link
+                            to={sub.to}
+                            className={location.pathname === sub.to ? 'sub-active' : ''}
+                            onClick={() => setOpenNav(null)}
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
 
