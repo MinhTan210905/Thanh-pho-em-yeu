@@ -1,1 +1,33 @@
-﻿/* Home page specific styles */
+/* Home page specific styles */
+
+.audio-toggle-btn-bottomleft {
+  position: fixed; /* Bám theo màn hình luôn */
+  bottom: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 900; /* Dưới header (999) nhưng trên nội dung khác */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.audio-toggle-btn-bottomleft:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.audio-toggle-btn-bottomleft:active {
+  transform: scale(0.95);
+}

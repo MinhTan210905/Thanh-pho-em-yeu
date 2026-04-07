@@ -1,10 +1,11 @@
 import './Home.css';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
   const sliderTrackRef = useRef(null);
   const counterRef = useRef(null);
+  const videoWrapperRef = useRef(null); // Ref for the video section
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -199,9 +200,96 @@ export default function Home() {
     return () => clearTimeout(setupTimer);
   }, []);
 
+  // === AUDIO LOGIC ===
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const userPaused = useRef(false); // Lưu trạng thái người dùng chủ động tắt
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Luôn bắt đầu lại từ đầu khi vào trang chủ (chạy chung với video background)
+    audio.currentTime = 0;
+    userPaused.current = false; // Reset trạng thái khi vào lại trang
+
+    const checkPlayState = () => setIsPlaying(!audio.paused);
+    audio.addEventListener('play', checkPlayState);
+    audio.addEventListener('pause', checkPlayState);
+
+    // Cố gắng phát ngay từ đầu cùng với video
+    audio.play().catch(() => console.log('Chờ tương tác để phát nhạc...'));
+
+    // Chờ người dùng chạm/nhấp vào trang để vượt rào chặn autoplay của trình duyệt
+    const forcePlayOnInteraction = () => {
+      // Chỉ tự động phát nếu người dùng chưa bấm nút Tắt
+      if (audio.paused && !userPaused.current) {
+        audio.play().catch(() => {});
+      }
+      document.removeEventListener('click', forcePlayOnInteraction);
+      document.removeEventListener('touchstart', forcePlayOnInteraction);
+    };
+    document.addEventListener('click', forcePlayOnInteraction);
+    document.addEventListener('touchstart', forcePlayOnInteraction);
+
+    // Xử lý khi chuyển tab trình duyệt
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        audio.pause();
+      } else {
+        // Chỉ phát lại nếu người dùng không chủ động tắt trước đó
+        if (!userPaused.current) {
+          audio.play().catch(() => {});
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      audio.removeEventListener('play', checkPlayState);
+      audio.removeEventListener('pause', checkPlayState);
+      document.removeEventListener('click', forcePlayOnInteraction);
+      document.removeEventListener('touchstart', forcePlayOnInteraction);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      audio.pause();
+    };
+  }, []);
+
+  const togglePlay = (e) => {
+    e.stopPropagation();
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (!audio.paused) {
+      audio.pause();
+      userPaused.current = true; // Đánh dấu là người dùng chủ động tắt
+    } else {
+      userPaused.current = false; // Đánh dấu là muốn nghe tiếp
+      audio.play().catch(() => {});
+    }
+  };
+
   return (
     <>
-      <div className="video-wrapper">
+      {/* Audio Element */}
+      <audio 
+        ref={audioRef} 
+        src="/audio/The_City_Wakes_In_Red.mp3" 
+        loop={true} 
+        autoPlay={true}
+        preload="auto"
+      />
+      
+      <div className="video-wrapper" ref={videoWrapperRef} style={{ position: "relative" }}>
+        {/* Floating button at bottom left of the video */}
+        <button 
+          className="audio-toggle-btn-bottomleft" 
+          onClick={togglePlay} 
+          title={isPlaying ? "Tạm dừng nhạc" : "Phát nhạc"}
+        >
+          {isPlaying ? <i className="fas fa-volume-up"></i> : <i className="fas fa-volume-mute"></i>}
+        </button>
+
         <div className="video-container">
           <div style={{ width: "100%", aspectRatio: "16/9" }}>
             <iframe

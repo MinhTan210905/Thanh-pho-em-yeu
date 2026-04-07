@@ -19,14 +19,14 @@ export default function DiTich() {
       if (sectionWrappers.length === 0) return;
 
       observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
 
@@ -160,7 +160,7 @@ export default function DiTich() {
                     <span className="dt-tl-era">Thời kì IV</span>
                     <h3>Kháng chiến chống Mỹ</h3>
                     <p>
-                      Giai đoạn 1954–1975, Sài Gòn là trung tâm của cuộc đấu tranh giải phóng
+                      Giai đoạn 1954 – 1975, Sài Gòn là trung tâm của cuộc đấu tranh giải phóng
                       miền Nam, với nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi
                       ghi dấu chiến thắng vẻ vang.
                     </p>

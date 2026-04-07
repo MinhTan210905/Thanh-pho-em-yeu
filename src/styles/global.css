@@ -329,17 +329,18 @@ header {
     pointer-events: none;
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 2000;
-    padding: 8px;
+    padding: 8px 0;
 }
 
 /* Bridge trong suốt nối liền khoảng cách giữa text và dropdown - giữ hover khi rê chuột qua gap */
 .nav-submenu::before {
     content: '';
     position: absolute;
-    top: -24px;
+    top: -14px;
+    /* Chỉ cần lấp đủ khoảng trống 14px */
     left: -10px;
     right: -10px;
-    height: 24px;
+    height: 14px;
     background: transparent;
 }
 
@@ -355,6 +356,11 @@ header {
     gap: 4px;
     padding: 0;
     list-style: none;
+    width: 100%;
+}
+
+.nav-submenu ul li {
+    width: 100%;
 }
 
 .nav-submenu ul li a {
@@ -363,6 +369,8 @@ header {
     color: #4b5563 !important;
     font-size: 0.85rem !important;
     font-weight: 600 !important;
+    text-align: center;
+    /* Canh giữa chữ trong dropdown */
     text-transform: none !important;
     text-decoration: none !important;
     white-space: nowrap;
@@ -373,7 +381,6 @@ header {
 .nav-submenu ul li a:hover {
     background: #f0f6ff;
     color: #0073e6 !important;
-    transform: translateX(4px);
 }
 
 .nav-submenu ul li a::after {
@@ -381,8 +388,8 @@ header {
 }
 
 .nav-submenu ul li a.sub-active {
-    background: #e8f2ff;
-    color: #0055cc !important;
+    background: #fff5f5; /* Màu nền đỏ nhạt cực nhẹ */
+    color: #ff6b6b !important; /* Màu đỏ giống như Header khi Active */
     font-weight: 700 !important;
 }
 
@@ -430,7 +437,8 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 50px;
+    gap: 30px;
+    /* Thu hẹp khoảng cách giữa các mục (50px -> 30px) */
     align-items: center;
     position: relative;
 }
@@ -444,7 +452,9 @@ nav ul li a {
     text-transform: uppercase;
     transition: color 0.3s;
     white-space: nowrap;
-    padding-bottom: 5px;
+    padding: 10px 10px;
+    /* Tăng diện tích có thể click xung quanh chữ */
+    display: inline-block;
 }
 
 nav ul li a::after {
@@ -452,19 +462,24 @@ nav ul li a::after {
     position: absolute;
     width: 0;
     height: 3px;
-    bottom: 0;
-    left: 0;
+    bottom: 5px;
+    /* Điều chỉnh vạch gạch dưới nằm đúng vị trí */
+    left: 10px;
+    right: 10px;
     background-color: #ffcc00;
     transition: width 0.3s ease-in-out;
     display: none;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li.nav-open>a {
     color: #ffcc00;
 }
 
-nav ul li a:hover::after {
-    width: 0;
+nav ul li a:hover::after,
+nav ul li.nav-open>a::after {
+    width: calc(100% - 20px);
+    /* Bù trừ cho padding 10px hai bên */
 }
 
 /* Active link (current page) */
@@ -474,12 +489,12 @@ nav ul li a.active {
 }
 
 nav ul li a.active::after {
-    width: 0;
+    width: calc(100% - 20px);
     background-color: #ffcc00;
 }
 
 nav ul li a.active:hover::after {
-    width: 0;
+    width: calc(100% - 20px);
 }
 
 /* Sticky Header Styles */
@@ -498,12 +513,14 @@ header.sticky nav ul li a::after {
     background-color: #ff6b6b;
 }
 
-header.sticky nav ul li a:hover {
+header.sticky nav ul li a:hover,
+header.sticky nav ul li.nav-open>a {
     color: #ff6b6b;
 }
 
-header.sticky nav ul li a:hover::after {
-    width: 100%;
+header.sticky nav ul li a:hover::after,
+header.sticky nav ul li.nav-open>a::after {
+    width: calc(100% - 20px);
     background-color: #ff6b6b;
 }
 
@@ -513,12 +530,12 @@ header.sticky nav ul li a.active {
 }
 
 header.sticky nav ul li a.active::after {
-    width: 0;
+    width: calc(100% - 20px);
     background-color: #ff6b6b;
 }
 
 header.sticky nav ul li a.active:hover::after {
-    width: 100%;
+    width: calc(100% - 20px);
 }
 
 /* SEARCH BAR */

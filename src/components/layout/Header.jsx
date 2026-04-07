@@ -159,7 +159,7 @@ export default function Header({ currentPage }) {
       hoverTimerRef.current = setTimeout(() => {
         setOpenNav(itemId);
         hoverTimerRef.current = null;
-      }, 500);
+      }, 700);
     }
   };
 
