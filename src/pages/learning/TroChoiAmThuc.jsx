@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiAmThuc.css";
 
@@ -26,17 +27,17 @@ const playAudio = (type) => {
 };
 
 /* ═══════════ DATA ═══════════ */
-const QUESTIONS = [
-  { image: "/images/tro_choi/am_thuc/p01_a7m2q.jpg", answer: "CƠM TẤM" },
-  { image: "/images/tro_choi/am_thuc/p02_k9t4n.jpg", answer: "CHÈ THÁI" },
-  { image: "/images/tro_choi/am_thuc/p03_r2v8x.jpg", answer: "LẨU CÁ ĐUỐI" },
-  { image: "/images/tro_choi/am_thuc/p04_j6w1c.jpg", answer: "CHÈ HỘT GÀ" },
-  { image: "/images/tro_choi/am_thuc/p05_m3p7d.jpg", answer: "KEM CHIÊN" },
-  { image: "/images/tro_choi/am_thuc/p06_h8s2l.jpg", answer: "BÁNH BÔNG LAN TRỨNG MUỐI" },
-  { image: "/images/tro_choi/am_thuc/p07_t5n9b.jpg", answer: "CHÈ CHUỐI" },
-  { image: "/images/tro_choi/am_thuc/p08_q4y6f.jpg", answer: "GỎI GÀ MĂNG CỤT" },
-  { image: "/images/tro_choi/am_thuc/p09_u1k3e.jpg", answer: "BÁNH KHỌT" },
-  { image: "/images/tro_choi/am_thuc/p10_z7c5r.jpg", answer: "PHỞ" },
+const QUESTIONS_BASE = [
+  { image: "/images/tro_choi/am_thuc/p01_a7m2q.jpg" },
+  { image: "/images/tro_choi/am_thuc/p02_k9t4n.jpg" },
+  { image: "/images/tro_choi/am_thuc/p03_r2v8x.jpg" },
+  { image: "/images/tro_choi/am_thuc/p04_j6w1c.jpg" },
+  { image: "/images/tro_choi/am_thuc/p05_m3p7d.jpg" },
+  { image: "/images/tro_choi/am_thuc/p06_h8s2l.jpg" },
+  { image: "/images/tro_choi/am_thuc/p07_t5n9b.jpg" },
+  { image: "/images/tro_choi/am_thuc/p08_q4y6f.jpg" },
+  { image: "/images/tro_choi/am_thuc/p09_u1k3e.jpg" },
+  { image: "/images/tro_choi/am_thuc/p10_z7c5r.jpg" },
 ];
 
 const EXTRA_LETTERS = "ÀÁẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÈÉẺẼẸÊẾỀỂỄỆÌÍỈĨỊÒÓỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÙÚỦŨỤƯỨỪỬỮỰỲÝỶỸĐBCDGHKLMNPQRSTVX"
@@ -130,6 +131,14 @@ function incrementAttempts() {
 
 /* ═══════════ COMPONENT ═══════════ */
 export default function TroChoiAmThuc() {
+  const { t, i18n } = useTranslation();
+
+  const QUESTIONS = useMemo(() => {
+    return QUESTIONS_BASE.map((q, i) => ({
+      ...q,
+      answer: t(`minigames.am_thuc.questions.${i}`)
+    }));
+  }, [t]);
   const [dialog, setDialog] = useState({
     open: false,
     type: "alert",
@@ -416,8 +425,8 @@ export default function TroChoiAmThuc() {
       setDialog({
         open: true,
         type: "alert",
-        title: "Hết lượt chơi",
-        message: "Bạn đã hết lượt chơi cho Đuổi hình bắt chữ!",
+        title: t("minigames.am_thuc.dialog_max_title"),
+        message: t("minigames.am_thuc.dialog_max_desc"),
         action: "none",
       });
       return;
@@ -426,8 +435,8 @@ export default function TroChoiAmThuc() {
     setDialog({
       open: true,
       type: "confirm",
-      title: "Bắt đầu lượt mới?",
-      message: `Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn ${remaining} lượt nữa.`,
+      title: t("minigames.am_thuc.dialog_restart_title"),
+      message: t("minigames.am_thuc.dialog_restart_desc", { count: remaining }),
       action: "restart",
     });
   }, []);
@@ -472,25 +481,22 @@ export default function TroChoiAmThuc() {
             <i className={`fa-solid ${endIcon}`} />
           </div>
           <h2>
-            Hoàn Thành <span>Đuổi Hình Bắt Chữ!</span>
+            {t("minigames.am_thuc.end_title")} <span>{t("minigames.am_thuc.end_subtitle")}</span>
           </h2>
-          <p>
-            Bạn đã trả lời đúng <strong>{correctCount}/{QUESTIONS.length}</strong> câu hỏi về các
-            món ăn đặc trưng của Sài Gòn.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t("minigames.am_thuc.end_desc", { correct: correctCount, total: QUESTIONS.length }) }} />
 
           <div className="tc-end-stats">
             <div className="tc-end-stat">
               <div className="tc-end-stat-num">{score}</div>
-              <div className="tc-end-stat-label">Điểm</div>
+              <div className="tc-end-stat-label">{t("minigames.am_thuc.stat_score")}</div>
             </div>
             <div className="tc-end-stat">
               <div className="tc-end-stat-num">{correctCount}/{QUESTIONS.length}</div>
-              <div className="tc-end-stat-label">Câu đúng</div>
+              <div className="tc-end-stat-label">{t("minigames.am_thuc.stat_correct")}</div>
             </div>
             <div className="tc-end-stat">
               <div className="tc-end-stat-num">{"⭐".repeat(stars) || "—"}</div>
-              <div className="tc-end-stat-label">Đánh giá</div>
+              <div className="tc-end-stat-label">{t("minigames.am_thuc.stat_rating")}</div>
             </div>
           </div>
 
@@ -498,17 +504,17 @@ export default function TroChoiAmThuc() {
             {attemptsLeft > 0 ? (
               <button className="tc-end-btn primary" onClick={handleRestart}>
                 <i className="fa-solid fa-rotate-right" />
-                Chơi lại ({attemptsLeft} lượt còn lại)
+                {t("minigames.am_thuc.btn_play_again", { count: attemptsLeft })}
               </button>
             ) : (
               <span className="tc-end-btn disabled">
                 <i className="fa-solid fa-lock" />
-                Hết lượt chơi
+                {t("minigames.am_thuc.dialog_max_title")}
               </span>
             )}
             <Link to="/bai-tap" className="tc-end-btn secondary">
               <i className="fa-solid fa-arrow-left" />
-              Quay về Bài tập
+              {t("minigames.am_thuc.btn_back_learning")}
             </Link>
           </div>
         </div>
@@ -521,11 +527,11 @@ export default function TroChoiAmThuc() {
               <div className="tc-dialog-actions">
                 {dialog.type === "confirm" && (
                   <button className="tc-dialog-btn ghost" onClick={closeDialog}>
-                    Hủy
+                    {t("minigames.am_thuc.dialog_btn_cancel")}
                   </button>
                 )}
                 <button className="tc-dialog-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                  {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                  {dialog.type === "confirm" ? t("minigames.am_thuc.dialog_btn_confirm") : t("minigames.am_thuc.dialog_btn_ok")}
                 </button>
               </div>
             </div>
@@ -581,9 +587,9 @@ export default function TroChoiAmThuc() {
           <div>
             <h1>
               <i className="fa-solid fa-images" />
-              Đuổi Hình Bắt Chữ
+              {t("minigames.am_thuc.title")}
             </h1>
-            <p>Nhìn hình đoán tên món ăn Sài Gòn</p>
+            <p>{t("minigames.am_thuc.subtitle")}</p>
           </div>
         </div>
         <div className="tc-score-bar">
@@ -615,14 +621,14 @@ export default function TroChoiAmThuc() {
               disabled={!!feedback || hintsUsed[currentQ]}
             >
               <i className="fa-solid fa-lightbulb" />
-              Gợi ý
+              {t("minigames.am_thuc.hints")}
             </button>
           </div>
         </div>
 
         {/* Right: tiles + answer + actions */}
         <div className="tc-right">
-          <div className="tc-tiles-label">Chọn chữ cái</div>
+          <div className="tc-tiles-label">{t("minigames.am_thuc.select_letters")}</div>
           <div className="tc-tiles-grid">
             {tiles.map((letter, idx) => {
               const isUsed = placed.includes(idx) || (dragging && dragging.tileIdx === idx);
@@ -650,7 +656,7 @@ export default function TroChoiAmThuc() {
 
           {/* Answer boxes - now on right below tiles */}
           <div className="tc-answer-section">
-            <div className="tc-answer-label">Đáp án</div>
+            <div className="tc-answer-label">{t("minigames.am_thuc.answer_label")}</div>
             <div className="tc-answer-row">{answerWordGroups}</div>
           </div>
 
@@ -660,11 +666,11 @@ export default function TroChoiAmThuc() {
               <div className={`tc-feedback ${feedback === "correct" ? "success" : "fail"}`}>
                 {feedback === "correct" ? (
                   <>
-                    <i className="fa-solid fa-check-circle" /> Chính xác! 🎉
+                    <i className="fa-solid fa-check-circle" /> {t("minigames.am_thuc.feedback_correct")}
                   </>
                 ) : (
                   <>
-                    <i className="fa-solid fa-times-circle" /> Sai rồi! Đáp án: {cleanAnswer}
+                    <i className="fa-solid fa-times-circle" /> {t("minigames.am_thuc.feedback_wrong", { answer: cleanAnswer })}
                   </>
                 )}
               </div>
@@ -682,22 +688,22 @@ export default function TroChoiAmThuc() {
                     disabled={placed.some((v) => v === null)}
                   >
                     <i className="fa-solid fa-paper-plane" />
-                    Kiểm tra
+                    {t("minigames.am_thuc.btn_check")}
                   </button>
                   <button className="tc-btn tc-btn-clear" onClick={handleClear}>
                     <i className="fa-solid fa-eraser" />
-                    Xoá hết
+                    {t("minigames.am_thuc.btn_clear")}
                   </button>
                 </>
               ) : (
                 <>
                   <button className="tc-btn tc-btn-next" onClick={handleNext}>
                     <i className="fa-solid fa-arrow-right" />
-                    {results.some((r) => r === null) ? "Câu tiếp theo" : "Xem kết quả"}
+                    {results.some((r) => r === null) ? t("minigames.am_thuc.btn_next") : t("minigames.am_thuc.btn_result")}
                   </button>
                   <button className="tc-btn tc-btn-clear" onClick={handleRestart}>
                     <i className="fa-solid fa-rotate-right" />
-                    Chơi lại từ đầu
+                    {t("minigames.am_thuc.btn_restart")}
                   </button>
                 </>
               )}
@@ -732,16 +738,16 @@ export default function TroChoiAmThuc() {
           <div className="tc-dialog" onClick={(e) => e.stopPropagation()}>
             <h3>{dialog.title}</h3>
             <p>{dialog.message}</p>
-            <div className="tc-dialog-actions">
-              {dialog.type === "confirm" && (
-                <button className="tc-dialog-btn ghost" onClick={closeDialog}>
-                  Hủy
+              <div className="tc-dialog-actions">
+                {dialog.type === "confirm" && (
+                  <button className="tc-dialog-btn ghost" onClick={closeDialog}>
+                    {t("minigames.am_thuc.dialog_btn_cancel")}
+                  </button>
+                )}
+                <button className="tc-dialog-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
+                  {dialog.type === "confirm" ? t("minigames.am_thuc.dialog_btn_confirm") : t("minigames.am_thuc.dialog_btn_ok")}
                 </button>
-              )}
-              <button className="tc-dialog-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
-              </button>
-            </div>
+              </div>
           </div>
         </div>
       )}

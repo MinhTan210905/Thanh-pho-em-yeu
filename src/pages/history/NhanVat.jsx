@@ -1,8 +1,10 @@
 import './NhanVat.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function NhanVat() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-nhan-vat-active');
     return () => {
@@ -49,40 +51,39 @@ export default function NhanVat() {
 
         <div className="container section-wrapper nv-hero-inner">
           <div className="nv-hero-badge reveal fade-up">
-            <span>Lịch Sử</span>
+            <span>{t("history_page.figures.badge_his")}</span>
             <span className="nv-dot">·</span>
-            <span className="nv-badge-accent">Nhân Vật</span>
+            <span className="nv-badge-accent">{t("history_page.figures.badge_figures")}</span>
           </div>
 
           <h1 className="nv-hero-title reveal fade-up delay-100">
-            Nhân Vật Lịch Sử <span className="nv-highlight">TP.HCM</span>
+            {t("history_page.figures.hero_title")} <span className="nv-highlight">{t("history_page.figures.highlight")}</span>
           </h1>
 
           <p className="nv-hero-desc reveal fade-up delay-200">
-            Thành phố Hồ chí Minh — vùng đất giàu truyền thống lịch sử, có đóng góp
-            to lớn trong công cuộc xây dựng và bảo vệ Tổ quốc.
+            {t("history_page.figures.hero_desc")}
           </p>
 
           <div className="nv-hero-pills reveal fade-up delay-300">
             <div className="nv-pill">
               <i className="fas fa-user-shield"></i>
               <div>
-                <strong>Anh hùng</strong>
-                <span>Chiến đấu kiên cường</span>
+                <strong>{t("history_page.figures.pill1_title")}</strong>
+                <span>{t("history_page.figures.pill1_desc")}</span>
               </div>
             </div>
             <div className="nv-pill">
               <i className="fas fa-feather-alt"></i>
               <div>
-                <strong>Danh nhân</strong>
-                <span>Văn hóa & giáo dục</span>
+                <strong>{t("history_page.figures.pill2_title")}</strong>
+                <span>{t("history_page.figures.pill2_desc")}</span>
               </div>
             </div>
             <div className="nv-pill">
               <i className="fas fa-hands-helping"></i>
               <div>
-                <strong>Cống hiến</strong>
-                <span>Xây dựng Tổ quốc</span>
+                <strong>{t("history_page.figures.pill3_title")}</strong>
+                <span>{t("history_page.figures.pill3_desc")}</span>
               </div>
             </div>
           </div>
@@ -96,8 +97,8 @@ export default function NhanVat() {
           <section className="nv-tribute">
             <div className="container">
               <div className="nv-tribute-head reveal fade-up">
-                <span className="nv-tag">Vinh Danh</span>
-                <h2 className="nv-section-title">Những Người Con Ưu Tú</h2>
+                <span className="nv-tag">{t("history_page.figures.tribute_tag")}</span>
+                <h2 className="nv-section-title">{t("history_page.figures.tribute_title")}</h2>
               </div>
 
               <div className="nv-tribute-grid reveal fade-up delay-200">
@@ -106,12 +107,12 @@ export default function NhanVat() {
                     <i className="fas fa-quote-left"></i>
                   </div>
                   <blockquote>
-                    <p className="nv-quote-text">Dân ta phải biết sử ta,</p>
-                    <p className="nv-quote-text">Cho tường gốc tích nước nhà Việt Nam.</p>
-                    <p className="nv-quote-text">Kể năm hơn bốn ngàn năm,</p>
-                    <p className="nv-quote-text">Tổ tiên rực rỡ, anh em thuận hòa.</p>
+                    <p className="nv-quote-text">{t("history_page.figures.quote_line1")}</p>
+                    <p className="nv-quote-text">{t("history_page.figures.quote_line2")}</p>
+                    <p className="nv-quote-text">{t("history_page.figures.quote_line3")}</p>
+                    <p className="nv-quote-text">{t("history_page.figures.quote_line4")}</p>
                     <footer className="nv-quote-author">
-                      <span className="nv-quote-dash">—</span> <strong>Hồ Chí Minh</strong>
+                      <span className="nv-quote-dash">—</span> <strong>{t("history_page.figures.quote_author")}</strong>
                     </footer>
                   </blockquote>
                 </div>
@@ -121,22 +122,22 @@ export default function NhanVat() {
                     <div className="nv-t-icon">
                       <i className="fas fa-medal"></i>
                     </div>
-                    <h3>Anh hùng dân tộc</h3>
-                      <p>Những vị tướng, chiến sĩ kiên trung đã chiến đấu và hy sinh vì Tổ quốc.</p>
+                    <h3>{t("history_page.figures.card1_title")}</h3>
+                      <p>{t("history_page.figures.card1_desc")}</p>
                   </div>
                   <div className="nv-t-card">
                     <div className="nv-t-icon">
                       <i className="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Nhà văn hóa – giáo dục</h3>
-                    <p>Những trí thức lớn đã góp phần khai sáng, phát triển văn hóa, giáo dục thành phố.</p>
+                    <h3>{t("history_page.figures.card2_title")}</h3>
+                    <p>{t("history_page.figures.card2_desc")}</p>
                   </div>
                   <div className="nv-t-card nv-t-card-accent">
                     <div className="nv-t-icon">
                       <i className="fas fa-flag"></i>
                     </div>
-                    <h3>Lãnh đạo cách mạng</h3>
-                    <p>Những nhà lãnh đạo tiên phong, dẫn dắt phong trào đấu tranh giành độc lập.</p>
+                    <h3>{t("history_page.figures.card3_title")}</h3>
+                    <p>{t("history_page.figures.card3_desc")}</p>
                   </div>
                 </div>
               </div>
@@ -147,8 +148,8 @@ export default function NhanVat() {
           <section className="nv-canvas">
             <div className="container">
               <div className="nv-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Chân dung và câu chuyện về các nhân vật lịch sử nổi bật tại TP.HCM.</p>
+                <h3>{t("history_page.canvas_intro_title")}</h3>
+                <p>{t("history_page.figures.canvas_intro_desc")}</p>
               </div>
               <div className="nv-canvas-frame reveal fade-up delay-200">
                 <div className="nv-canvas-embed">
@@ -163,7 +164,7 @@ export default function NhanVat() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-nhan-vat-lich-su" gameName="Giải mã bí ẩn nhân vật" />
+            <GameRedirect to="/tro-choi-nhan-vat-lich-su" gameName={t("learning_page.quiz.games.nhan_vat.title")} />
           </section>
         </div>
       </main>

@@ -1,8 +1,10 @@
 import './LangNghe.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function LangNghe() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-lang-nghe-active');
     return () => {
@@ -51,40 +53,39 @@ export default function LangNghe() {
 
         <div className="ln-hero-inner container">
           <span className="ln-hero-badge reveal fade-up">
-            Văn Hóa
+            {t("culture_page.craft.badge_cul")}
             <span className="ln-dot">·</span>
-            <span className="ln-badge-accent">Làng Nghề</span>
+            <span className="ln-badge-accent">{t("culture_page.craft.badge_craft")}</span>
           </span>
 
           <h1 className="ln-hero-title reveal fade-up delay-100">
-            Làng Nghề<br /><span className="ln-highlight">Truyền Thống</span>
+            {t("culture_page.craft.hero_title")}<br /><span className="ln-highlight">{t("culture_page.craft.highlight")}</span>
           </h1>
 
           <p className="ln-hero-desc reveal fade-up delay-200">
-            Những làng nghề lâu đời tại TP.HCM lưu giữ kỹ thuật thủ công<br />
-            tinh xảo, mang đậm giá trị văn hóa và kinh tế địa phương.
+            {t("culture_page.craft.hero_desc")}
           </p>
 
           <div className="ln-hero-pills reveal fade-up delay-300">
             <div className="ln-pill">
               <i className="fas fa-hourglass-half"></i>
               <div>
-                <strong>Bề dày</strong>
-                <span>100+ năm lịch sử</span>
+                <strong>{t("culture_page.craft.pill1_title")}</strong>
+                <span>{t("culture_page.craft.pill1_desc")}</span>
               </div>
             </div>
             <div className="ln-pill">
               <i className="fas fa-hammer"></i>
               <div>
-                <strong>Nổi bật</strong>
-                <span>4 làng nghề tiêu biểu</span>
+                <strong>{t("culture_page.craft.pill2_title")}</strong>
+                <span>{t("culture_page.craft.pill2_desc")}</span>
               </div>
             </div>
             <div className="ln-pill">
               <i className="fas fa-award"></i>
               <div>
-                <strong>Giá trị</strong>
-                <span>Di sản và tinh thần</span>
+                <strong>{t("culture_page.craft.pill3_title")}</strong>
+                <span>{t("culture_page.craft.pill3_desc")}</span>
               </div>
             </div>
           </div>
@@ -99,8 +100,8 @@ export default function LangNghe() {
           <section className="ln-heritage">
             <div className="container">
               <div className="ln-heritage-head reveal fade-up">
-                <span className="ln-tag">Giá Trị Cốt Lõi</span>
-                <h2 className="ln-section-title">Bản Sắc Làng Nghề TP.HCM</h2>
+                <span className="ln-tag">{t("culture_page.craft.sec_tag")}</span>
+                <h2 className="ln-section-title">{t("culture_page.craft.sec_title")}</h2>
               </div>
 
               <div className="ln-ribbon reveal fade-up delay-100">
@@ -109,31 +110,30 @@ export default function LangNghe() {
                     <i className="fas fa-hands"></i>
                   </div>
                   <div className="ln-ribbon-body">
-                    <h3>Thủ công tỉ mỉ</h3>
-                    <p>Quy trình sản xuất trải qua nhiều<br />
-                      công đoạn thủ công, đòi hỏi sự kiên nhẫn và kỹ thuật cao từ nghệ nhân.</p>
+                    <h3>{t("culture_page.craft.rib1_title")}</h3>
+                    <p>{t("culture_page.craft.rib1_desc")}</p>
                   </div>
-                  <span className="ln-ribbon-badge">Kỹ thuật</span>
+                  <span className="ln-ribbon-badge">{t("culture_page.craft.rib1_badge")}</span>
                 </div>
                 <div className="ln-ribbon-card">
                   <div className="ln-ribbon-icon-wrap">
                     <i className="fas fa-leaf"></i>
                   </div>
                   <div className="ln-ribbon-body">
-                    <h3>Nguyên liệu bản địa</h3>
-                    <p>Sử dụng nguyên liệu gần gũi thiên nhiên, khai thác từ nguồn tài nguyên địa phương, gắn liền với vùng đất.</p>
+                    <h3>{t("culture_page.craft.rib2_title")}</h3>
+                    <p>{t("culture_page.craft.rib2_desc")}</p>
                   </div>
-                  <span className="ln-ribbon-badge">Tự nhiên</span>
+                  <span className="ln-ribbon-badge">{t("culture_page.craft.rib2_badge")}</span>
                 </div>
                 <div className="ln-ribbon-card ln-ribbon-accent">
                   <div className="ln-ribbon-icon-wrap">
                     <i className="fas fa-gem"></i>
                   </div>
                   <div className="ln-ribbon-body">
-                    <h3>Giá trị văn hóa & kinh tế</h3>
-                    <p>Sản phẩm mang giá trị văn hóa truyền đời, đồng thời tạo sinh kế ổn định và mở rộng ra thị trường trong nước, xuất khẩu.</p>
+                    <h3>{t("culture_page.craft.rib3_title")}</h3>
+                    <p>{t("culture_page.craft.rib3_desc")}</p>
                   </div>
-                  <span className="ln-ribbon-badge">Di sản</span>
+                  <span className="ln-ribbon-badge">{t("culture_page.craft.rib3_badge")}</span>
                 </div>
               </div>
             </div>
@@ -146,24 +146,24 @@ export default function LangNghe() {
                 <div className="ln-insight">
                   <div className="ln-insight-icon"><i className="fas fa-landmark"></i></div>
                   <div className="ln-insight-text">
-                    <span>Văn hóa</span>
-                    <span>Lưu giữ kỹ thuật truyền đời</span>
+                    <span>{t("culture_page.craft.ins1_top")}</span>
+                    <span>{t("culture_page.craft.ins1_bot")}</span>
                   </div>
                 </div>
                 <div className="ln-insight-divider"></div>
                 <div className="ln-insight">
                   <div className="ln-insight-icon"><i className="fas fa-coins"></i></div>
                   <div className="ln-insight-text">
-                    <span>Kinh tế</span>
-                    <span>Sinh kế cho hộ gia đình</span>
+                    <span>{t("culture_page.craft.ins2_top")}</span>
+                    <span>{t("culture_page.craft.ins2_bot")}</span>
                   </div>
                 </div>
                 <div className="ln-insight-divider"></div>
                 <div className="ln-insight">
                   <div className="ln-insight-icon"><i className="fas fa-globe-asia"></i></div>
                   <div className="ln-insight-text">
-                    <span>Thị trường</span>
-                    <span>Mở rộng trong & ngoài nước</span>
+                    <span>{t("culture_page.craft.ins3_top")}</span>
+                    <span>{t("culture_page.craft.ins3_bot")}</span>
                   </div>
                 </div>
               </div>
@@ -174,8 +174,8 @@ export default function LangNghe() {
           <section className="ln-canvas">
             <div className="container">
               <div className="ln-canvas-intro reveal fade-up">
-                <h3>Khám phá chi tiết qua bản trình bày</h3>
-                <p>Toàn bộ nội dung trực quan về hành trình làng nghề TP.HCM.</p>
+                <h3>{t("culture_page.canvas_intro_detail")}</h3>
+                <p>{t("culture_page.craft.canvas_desc")}</p>
               </div>
               <div className="ln-canvas-frame reveal fade-up delay-200">
                 <div className="ln-canvas-embed">
@@ -190,7 +190,7 @@ export default function LangNghe() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-lang-nghe" gameName="Tìm đúng làng - Đoán đúng nghề" />
+            <GameRedirect to="/tro-choi-lang-nghe" gameName={t("learning_page.quiz.games.lang_nghe.title")} />
           </section>
         </div>
       </main>

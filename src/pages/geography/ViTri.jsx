@@ -1,8 +1,10 @@
 import './ViTri.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function ViTri() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-vi-tri-active');
     return () => {
@@ -49,40 +51,39 @@ export default function ViTri() {
 
         <div className="container section-wrapper vt-hero-inner">
           <div className="vt-hero-badge reveal fade-up">
-            <span>Địa Lí</span>
+            <span>{t("geography_page.location.badge_geo")}</span>
             <span className="vt-dot">·</span>
-            <span className="vt-badge-accent">Vị Trí</span>
+            <span className="vt-badge-accent">{t("geography_page.location.badge_vt")}</span>
           </div>
 
           <h1 className="vt-hero-title reveal fade-up delay-100">
-            Vị Trí Địa Lí <span className="vt-highlight">TP.HCM</span>
+            {t("geography_page.location.hero_title")} <span className="vt-highlight">{t("geography_page.location.highlight")}</span>
           </h1>
 
           <p className="vt-hero-desc reveal fade-up delay-200">
-            TP.HCM giáp các tỉnh Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông;
-            tạo động lực phát triển của khu vực đồng bằng Đông Nam Bộ, Tây Nam Bộ và cả nước.
+            {t("geography_page.location.hero_desc")}
           </p>
 
           <div className="vt-hero-pills reveal fade-up delay-300">
             <div className="vt-pill">
               <i className="fas fa-expand-arrows-alt"></i>
               <div>
-                <strong>Diện tích</strong>
-                <span>~6.772 km²</span>
+                <strong>{t("geography_page.location.pill1_title")}</strong>
+                <span>{t("geography_page.location.pill1_desc")}</span>
               </div>
             </div>
             <div className="vt-pill">
               <i className="fas fa-users"></i>
               <div>
-                <strong>Dân số</strong>
-                <span>Hơn 14 triệu người</span>
+                <strong>{t("geography_page.location.pill2_title")}</strong>
+                <span>{t("geography_page.location.pill2_desc")}</span>
               </div>
             </div>
             <div className="vt-pill">
               <i className="fas fa-map-marker-alt"></i>
               <div>
-                <strong>Hành chính</strong>
-                <span>168 đơn vị cấp xã</span>
+                <strong>{t("geography_page.location.pill3_title")}</strong>
+                <span>{t("geography_page.location.pill3_desc")}</span>
               </div>
             </div>
           </div>
@@ -96,11 +97,10 @@ export default function ViTri() {
           <section className="vt-geo-stats">
             <div className="container">
               <div className="vt-stats-head reveal fade-up">
-                <span className="vt-tag">Tổng Quan</span>
-                <h2 className="vt-section-title">Bức Tranh Địa Lí Mở Rộng</h2>
+                <span className="vt-tag">{t("geography_page.location.stat_tag")}</span>
+                <h2 className="vt-section-title">{t("geography_page.location.stat_title")}</h2>
                 <p className="vt-stats-subtitle">
-                  Quy mô mới của TP.HCM sau sắp xếp hành chính với diện tích lớn, dân số cao
-                  và mạng lưới đơn vị cơ sở dày đặc.
+                  {t("geography_page.location.stat_desc")}
                 </p>
               </div>
 
@@ -111,7 +111,7 @@ export default function ViTri() {
                   </div>
                   <div className="vt-stat-number">6.772</div>
                   <div className="vt-stat-unit">km²</div>
-                  <div className="vt-stat-label">Tổng diện tích sau sáp nhập</div>
+                  <div className="vt-stat-label">{t("geography_page.location.stat_area_label")}</div>
                   <div className="vt-stat-glow" aria-hidden="true"></div>
                 </div>
 
@@ -120,9 +120,9 @@ export default function ViTri() {
                     <i className="fas fa-city"></i>
                   </div>
                   <div className="vt-stat-number">168</div>
-                  <div className="vt-stat-unit">Đơn vị cấp xã</div>
-                  <div className="vt-stat-label">Đơn vị hành chính</div>
-                  <div className="vt-stat-breakdown">113 phường · 54 xã · 1 đặc khu</div>
+                  <div className="vt-stat-unit">{t("geography_page.location.stat_admin_unit")}</div>
+                  <div className="vt-stat-label">{t("geography_page.location.stat_admin_label")}</div>
+                  <div className="vt-stat-breakdown">{t("geography_page.location.stat_admin_breakdown")}</div>
                 </div>
 
                 <div className="vt-stat-card vt-stat-accent">
@@ -130,8 +130,8 @@ export default function ViTri() {
                     <i className="fas fa-user-friends"></i>
                   </div>
                   <div className="vt-stat-number">14+</div>
-                  <div className="vt-stat-unit">Triệu người</div>
-                  <div className="vt-stat-label">Dân số sau sáp nhập</div>
+                  <div className="vt-stat-unit">{t("geography_page.location.stat_pop_unit")}</div>
+                  <div className="vt-stat-label">{t("geography_page.location.stat_pop_label")}</div>
                 </div>
               </div>
             </div>
@@ -141,8 +141,8 @@ export default function ViTri() {
           <section className="vt-highlights">
             <div className="container">
               <div className="vt-highlights-head reveal fade-up">
-                <span className="vt-tag">Đặc Điểm Nổi Bật</span>
-                <h2 className="vt-section-title">Lợi Thế Chiến Lược</h2>
+                <span className="vt-tag">{t("geography_page.location.hl_tag")}</span>
+                <h2 className="vt-section-title">{t("geography_page.location.hl_title")}</h2>
               </div>
 
               <div className="vt-highlights-grid reveal fade-up delay-200">
@@ -150,10 +150,9 @@ export default function ViTri() {
                   <div className="vt-hl-icon">
                     <i className="fas fa-compass"></i>
                   </div>
-                  <h3>Vị trí liên kết vùng</h3>
+                  <h3>{t("geography_page.location.hl1_title")}</h3>
                   <p>
-                    TP.HCM giáp Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông,
-                    tạo trục kết nối liên hoàn giữa cao nguyên, đồng bằng và biển.
+                    {t("geography_page.location.hl1_desc")}
                   </p>
                 </div>
 
@@ -161,10 +160,9 @@ export default function ViTri() {
                   <div className="vt-hl-icon">
                     <i className="fas fa-water"></i>
                   </div>
-                  <h3>Hệ thống sông ngòi</h3>
+                  <h3>{t("geography_page.location.hl2_title")}</h3>
                   <p>
-                    Sông Sài Gòn, sông Đồng Nai cùng mạng lưới kênh rạch
-                    chằng chịt tạo hệ thống giao thông đường thủy phong phú.
+                    {t("geography_page.location.hl2_desc")}
                   </p>
                 </div>
 
@@ -172,10 +170,9 @@ export default function ViTri() {
                   <div className="vt-hl-icon">
                     <i className="fas fa-plane-departure"></i>
                   </div>
-                  <h3>Đầu mối giao thông</h3>
+                  <h3>{t("geography_page.location.hl3_title")}</h3>
                   <p>
-                    Sân bay Tân Sơn Nhất, cảng Cát Lái, hệ thống quốc lộ —
-                    một trong những đầu mối giao thương quốc tế quan trọng của phía Nam.
+                    {t("geography_page.location.hl3_desc")}
                   </p>
                 </div>
 
@@ -183,10 +180,9 @@ export default function ViTri() {
                   <div className="vt-hl-icon">
                     <i className="fas fa-globe-asia"></i>
                   </div>
-                  <h3>Cửa ngõ quốc tế</h3>
+                  <h3>{t("geography_page.location.hl4_title")}</h3>
                   <p>
-                    Kết nối Đông Nam Á và thế giới, là một trong những đô thị
-                    năng động của khu vực với hạ tầng hiện đại đang phát triển mạnh.
+                    {t("geography_page.location.hl4_desc")}
                   </p>
                 </div>
               </div>
@@ -197,8 +193,8 @@ export default function ViTri() {
           <section className="vt-canvas">
             <div className="container">
               <div className="vt-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Tổng hợp thông tin vị trí địa lí, đặc điểm tự nhiên và đơn vị hành chính TP.HCM.</p>
+                <h3>{t("geography_page.canvas_intro_title")}</h3>
+                <p>{t("geography_page.location.canvas_intro_desc")}</p>
               </div>
               <div className="vt-canvas-frame reveal fade-up delay-200">
                 <div className="vt-canvas-embed">
@@ -213,7 +209,7 @@ export default function ViTri() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-vi-tri" gameName="Cuộc phiêu lưu của Táo Đỏ" />
+            <GameRedirect to="/tro-choi-vi-tri" gameName={t("learning_page.quiz.games.vi_tri.title")} />
           </section>
         </div>
       </main>

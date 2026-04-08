@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./Learning.css";
 
 export default function Learning() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isHeroContentVisible, setIsHeroContentVisible] = useState(false);
@@ -12,15 +14,15 @@ export default function Learning() {
     {
       id: 1,
       image: "/images/tailieu_hoctap_1.jpg",
-      title: "Tài liệu học tập",
-      description: "Hệ thống bài giảng, tài liệu tham khảo giúp bạn tìm hiểu sâu về TP.HCM",
+      title: t("learning_page.overview.item1_title"),
+      description: t("learning_page.overview.item1_desc"),
       route: "/tai-lieu",
     },
     {
       id: 2,
       image: "/images/tailieu_hoctap_2.jpg",
-      title: "Trò chơi ôn tập",
-      description: "Ôn luyện kiến thức qua các trò chơi tương tác thú vị và bài tập trắc nghiệm",
+      title: t("learning_page.overview.item2_title"),
+      description: t("learning_page.overview.item2_desc"),
       route: "/bai-tap",
     },
   ];
@@ -84,7 +86,7 @@ export default function Learning() {
         <button
           type="button"
           className="learning-hero-clickzone"
-          aria-label={`Mở trang ${currentHero.title}`}
+          aria-label={t("learning_page.overview.aria_open", { title: currentHero.title })}
           onClick={() => navigate(currentHero.route)}
         ></button>
 
@@ -95,7 +97,7 @@ export default function Learning() {
           <h1>{currentHero.title}</h1>
           <p>{currentHero.description}</p>
           <Link to={currentHero.route} className="learning-read-more">
-            Đọc thêm
+            {t("learning_page.btn_read_more")}
             <span className="learning-read-more-icon" aria-hidden="true">
               <i className="fas fa-arrow-right"></i>
             </span>
@@ -107,7 +109,7 @@ export default function Learning() {
             <button
               key={index}
               type="button"
-              aria-label={`Chuyển ảnh ${index + 1}`}
+              aria-label={t("learning_page.overview.aria_dot", { count: index + 1 })}
               className={`dot ${index === currentImageIndex ? "active" : ""}`}
               style={index === currentImageIndex ? { "--progress": `${progress}%` } : undefined}
               onClick={() => handleDotClick(index)}

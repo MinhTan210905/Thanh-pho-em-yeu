@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiDanCu.css";
 
@@ -9,8 +10,6 @@ function ConfettiOnMount() {
   }, []);
   return null;
 }
-
-const DISH_NAMES = ["Mì ý", "Pizza", "Gà quay", "Canh bò", "Bò bít tết"];
 
 const AUDIO_MAP = {
   start: "/audio/startQuanAnHanhPhuc.mp3",
@@ -45,68 +44,6 @@ const ASSETS = {
   ],
 };
 
-const QUESTIONS = [
-  {
-    title: "DÂN CƯ",
-    prompt:
-      "Sau sáp nhập, Thành phố Hồ Chí Minh có dân số khoảng bao nhiêu người?",
-    answers: [
-      "Trên 12 triệu người.",
-      "Trên 13 triệu người.",
-      "Trên 14 triệu người.",
-      "Trên 15 triệu người.",
-    ],
-    correctIndex: 2, // C
-  },
-  {
-    title: "DÂN CƯ",
-    prompt:
-      "Hiện nay, Thành phố Hồ Chí Minh có bao nhiêu dân tộc thiểu số sinh sống?",
-    answers: ["52", "53", "54", "55"],
-    correctIndex: 1, // B
-  },
-  {
-    title: "DÂN CƯ",
-    prompt: "Dân cư ở Thành phố Hồ Chí Minh phân bố như thế nào?",
-    answers: [
-      "Chỉ tập trung ở trung tâm thành phố",
-      "Chỉ tập trung ở vùng ven",
-      "Đồng đều giữa các khu vực",
-      "Không đồng đều giữa các khu vực",
-    ],
-    correctIndex: 3, // D
-  },
-  {
-    title: "DÂN CƯ",
-    prompt:
-      "Người dân Thành phố Hồ Chí Minh được miêu tả với đặc điểm nào sau đây?",
-    answers: [
-      "Khép kín, ít giao tiếp",
-      "Phóng khoáng, tự tin và năng động",
-      "Bảo thủ, ít thay đổi",
-      "Chậm chạp, thụ động",
-    ],
-    correctIndex: 1, // B
-  },
-  {
-    title: "DÂN CƯ",
-    prompt:
-      "Những dân tộc thiểu số nào chiếm phần lớn trong cộng đồng dân tộc thiểu số ở Thành phố Hồ Chí Minh?",
-    answers: [
-      "Hoa, Khmer, Chăm, Tày",
-      "Mường, Nùng, Dao, Thái",
-      "Ê-đê, Gia-rai, Ba-na",
-      "H’Mông, Xơ-đăng, Cơ-tu",
-    ],
-    correctIndex: 0, // A
-  },
-].map((q) => ({
-  ...q,
-  prompt: q.prompt.normalize("NFC"),
-  answers: q.answers.map((a) => a.normalize("NFC")),
-}));
-
-const TOTAL = QUESTIONS.length;
 const GAME_ID = "tro-choi-dan-cu";
 const STATE_KEY = "tc_dan_cu_state";
 const BT_KEY = "bt_game_progress";
@@ -146,10 +83,10 @@ function incrementAttempts() {
   }
 }
 
-function syncProgress(results) {
+function syncProgress(results, total) {
   const answered = results.filter((r) => r !== null).length;
   const correctCount = results.filter((r) => r === true).length;
-  const score = Math.round((correctCount / TOTAL) * 100);
+  const score = Math.round((correctCount / total) * 100);
   try {
     const data = JSON.parse(sessionStorage.getItem(BT_KEY)) || {};
     const prev = data[GAME_ID] || { answered: 0, correctCount: 0, score: 0, attempts: 0 };
@@ -166,9 +103,26 @@ function syncProgress(results) {
 }
 
 export default function TroChoiDanCu() {
+  const { t } = useTranslation();
+
+  const DISH_NAMES = useMemo(() => t("minigames.dan_cu.dishes", { returnObjects: true }), [t]);
+
+  const QUESTIONS = useMemo(() => {
+    const questions = t("minigames.dan_cu.questions", { returnObjects: true });
+    return questions.map((q, i) => ({
+      ...q,
+      title: "DÂN CƯ",
+      correctIndex: [2, 1, 3, 1, 0][i],
+      prompt: q.prompt.normalize("NFC"),
+      answers: q.answers.map((a) => a.normalize("NFC")),
+    }));
+  }, [t]);
+
+  const TOTAL = QUESTIONS.length;
+
   const saved = useMemo(() => loadState(), []);
 
-  const [screen, setScreen] = useState(saved?.screen ?? "intro1"); // intro1 -> intro2 -> menu -> question -> finish
+  const [screen, setScreen] = useState(saved?.screen ?? "intro1");
   const [selectedDish, setSelectedDish] = useState(saved?.selectedDish ?? null);
   const [results, setResults] = useState(() => saved?.results ?? Array(TOTAL).fill(null));
   const [justFinished, setJustFinished] = useState(false);
@@ -222,8 +176,8 @@ export default function TroChoiDanCu() {
 
   useEffect(() => {
     saveState({ screen, selectedDish, results, picked, reveal, finishedOnce: finishedRef.current });
-    syncProgress(results);
-  }, [screen, selectedDish, results, picked, reveal]);
+    syncProgress(results, TOTAL);
+  }, [screen, selectedDish, results, picked, reveal, TOTAL]);
 
   // Không tự chuyển sang finish nữa, chờ người dùng nhấn nút "Xem tổng kết"
   const handleViewSummary = useCallback(() => {
@@ -286,11 +240,11 @@ export default function TroChoiDanCu() {
     setDialog({
       open: true,
       type: "confirm",
-      title: "Chơi lại",
-      message: "Bạn có chắc chắn muốn chơi lại từ đầu không? Toàn bộ tiến trình hiện tại sẽ bị xóa.",
+      title: t("minigames.dan_cu.dialog_restart_title"),
+      message: t("minigames.dan_cu.dialog_restart_desc"),
       action: "restart",
     });
-  }, []);
+  }, [t]);
 
   const closeDialog = useCallback(() => setDialog({ open: false, type: "", title: "", message: "", action: "" }), []);
 
@@ -307,7 +261,7 @@ export default function TroChoiDanCu() {
       setJustFinished(false);
     }
     closeDialog();
-  }, [dialog, closeDialog, stopBGM]);
+  }, [dialog, closeDialog, stopBGM, TOTAL]);
 
   const question = selectedDish !== null ? QUESTIONS[selectedDish] : null;
 
@@ -319,23 +273,21 @@ export default function TroChoiDanCu() {
         <div className="dc-finish">
           <div className="dc-finish-badge">
             <i className="fa-solid fa-utensils" />
-            Hoàn thành thực đơn
+            {t("minigames.dan_cu.end_badge")}
           </div>
-          <h2>
-            Bạn đã hoàn thành <span>Quán Ăn Hạnh Phúc</span>
-          </h2>
+          <h2 dangerouslySetInnerHTML={{ __html: t("minigames.dan_cu.end_title") }} />
           <div className="dc-summary-stats-box">
             <p>
-              Số câu đúng: <strong>{correctCount}/{TOTAL}</strong> — Điểm:{" "}
+              {t("minigames.dan_cu.end_stat_correct")}: <strong>{correctCount}/{TOTAL}</strong> — {t("minigames.dan_cu.end_stat_score")}:{" "}
               <strong>{score}</strong>
             </p>
           </div>
           <div className="dc-finish-actions">
             <button className="dc-btn primary" onClick={handleRestart}>
-              <i className="fa-solid fa-rotate-right" /> Chơi lại
+              <i className="fa-solid fa-rotate-right" /> {t("minigames.dan_cu.btn_play_again")}
             </button>
             <Link to="/bai-tap" className="dc-btn ghost">
-              <i className="fa-solid fa-arrow-left" /> Quay về Bài tập
+              <i className="fa-solid fa-arrow-left" /> {t("minigames.dan_cu.btn_back_learning")}
             </Link>
           </div>
         </div>
@@ -347,10 +299,10 @@ export default function TroChoiDanCu() {
               <p>{dialog.message}</p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
                 <button className="dc-btn ghost" onClick={closeDialog} style={{ padding: '12px 24px', fontSize: '1.2rem' }}>
-                  Hủy
+                  {t("minigames.dan_cu.dialog_btn_cancel")}
                 </button>
                 <button className="dc-btn primary" onClick={confirmDialog} style={{ padding: '12px 24px', fontSize: '1.2rem' }}>
-                  Đồng ý
+                  {t("minigames.dan_cu.dialog_btn_confirm")}
                 </button>
               </div>
             </div>
@@ -372,9 +324,9 @@ export default function TroChoiDanCu() {
           </Link>
           <div className="dc-topbar-title">
             <h1>
-              <i className="fa-solid fa-bowl-food" /> Quán Ăn Hạnh Phúc
+              <i className="fa-solid fa-bowl-food" /> {t("minigames.dan_cu.title")}
             </h1>
-            <p>Chọn món, trả lời câu hỏi để hoàn thiện thực đơn</p>
+            <p>{t("minigames.dan_cu.subtitle")}</p>
           </div>
         </div>
         <div className="dc-topbar-stats">
@@ -392,11 +344,11 @@ export default function TroChoiDanCu() {
           <div className="dc-sign-wrapper">
             <img className="dc-sign" src={ASSETS.sign} alt="Bảng hiệu" />
             <div className="dc-sign-text">
-              <div className="dc-sign-line1" data-text="QUÁN ĂN">QUÁN ĂN</div>
-              <div className="dc-sign-line2" data-text="HẠNH PHÚC">HẠNH PHÚC</div>
+              <div className="dc-sign-line1" data-text={t("minigames.dan_cu.sign_line1")}>{t("minigames.dan_cu.sign_line1")}</div>
+              <div className="dc-sign-line2" data-text={t("minigames.dan_cu.sign_line2")}>{t("minigames.dan_cu.sign_line2")}</div>
             </div>
             <button className="dc-btn primary dc-start-btn" onClick={() => setScreen("intro2")}>
-              <i className="fa-solid fa-play" /> Vào quán
+              <i className="fa-solid fa-play" /> {t("minigames.dan_cu.btn_enter")}
             </button>
           </div>
           <img className="dc-chef dc-chef-1" src={ASSETS.chef1} alt="Đầu bếp" />
@@ -407,14 +359,14 @@ export default function TroChoiDanCu() {
         <section className="dc-stage dc-intro dc-intro2">
           <img className="dc-chef dc-chef-2" src={ASSETS.chef2} alt="Đầu bếp" />
           <div className="dc-welcome">
-            <div className="dc-welcome-top">Chào mừng bạn đến với:</div>
-            <div className="dc-welcome-title">QUÁN ĂN HẠNH PHÚC</div>
+            <div className="dc-welcome-top">{t("minigames.dan_cu.welcome_greeting")}</div>
+            <div className="dc-welcome-title">{t("minigames.dan_cu.title").toUpperCase()}</div>
             <div className="dc-welcome-desc">
-              Hãy giải đáp các câu hỏi để chuẩn bị thực đơn phục vụ khách hàng nhé!
+              {t("minigames.dan_cu.welcome_desc")}
             </div>
             <div className="dc-welcome-actions">
               <button className="dc-btn primary dc-big-btn" onClick={handleStart}>
-                <i className="fa-solid fa-utensils" /> Cùng chọn món ăn
+                <i className="fa-solid fa-utensils" /> {t("minigames.dan_cu.btn_start")}
               </button>
             </div>
           </div>
@@ -425,7 +377,7 @@ export default function TroChoiDanCu() {
         <section className="dc-stage dc-menu dc-menu-layout">
           <div className="dc-menu-left">
             <div className="dc-bubble">
-              Hãy chọn một món ăn để chế biến thực đơn nhé!
+              {t("minigames.dan_cu.menu_bubble")}
             </div>
             <img className="dc-chef dc-chef-3" src={ASSETS.chef3} alt="Đầu bếp" />
           </div>
@@ -459,7 +411,7 @@ export default function TroChoiDanCu() {
                       <div className={`dc-tray-label-wrap ${status === false ? 'broken' : status === true ? 'done' : ''}`}>
                         <div className="dc-tray-label-left"></div>
                         <div className="dc-tray-label-body">
-                          {status === true ? DISH_NAMES[i] : `Món ăn ${i + 1}`}
+                          {status === true ? DISH_NAMES[i] : t("minigames.dan_cu.dish_default_label", { count: i + 1 })}
                         </div>
                         <div className="dc-tray-label-right"></div>
                       </div>
@@ -472,7 +424,7 @@ export default function TroChoiDanCu() {
             {allDone && (
               <div className="dc-menu-actions">
                 <button className="dc-btn dc-summary-btn" onClick={handleViewSummary}>
-                  <i className="fa-solid fa-star" /> Xem tổng kết
+                  <i className="fa-solid fa-star" /> {t("minigames.dan_cu.btn_summary")}
                 </button>
               </div>
             )}
@@ -485,7 +437,7 @@ export default function TroChoiDanCu() {
           <div className="dc-qcard">
             <img className="dc-chef dc-chef-4" src={ASSETS.chef4} alt="Đầu bếp" />
             <div className="dc-qtitle">
-              <span>Câu hỏi</span>
+              <span>{t("minigames.dan_cu.q_label")}</span>
             </div>
             <div className="dc-qprompt">{question.prompt}</div>
           </div>
@@ -526,9 +478,9 @@ export default function TroChoiDanCu() {
               {reveal && (
                 <div className={`dc-feedback ${picked === question.correctIndex ? 'ok' : 'no'}`}>
                   {picked === question.correctIndex ? (
-                    <><i className="fa-solid fa-circle-check" /> Chính xác! Món ăn đã hoàn thiện.</>
+                    <><i className="fa-solid fa-circle-check" /> {t("minigames.dan_cu.feedback_correct")}</>
                   ) : (
-                    <><i className="fa-solid fa-circle-xmark" /> Chưa đúng rồi! Khay bị vỡ mất…</>
+                    <><i className="fa-solid fa-circle-xmark" /> {t("minigames.dan_cu.feedback_wrong")}</>
                   )}
                 </div>
               )}
@@ -536,7 +488,7 @@ export default function TroChoiDanCu() {
 
             <div className="dc-after-actions">
               <button className={`dc-btn ${reveal ? 'primary' : 'ghost'}`} onClick={backToMenu}>
-                <i className="fa-solid fa-arrow-left" /> Quay lại chọn món
+                <i className="fa-solid fa-arrow-left" /> {t("minigames.dan_cu.btn_back_menu")}
               </button>
             </div>
           </div>
@@ -551,11 +503,11 @@ export default function TroChoiDanCu() {
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
               {dialog.type === "confirm" && (
                 <button className="tk-dlg-btn ghost" onClick={closeDialog}>
-                  Hủy
+                  {t("minigames.dan_cu.dialog_btn_cancel")}
                 </button>
               )}
               <button className="tk-dlg-btn blue" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                {dialog.type === "confirm" ? t("minigames.dan_cu.dialog_btn_start_new") : t("minigames.dan_cu.dialog_btn_ok")}
               </button>
             </div>
           </div>

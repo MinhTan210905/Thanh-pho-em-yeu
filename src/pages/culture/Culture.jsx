@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import './Culture.css';
 
 export default function Culture() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -18,20 +20,20 @@ export default function Culture() {
     {
       id: 1,
       image: "/images/vanhoa_xahoi_1.jpg",
-      title: "Ẩm thực Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
-      description: "Khám phá những hương vị đặc trưng của thành\u00A0phố"
+      title: t("culture_page.overview.item1_title"),
+      description: t("culture_page.overview.item1_desc")
     },
     {
       id: 2,
       image: "/images/vanhoa_xahoi_4.svg",
-      title: "Làng nghề truyền thống",
-      description: "Giữ gìn những nghề thủ công cổ xưa"
+      title: t("culture_page.overview.item2_title"),
+      description: t("culture_page.overview.item2_desc")
     },
     {
       id: 3,
       image: "/images/vanhoa_xahoi_3.svg",
-      title: "Lễ hội truyền thống",
-      description: "Những sự kiện văn hóa sôi động trong năm"
+      title: t("culture_page.overview.item3_title"),
+      description: t("culture_page.overview.item3_desc")
     }
   ];
 
@@ -125,7 +127,7 @@ export default function Culture() {
           <button
             type="button"
             className="culture-hero-clickzone"
-            aria-label="Mở trang Làng nghề"
+            aria-label={t("culture_page.overview.aria_craft")}
             onClick={() => navigate('/lang-nghe')}
           ></button>
         )}
@@ -134,7 +136,7 @@ export default function Culture() {
           <button
             type="button"
             className="culture-hero-clickzone"
-            aria-label="Mở trang Ẩm thực"
+            aria-label={t("culture_page.overview.aria_food")}
             onClick={() => navigate('/am-thuc')}
           ></button>
         )}
@@ -143,7 +145,7 @@ export default function Culture() {
           <button
             type="button"
             className="culture-hero-clickzone"
-            aria-label="Mở trang Lễ hội"
+            aria-label={t("culture_page.overview.aria_festival")}
             onClick={() => navigate('/le-hoi')}
           ></button>
         )}
@@ -154,30 +156,30 @@ export default function Culture() {
         >
           <h1>{currentHero.title}</h1>
           <p>{currentHero.description}</p>
-          {isLangNgheSlide ? (
+           {isLangNgheSlide ? (
             <Link to="/lang-nghe" className="culture-read-more">
-              Đọc thêm
+              {t("culture_page.btn_read_more")}
               <span className="culture-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
             </Link>
           ) : isAmThucSlide ? (
             <Link to="/am-thuc" className="culture-read-more">
-              Đọc thêm
+              {t("culture_page.btn_read_more")}
               <span className="culture-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
             </Link>
           ) : isLeHoiSlide ? (
             <Link to="/le-hoi" className="culture-read-more">
-              Đọc thêm
+              {t("culture_page.btn_read_more")}
               <span className="culture-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
             </Link>
           ) : (
             <button className="culture-read-more">
-              Đọc thêm
+              {t("culture_page.btn_read_more")}
               <span className="culture-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
@@ -190,7 +192,7 @@ export default function Culture() {
             <button
               key={index}
               type="button"
-              aria-label={`Chuyển ảnh ${index + 1}`}
+              aria-label={t("culture_page.overview.aria_dot", { count: index + 1 })}
               className={`dot ${index === currentImageIndex ? "active" : ""}`}
               style={
                 index === currentImageIndex

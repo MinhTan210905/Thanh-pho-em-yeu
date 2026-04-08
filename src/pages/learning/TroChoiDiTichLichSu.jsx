@@ -1,5 +1,6 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiDiTichLichSu.css";
 
@@ -25,28 +26,7 @@ const playAudio = (type) => {
   }
 };
 
-
-
-/* ═══════════ DATA ═══════════ */
-const ERAS = [
-  { id: "oc-eo", name: "Thời kì Óc Eo", period: "Thế kì I – VII", icon: "fa-gopuram", color: "#d4a24e" },
-  { id: "khai-pha", name: "Khai phá phương Nam", period: "Thế kì XVII – XIX", icon: "fa-compass", color: "#22c55e" },
-  { id: "chong-phap-my", name: "Chống Pháp và Mĩ", period: "1858 – 1975", icon: "fa-fist-raised", color: "#ef4444" },
-];
-
-const SITES = [
-  { id: "chua-hoi-son", name: "Chùa Hội Sơn", era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học chùa Hội Sơn.png" },
-  { id: "giong-ca-vo", name: "Giồng Cá Vồ", era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học Giồng Cá Vồ.png" },
-  { id: "bung-bac", name: "Bưng Bạc", era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học Bưng Bạc.png" },
-  { id: "dinh-thang-tam", name: "Đình Thần Thắng Tam", era: "khai-pha", image: "/images/tro_choi/di_tich_lich_su/ĐÌNH THẦN THẮNG TAM.jpg" },
-  { id: "chua-long-ban", name: "Chùa Long Bàn", era: "khai-pha", image: "/images/tro_choi/di_tich_lich_su/CHÙA LONG BÀN.png" },
-  { id: "nha-luu-niem", name: "Nhà Lưu Niệm Chủ Tịch Hồ Chí Minh", era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/NHÀ LƯU NIỆM CHỦ TỊCH HỒ CHÍ MINH.png" },
-  { id: "chien-khu", name: "Chiến Khu Thuận An Hòa", era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/DI TÍCH LỊCH SỬ CHIẾN KHU THUẬN AN HÒA.png" },
-  { id: "dia-dao", name: "Địa Đạo Kim Long", era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/ĐỊA ĐẠO KIM LONG.png" },
-  { id: "can-cu", name: "Căn Cứ Minh Đạm", era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/CĂN CỨ MINH ĐẠM.png" },
-];
-
-const TOTAL = SITES.length;
+const TOTAL = 9;
 const BT_KEY = "bt_game_progress";
 const STATE_KEY = "tc_ditichlichsu_state";
 const GAME_ID = "tro-choi-di-tich-lich-su";
@@ -116,6 +96,25 @@ function fmtTime(s) { return `${Math.floor(s / 60)}:${String(s % 60).padStart(2,
 
 /* ═══════════ COMPONENT ═══════════ */
 export default function TroChoiLichSu() {
+  const { t } = useTranslation();
+
+  const ERAS = useMemo(() => [
+    { id: "oc-eo", name: t("minigames.di_tich.eras.oc_eo.name"), period: t("minigames.di_tich.eras.oc_eo.period"), icon: "fa-gopuram", color: "#d4a24e" },
+    { id: "khai-pha", name: t("minigames.di_tich.eras.khai_pha.name"), period: t("minigames.di_tich.eras.khai_pha.period"), icon: "fa-compass", color: "#22c55e" },
+    { id: "chong-phap-my", name: t("minigames.di_tich.eras.chong_phap_my.name"), period: t("minigames.di_tich.eras.chong_phap_my.period"), icon: "fa-fist-raised", color: "#ef4444" },
+  ], [t]);
+
+  const SITES = useMemo(() => [
+    { id: "chua-hoi-son", name: t("minigames.di_tich.sites.chua_hoi_son"), era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học chùa Hội Sơn.png" },
+    { id: "giong-ca-vo", name: t("minigames.di_tich.sites.giong_ca_vo"), era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học Giồng Cá Vồ.png" },
+    { id: "bung-bac", name: t("minigames.di_tich.sites.bung_bac"), era: "oc-eo", image: "/images/tro_choi/di_tich_lich_su/Di tích khảo cổ học Bưng Bạc.png" },
+    { id: "dinh-thang-tam", name: t("minigames.di_tich.sites.dinh_thang_tam"), era: "khai-pha", image: "/images/tro_choi/di_tich_lich_su/ĐÌNH THẦN THẮNG TAM.jpg" },
+    { id: "chua-long-ban", name: t("minigames.di_tich.sites.chua_long_ban"), era: "khai-pha", image: "/images/tro_choi/di_tich_lich_su/CHÙA LONG BÀN.png" },
+    { id: "nha-luu-niem", name: t("minigames.di_tich.sites.nha_luu_niem"), era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/NHÀ LƯU NIỆM CHỦ TỊCH HỒ CHÍ MINH.png" },
+    { id: "chien-khu", name: t("minigames.di_tich.sites.chien_khu"), era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/DI TÍCH LỊCH SỬ CHIẾN KHU THUẬN AN HÒA.png" },
+    { id: "dia-dao", name: t("minigames.di_tich.sites.dia_dao"), era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/ĐỊA ĐẠO KIM LONG.png" },
+    { id: "can-cu", name: t("minigames.di_tich.sites.can_cu"), era: "chong-phap-my", image: "/images/tro_choi/di_tich_lich_su/CĂN CỨ MINH ĐẠM.png" },
+  ], [t]);
   /* Header override */
   useEffect(() => {
     document.body.classList.add("page-tro-choi-ls-active");
@@ -338,14 +337,14 @@ export default function TroChoiLichSu() {
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
     if (attempts >= MAX_ATTEMPTS) {
-      setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho Đoán tên di tích!", action: "" });
+      setDialog({ open: true, type: "alert", title: t("minigames.di_tich.error_max_title"), message: t("minigames.di_tich.error_max_attempts"), action: "" });
       return;
     }
     setDialog({
       open: true,
       type: "confirm",
-      title: "Bắt đầu lượt mới?",
-      message: `Sau lượt này bạn còn ${MAX_ATTEMPTS - attempts - 1} lượt nữa.`,
+      title: t("minigames.di_tich.dialog_restart_title"),
+      message: t("minigames.di_tich.dialog_restart_desc", { count: MAX_ATTEMPTS - attempts - 1 }),
       action: "restart",
     });
   }, []);
@@ -366,13 +365,13 @@ export default function TroChoiLichSu() {
           <p>{dialog.message}</p>
           <div className="tls-dialog-actions">
             {dialog.type === "confirm" && (
-              <button className="tls-dlg-btn ghost" onClick={closeDialog}>Hủy</button>
+              <button className="tls-dlg-btn ghost" onClick={closeDialog}>{t("minigames.di_tich.dialog_btn_cancel")}</button>
             )}
             <button
               className="tls-dlg-btn primary"
               onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}
             >
-              {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+              {dialog.type === "confirm" ? t("minigames.di_tich.dialog_btn_start") : t("minigames.di_tich.dialog_btn_ok")}
             </button>
           </div>
         </div>
@@ -395,39 +394,37 @@ export default function TroChoiLichSu() {
             <i className={`fa-solid ${doneIcon}`} />
           </div>
           <h2>
-            Hoàn Thành <span>Phân Loại Di Tích!</span>
+            {t("minigames.di_tich.done_title")} <span>{t("minigames.di_tich.done_highlight")}</span>
           </h2>
-          <p>
-            Bạn phân loại đúng <strong>{correctCount}/{TOTAL}</strong> di tích vào đúng thời kì lịch sử.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t("minigames.di_tich.done_desc", { correct: correctCount, total: TOTAL }) }} />
 
           <div className="tls-done-stats">
             <div className="tls-done-stat">
               <div className="tls-done-num">{score}</div>
-              <div className="tls-done-label">Điểm</div>
+              <div className="tls-done-label">{t("minigames.di_tich.stat_score")}</div>
             </div>
             <div className="tls-done-stat">
               <div className="tls-done-num">{fmtTime(finalTime || 0)}</div>
-              <div className="tls-done-label">Thời gian</div>
+              <div className="tls-done-label">{t("minigames.di_tich.stat_time")}</div>
             </div>
             <div className="tls-done-stat">
               <div className="tls-done-num">{"⭐".repeat(stars) || "—"}</div>
-              <div className="tls-done-label">Đánh giá</div>
+              <div className="tls-done-label">{t("minigames.di_tich.stat_rating")}</div>
             </div>
           </div>
 
           <div className="tls-done-actions">
             {attemptsLeft > 0 ? (
               <button className="tls-btn primary" onClick={handleRestart}>
-                <i className="fa-solid fa-rotate-right" /> Chơi lại ({attemptsLeft} lượt)
+                <i className="fa-solid fa-rotate-right" /> {t("minigames.di_tich.btn_play_again", { count: attemptsLeft })}
               </button>
             ) : (
               <span className="tls-btn disabled">
-                <i className="fa-solid fa-lock" /> Hết lượt
+                <i className="fa-solid fa-lock" /> {t("minigames.di_tich.error_max_title")}
               </span>
             )}
             <Link to="/bai-tap" className="tls-btn secondary">
-              <i className="fa-solid fa-arrow-left" /> Quay về Bài tập
+              <i className="fa-solid fa-arrow-left" /> {t("minigames.di_tich.btn_back_learning")}
             </Link>
           </div>
         </div>
@@ -450,9 +447,9 @@ export default function TroChoiLichSu() {
           </Link>
           <div>
             <h1>
-              <i className="fa-solid fa-layer-group" /> Phân Loại Di Tích
+              <i className="fa-solid fa-layer-group" /> {t("minigames.di_tich.title")}
             </h1>
-            <p>Chọn di tích và xếp vào thời kì phù hợp</p>
+            <p>{t("minigames.di_tich.subtitle")}</p>
           </div>
         </div>
         <div className="tls-topbar-right">
@@ -478,8 +475,8 @@ export default function TroChoiLichSu() {
         <div className="tls-instruction">
           <i className={`fa-solid ${selected || dragging ? "fa-arrow-up" : "fa-hand-pointer"}`} />
           {selected || dragging
-            ? "Bấm vào thời kì ở trên hoặc kéo thả để xếp di tích"
-            : "Chọn hoặc kéo thả di tích vào ô thời kì phù hợp"}
+            ? t("minigames.di_tich.instruction_active")
+            : t("minigames.di_tich.instruction_idle")}
         </div>
       )}
 
@@ -511,7 +508,7 @@ export default function TroChoiLichSu() {
                 {eraSites.length === 0 && phase === "playing" && (
                   <div className="tls-era-empty">
                     <i className="fa-solid fa-plus-circle" />
-                    <span>Kéo thả hoặc bấm để xếp di tích vào đây</span>
+                    <span>{t("minigames.di_tich.era_empty")}</span>
                   </div>
                 )}
                 {eraSites.map((site) => {
@@ -543,7 +540,7 @@ export default function TroChoiLichSu() {
                       {phase === "playing" && (
                         <button
                           className="tls-remove-btn"
-                          aria-label="Gỡ bỏ"
+                          aria-label={t("minigames.di_tich.remove_btn")}
                           onClick={(e) => {
                             e.stopPropagation();
                             handleRemoveFromEra(site.id);
@@ -565,7 +562,7 @@ export default function TroChoiLichSu() {
       {poolSites.length > 0 && (
         <section className="tls-pool">
           <div className="tls-pool-label">
-            <i className="fa-solid fa-images" /> Di tích chưa phân loại ({poolSites.length})
+            <i className="fa-solid fa-images" /> {t("minigames.di_tich.pool_label")} ({poolSites.length})
           </div>
           <div className="tls-pool-grid">
             {poolSites.map((site, i) => (
@@ -594,7 +591,7 @@ export default function TroChoiLichSu() {
         <div className="tls-bottom">
           {phase === "playing" && allPlaced && (
             <button className="tls-btn primary glow" onClick={handleCheck}>
-              <i className="fa-solid fa-magnifying-glass-chart" /> Kiểm tra kết quả
+              <i className="fa-solid fa-magnifying-glass-chart" /> {t("minigames.di_tich.btn_check")}
             </button>
           )}
           {phase === "results" && (
@@ -604,7 +601,7 @@ export default function TroChoiLichSu() {
                 <span className="tls-results-label">câu đúng</span>
               </div>
               <button className="tls-btn primary" onClick={handleFinish}>
-                <i className="fa-solid fa-trophy" /> Xem tổng kết
+                <i className="fa-solid fa-trophy" /> {t("minigames.di_tich.btn_finish")}
               </button>
             </div>
           )}

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import './History.css';
 
 export default function History() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -18,14 +20,14 @@ export default function History() {
     {
       id: 1,
       image: "/images/lich_su_2.jpg",
-      title: "Di tích lịch sử",
-      description: "Những công trình kiến trúc ghi dấu ấn thời gian"
+      title: t("history_page.overview.item1_title"),
+      description: t("history_page.overview.item1_desc")
     },
     {
       id: 2,
       image: "/images/lich_su_3.jpg",
-      title: "Nhân vật lịch sử",
-      description: "Những người con ưu tú đã làm rạng danh vùng đất này"
+      title: t("history_page.overview.item2_title"),
+      description: t("history_page.overview.item2_desc")
     }
   ];
 
@@ -116,7 +118,7 @@ export default function History() {
         <button
           type="button"
           className="history-hero-clickzone"
-          aria-label="Mở chi tiết nội dung lịch sử"
+          aria-label={t("history_page.aria_open_detail")}
           onClick={() => navigate(currentRoute)}
         ></button>
 
@@ -127,7 +129,7 @@ export default function History() {
           <h1>{currentHero.title}</h1>
           <p>{currentHero.description}</p>
           <Link to={currentRoute} className="history-read-more">
-            Đọc thêm
+            {t("history_page.btn_read_more")}
             <span className="history-read-more-icon" aria-hidden="true">
               <i className="fas fa-arrow-right"></i>
             </span>

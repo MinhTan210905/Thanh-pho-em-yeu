@@ -1,0 +1,1555 @@
+{
+  "header": {
+    "home": "Home",
+    "geography": "Geography",
+    "sub_geo_location": "Location",
+    "sub_geo_economy": "Economy",
+    "sub_geo_nature": "Nature",
+    "sub_geo_population": "Population",
+    "history": "History",
+    "sub_his_relics": "Historical Relics",
+    "sub_his_figures": "Historical Figures",
+    "culture": "Culture",
+    "sub_cul_food": "Cuisine",
+    "sub_cul_crafts": "Traditional Crafts",
+    "sub_cul_festivals": "Festivals",
+    "learning": "Learning Corner",
+    "sub_learn_documents": "Study Materials",
+    "sub_learn_games": "Review Games",
+    "management": "Management",
+    "login": "Log In",
+    "logout": "Log Out",
+    "search": "Search..."
+  },
+  "footer": {
+    "university": "HO CHI MINH CITY UNIVERSITY OF EDUCATION",
+    "address": "280 An Duong Vuong, Cho Quan Ward, HCMC",
+    "faculty": "FACULTY OF PRIMARY EDUCATION",
+    "project": "Website owned by Primary Education Scientific Research Group",
+    "contact": "Contact: (0379) 033 327",
+    "subscribe_title": "SUBSCRIBE FOR NEW MATERIALS",
+    "subscribe_desc": "Receive the latest materials on History, Culture & Society, Geography of Ho Chi Minh City directly in your inbox!",
+    "email_placeholder": "Enter your email...",
+    "btn_subscribe": "Subscribe",
+    "designed_by": "Designed by Primary Education student researchers.",
+    "copyright": "© 2026 HCMUE. All rights reserved."
+  },
+  "home": {
+    "music_pause": "Pause Music",
+    "music_play": "Play Music",
+    "slider": {
+      "bitexco_title": "Bitexco Financial Tower",
+      "bitexco_desc": "The modern symbol of Saigon",
+      "benthanh_title": "Ben Thanh Market",
+      "benthanh_desc": "The centennial market",
+      "hungking_title": "Hung Kings Memorial Temple (Tao Dan Park)",
+      "hungking_desc": "The spiritual culture of the origin",
+      "notredame_title": "Notre Dame Cathedral",
+      "notredame_desc": "An architectural masterpiece in the city center",
+      "museum_title": "Ho Chi Minh City Museum",
+      "museum_desc": "A place preserving historical memories",
+      "independence_title": "Independence Palace",
+      "independence_desc": "A special National Monument",
+      "starlight_title": "Crescent Lake",
+      "starlight_desc": "Romantic beauty at sunset",
+      "postoffice_title": "Central Post Office",
+      "postoffice_desc": "Unique French architectural imprint",
+      "tandinh_title": "Tan Dinh Church",
+      "tandinh_desc": "The beautiful pink church",
+      "suoitien_title": "Suoi Tien Cultural Theme Park",
+      "suoitien_desc": "An entertainment paradise",
+      "anhsao_title": "Starlight Bridge",
+      "anhsao_desc": "Shimmering colors at night"
+    },
+    "about": {
+      "exp_badge": "Years of formation<br />and development",
+      "greeting": "HELLO!",
+      "title_1": "Discover",
+      "title_2": "Ho\u00A0Chi\u00A0Minh\u00A0City",
+      "desc_1": "Welcome to the website <strong>My Beloved City</strong>, a lively online learning space about the history, geography, and socio-culture of the city named after Uncle Ho.",
+      "desc_2": "The website is designed for teachers, students, and anyone who loves to learn about this land. Here, you will step into a journey to discover the heroic pages of history, prominent geographical features, and the beauty in the lives of the people here.",
+      "btn_more": "Learn more"
+    },
+    "geo": {
+      "subtitle": "OVERVIEW",
+      "title_1": "Geography of",
+      "title_2": "Ho\u00A0Chi\u00A0Minh\u00A0City",
+      "desc_1": "Explore Ho Chi Minh City through a vivid geographical lens – where visual maps open up before your eyes a journey to deeply understand the terrain, climate, rivers, and the continuous urban development rhythm of the city.",
+      "desc_2": "The website provides a rich repository of images, videos, and useful data, helping you clearly see the transformation of urban space; explore each ward and commune; and understand Ho Chi Minh City's crucial role in the southern key economic region.",
+      "btn_explore": "Explore now",
+      "tag_location": "Location",
+      "tag_nature": "Nature",
+      "tag_economy": "Economy",
+      "tag_population": "Population"
+    },
+    "history": {
+      "subtitle": "FLOW OF TIME",
+      "title": "Heroic History",
+      "desc": "Exploring the historical depth of Ho Chi Minh City is a fascinating journey back in time. It takes you back to the first exploring steps to witness the formation and development of a resilient land. Through many upheavals, this land has written golden pages of history in the struggle for national independence.",
+      "relic_title": "Historical<br />Relics",
+      "relic_desc": "Architectural works that bear the mark of time.",
+      "figure_title": "Historical<br />Figures",
+      "figure_desc": "Outstanding people who have brought glory to this land.",
+      "btn_detail": "View details",
+      "btn_more": "Learn more"
+    },
+    "culture": {
+      "subtitle": "DIVERSITY and IDENTITY",
+      "title": "Culture & Society",
+      "desc_1": "Not only the economic locomotive of the whole country, Ho Chi Minh City is also a vivid picture where traditional identity blends with modern lifestyle. From ancient temples nestled next to skyscrapers, to street food vendors selling rice paper in the middle of a bustling city.",
+      "desc_2": "Let's explore the cultural depth of this land, where every street corner holds interesting stories about customs, festivals, and the generosity and gratitude of the people here.",
+      "btn_explore": "Explore now",
+      "tag_food": "Cuisine",
+      "tag_festival": "Festivals",
+      "tag_craft": "Craft Villages"
+    },
+    "learning": {
+      "subtitle": "TREASURE OF KNOWLEDGE",
+      "title": "Materials & Review",
+      "desc": "Access a rich treasure of knowledge from reference books to engaging review games.",
+      "doc_title": "Document Library",
+      "doc_desc": "Synthesize books, articles, and precious materials about the history and culture of Saigon past and present.",
+      "btn_view": "View now",
+      "game_title": "Review Games",
+      "game_desc": "Challenge your knowledge through fun Quiz games, learning and playing at the same time is extremely satisfying.",
+      "btn_play": "Play now"
+    }
+  },
+  "geography_page": {
+    "btn_read_more": "Read more",
+    "canvas_intro_title": "Explore fully through presentation",
+    "overview": {
+      "item1_title": "Geographical location",
+      "item1_desc": "Explore the strategic location of Ho Chi Minh City",
+      "item2_title": "Economic geography",
+      "item2_desc": "Explore the key economic sectors of the city",
+      "item3_title": "Physical geography",
+      "item3_desc": "Learn about the topography, climate, river and canal systems, sea, organisms, soil and minerals",
+      "item4_title": "Population geography",
+      "item4_desc": "Learn about the population distribution and urban characteristics of Ho Chi Minh City"
+    },
+    "location": {
+      "badge_geo": "Geography",
+      "badge_vt": "Location",
+      "hero_title": "Geographical Location",
+      "highlight": "HCMC",
+      "hero_desc": "HCMC borders Dong Nai, Dong Thap, Lâm Đồng, Tây Ninh provinces and the East Sea; creating a driving force for the development of the Southeast, Southwest regions and the whole country.",
+      "pill1_title": "Area",
+      "pill1_desc": "~6,772 km²",
+      "pill2_title": "Population",
+      "pill2_desc": "Over 14 million people",
+      "pill3_title": "Administration",
+      "pill3_desc": "168 communal units",
+      "stat_tag": "Overview",
+      "stat_title": "Expanded Geographical Picture",
+      "stat_desc": "The new scale of HCMC after administrative arrangement with a large area, high population, and dense network of grassroots units.",
+      "stat_area_label": "Total area after merger",
+      "stat_admin_label": "Administrative units",
+      "stat_admin_breakdown": "113 wards · 54 communes · 1 special zone",
+      "stat_pop_label": "Population after merger",
+      "stat_admin_unit": "Communal units",
+      "stat_pop_unit": "Million people",
+      "hl_tag": "Key Features",
+      "hl_title": "Strategic Advantage",
+      "hl1_title": "Regional connectivity location",
+      "hl1_desc": "HCMC borders Dong Nai, Dong Thap, Lâm Đồng, Tây Ninh and the East Sea, creating a continuous connection axis between the highlands, the plains and the sea.",
+      "hl2_title": "River system",
+      "hl2_desc": "The Saigon River, Dong Nai River along with a dense network of canals create a rich waterway transport system.",
+      "hl3_title": "Transport Hub",
+      "hl3_desc": "Tan Son Nhat Airport, Cat Lai Port, national highway system — one of the important international trade hubs of the South.",
+      "hl4_title": "International Gateway",
+      "hl4_desc": "Connecting Southeast Asia and the world, it is one of the dynamic urban areas in the region with strongly developing modern infrastructure.",
+      "canvas_intro_desc": "Synthesize information on geographical location, natural characteristics, and administrative units of HCMC."
+    },
+    "economy": {
+      "badge_geo": "Geography",
+      "badge_kt": "Economy",
+      "hero_title": "Economic Geography",
+      "highlight": "HCMC",
+      "hero_desc": "Ho Chi Minh City is the largest economic center of the country with 3 key economic sectors, more than 10 large-scale industrial park systems, and high-tech agriculture, playing a leading role in national economic development.",
+      "pill1_title": "Service",
+      "pill1_desc": "Leading center",
+      "pill2_title": "Industry",
+      "pill2_desc": "10+ large IPs",
+      "pill3_title": "Agriculture",
+      "pill3_desc": "High tech",
+      "kpi1_top": "Sectors",
+      "kpi1_bot": "Key economic",
+      "kpi2_top": "Industrial Parks",
+      "kpi2_bot": "Large scale",
+      "kpi3_top": "Leader",
+      "kpi3_bot": "National economy",
+      "sector_tag": "Three Pillars",
+      "sector_title": "Diverse Economic Structure",
+      "sec1_title": "Services",
+      "sec1_desc": "The city is the largest service center in the country. Some prominent sub-sectors: transportation, commerce, tourism, real estate, finance - banking...",
+      "sec2_title": "Industry – Construction",
+      "sec2_desc": "Attracting thousands of enterprises; prominent in mechanics, textiles, footwear, plastics - rubber, electronics, food processing and seafood. Many large IPs: Hiep Phuoc, Vinh Loc, Tan Phu Trung, Linh Trung...",
+      "sec3_title": "Agriculture",
+      "sec3_desc": "Growing vegetables, orchids, ornamental plants, rice; raising cattle, pigs, poultry. Application of membrane houses, net houses, hydroponics, temperature - humidity sensors, solar energy.",
+      "outlook_title": "Vision & Challenges",
+      "outlook_desc": "The city continues to expand scientific research in technology, promote regional connectivity and strive to maintain its role as the economic locomotive of the whole country. In parallel, HCMC is facing environmental challenges - water, air, waste pollution - and is promoting green urban solutions, smart cities, and public transport development.",
+      "canvas_intro_desc": "Overview of the economic structure, industrial parks, and development potential of HCMC."
+    },
+    "nature": {
+      "badge_geo": "Geography",
+      "badge_tn": "Nature",
+      "hero_title": "Geography",
+      "highlight": "Nature",
+      "hero_desc": "Explore the rich ecosystem, diverse topography, tropical climate and dense river network of HCMC.",
+      "point1": "5 typical types of topography",
+      "point2": "2000+ living species",
+      "point3": "5+ rivers & 7+ canals",
+      "panel1": "Living species",
+      "panel2": "Types of minerals",
+      "panel3": "Avg Temperature",
+      "panel4": "Canals",
+      "biome_tag": "Explore",
+      "biome_title": "Ecosystem & Resources",
+      "chip1": "Organisms",
+      "chip2": "Soil",
+      "chip3": "Minerals",
+      "chip4": "Topography",
+      "chip5": "Climate",
+      "chip6": "Rivers",
+      "chip7": "Sea",
+      "mo1_title": "Organisms",
+      "mo1_desc": "More than 2,000 diverse living species, including flora, fauna, and microorganisms, create a rich ecosystem for the city.",
+      "mo1_badge": "2000+ species",
+      "mo2_title": "Soil",
+      "mo2_desc": "Many different types of soil suitable for agriculture, construction, and urban development.",
+      "mo2_badge": "Diverse",
+      "mo3_title": "Minerals",
+      "mo3_desc": "Mineral resources include sand, gravel, stone, clay, and many others serving construction and industry.",
+      "mo3_badge": "8+ types",
+      "mo4_title": "Climate",
+      "mo4_desc": "Ho Chi Minh City has only two seasons: dry season and rainy season, influenced by monsoons.",
+      "mo4_badge": "27.6°C · 1,500–1,979 mm",
+      "mo5_title": "Topography",
+      "mo5_desc": "Low plains, depressions, swamps; Undulating high mounds; Flat, low plains; Low hills; Coastal topography, creating a diverse landscape.",
+      "mo5_badge": "5 types",
+      "mo6_title": "Rivers & Canals",
+      "mo6_desc": "The system of rivers and canals is extremely diverse, favorable for waterway transport activities, agricultural production, ecotourism...",
+      "mo6_badge": "5+ rivers · 7+ canals",
+      "mo7_title": "Sea",
+      "mo7_desc": "Bordering the East Sea with more than 2 sea areas, creating conditions for marine economic development and international trade.",
+      "mo7_badge": "2+ areas",
+      "canvas_intro_desc": "All visual content about the natural geography of Ho Chi Minh City."
+    },
+    "population": {
+      "badge_geo": "Geography",
+      "badge_dc": "Population",
+      "hero_title": "Geography",
+      "highlight": "Population",
+      "hero_desc": "Explore the vibrant population picture of Ho Chi Minh City - a special urban area with over 14 million residents, 168 administrative units, and the harmony of 54 fraternal ethnic groups.",
+      "bar1_label": "Million people",
+      "bar2_label": "Administrative units",
+      "bar3_num": "Special City",
+      "bar3_label": "Special-class urban area",
+      "bar4_label": "Fraternal ethnicities",
+      "stat_tag": "Overview",
+      "stat_title": "Population & Administration",
+      "st1_num": "Special City",
+      "st1_label": "Urban classification",
+      "st1_desc": "HCMC is a special centrally-run city, holding the role of the country's largest economic center with outstanding development speed.",
+      "st2_num": "14+ million",
+      "st2_label": "Population scale",
+      "st2_desc": "Over 14 million people living, working, and studying, creating the most vibrant city in Vietnam.",
+      "st3_num": "168",
+      "st3_label": "Administrative units",
+      "st3_desc": "Including districts, directly-affiliated cities, wards, and communes - a complete administrative system.",
+      "st4_num": "54 ethnicities",
+      "st4_label": "Ethnic diversity",
+      "st4_desc": "The Kinh ethnic group accounts for the majority, along with 53 other ethnic minorities living together harmoniously.",
+      "eth_tag": "Diversity",
+      "eth_title": "Ethnic Picture",
+      "eth1_title": "Kinh ethnic",
+      "eth1_desc": "Accounting for the majority in the city's demographic structure, playing a leading role in socio-economic and urban cultural development.",
+      "eth2_title": "Hoa people",
+      "eth2_desc": "The largest ethnic minority community, concentrated mainly in Ho Chi Minh City with a rich culture.",
+      "eth3_title": "Cham people",
+      "eth3_desc": "Bringing a unique Champa cultural heritage, contributing to the cultural diversity of the city.",
+      "eth4_title": "Khmer people",
+      "eth4_desc": "The Khmer people community with characterized cultural identity and distinctive traditional festivals.",
+      "eth5_title": "Tay people & Other ethnicities",
+      "eth5_desc": "Along with many other ethnic groups from all over the country, creating a rich multi-ethnic community picture.",
+      "canvas_intro_desc": "All visual content about the population geography of Ho Chi Minh City."
+    }
+  },
+  "history_page": {
+    "btn_read_more": "Read more",
+    "aria_open_detail": "Open historical content details",
+    "canvas_intro_title": "Explore fully through presentation",
+    "overview": {
+      "item1_title": "Historical Relics",
+      "item1_desc": "Architectural works marking the passage of time",
+      "item2_title": "Historical Figures",
+      "item2_desc": "Outstanding people who have brought glory to this land"
+    },
+    "relics": {
+      "badge_his": "History",
+      "badge_relics": "Relics",
+      "hero_title": "Historical Relics",
+      "highlight": "HCMC",
+      "hero_desc": "Historical - cultural relics are architectural works, locations and artifacts with historical, cultural and scientific values ranked and preserved over periods.",
+      "pill1_title": "Heritage",
+      "pill1_desc": "Precious over time",
+      "pill2_title": "4 Periods",
+      "pill2_desc": "Flow of history",
+      "pill3_title": "Preservation",
+      "pill3_desc": "Keep for the future",
+      "tl_tag": "Flow of Time",
+      "tl_title": "Historical Periods",
+      "era1_tag": "Period I",
+      "era1_title": "Oc Eo Period",
+      "era1_desc": "The Oc Eo culture developed from the 1st to 7th century, leaving many precious archaeological relics in the Southern region - a testament to the early trade and development of ancient communities.",
+      "era2_tag": "Period II",
+      "era2_title": "Reclamation of the Southern Land",
+      "era2_desc": "From the late 16th century, Vietnamese settlers began to reclaim land and establish villages, expanding the territory to the South, forming the land of Saigon - Gia Dinh with architectural works, temples and pagodas marking the early days of establishment.",
+      "era3_tag": "Period III",
+      "era3_title": "Resistance War against the French",
+      "era3_desc": "During nearly a century of French colonialism, many patriotic movements broke out, leaving behind relics associated with the indomitable spirit of the people of Saigon - Cho Lon.",
+      "era4_tag": "Period IV",
+      "era4_title": "Resistance War against the US",
+      "era4_desc": "In the 1954 - 1975 period, Saigon was the center of the struggle for the liberation of the South, with many historical relics such as Independence Palace, Cu Chi Tunnels marking glorious victories.",
+      "canvas_intro_desc": "Images and stories about prominent historical relics in Ho Chi Minh City."
+    },
+    "figures": {
+      "badge_his": "History",
+      "badge_figures": "Figures",
+      "hero_title": "Historical Figures",
+      "highlight": "HCMC",
+      "hero_desc": "Ho Chi Minh City - a land rich in historical traditions, having made huge contributions to the construction and defense of the Fatherland.",
+      "pill1_title": "Heroes",
+      "pill1_desc": "Fighting resiliently",
+      "pill2_title": "Celebrities",
+      "pill2_desc": "Culture & education",
+      "pill3_title": "Dedication",
+      "pill3_desc": "Building the Fatherland",
+      "tribute_tag": "Honoring",
+      "tribute_title": "Outstanding Children",
+      "quote_line1": "Our people must know our history,",
+      "quote_line2": "To clearly understand the origin of Vietnam.",
+      "quote_line3": "For over four thousand years,",
+      "quote_line4": "Glorious ancestors, harmonious brothers.",
+      "quote_author": "Ho Chi Minh",
+      "card1_title": "National heroes",
+      "card1_desc": "Loyal generals and soldiers who fought and sacrificed for the Fatherland.",
+      "card2_title": "Culture & education figures",
+      "card2_desc": "Great intellectuals who contributed to enlightening and developing the city's culture and education.",
+      "card3_title": "Revolutionary leaders",
+      "card3_desc": "Pioneer leaders, guiding the movement for independence.",
+      "canvas_intro_desc": "Portraits and stories about prominent historical figures in Ho Chi Minh City."
+    }
+  },
+  "culture_page": {
+    "btn_read_more": "Read more",
+    "canvas_intro_title": "Explore fully through presentation",
+    "canvas_intro_detail": "Explore detail through presentation",
+    "overview": {
+      "item1_title": "Ho Chi Minh City Cuisine",
+      "item1_desc": "Explore the characteristic flavors of the city",
+      "item2_title": "Traditional Craft Villages",
+      "item2_desc": "Preserving ancient manual crafts",
+      "item3_title": "Traditional Festivals",
+      "item3_desc": "Vibrant cultural events throughout the year",
+      "aria_dot": "Go to content card {{count}}",
+      "aria_food": "Open Cuisine page",
+      "aria_craft": "Open Craft Village page",
+      "aria_festival": "Open Festival page"
+    },
+    "food": {
+      "badge_cul": "Culture",
+      "badge_food": "Cuisine",
+      "hero_title": "HCMC Cuisine",
+      "hero_desc": "Top 20 cities with the best food in the world. This is the crystallization and convergence of the elite of Northern - Central - Southern cuisine and Oriental flavors.",
+      "point1": "Diverse street food",
+      "point2": "Interference of taste culture",
+      "point3": "Dynamic, modern, identity",
+      "stat1_label": "International rank",
+      "stat1_val": "Top 20",
+      "stat2_label": "Regional convergence",
+      "stat2_val": "North · Central · South",
+      "stat3_label": "Identity",
+      "stat3_val": "Oriental",
+      "sec_tag": "Urban Cuisine",
+      "sec_title": "Fresh, Liberal, Connected",
+      "bento_badge": "Top 20 World",
+      "bento_title": "Top 20 cities with the best food in the world",
+      "bento_desc": "Cuisine here is the crystallization and convergence of cuisine from all Northern - Central - Southern regions and Oriental cuisine.",
+      "north": "North",
+      "central": "Central",
+      "south": "South",
+      "orient": "Oriental",
+      "card1_title": "Food coverage",
+      "card1_desc": "Breakfast, lunch, dinner all have choices from popular to high-end.",
+      "card2_title": "City rhythm",
+      "card2_desc": "Cuisine is associated with street culture, fast and convenient but still rich in flavor.",
+      "card3_title": "Characteristic points",
+      "card3_desc": "Multi-regional · Easy to access · Continuously creative",
+      "canvas_desc": "All visual content about the HCMC culinary journey."
+    },
+    "craft": {
+      "badge_cul": "Culture",
+      "badge_craft": "Craft Village",
+      "hero_title": "Traditional",
+      "highlight": "Craft Villages",
+      "hero_desc": "Long-standing craft villages in HCMC preserve sophisticated manual techniques, carrying deep local cultural and economic values.",
+      "pill1_title": "History",
+      "pill1_desc": "100+ years of history",
+      "pill2_title": "Prominent",
+      "pill2_desc": "4 typical craft villages",
+      "pill3_title": "Values",
+      "pill3_desc": "Heritage and spirit",
+      "sec_tag": "Core Values",
+      "sec_title": "Identity of HCMC Craft Villages",
+      "rib1_title": "Meticulous manual craft",
+      "rib1_desc": "The production process goes through many manual stages, requiring patience and high technique from artisans.",
+      "rib1_badge": "Technique",
+      "rib2_title": "Local materials",
+      "rib2_desc": "Using nature-friendly materials, exploited from local resources, associated with the land.",
+      "rib2_badge": "Natural",
+      "rib3_title": "Cultural & Economic value",
+      "rib3_desc": "Products carry traditional cultural values, while creating stable livelihoods and expanding to domestic and export markets.",
+      "rib3_badge": "Heritage",
+      "ins1_top": "Culture",
+      "ins1_bot": "Preserving traditional techniques",
+      "ins2_top": "Economy",
+      "ins2_bot": "Livelihoods for households",
+      "ins3_top": "Market",
+      "ins3_bot": "Expanding domestic & international",
+      "canvas_desc": "All visual content about the HCMC craft village journey."
+    },
+    "festival": {
+      "badge_cul": "Culture",
+      "badge_fest": "Festival",
+      "hero_title": "HCMC",
+      "highlight": "Festivals",
+      "hero_desc": "Diverse, combining tradition and modernity - reflecting the rich and vibrant cultural life of city residents.",
+      "chip1_title": "Traditional",
+      "chip1_desc": "Long-standing folk festivals",
+      "chip2_title": "Modern",
+      "chip2_desc": "International, urban events",
+      "chip3_title": "Community",
+      "chip3_desc": "Connecting all generations",
+      "sec_tag": "Festival Diversity",
+      "sec_title": "Colors of the City",
+      "str1_num": "01",
+      "str1_title": "Combining tradition and modernity",
+      "str1_desc": "From Nguyen Tieu festival, Lunar New Year, Nghinh Ong festival to international music events, multicultural fairs - all blend with the city's rhythm.",
+      "str2_num": "02",
+      "str2_title": "Rich cultural life",
+      "str2_desc": "Festivals reflect multi-ethnic, multi-religious identity, creating space for everyone to honor, experience and share.",
+      "str3_num": "03",
+      "str3_title": "Vibrant all year round",
+      "str3_desc": "Almost every month there are festivals, large and small cultural events taking place throughout the city.",
+      "canvas_desc": "Images and stories about prominent festivals in HCMC."
+    }
+  },
+  "learning_page": {
+    "badge_corner": "Learning Corner",
+    "badge_doc": "Documents",
+    "badge_quiz": "Review Games",
+    "btn_read_more": "Read more",
+    "overview": {
+      "item1_title": "Study Materials",
+      "item1_desc": "Lecture systems and reference materials to help you learn deeply about HCMC",
+      "item2_title": "Review Games",
+      "item2_desc": "Review knowledge through interactive games and multiple-choice exercises",
+      "aria_open": "Open {{title}} page",
+      "aria_dot": "Switch to image {{count}}"
+    },
+    "documents": {
+      "hero_title": "Study",
+      "hero_highlight": "Materials",
+      "hero_desc": "A miniature knowledge library helping you fully explore the diverse geography, history, and culture of the beloved Southern land.",
+      "stat1_title": "Rich",
+      "stat1_desc": "Diverse topics",
+      "stat2_title": "Grade 4",
+      "stat2_desc": "Standard knowledge",
+      "stat3_title": "Explore",
+      "stat3_desc": "Expand thinking",
+      "sec_tag": "Knowledge Treasure",
+      "sec_title": "Document List",
+      "btn_preview": "Preview",
+      "category_local_education": "Local Education",
+      "canvas_title": "Document Reading Space",
+      "canvas_desc": "Expand the experience, read directly with full browser tools.",
+      "empty_title": "No Document Selected",
+      "empty_desc": "Please select a document from the list above to view content.",
+      "viewing": "Viewing: {{title}}",
+      "btn_new_tab": "Open in new tab",
+      "btn_close": "Close viewer",
+      "list": {
+        "hcm_title": "HCMC Study Materials",
+        "hcm_desc": "Explore the dynamic land, historical relics, and diverse culture of Ho Chi Minh City.",
+        "brvt_title": "Ba Ria - Vung Tau Study Materials",
+        "brvt_desc": "Learn about the coastal land of Ba Ria - Vung Tau through history, geography, and famous specialties.",
+        "bd_title": "Binh Duong Study Materials",
+        "bd_desc": "Learn about the intersection of culture, industrial economy, and people's lives in Binh Duong province."
+      }
+    },
+    "quiz": {
+      "hero_badge": "Exercise Center",
+      "hero_title": "Manage",
+      "hero_highlight": "Review Games",
+      "hero_desc": "Track your learning progress, scores, and number of attempts. Complete all challenges to become a Saigon expert!",
+      "stat_played": "Played",
+      "stat_correct": "Correct",
+      "stat_avg": "Avg Score",
+      "list_title": "Game List",
+      "filter_all": "All",
+      "filter_new": "Not started",
+      "filter_progress": "In progress",
+      "filter_done": "Completed",
+      "status_done": "Completed",
+      "status_progress": "In progress",
+      "status_new": "Not started",
+      "best_score": "Best score: {{score}}",
+      "progress_label": "Progress: {{current}}/{{total}}",
+      "score_label": "{{score}} pts",
+      "attempts_label": "{{current}}/{{total}} attempts",
+      "btn_result": "View results",
+      "btn_continue": "Continue",
+      "btn_start": "Start",
+      "empty_msg": "No games found in this category",
+      "games": {
+        "vi_tri": {
+          "title": "Red Apple's Adventure",
+          "desc": "Test your knowledge of HCMC's latest geographical location after the merger through 5 interesting questions."
+        },
+        "kinh_te": {
+          "title": "Word Search",
+          "desc": "Find 5 keywords about economic geography hidden in the alphabet grid."
+        },
+        "tu_nhien": {
+          "title": "Unveiling Natural Mysteries",
+          "desc": "Tear open blind bags to discover 10 physical geography questions about HCMC. Choose the correct answer to score!"
+        },
+        "dan_cu": {
+          "title": "Happy Eatery",
+          "desc": "Choose a dish and answer 5 questions about the population of HCMC. Correct to complete the dish, wrong and... the tray breaks!"
+        },
+        "di_tich": {
+          "title": "Relic Classification",
+          "desc": "Classify 9 historical relics into the correct periods. Practice your history knowledge through interactive play!"
+        },
+        "nhan_vat": {
+          "title": "Decoding Mysteries",
+          "desc": "Read hints about heroic history and rearrange scrambled letters to find the names of historical figures."
+        },
+        "am_thuc": {
+          "title": "Guess the Word from Images",
+          "desc": "Look at images of Saigon dishes and guess the exact name. Challenge your culinary knowledge!"
+        },
+        "lang_nghe": {
+          "title": "Match the Village - Guess the Craft",
+          "desc": "Match the image of the craft village with the name of the traditional craft. More correct pairs, more points!"
+        },
+        "le_hoi": {
+          "title": "Imprint of My Local Festivals",
+          "desc": "Choose the correct keywords for 8 traditional festivals. Review your knowledge of Vietnamese festival culture!"
+        }
+      }
+    }
+  },
+  "auth_page": {
+    "login": {
+      "banner_title": "My Beloved City",
+      "banner_desc": "Learning and exploration system for the beauty of Ho Chi Minh City. For admins, schools, teachers, and students.",
+      "feature1": "Create and manage accounts by hierarchy",
+      "feature2": "Automatic tracking of learning results",
+      "feature3": "Clear access permissions",
+      "explore": "Explore:",
+      "nav_home": "Home",
+      "nav_geo": "Geography",
+      "nav_his": "History",
+      "nav_cul": "Culture",
+      "form_title": "Login",
+      "form_desc": "Enter your account details to continue accessing the system.",
+      "label_username": "Username",
+      "label_password": "Password",
+      "btn_login": "LOGIN",
+      "btn_submitting": "LOGGING IN...",
+      "back_home": "Back to Home",
+      "error_failed": "Login failed.",
+      "unauthorized": {
+        "title": "Access Denied",
+        "desc": "This account does not have permission to access this page. Please log in with an appropriate account.",
+        "btn_management": "Back to Management",
+        "btn_home": "Back to Home"
+      }
+    }
+  },
+  "common": {
+    "game_redirect": {
+      "challenge_now": "Take the challenge",
+      "explore": "Explore"
+    },
+    "roles": {
+      "admin": "System Administrator",
+      "school": "School",
+      "teacher": "Teacher",
+      "student": "Student"
+    },
+    "regions": {
+      "hcm": "Ho Chi Minh City",
+      "brvt": "Ba Ria - Vung Tau",
+      "bd": "Binh Duong"
+    }
+  },
+  "management_page": {
+    "title": "Account and Learning Results Management",
+    "breadcrumb": "Management Page",
+    "role_badge": "You are logged in as",
+    "btn_home": "Back to Home",
+    "btn_refresh": "Refresh Data",
+    "btn_logout": "Logout",
+    "alerts": {
+      "refresh_success": "Data has been updated.",
+      "load_users_error": "Failed to load account list.",
+      "load_scores_error": "Failed to load score data.",
+      "load_classes_error": "Failed to load class data.",
+      "create_user_success": "Account created successfully.",
+      "create_user_error": "Failed to create account.",
+      "update_user_success": "Account updated successfully.",
+      "update_user_error": "Failed to update account.",
+      "delete_confirm": "Are you sure you want to delete this account?",
+      "delete_success": "Account deleted successfully.",
+      "delete_error": "Failed to delete account.",
+      "create_class_success": "Class created successfully.",
+      "create_class_error": "Failed to create class.",
+      "approve_class_success": "Class status updated.",
+      "approve_class_error": "Failed to approve class.",
+      "request_unassign_success": "Unassign request sent.",
+      "request_unassign_error": "Failed to send unassign request.",
+      "request_transfer_success": "Transfer request sent.",
+      "request_transfer_error": "Failed to send transfer request.",
+      "cancel_request_confirm": "Are you sure you want to cancel this request?",
+      "cancel_request_success": "Request cancelled successfully.",
+      "cancel_request_error": "Failed to cancel request.",
+      "review_transfer_success": "Transfer request processed.",
+      "review_transfer_error": "Failed to process transfer request."
+    },
+    "profile": {
+      "title": "Account Information",
+      "full_name": "Full Name",
+      "username": "Username",
+      "role": "Role",
+      "class": "Class",
+      "school_id": "School ID"
+    },
+    "users": {
+      "create_title": "Create {{role}} account",
+      "select_role": "Select role",
+      "select_school": "Select school",
+      "select_teacher": "Select teacher in charge",
+      "placeholder_full_name": "Full Name",
+      "placeholder_school_name": "School Name",
+      "placeholder_username": "Username",
+      "placeholder_password": "Password",
+      "placeholder_class": "Class (e.g., 5A)",
+      "toggle_show_pwd": "Show password",
+      "toggle_hide_pwd": "Hide password",
+      "btn_create": "Create Account",
+      "btn_submitting": "Processing...",
+      "filter_role": "Filter Role:",
+      "filter_role_all": "All roles",
+      "filter_school": "Filter School:",
+      "filter_school_all": "All schools",
+      "table_head_name": "Full Name / School Name",
+      "table_head_username": "Username",
+      "table_head_role": "Role",
+      "table_head_school": "Affiliation",
+      "table_head_class": "Class",
+      "table_head_date": "Date Created",
+      "table_head_actions": "Actions",
+      "loading_users": "Loading accounts...",
+      "empty_users": "No child accounts yet.",
+      "btn_edit": "Edit",
+      "btn_delete": "Delete",
+      "btn_save": "Save",
+      "btn_cancel": "Cancel",
+      "placeholder_new_pwd": "New password (optional)"
+    },
+    "classes": {
+      "title": "Class Management",
+      "placeholder_class_name": "Class name (e.g., 5A)",
+      "placeholder_select_teacher": "Select teacher in charge (optional)",
+      "btn_create_class": "Create Class",
+      "btn_request_class": "Request Class Creation",
+      "table_head_class": "Class",
+      "table_head_teacher": "Teacher in charge",
+      "table_head_status": "Approval Status",
+      "table_head_creator": "Creator",
+      "table_head_actions": "Actions",
+      "status_pending": "Pending",
+      "status_approved": "Approved",
+      "status_rejected": "Rejected",
+      "loading_classes": "Loading class data...",
+      "empty_classes": "No classes found.",
+      "btn_approve": "Approve",
+      "btn_reject": "Reject",
+      "btn_request_transfer": "Request Transfer",
+      "btn_request_unassign": "Request Unassign"
+    },
+    "requests": {
+      "title": "Transfer/Unassign Requests",
+      "loading_requests": "Loading requests...",
+      "empty_requests": "No requests found.",
+      "table_head_class": "Class",
+      "table_head_action": "Request",
+      "table_head_sender": "Sender",
+      "table_head_receiver": "Recipient Teacher",
+      "table_head_status": "Status",
+      "table_head_actions": "Actions",
+      "action_transfer": "Transfer",
+      "action_unassign": "Unassign",
+      "btn_cancel_request": "Cancel Request"
+    },
+    "scores": {
+      "title": "Learning Results",
+      "tab_class": "By Class",
+      "tab_history": "History",
+      "filter_class": "Class:",
+      "filter_class_all": "All Classes",
+      "filter_game": "Game:",
+      "filter_game_all": "All Games",
+      "loading_scores": "Loading score data...",
+      "empty_students": "No students found.",
+      "empty_history": "No matching data found.",
+      "student_meta": "{{count}} plays",
+      "student_meta_ext": " · Best: {{best}} pts · Avg: {{avg}} pts",
+      "game_played": "Played",
+      "game_not_played": "Not played",
+      "game_stats": "<strong>{{score}}</strong> pts · {{attempts}} attempts · {{time}}",
+      "game_no_data": "No data available",
+      "table_head_student": "Student",
+      "table_head_class": "Class",
+      "table_head_game": "Game",
+      "table_head_score": "Score",
+      "table_head_attempts": "Attempts",
+      "table_head_time": "Time",
+      "no_score_data": "No score data yet."
+    },
+    "transfer_modal": {
+      "title": "Transfer Class to Another Teacher",
+      "desc": "Select the teacher to receive the class. This request will await school approval.",
+      "select_teacher": "Select Teacher",
+      "btn_submit": "Submit Request",
+      "btn_cancel": "Cancel"
+    }
+  },
+  "minigames": {
+    "am_thuc": {
+      "title": "Guess the Image",
+      "subtitle": "Look at the image and guess the Saigon dish",
+      "hints": "Hint",
+      "select_letters": "Select Letters",
+      "answer_label": "Answer",
+      "feedback_correct": "Correct! 🎉",
+      "feedback_wrong": "Wrong! The answer is: {{answer}}",
+      "btn_check": "Check",
+      "btn_clear": "Clear All",
+      "btn_next": "Next Question",
+      "btn_result": "View Results",
+      "btn_restart": "Restart Game",
+      "end_title": "Completed",
+      "end_subtitle": "Guess the Image!",
+      "end_desc": "You answered <strong>{{correct}}/{{total}}</strong> questions correctly about Saigon's signature dishes.",
+      "stat_score": "Score",
+      "stat_correct": "Correct",
+      "stat_rating": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts left)",
+      "btn_back_learning": "Back to Exercises",
+      "dialog_restart_title": "Start New Attempt?",
+      "dialog_restart_desc": "This will be a new attempt. You have {{count}} attempts left after this.",
+      "dialog_max_title": "Out of Attempts",
+      "dialog_max_desc": "You have run out of attempts for Guess the Image!",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Attempt",
+      "dialog_btn_ok": "Got it",
+      "questions": [
+        "BROKEN RICE",
+        "THAI SWEET SOUP",
+        "STINGRAY HOTPOT",
+        "HERBAL EGG SOUP",
+        "FRIED ICE CREAM",
+        "SALTED EGG SPONGE CAKE",
+        "BANANA SWEET SOUP",
+        "MANGOSTEEN CHICKEN SALAD",
+        "KHOT CAKE",
+        "PHO"
+      ]
+    },
+    "dan_cu": {
+      "title": "Happy Eatery",
+      "subtitle": "Pick a dish, answer questions to complete the menu",
+      "btn_enter": "Enter",
+      "sign_line1": "HAPPY",
+      "sign_line2": "EATERY",
+      "welcome_greeting": "Welcome to:",
+      "welcome_desc": "Answer the questions to prepare the menu for our customers!",
+      "btn_start": "Pick a dish",
+      "menu_bubble": "Please pick a dish to prepare for the menu!",
+      "dish_default_label": "Dish {{count}}",
+      "btn_summary": "View Summary",
+      "q_label": "Question",
+      "feedback_correct": "Correct! The dish is ready.",
+      "feedback_wrong": "Wrong! The tray is broken...",
+      "btn_back_menu": "Back to Menu",
+      "end_badge": "Menu Completed",
+      "end_title": "You have completed <span>Happy Eatery</span>",
+      "end_stat_correct": "Correct answers",
+      "end_stat_score": "Score",
+      "btn_play_again": "Play Again",
+      "btn_back_learning": "Back to Exercises",
+      "dialog_restart_title": "Restart",
+      "dialog_restart_desc": "Are you sure you want to restart? All current progress will be lost.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Confirm",
+      "dialog_btn_ok": "Got it",
+      "dialog_btn_start_new": "Start New Attempt",
+      "dishes": [
+        "Pasta",
+        "Pizza",
+        "Roasted Chicken",
+        "Beef Soup",
+        "Beefsteak"
+      ],
+      "questions": [
+        {
+          "prompt": "After the merger, what is the approximate population of Ho Chi Minh City?",
+          "answers": [
+            "Over 12 million.",
+            "Over 13 million.",
+            "Over 14 million.",
+            "Over 15 million."
+          ]
+        },
+        {
+          "prompt": "Currently, how many ethnic minorities live in Ho Chi Minh City?",
+          "answers": [
+            "52",
+            "53",
+            "54",
+            "55"
+          ]
+        },
+        {
+          "prompt": "How is the population distributed in Ho Chi Minh City?",
+          "answers": [
+            "Concentrated only in the center",
+            "Concentrated only in outskirts",
+            "Evenly distributed",
+            "Unevenly distributed"
+          ]
+        },
+        {
+          "prompt": "Which of the following describes the people of Ho Chi Minh City?",
+          "answers": [
+            "Closed-off, limited communication",
+            "Liberal, confident, and dynamic",
+            "Conservative, resistant to change",
+            "Slow, passive"
+          ]
+        },
+        {
+          "prompt": "Which ethnic minorities make up the majority of the minority communities in Ho Chi Minh City?",
+          "answers": [
+            "Hoa, Khmer, Cham, Tay",
+            "Muong, Nung, Dao, Thai",
+            "Ede, Jarai, Bahnar",
+            "Hmong, Sedang, Cotu"
+          ]
+        }
+      ]
+    },
+    "vi_tri": {
+      "title": "Red Apple's Adventure",
+      "title_html": "<span>Red Apple's</span><strong>Adventure</strong>",
+      "subtitle": "Solve the puzzles to help Red Apple overcome obstacles!",
+      "btn_start": "Start Adventure",
+      "story_bubble": "I'm on an adventure to a magical land. But along the way, I've encountered many obstacles. Please help me by answering these questions to remove them!",
+      "btn_story_next": "Let's go!",
+      "q_label": "Question {{count}}",
+      "btn_next_obstacle": "Next Obstacle",
+      "btn_view_result": "See Final Results",
+      "finish_subtitle": "Congratulations on completing the journey!",
+      "finish_greeting_3": "Excellent!",
+      "finish_message_3": "You're a brilliant explorer! Red Apple has reached the destination safely thanks to your intelligence.",
+      "finish_greeting_2": "Well done!",
+      "finish_message_2": "You helped Red Apple overcome most of the challenges. Just a little more to be perfect!",
+      "finish_greeting_else": "Keep it up!",
+      "finish_message_else": "Red Apple still needs your help to overcome more obstacles. Don't give up!",
+      "stat_score": "Score",
+      "stat_correct": "Correct",
+      "btn_play_again": "Play Once More",
+      "btn_back_home": "Back to Home",
+      "dialog_restart_title": "Start New Attempt?",
+      "dialog_restart_desc": "This will be a new attempt. You will have {{count}} attempts left after this.",
+      "dialog_max_title": "Out of Attempts",
+      "dialog_max_desc": "You have run out of attempts for Red Apple's Adventure!",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_start_new": "Start New Attempt",
+      "dialog_btn_ok": "Got it",
+      "questions": [
+        {
+          "question": "After the merger, which provinces/regions does Ho Chi Minh City border?",
+          "options": [
+            "Dong Nai, Tay Ninh, Binh Duong, Ba Ria - Vung Tau.",
+            "Dong Nai, Tay Ninh, Tien Giang, Long An and the East Sea",
+            "Dong Nai, Dong Thap, Tay Ninh, Tien Giang and the East Sea.",
+            "Dong Nai, Dong Thap, Lam Dong, Tay Ninh and the East Sea."
+          ]
+        },
+        {
+          "question": "After the merger, how many communal administrative units does Ho Chi Minh City have?",
+          "options": [
+            "165 units",
+            "175 units",
+            "168 units",
+            "178 units"
+          ]
+        },
+        {
+          "question": "After the merger, what is the area of Ho Chi Minh City in km²?",
+          "options": [
+            "6,772.59 km²",
+            "7,772.59 km²",
+            "8,772.59 km²",
+            "9,772.59 km²"
+          ]
+        },
+        {
+          "question": "After the merger, which provinces border/relate to the arrangement of Ho Chi Minh City?",
+          "options": [
+            "Binh Duong, Long An",
+            "Binh Duong, Ba Ria - Vung Tau",
+            "Ba Ria - Vung Tau, Dong Nai",
+            "Ba Ria - Vung Tau, Long An"
+          ]
+        },
+        {
+          "question": "What is the approximate population of Ho Chi Minh City after the merger?",
+          "options": [
+            "Over 14 million people",
+            "Over 12 million people",
+            "Over 15 million people",
+            "Over 13 million people"
+          ]
+        }
+      ]
+    },
+    "di_tich": {
+      "title": "Relic Classification",
+      "subtitle": "Select the relic and place it in the appropriate period",
+      "instruction_active": "Click on a period above or drag and drop to place the relic",
+      "instruction_idle": "Select or drag and drop relics into the appropriate period box",
+      "era_empty": "Drag and drop or click to place relic here",
+      "remove_btn": "Remove",
+      "pool_label": "Unclassified Relics",
+      "btn_check": "Check Results",
+      "btn_finish": "See Summary",
+      "done_title": "Completed",
+      "done_highlight": "Relic Classification!",
+      "done_desc": "You correctly classified <strong>{{correct}}/{{total}}</strong> relics into the right historical periods.",
+      "stat_score": "Score",
+      "stat_time": "Time",
+      "stat_rating": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts left)",
+      "btn_back_learning": "Back to Exercises",
+      "dialog_restart_title": "Start New Attempt?",
+      "dialog_restart_desc": "You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_start": "Start New Attempt",
+      "dialog_btn_ok": "Got it",
+      "error_max_attempts": "You have run out of attempts for Relic Classification!",
+      "error_max_title": "Out of Attempts",
+      "eras": {
+        "oc_eo": {
+          "name": "Oc Eo Period",
+          "period": "1st – 7th Century"
+        },
+        "khai_pha": {
+          "name": "Southern Reclamation",
+          "period": "17th – 19th Century"
+        },
+        "chong_phap_my": {
+          "name": "Resistance Period",
+          "period": "1858 – 1975"
+        }
+      },
+      "sites": {
+        "chua_hoi_son": "Hoi Son Pagoda",
+        "giong_ca_vo": "Giong Ca Vo",
+        "bung_bac": "Bung Bac",
+        "dinh_thang_tam": "Thang Tam Temple",
+        "chua_long_ban": "Long Ban Pagoda",
+        "nha_luu_niem": "Ho Chi Minh Memorial House",
+        "chien_khu": "Thuan An Hoa War Zone",
+        "dia_dao": "Kim Long Tunnels",
+        "can_cu": "Minh Dam Base"
+      }
+    },
+    "tu_nhien": {
+      "title": "Natural Mystery Quest!",
+      "subtitle": "Pick a blind bag, uncover the mystery and answer geography questions",
+      "bags_head": "Choose a blind bag to open",
+      "bags_sub": "{{count}} bags left",
+      "bag_label": "Bag {{count}}",
+      "q_label": "Question {{current}}/{{total}}",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "Wrong! Try another bag!",
+      "btn_back_bags": "Back to Bags",
+      "btn_view_summary": "View Summary",
+      "end_title": "Completed <span>Natural Mystery Quest!</span>",
+      "end_stat_correct": "You answered <strong>{{correct}}/{{total}}</strong> questions correctly.",
+      "end_stat_score_label": "Score",
+      "end_stat_correct_label": "Correct",
+      "end_stat_rating_label": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts)",
+      "btn_out_of_attempts": "Out of attempts",
+      "btn_back_learning": "Back to Learning",
+      "dialog_restart_title": "Notification",
+      "dialog_out_of_attempts": "You have run out of attempts for this game!",
+      "dialog_restart_confirm": "This will be a new game session. You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Session",
+      "dialog_btn_ok": "OK",
+      "questions": [
+        {
+          "question": "What are the main landforms of Ho Chi Minh City?",
+          "options": [
+            "Low, swampy, marshy plains; Rolling hills; Low, flat plains; Low mountains; Coastal terrain.",
+            "Low, swampy, marshy plains; Rolling hills; Low, flat plains; High mountains; Coastal terrain.",
+            "Low plains; Rolling hills; Low, flat plains; Low mountains; Coastal terrain.",
+            "Low, swampy, marshy plains; Plateaus; Low, flat plains; Low mountains; Coastal terrain."
+          ]
+        },
+        {
+          "question": "How many seasons are there in Ho Chi Minh City?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "question": "Which rivers flow through Ho Chi Minh City?",
+          "options": [
+            "Saigon River, Red River",
+            "Dong Nai River, Red River",
+            "Saigon River, Dong Nai River",
+            "Red River, Huong River"
+          ]
+        },
+        {
+          "question": "What is another name for 'Bai Truoc' (Front Beach)?",
+          "options": [
+            "Tam Duong",
+            "Thuy Van",
+            "Mui Ne",
+            "Tuan Chau"
+          ]
+        },
+        {
+          "question": "What is another name for 'Bai Sau' (Back Beach)?",
+          "options": [
+            "Tam Duong",
+            "Thuy Van",
+            "Mui Ne",
+            "Tuan Chau"
+          ]
+        },
+        {
+          "question": "Which place in Ho Chi Minh City is recognized by UNESCO as a World Biosphere Reserve?",
+          "options": [
+            "Thu Duc Bird Sanctuary",
+            "Nui Cau Primeval Forest",
+            "Kien An Primeval Forest",
+            "Can Gio Mangrove Forest"
+          ]
+        },
+        {
+          "question": "What are the geological characteristics of Ho Chi Minh City?",
+          "options": [
+            "Unstable",
+            "Prone to landslides",
+            "Stable with high bearing capacity",
+            "Mainly swampy"
+          ]
+        },
+        {
+          "question": "What is the role of minerals for the City?",
+          "options": [
+            "Not important",
+            "Only for decoration",
+            "An important resource driving the economy",
+            "Only for domestic use"
+          ]
+        },
+        {
+          "question": "What is the notable characteristic of alluvial soil?",
+          "options": [
+            "Arid, low in nutrients",
+            "High fertility",
+            "Many pebbles and stones",
+            "Difficult to grow plants"
+          ]
+        },
+        {
+          "question": "Why is alum soil difficult to cultivate without improvement?",
+          "options": [
+            "Because the soil is too dry",
+            "Because the soil is very acidic and nutrient-poor",
+            "Because the soil has too much water",
+            "Because the soil has many stones"
+          ]
+        }
+      ]
+    },
+    "kinh_te": {
+      "title": "Word Search Quest!",
+      "subtitle": "Drag to select or click start - end points to find {{count}} Economic Geography keywords",
+      "chip_attempts": "Attempts",
+      "sidebar_title": "Keyword List",
+      "btn_view_result": "View Results",
+      "end_title": "Completed <span>Word Search Quest!</span>",
+      "end_stat_words": "You found <strong>{{correct}}/{{total}} keywords</strong> hidden in the puzzle.",
+      "end_stat_score_label": "Score",
+      "end_stat_correct_label": "Keywords",
+      "end_stat_rating_label": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts)",
+      "btn_out_of_attempts": "Out of attempts",
+      "btn_back_learning": "Back to Learning",
+      "dialog_restart_title": "Start New Session?",
+      "dialog_out_of_attempts_title": "Out of attempts",
+      "dialog_out_of_attempts_msg": "You have run out of attempts for this game!",
+      "dialog_restart_msg": "This will be a new game session. You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Session",
+      "dialog_btn_ok": "OK",
+      "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "words": [
+        {
+          "text": "TRANSPORTATION",
+          "display": "Transportation"
+        },
+        {
+          "text": "TOURISM",
+          "display": "Tourism"
+        },
+        {
+          "text": "ENGINEERING",
+          "display": "Engineering"
+        },
+        {
+          "text": "HUSBANDRY",
+          "display": "Husbandry"
+        },
+        {
+          "text": "CULTIVATION",
+          "display": "Cultivation"
+        }
+      ]
+    },
+    "lang_nghe": {
+      "title": "Match the Craft!",
+      "subtitle": "Select an image and then select a craft name to pair them up",
+      "card_badge_linked": "Linked",
+      "btn_check": "Check Results",
+      "remaining_msg": "Match {{count}} more pairs to check",
+      "feedback_perfect": "Excellent! You matched everything correctly! 🎉",
+      "feedback_partial": "You matched {{correct}}/{{total}} pairs. Review the results above!",
+      "btn_view_summary": "View Summary",
+      "end_title": "Completed <span>Match the Craft!</span>",
+      "end_stat_pairs": "You matched <strong>{{correct}}/{{total}}</strong> traditional craft pairs correctly.",
+      "end_stat_score_label": "Score",
+      "end_stat_correct_label": "Correct Pairs",
+      "end_stat_rating_label": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts)",
+      "btn_out_of_attempts": "Out of attempts",
+      "btn_back_learning": "Back to Learning",
+      "dialog_restart_title": "Notification",
+      "dialog_out_of_attempts_msg": "You have run out of attempts for this game!",
+      "dialog_restart_msg": "This will be a new game session. You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Session",
+      "dialog_btn_ok": "OK",
+      "pairs": [
+        {
+          "id": "lang_nghe_01",
+          "name": "Incense-making village"
+        },
+        {
+          "id": "lang_nghe_02",
+          "name": "Bamboo-weaving village"
+        },
+        {
+          "id": "lang_nghe_03",
+          "name": "Bronze-casting village"
+        },
+        {
+          "id": "lang_nghe_04",
+          "name": "Piggy bank making"
+        },
+        {
+          "id": "lang_nghe_05",
+          "name": "Water hyacinth weaving"
+        }
+      ]
+    },
+    "le_hoi": {
+      "title": "Local Festival Imprint",
+      "subtitle": "Select the correct keywords surrounding the festivals",
+      "tags_label": "Select the correct keywords for this festival",
+      "feedback_correct": "Correct! 🎉",
+      "feedback_wrong": "Wrong! The correct keywords are outlined in green.",
+      "btn_check": "Decrypt & Check",
+      "btn_clear": "Clear Selection",
+      "btn_next": "Next Festival",
+      "btn_summary": "View Results",
+      "btn_restart_game": "Restart Game",
+      "end_title": "Completed <span>Local Festival Imprint!</span>",
+      "end_stat_msg": "You correctly identified <strong>{{correct}}/{{total}}</strong> traditional festivals.",
+      "end_stat_score_label": "Score",
+      "end_stat_correct_label": "Correct",
+      "end_stat_rating_label": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts left)",
+      "btn_out_of_attempts": "Out of attempts",
+      "btn_back_learning": "Back to Learning",
+      "dialog_out_of_attempts_title": "Out of attempts",
+      "dialog_out_of_attempts_msg": "You have run out of attempts for this game!",
+      "dialog_restart_title": "Start New Session?",
+      "dialog_restart_msg": "This will be a new game session. You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Session",
+      "dialog_btn_ok": "OK",
+      "festivals": [
+        {
+          "id": 1,
+          "name": "Yang Va Festival",
+          "options": [
+            {
+              "text": "Cho Ro people",
+              "isCorrect": true
+            },
+            {
+              "text": "Tay people",
+              "isCorrect": false
+            },
+            {
+              "text": "Ede people",
+              "isCorrect": false
+            },
+            {
+              "text": "March to April (lunar)",
+              "isCorrect": true
+            },
+            {
+              "text": "May to June (lunar)",
+              "isCorrect": false
+            },
+            {
+              "text": "Worship the Rice God",
+              "isCorrect": true
+            },
+            {
+              "text": "Worship the Forest God",
+              "isCorrect": false
+            },
+            {
+              "text": "Worship the Fire God",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Nghinh Co Festival",
+          "options": [
+            {
+              "text": "10th - 12th day of the 2nd lunar month",
+              "isCorrect": true
+            },
+            {
+              "text": "10th - 12th day of the 4th lunar month",
+              "isCorrect": false
+            },
+            {
+              "text": "Pray for bumper seafood harvest",
+              "isCorrect": true
+            },
+            {
+              "text": "Pray for rice to sprout and bloom",
+              "isCorrect": false
+            },
+            {
+              "text": "Ca Ong Temple",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Dinh Thang Tam Festival",
+          "options": [
+            {
+              "text": "Nam Hai Whale Temple",
+              "isCorrect": true
+            },
+            {
+              "text": "Thang Tam Temple",
+              "isCorrect": true
+            },
+            {
+              "text": "Ngu Hanh Temple",
+              "isCorrect": true
+            },
+            {
+              "text": "Thien Hau Pagoda",
+              "isCorrect": false
+            },
+            {
+              "text": "Whale Temple",
+              "isCorrect": false
+            },
+            {
+              "text": "Phu Chau Floating Temple",
+              "isCorrect": false
+            },
+            {
+              "text": "17th - 19th day of the 2nd lunar month",
+              "isCorrect": true
+            },
+            {
+              "text": "20th - 22nd day of the 2nd lunar month",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Chua Ong Festival",
+          "options": [
+            {
+              "text": "Ritual of welcoming gods/saints like Nguyen Huu Canh, Thien Hau Holy Mother...",
+              "isCorrect": true
+            },
+            {
+              "text": "Worship Forest, Fire, and Rice Gods",
+              "isCorrect": false
+            },
+            {
+              "text": "24th day of the 6th lunar month annually",
+              "isCorrect": true
+            },
+            {
+              "text": "20th - 22nd day of the 2nd lunar month",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Nguyen Hue Flower Street Festival",
+          "options": [
+            {
+              "text": "Annual Lunar New Year",
+              "isCorrect": true
+            },
+            {
+              "text": "24th day of the 6th lunar month annually",
+              "isCorrect": false
+            },
+            {
+              "text": "Space for entertainment and cultural activities during Tet holiday.",
+              "isCorrect": true
+            },
+            {
+              "text": "Pray for rice to sprout and bloom",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Ky Yen Festival",
+          "options": [
+            {
+              "text": "Ritual of welcoming gods/saints like Nguyen Huu Canh, Thien Hau Holy Mother...",
+              "isCorrect": false
+            },
+            {
+              "text": "Peace-praying and Guardian God rituals",
+              "isCorrect": true
+            },
+            {
+              "text": "16th - 18th day of the 1st lunar month annually",
+              "isCorrect": true
+            },
+            {
+              "text": "24th day of the 6th lunar month annually",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Thien Hau Pagoda Festival",
+          "options": [
+            {
+              "text": "15th day of the 1st lunar month annually",
+              "isCorrect": true
+            },
+            {
+              "text": "16th - 18th day of the 1st lunar month annually",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Lai Thieu Ripe Fruit Season Festival",
+          "options": [
+            {
+              "text": "Doan Ngo Festival - 5th day of the 5th lunar month annually.",
+              "isCorrect": true
+            },
+            {
+              "text": "Annual Lunar New Year",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    "lich_su": {
+      "title": "Historical Mystery Quest",
+      "subtitle": "Arrange letters to find the names of historical figures",
+      "clue_header": "Figure Clue #{{count}}",
+      "btn_hint": "Hint",
+      "tiles_label": "Drag & Drop Letters",
+      "answer_label": "Answer",
+      "feedback_correct": "Correct! 🎉",
+      "feedback_wrong": "Wrong! Answer: {{answer}}",
+      "btn_check": "Check Answer",
+      "btn_clear": "Clear All",
+      "btn_next": "Next Clue",
+      "btn_summary": "View Results",
+      "btn_restart_game": "Restart Game",
+      "end_title": "Completed <span>Historical Mystery Quest!</span>",
+      "end_stat_msg": "You correctly identified <strong>{{correct}}/{{total}}</strong> historical figures.",
+      "end_stat_score_label": "Score",
+      "end_stat_correct_label": "Correct",
+      "end_stat_rating_label": "Rating",
+      "btn_play_again": "Play Again ({{count}} attempts left)",
+      "btn_out_of_attempts": "Out of attempts",
+      "btn_back_learning": "Back to Learning",
+      "dialog_out_of_attempts_title": "Out of attempts",
+      "dialog_out_of_attempts_msg": "You have run out of attempts for this game!",
+      "dialog_restart_title": "Start New Session?",
+      "dialog_restart_msg": "This will be a new game session. You will have {{count}} attempts left after this.",
+      "dialog_btn_cancel": "Cancel",
+      "dialog_btn_confirm": "Start New Session",
+      "dialog_btn_ok": "OK",
+      "questions": [
+        {
+          "clue": "Under seventeen / Hair not yet shoulder-length / A slender young girl / But heroic and indomitable / Known by the whole country / The name of a female hero.\nWho is that?",
+          "answer": "VO THI SAU"
+        },
+        {
+          "clue": "Who is known as the \"Founder\" of the commandos (đặc công)?",
+          "answer": "TRAN CONG AN"
+        },
+        {
+          "clue": "During the anniversary of the Russian October Revolution, he called for people to support the Soviet Union and patriotism against the French. Later, he was arrested and sentenced to 5 years in prison and 10 years of exile.\nWho is that?",
+          "answer": "NGUYEN VAN TIET"
+        },
+        {
+          "clue": "Who held important positions such as: Secretary of the Southern Party Committee (1945), Chairman of the National Assembly Standing Committee (1955–1960), President (1969–1980)?",
+          "answer": "TON DUC THANG"
+        },
+        {
+          "clue": "“Rather sacrifice than let the wounded be wounded a second time.”\nWho said this?",
+          "answer": "DOAN THI LIEN"
+        },
+        {
+          "clue": "In 1943, he was the provisional Secretary of the Provincial Party Committee of Thu Dau Mot, leading the August Revolution of 1945 in the province.\nWho is that?",
+          "answer": "VAN CONG KHAI"
+        },
+        {
+          "clue": "On June 5, 1911, he departed from Nha Rong Port on the ship Amiral Latouche Tréville to find a way to save the country.\nWho is that?",
+          "answer": "HO CHI MINH"
+        },
+        {
+          "clue": "Which character was posthumously awarded the title Hero of the People's Armed Forces by the State in 2001?",
+          "answer": "TRAN VAN THUONG"
+        },
+        {
+          "clue": "Posthumously awarded the title Hero of the People's Armed Forces in 2001. Her name is used for parks and schools in Ho Chi Minh City.\nWho is she?",
+          "answer": "LE THI RIENG"
+        },
+        {
+          "clue": "Admitted to the Party in 1929 and became General Secretary of the Party in March 1938.\nWho is that?",
+          "answer": "NGUYEN VAN CU"
+        },
+        {
+          "clue": "In 1955–1956, her family participated in building revolutionary bases and hiding cadres. Despite her young age, she distributed leaflets and gathered intelligence on enemy activities.\nWho is she?",
+          "answer": "HUYNH THI CHAU"
+        },
+        {
+          "clue": "Author of \"Gia Dinh Thanh Thong Chi\" - the earliest and most valuable historical, geographical, and cultural book about the South at that time?",
+          "answer": "TRINH HOAI DUC"
+        },
+        {
+          "clue": "Officially honored by UNESCO as a great poet and cultural figure of humanity in late November 2021.",
+          "answer": "NGUYEN DINH CHIEU"
+        },
+        {
+          "clue": "On December 20, 1994, he was posthumously awarded the title Hero of the People's Armed Forces.\nWho is that?",
+          "answer": "CHAU VAN BIEC"
+        }
+      ]
+    }
+  },
+  "chatbot": {
+    "name": "City's Voice",
+    "status_online": "Ready to help",
+    "input_placeholder": "Ask me anything...",
+    "attach_tooltip": "Attach file",
+    "send_tooltip": "Send message",
+    "close_tooltip": "Close chat",
+    "file_sent_prefix": "📄 Document sent: ",
+    "error_msg": "The AI assistant is temporarily overloaded, please try again in a few minutes!",
+    "error_config": "Missing API Key configuration. Please create VITE_GEMINI_API_KEY in the .env file.",
+    "error_process": "I couldn't process this request. Please try again or check your internet connection.",
+    "limit_file_size": "Please select a file smaller than 5MB.",
+    "limit_doc_format": ".doc format is not yet supported. Please save as .docx or .pdf and try again.",
+    "limit_word_parse": "Could not read Word file content. Please try another file or convert to PDF.",
+    "limit_word_error": "Error reading Word file. Please try again or convert to PDF.",
+    "no_response": "No response",
+    "default_summary_request": "Please summarize the document and state the main points.",
+    "word_document_label": "Word document content sent by user",
+    "attached_file_label": "User attached a file",
+    "attached_file_instruction": "Please respond politely and ask for clarification if needed.",
+    "prompt_knowledge_label": "ASSISTANT KNOWLEDGE BASE",
+    "prompt_user_request_label": "User request",
+    "prompt_reminder": "Reminder: Answer naturally without mentioning source documents. If the question is completely unrelated to Ho Chi Minh City, return exactly this string:",
+    "greetings": [
+      "Hello! I'm 'City's Voice' - your HCMC information assistant. Which corner of Saigon would you like to explore today?",
+      "Hi there! If you need to find places to eat, explore relics, or hear about Saigon's history, just give 'City's Voice' a shout!",
+      "Hello! 'City's Voice' is ready. Which landmark or delicious dish in Saigon are you curious about?",
+      "Greetings! I'm a Saigon local. Just let me know if you want to go anywhere, eat anything, or hear stories from the past!"
+    ],
+    "rejections": [
+      "Oh my, this question is a bit 'out of range' for me! 😅 I'm a Saigon Assistant, so I'm only an expert in tourism, culture, and cuisine. Ask me about something else!",
+      "This one is too hard, I'll pass! 🤣 I'm just a Saigon local expert, I know where to eat and play, but I'm clueless about this. Ask me about cool places to visit!",
+      "Ah, this isn't my expertise! 🥲 Ask me anything about roads, relics, or Saigon food, and I've got you covered!",
+      "Uh oh, this one's tough for a Saigon expert! 😂 I only know how to tell stories about the city; I don't want to make things up about other stuff."
+    ],
+    "system_prompt": "You are \"Saigon Assistant\" - a highly knowledgeable and friendly local tour guide. Use \"I\" and \"you\" in a friendly manner.\n\nREPLY RULES:\n\nCORE KNOWLEDGE: Always prioritize information from CHATBOT_KNOWLEDGE_BASE silently. Answer naturally, absolutely DO NOT use phrases like \"According to internal data\", \"According to CHATBOT_KNOWLEDGE_BASE\", or \"The document states\".\n\nEXTENDED KNOWLEDGE (CUISINE, HOT SPOTS): If the user asks about eateries, delicacies, travel itineraries... that are not in the data, YOU ARE ALLOWED to confidently use external knowledge to suggest enthusiastically like a true Saigonese!\n\nOFF-TOPIC PROTECTION: ONLY IF the user asks about topics completely unrelated to Ho Chi Minh City (e.g., solving math, writing code, politics, foreign geography...), you will return EXACTLY ONE STRING: OUT_OF_KB\n\nPresent clearly, bold main points, and keep it concise."
+  }
+}

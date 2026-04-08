@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROLE_LABELS, useAuth } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '../../context/AuthContext';
 import './QuanLyHeThong.css';
 
 const NEXT_ROLE = {
@@ -9,29 +10,31 @@ const NEXT_ROLE = {
   teacher: 'student',
 };
 
-const GAME_LABELS = {
-  am_thuc: 'Ẩm thực',
-  di_tich: 'Di tích lịch sử',
-  dia_li_tu_nhien: 'Địa lí tự nhiên',
-  dan_cu: 'Dân cư',
-  lang_nghe: 'Làng nghề',
-  le_hoi: 'Lễ hội',
-  nhan_vat_lich_su: 'Nhân vật lịch sử',
-  kinh_te: 'Kinh tế',
-  vi_tri: 'Vị trí địa lí',
-};
+/** These labels should now be retrieved via t() for dynamic localization */
+const getGameLabels = (t) => ({
+  am_thuc: t("learning_page.quiz.games.am_thuc.title"),
+  di_tich: t("learning_page.quiz.games.di_tich.title"),
+  dia_li_tu_nhien: t("learning_page.quiz.games.tu_nhien.title"),
+  dan_cu: t("learning_page.quiz.games.dan_cu.title"),
+  lang_nghe: t("learning_page.quiz.games.lang_nghe.title"),
+  le_hoi: t("learning_page.quiz.games.le_hoi.title"),
+  nhan_vat_lich_su: t("learning_page.quiz.games.nhan_vat.title"),
+  kinh_te: t("learning_page.quiz.games.kinh_te.title"),
+  vi_tri: t("learning_page.quiz.games.vi_tri.title"),
+});
 
-const ALL_GAME_IDS = Object.keys(GAME_LABELS);
+const ALL_GAME_IDS = ['am_thuc', 'di_tich', 'dia_li_tu_nhien', 'dan_cu', 'lang_nghe', 'le_hoi', 'nhan_vat_lich_su', 'kinh_te', 'vi_tri'];
 
-function formatDate(value) {
+function formatDate(value, i18n) {
   if (!value) return '-';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return '-';
-  return date.toLocaleString('vi-VN');
+  return date.toLocaleString(i18n.language === 'vi' ? 'vi-VN' : 'en-US');
 }
 
-function toGameLabel(gameId) {
-  return GAME_LABELS[gameId] || gameId || '-';
+function toGameLabel(gameId, t) {
+  const gameKey = gameId.replace('dia_li_tu_nhien', 'tu_nhien').replace('nhan_vat_lich_su', 'nhan_vat');
+  return t(`learning_page.quiz.games.${gameKey}.title`, { defaultValue: gameId || '-' });
 }
 
 /** Lấy tên (chữ cuối) để sắp xếp theo bảng chữ cái VN */
@@ -56,11 +59,12 @@ function createInitialForm(childRole, role = '') {
 export default function QuanLyHeThong() {
   const { user, authRequest, logout } = useAuth();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const role = user?.role || '';
   const childRole = useMemo(() => NEXT_ROLE[role] || '', [role]);
   const canManageUsers = Boolean(childRole);
-  const managedTableLabel = childRole === 'school' ? 'Tên trường' : 'Họ tên';
+  const managedTableLabel = childRole === 'school' ? t("management_page.users.placeholder_school_name") : t("management_page.users.placeholder_full_name");
 
   const [users, setUsers] = useState([]);
   const [classRows, setClassRows] = useState([]);
@@ -119,11 +123,11 @@ export default function QuanLyHeThong() {
       ? sortedStudentRows.filter(s => s.class_name === classFilter)
       : sortedStudentRows;
     for (const s of students) {
-      const cn = s.class_name || 'Không có lớp';
+      const cn = s.class_name || (i18n.language === 'en' ? 'No class' : 'Không có lớp');
       if (!map[cn]) map[cn] = [];
       map[cn].push(s);
     }
-    return Object.entries(map).sort((a, b) => a[0].localeCompare(b[0], 'vi'));
+    return Object.entries(map).sort((a, b) => a[0].localeCompare(b[0], i18n.language));
   }, [sortedStudentRows, classFilter]);
 
   // Filtered history data
@@ -170,7 +174,7 @@ export default function QuanLyHeThong() {
       const payload = await authRequest('/api/users');
       setUsers(payload.users || []);
     } catch (err) {
-      setError(err.message || 'Không thể tải danh sách tài khoản.');
+      setError(err.message || t("management_page.alerts.load_users_error"));
     } finally {
       setLoadingUsers(false);
     }
@@ -197,7 +201,7 @@ export default function QuanLyHeThong() {
       setScoreRows(payload.scores || []);
       setStudentRows([]);
     } catch (err) {
-      setError(err.message || 'Không thể tải dữ liệu điểm.');
+      setError(err.message || t("management_page.alerts.load_scores_error"));
     } finally {
       setLoadingScores(false);
     }
@@ -223,7 +227,7 @@ export default function QuanLyHeThong() {
       setClassRequests(requestsPayload.requests || []);
       setTeachersInSchool(teachersPayload.teachers || []);
     } catch (err) {
-      setError(err.message || 'Không thể tải dữ liệu lớp học.');
+      setError(err.message || t("management_page.alerts.load_classes_error"));
     } finally {
       setLoadingClasses(false);
     }
@@ -295,11 +299,11 @@ export default function QuanLyHeThong() {
         body: JSON.stringify(payload),
       });
 
-      setMessage(response.message || 'Tạo tài khoản thành công.');
+      setMessage(response.message || t("management_page.alerts.create_user_success"));
       setCreateForm(createInitialForm(childRole, role));
       await loadUsers();
     } catch (err) {
-      setError(err.message || 'Không thể tạo tài khoản.');
+      setError(err.message || t("management_page.alerts.create_user_error"));
     } finally {
       setSubmitting(false);
     }
@@ -342,11 +346,11 @@ export default function QuanLyHeThong() {
         body: JSON.stringify(payload),
       });
 
-      setMessage(response.message || 'Cập nhật tài khoản thành công.');
+      setMessage(response.message || t("management_page.alerts.update_user_success"));
       cancelEdit();
       await loadUsers();
     } catch (err) {
-      setError(err.message || 'Không thể cập nhật tài khoản.');
+      setError(err.message || t("management_page.alerts.update_user_error"));
     } finally {
       setSubmitting(false);
     }
@@ -354,7 +358,7 @@ export default function QuanLyHeThong() {
 
   const handleDelete = async (userId) => {
     clearAlerts();
-    const confirmed = window.confirm('Bạn có chắc muốn xóa tài khoản này?');
+    const confirmed = window.confirm(t("management_page.alerts.delete_confirm"));
     if (!confirmed) return;
 
     setSubmitting(true);
@@ -362,10 +366,10 @@ export default function QuanLyHeThong() {
       const response = await authRequest(`/api/users/${userId}`, {
         method: 'DELETE',
       });
-      setMessage(response.message || 'Xóa tài khoản thành công.');
+      setMessage(response.message || t("management_page.alerts.delete_success"));
       await loadUsers();
     } catch (err) {
-      setError(err.message || 'Không thể xóa tài khoản.');
+      setError(err.message || t("management_page.alerts.delete_error"));
     } finally {
       setSubmitting(false);
     }
@@ -391,16 +395,15 @@ export default function QuanLyHeThong() {
         body: JSON.stringify(payload),
       });
 
-      setMessage(response.message || 'Tạo lớp thành công.');
+      setMessage(response.message || t("management_page.alerts.create_class_success"));
       setClassForm({ class_name: '', teacher_id: '' });
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể tạo lớp.');
+      setError(err.message || t("management_page.alerts.create_class_error"));
     } finally {
       setSubmitting(false);
     }
   };
-
   const handleReviewClass = async (classId, status) => {
     if (role !== 'school') return;
 
@@ -411,10 +414,10 @@ export default function QuanLyHeThong() {
         method: 'PATCH',
         body: JSON.stringify({ status }),
       });
-      setMessage(response.message || 'Đã cập nhật trạng thái lớp.');
+      setMessage(response.message || t("management_page.alerts.approve_class_success"));
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể duyệt lớp.');
+      setError(err.message || t("management_page.alerts.approve_class_error"));
     } finally {
       setSubmitting(false);
     }
@@ -430,10 +433,10 @@ export default function QuanLyHeThong() {
         method: 'POST',
         body: JSON.stringify({ action: 'unassign' }),
       });
-      setMessage(response.message || 'Đã gửi yêu cầu rời lớp.');
+      setMessage(response.message || t("management_page.alerts.request_unassign_success"));
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể gửi yêu cầu rời lớp.');
+      setError(err.message || t("management_page.alerts.request_unassign_error"));
     } finally {
       setSubmitting(false);
     }
@@ -442,7 +445,7 @@ export default function QuanLyHeThong() {
   const handleRequestTransfer = async () => {
     if (role !== 'teacher' || !transferDraft.classId) return;
     if (!transferDraft.targetTeacherId) {
-      setError('Vui lòng chọn giáo viên nhận lớp.');
+      setError(t("management_page.transfer_modal.select_teacher"));
       return;
     }
 
@@ -456,11 +459,11 @@ export default function QuanLyHeThong() {
           target_teacher_id: Number(transferDraft.targetTeacherId),
         }),
       });
-      setMessage(response.message || 'Đã gửi yêu cầu chuyển lớp.');
+      setMessage(response.message || t("management_page.alerts.request_transfer_success"));
       closeTransferModal();
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể chuyển giao lớp.');
+      setError(err.message || t("management_page.alerts.request_transfer_error"));
     } finally {
       setSubmitting(false);
     }
@@ -469,7 +472,7 @@ export default function QuanLyHeThong() {
   const handleCancelTransferRequest = async (requestId) => {
     if (role !== 'teacher') return;
     
-    if (!window.confirm('Bạn có chắc chắn muốn hủy yêu cầu này?')) return;
+    if (!window.confirm(t("management_page.alerts.cancel_request_confirm"))) return;
 
     clearAlerts();
     setSubmitting(true);
@@ -477,10 +480,10 @@ export default function QuanLyHeThong() {
       const response = await authRequest(`/api/classes/transfer-requests/${requestId}`, {
         method: 'DELETE',
       });
-      setMessage(response.message || 'Đã hủy yêu cầu thành công.');
+      setMessage(response.message || t("management_page.alerts.cancel_request_success"));
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể hủy yêu cầu.');
+      setError(err.message || t("management_page.alerts.cancel_request_error"));
     } finally {
       setSubmitting(false);
     }
@@ -496,10 +499,10 @@ export default function QuanLyHeThong() {
         method: 'PATCH',
         body: JSON.stringify({ status }),
       });
-      setMessage(response.message || 'Đã xử lí yêu cầu chuyển lớp.');
+      setMessage(response.message || t("management_page.alerts.review_transfer_success"));
       await loadClasses();
     } catch (err) {
-      setError(err.message || 'Không thể xử lí yêu cầu chuyển lớp.');
+      setError(err.message || t("management_page.alerts.review_transfer_error"));
     } finally {
       setSubmitting(false);
     }
@@ -510,22 +513,22 @@ export default function QuanLyHeThong() {
       <div className="ql-shell">
         <div className="ql-head">
           <div className="ql-head-content">
-            <span className="ql-head-tag">Trang quản lí</span>
-            <h1>Quản lí tài khoản và kết quả học tập</h1>
+            <span className="ql-head-tag">{t("management_page.breadcrumb")}</span>
+            <h1>{t("management_page.title")}</h1>
             <p>
-              Bạn đang đăng nhập với vai trò <strong><span className={`badge-role badge-${role}`}>{ROLE_LABELS[role] || role}</span></strong>.
+              {t("management_page.role_badge")} <strong><span className={`badge-role badge-${role}`}>{t(`common.roles.${role}`)}</span></strong>.
             </p>
           </div>
 
           <div className="ql-head-actions">
             <button type="button" className="ql-btn-home" onClick={() => navigate('/')}>
-              <i className="fa-solid fa-house"></i> Về trang chính
+              <i className="fa-solid fa-house"></i> {t("management_page.btn_home")}
             </button>
             <button type="button" className="ql-btn-refresh" onClick={() => { clearAlerts(); loadScores(); loadUsers(); loadClasses(); }}>
-              <i className="fa-solid fa-rotate-right"></i> Làm mới dữ liệu
+              <i className="fa-solid fa-rotate-right"></i> {t("management_page.btn_refresh")}
             </button>
             <button type="button" className="ql-btn-logout" onClick={handleLogout}>
-              <i className="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+              <i className="fa-solid fa-arrow-right-from-bracket"></i> {t("management_page.btn_logout")}
             </button>
           </div>
         </div>
@@ -535,26 +538,26 @@ export default function QuanLyHeThong() {
 
         <div className="ql-grid">
           <article className="ql-card">
-            <h2>Thông tin tài khoản</h2>
+            <h2>{t("management_page.profile.title")}</h2>
             <dl className="ql-profile-grid">
               <div>
-                <dt>Họ tên</dt>
+                <dt>{t("management_page.profile.full_name")}</dt>
                 <dd>{user?.full_name || '-'}</dd>
               </div>
               <div>
-                <dt>Tên đăng nhập</dt>
+                <dt>{t("management_page.profile.username")}</dt>
                 <dd>{user?.username || '-'}</dd>
               </div>
               <div>
-                <dt>Vai trò</dt>
-                <dd><span className={`badge-role badge-${user?.role}`}>{ROLE_LABELS[user?.role] || user?.role || '-'}</span></dd>
+                <dt>{t("management_page.profile.role")}</dt>
+                <dd><span className={`badge-role badge-${user?.role}`}>{t(`common.roles.${user?.role}`)}</span></dd>
               </div>
               <div>
-                <dt>Lớp</dt>
+                <dt>{t("management_page.profile.class")}</dt>
                 <dd>{user?.class_name || '-'}</dd>
               </div>
               <div>
-                <dt>School ID</dt>
+                <dt>{t("management_page.profile.school_id")}</dt>
                 <dd>{user?.school_id || '-'}</dd>
               </div>
             </dl>
@@ -562,18 +565,18 @@ export default function QuanLyHeThong() {
 
           {canManageUsers || role === 'admin' ? (
             <article className="ql-card ql-card-wide">
-              <h2>Tạo tài khoản {role === 'admin' ? '' : (ROLE_LABELS[childRole] || childRole)}</h2>
+              <h2>{t("management_page.users.create_title", { role: role === 'admin' ? '' : t(`common.roles.${childRole}`) })}</h2>
               <form className="ql-create-form" onSubmit={handleCreateUser}>
                 {role === 'admin' && (
                   <select name="target_role" value={createForm.target_role} onChange={handleCreateInput} required>
-                    <option value="school">Trường học</option>
-                    <option value="teacher">Giáo viên</option>
-                    <option value="student">Học sinh</option>
+                    <option value="school">{t("common.roles.school")}</option>
+                    <option value="teacher">{t("common.roles.teacher")}</option>
+                    <option value="student">{t("common.roles.student")}</option>
                   </select>
                 )}
                 {role === 'admin' && (createForm.target_role === 'teacher' || createForm.target_role === 'student') && (
                   <select name="target_school_id" value={createForm.target_school_id} onChange={handleCreateInput} required>
-                    <option value="">Chọn trường thuộc về</option>
+                    <option value="">{t("management_page.users.select_school")}</option>
                     {users.filter(u => u.role === 'school').map(s => (
                       <option key={s.id} value={s.id}>{s.full_name}</option>
                     ))}
@@ -581,7 +584,7 @@ export default function QuanLyHeThong() {
                 )}
                 {role === 'admin' && createForm.target_role === 'student' && (
                   <select name="target_parent_id" value={createForm.target_parent_id} onChange={handleCreateInput} required>
-                    <option value="">Chọn giáo viên phụ trách</option>
+                    <option value="">{t("management_page.users.select_teacher")}</option>
                     {users.filter(u => u.role === 'teacher' && u.school_id === Number(createForm.target_school_id)).map(t => (
                       <option key={t.id} value={t.id}>{t.full_name}</option>
                     ))}
@@ -591,14 +594,14 @@ export default function QuanLyHeThong() {
                   name="full_name"
                   value={createForm.full_name}
                   onChange={handleCreateInput}
-                  placeholder={(childRole === 'school' || createForm.target_role === 'school') ? 'Tên trường' : 'Họ và tên'}
+                  placeholder={(childRole === 'school' || createForm.target_role === 'school') ? t("management_page.users.placeholder_school_name") : t("management_page.users.placeholder_full_name")}
                   required
                 />
                 <input
                   name="username"
                   value={createForm.username}
                   onChange={handleCreateInput}
-                  placeholder="Tên đăng nhập"
+                  placeholder={t("management_page.users.placeholder_username")}
                   required
                 />
                 <div className="ql-pwd-field">
@@ -607,14 +610,14 @@ export default function QuanLyHeThong() {
                     value={createForm.password}
                     onChange={handleCreateInput}
                     type={showCreatePwd ? 'text' : 'password'}
-                    placeholder="Mật khẩu"
+                    placeholder={t("management_page.users.placeholder_password")}
                     required
                   />
                   <button
                     type="button"
                     className="ql-pwd-toggle"
                     onClick={() => setShowCreatePwd(v => !v)}
-                    title={showCreatePwd ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+                    title={showCreatePwd ? t("management_page.users.toggle_hide_pwd") : t("management_page.users.toggle_show_pwd")}
                   >
                     <i className={`fa-solid ${showCreatePwd ? 'fa-eye-slash' : 'fa-eye'}`}></i>
                   </button>
@@ -624,28 +627,28 @@ export default function QuanLyHeThong() {
                     name="class_name"
                     value={createForm.class_name}
                     onChange={handleCreateInput}
-                    placeholder="Lớp học (vd: 5A)"
+                    placeholder={t("management_page.users.placeholder_class")}
                   />
                 ) : null}
 
                 <button type="submit" disabled={submitting}>
-                  {submitting ? 'Đang xử lí...' : `Tạo tài khoản`}
+                  {submitting ? t("management_page.users.btn_submitting") : t("management_page.users.btn_create")}
                 </button>
               </form>
 
               {role === 'admin' && (
                 <div className="ql-filter-bar">
-                  <label><i className="fa-solid fa-filter"></i> Lọc Vai trò:</label>
+                  <label><i className="fa-solid fa-filter"></i> {t("management_page.users.filter_role")}</label>
                   <select value={adminRoleFilter} onChange={e => setAdminRoleFilter(e.target.value)}>
-                    <option value="">Tất cả vai trò</option>
-                    <option value="school">Trường học</option>
-                    <option value="teacher">Giáo viên</option>
-                    <option value="student">Học sinh</option>
+                    <option value="">{t("management_page.users.filter_role_all")}</option>
+                    <option value="school">{t("common.roles.school")}</option>
+                    <option value="teacher">{t("common.roles.teacher")}</option>
+                    <option value="student">{t("common.roles.student")}</option>
                   </select>
                   
-                  <label><i className="fa-solid fa-building"></i> Lọc Trường:</label>
+                  <label><i className="fa-solid fa-building"></i> {t("management_page.users.filter_school")}</label>
                   <select value={adminSchoolFilter} onChange={e => setAdminSchoolFilter(e.target.value)}>
-                    <option value="">Tất cả trường</option>
+                    <option value="">{t("management_page.users.filter_school_all")}</option>
                     {users.filter(u => u.role === 'school').map(s => (
                       <option key={s.id} value={s.id}>{s.full_name}</option>
                     ))}
@@ -656,25 +659,25 @@ export default function QuanLyHeThong() {
                 <table>
                   <thead>
                     <tr>
-                      <th>{role === 'admin' ? 'Họ tên / Tên trường' : managedTableLabel}</th>
-                      <th>Tài khoản</th>
-                      <th>Vai trò</th>
-                      {role === 'admin' && <th>Thuộc trường</th>}
-                      <th>Lớp</th>
-                      <th>Ngày tạo</th>
-                      <th>Hành động</th>
+                      <th>{role === 'admin' ? t("management_page.users.table_head_name") : managedTableLabel}</th>
+                      <th>{t("management_page.users.table_head_username")}</th>
+                      <th>{t("management_page.users.table_head_role")}</th>
+                      {role === 'admin' && <th>{t("management_page.users.table_head_school")}</th>}
+                      <th>{t("management_page.users.table_head_class")}</th>
+                      <th>{t("management_page.users.table_head_date")}</th>
+                      <th>{t("management_page.users.table_head_actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {loadingUsers ? (
                       <tr>
-                        <td colSpan="6">Đang tải danh sách tài khoản...</td>
+                        <td colSpan="6">{t("management_page.users.loading_users")}</td>
                       </tr>
                     ) : null}
 
                     {!loadingUsers && users.length === 0 ? (
                       <tr>
-                        <td colSpan="6">Chưa có tài khoản con nào.</td>
+                        <td colSpan="6">{t("management_page.users.empty_users")}</td>
                       </tr>
                     ) : null}
 
@@ -698,7 +701,7 @@ export default function QuanLyHeThong() {
                               )}
                             </td>
                             <td>{managedUser.username}</td>
-                            <td><span className={`badge-role badge-${managedUser.role}`}>{ROLE_LABELS[managedUser.role] || managedUser.role}</span></td>
+                            <td><span className={`badge-role badge-${managedUser.role}`}>{t(`common.roles.${managedUser.role}`)}</span></td>
                             {role === 'admin' && <td>{managedUser.role === 'school' ? '-' : (users.find(u => u.id === managedUser.school_id)?.full_name || '-')}</td>}
                             <td>
                               {isEditing && (childRole === 'student' || (role === 'admin' && managedUser.role === 'student')) ? (
@@ -720,26 +723,26 @@ export default function QuanLyHeThong() {
                                     type="password"
                                     value={editForm.password}
                                     onChange={handleEditInput}
-                                    placeholder="Mật khẩu mới (tuỳ chọn)"
+                                    placeholder={t("management_page.users.placeholder_new_pwd")}
                                   />
                                   <button type="button" onClick={() => handleSaveEdit(managedUser.id)}>
-                                    Lưu
+                                    {t("management_page.users.btn_save")}
                                   </button>
                                   <button type="button" className="ghost" onClick={cancelEdit}>
-                                    Hủy
+                                    {t("management_page.users.btn_cancel")}
                                   </button>
                                 </>
                               ) : (
                                 <>
                                   <button type="button" onClick={() => beginEdit(managedUser)}>
-                                    Sửa
+                                    {t("management_page.users.btn_edit")}
                                   </button>
                                   <button
                                     type="button"
                                     className="danger"
                                     onClick={() => handleDelete(managedUser.id)}
                                   >
-                                    Xóa
+                                    {t("management_page.users.btn_delete")}
                                   </button>
                                 </>
                               )}
@@ -756,14 +759,14 @@ export default function QuanLyHeThong() {
 
           {(role === 'school' || role === 'teacher') ? (
             <article className="ql-card ql-card-wide">
-              <h2>Quản lí lớp học</h2>
+              <h2>{t("management_page.classes.title")}</h2>
 
               <form className="ql-create-form" onSubmit={handleCreateClass}>
                 <input
                   name="class_name"
                   value={classForm.class_name}
                   onChange={handleClassInput}
-                  placeholder="Tên lớp (vd: 5A)"
+                  placeholder={t("management_page.classes.placeholder_class_name")}
                   required
                 />
 
@@ -773,7 +776,7 @@ export default function QuanLyHeThong() {
                     value={classForm.teacher_id}
                     onChange={handleClassInput}
                   >
-                    <option value="">Chọn giáo viên phụ trách (tuỳ chọn)</option>
+                    <option value="">{t("management_page.classes.placeholder_select_teacher")}</option>
                     {teachersInSchool.map((teacher) => (
                       <option key={teacher.id} value={teacher.id}>{teacher.full_name} ({teacher.username})</option>
                     ))}
@@ -781,7 +784,7 @@ export default function QuanLyHeThong() {
                 ) : null}
 
                 <button type="submit" disabled={submitting}>
-                  {role === 'school' ? 'Tạo lớp' : 'Gửi yêu cầu tạo lớp'}
+                  {role === 'school' ? t("management_page.classes.btn_create_class") : t("management_page.classes.btn_request_class")}
                 </button>
               </form>
 
@@ -789,23 +792,23 @@ export default function QuanLyHeThong() {
                 <table>
                   <thead>
                     <tr>
-                      <th>Lớp</th>
-                      <th>Giáo viên phụ trách</th>
-                      <th>Trạng thái duyệt</th>
-                      <th>Người tạo</th>
-                      <th>Hành động</th>
+                      <th>{t("management_page.classes.table_head_class")}</th>
+                      <th>{t("management_page.classes.table_head_teacher")}</th>
+                      <th>{t("management_page.classes.table_head_status")}</th>
+                      <th>{t("management_page.classes.table_head_creator")}</th>
+                      <th>{t("management_page.classes.table_head_actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {loadingClasses ? (
                       <tr>
-                        <td colSpan="5">Đang tải dữ liệu lớp...</td>
+                        <td colSpan="5">{t("management_page.classes.loading_classes")}</td>
                       </tr>
                     ) : null}
 
                     {!loadingClasses && classRows.length === 0 ? (
                       <tr>
-                        <td colSpan="5">Chưa có lớp nào.</td>
+                        <td colSpan="5">{t("management_page.classes.empty_classes")}</td>
                       </tr>
                     ) : null}
 
@@ -813,20 +816,20 @@ export default function QuanLyHeThong() {
                       <tr key={classRow.id}>
                         <td>{classRow.class_name}</td>
                         <td>{classRow.teacher_name || '-'}</td>
-                        <td><span className={`badge-status badge-status-${classRow.approval_status}`}>{classRow.approval_status === 'pending' ? 'Chờ duyệt' : classRow.approval_status === 'approved' ? 'Đã duyệt' : classRow.approval_status === 'rejected' ? 'Từ chối' : classRow.approval_status}</span></td>
+                        <td><span className={`badge-status badge-status-${classRow.approval_status}`}>{classRow.approval_status === 'pending' ? t("management_page.classes.status_pending") : classRow.approval_status === 'approved' ? t("management_page.classes.status_approved") : classRow.approval_status === 'rejected' ? t("management_page.classes.status_rejected") : classRow.approval_status}</span></td>
                         <td>{classRow.created_by_name || '-'}</td>
                         <td className="ql-actions-cell">
                           {role === 'school' && classRow.approval_status === 'pending' ? (
                             <>
-                              <button type="button" onClick={() => handleReviewClass(classRow.id, 'approved')}>Duyệt</button>
-                              <button type="button" className="danger" onClick={() => handleReviewClass(classRow.id, 'rejected')}>Từ chối</button>
+                              <button type="button" onClick={() => handleReviewClass(classRow.id, 'approved')}>{t("management_page.classes.btn_approve")}</button>
+                              <button type="button" className="danger" onClick={() => handleReviewClass(classRow.id, 'rejected')}>{t("management_page.classes.btn_reject")}</button>
                             </>
                           ) : null}
 
                           {role === 'teacher' && classRow.teacher_id === user?.id && classRow.approval_status === 'approved' ? (
                             <>
-                              <button type="button" onClick={() => openTransferModal(classRow.id)}>Xin chuyển lớp</button>
-                              <button type="button" className="ghost" onClick={() => handleRequestUnassign(classRow.id)}>Xin rời lớp</button>
+                              <button type="button" onClick={() => openTransferModal(classRow.id)}>{t("management_page.classes.btn_request_transfer")}</button>
+                              <button type="button" className="ghost" onClick={() => handleRequestUnassign(classRow.id)}>{t("management_page.classes.btn_request_unassign")}</button>
                             </>
                           ) : null}
                         </td>
@@ -836,48 +839,48 @@ export default function QuanLyHeThong() {
                 </table>
               </div>
 
-              <h2 style={{ marginTop: '24px' }}>Yêu cầu chuyển/rời lớp</h2>
+              <h2 style={{ marginTop: '24px' }}>{t("management_page.requests.title")}</h2>
               <div className="ql-table-wrap">
                 <table>
                   <thead>
                     <tr>
-                      <th>Lớp</th>
-                      <th>Yêu cầu</th>
-                      <th>Người gửi</th>
-                      <th>Giáo viên nhận lớp</th>
-                      <th>Trạng thái</th>
-                      <th>Hành động</th>
+                      <th>{t("management_page.requests.table_head_class")}</th>
+                      <th>{t("management_page.requests.table_head_action")}</th>
+                      <th>{t("management_page.requests.table_head_sender")}</th>
+                      <th>{t("management_page.requests.table_head_receiver")}</th>
+                      <th>{t("management_page.requests.table_head_status")}</th>
+                      <th>{t("management_page.requests.table_head_actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {loadingClasses ? (
                       <tr>
-                        <td colSpan="6">Đang tải yêu cầu...</td>
+                        <td colSpan="6">{t("management_page.requests.loading_requests")}</td>
                       </tr>
                     ) : null}
 
                     {!loadingClasses && classRequests.length === 0 ? (
                       <tr>
-                        <td colSpan="6">Chưa có yêu cầu chuyển/rời lớp.</td>
+                        <td colSpan="6">{t("management_page.requests.empty_requests")}</td>
                       </tr>
                     ) : null}
 
                     {!loadingClasses ? classRequests.map((request) => (
                       <tr key={request.id}>
                         <td>{request.class_name}</td>
-                        <td>{request.action === 'transfer' ? 'Chuyển lớp' : 'Rời lớp'}</td>
+                        <td>{request.action === 'transfer' ? t("management_page.requests.action_transfer") : t("management_page.requests.action_unassign")}</td>
                         <td>{request.requester_name || '-'}</td>
                         <td>{request.target_teacher_name || '-'}</td>
-                        <td><span className={`badge-status badge-status-${request.status}`}>{request.status === 'pending' ? 'Chờ duyệt' : request.status === 'approved' ? 'Đã duyệt' : request.status === 'rejected' ? 'Từ chối' : request.status}</span></td>
+                        <td><span className={`badge-status badge-status-${request.status}`}>{request.status === 'pending' ? t("management_page.classes.status_pending") : request.status === 'approved' ? t("management_page.classes.status_approved") : request.status === 'rejected' ? t("management_page.classes.status_rejected") : request.status}</span></td>
                         <td className="ql-actions-cell">
                           {role === 'school' && request.status === 'pending' ? (
                             <>
-                              <button type="button" onClick={() => handleReviewTransfer(request.id, 'approved')}>Duyệt</button>
-                              <button type="button" className="danger" onClick={() => handleReviewTransfer(request.id, 'rejected')}>Từ chối</button>
+                              <button type="button" onClick={() => handleReviewTransfer(request.id, 'approved')}>{t("management_page.classes.btn_approve")}</button>
+                              <button type="button" className="danger" onClick={() => handleReviewTransfer(request.id, 'rejected')}>{t("management_page.classes.btn_reject")}</button>
                             </>
                           ) : null}
                           {role === 'teacher' && request.status === 'pending' ? (
-                            <button type="button" className="ghost danger" onClick={() => handleCancelTransferRequest(request.id)}>Hủy yêu cầu</button>
+                            <button type="button" className="ghost danger" onClick={() => handleCancelTransferRequest(request.id)}>{t("management_page.requests.btn_cancel_request")}</button>
                           ) : null}
                         </td>
                       </tr>
@@ -889,7 +892,7 @@ export default function QuanLyHeThong() {
           ) : null}
 
           <article className="ql-card ql-card-wide">
-            <h2>Kết quả học tập</h2>
+            <h2>{t("management_page.scores.title")}</h2>
 
             {/* Tab switcher */}
             {role !== 'student' ? (
@@ -899,14 +902,14 @@ export default function QuanLyHeThong() {
                   className={`ql-score-tab ${scoreViewMode === 'class' ? 'active' : ''}`}
                   onClick={() => setScoreViewMode('class')}
                 >
-                  <i className="fa-solid fa-users"></i> Theo lớp
+                  <i className="fa-solid fa-users"></i> {t("management_page.scores.tab_class")}
                 </button>
                 <button
                   type="button"
                   className={`ql-score-tab ${scoreViewMode === 'history' ? 'active' : ''}`}
                   onClick={() => setScoreViewMode('history')}
                 >
-                  <i className="fa-solid fa-clock-rotate-left"></i> Lịch sử
+                  <i className="fa-solid fa-clock-rotate-left"></i> {t("management_page.scores.tab_history")}
                 </button>
               </div>
             ) : null}
@@ -916,9 +919,9 @@ export default function QuanLyHeThong() {
               <div className="ql-filter-bar">
                 {availableClasses.length > 0 ? (
                   <>
-                    <label><i className="fa-solid fa-filter"></i> Lớp:</label>
+                    <label><i className="fa-solid fa-filter"></i> {t("management_page.scores.filter_class")}</label>
                     <select value={classFilter} onChange={(e) => setClassFilter(e.target.value)}>
-                      <option value="">Tất cả lớp</option>
+                      <option value="">{t("management_page.scores.filter_class_all")}</option>
                       {availableClasses.map(cn => (
                         <option key={cn} value={cn}>{cn}</option>
                       ))}
@@ -927,11 +930,11 @@ export default function QuanLyHeThong() {
                 ) : null}
                 {scoreViewMode === 'history' && role !== 'student' ? (
                   <>
-                    <label><i className="fa-solid fa-gamepad"></i> Trò chơi:</label>
+                    <label><i className="fa-solid fa-gamepad"></i> {t("management_page.scores.filter_game")}</label>
                     <select value={gameFilter} onChange={(e) => setGameFilter(e.target.value)}>
-                      <option value="">Tất cả trò chơi</option>
+                      <option value="">{t("management_page.scores.filter_game_all")}</option>
                       {ALL_GAME_IDS.map(gid => (
-                        <option key={gid} value={gid}>{toGameLabel(gid)}</option>
+                        <option key={gid} value={gid}>{toGameLabel(gid, t)}</option>
                       ))}
                     </select>
                   </>
@@ -939,18 +942,18 @@ export default function QuanLyHeThong() {
               </div>
             ) : null}
 
-            {loadingScores ? <p>Đang tải dữ liệu điểm...</p> : null}
+            {loadingScores ? <p>{t("management_page.scores.loading_scores")}</p> : null}
 
             {/* ─── CLASS VIEW (teacher) ─── */}
             {!loadingScores && role === 'teacher' && scoreViewMode === 'class' ? (
               <div className="ql-class-view">
-                {classBased.length === 0 ? <p>Chưa có học sinh.</p> : null}
+                {classBased.length === 0 ? <p>{t("management_page.scores.empty_students")}</p> : null}
                 {classBased.map(([className, students]) => (
                   <div className="ql-class-section" key={className}>
                     <div className="ql-class-header">
                       <i className="fa-solid fa-chalkboard"></i>
-                      <span>Lớp {className}</span>
-                      <span className="ql-class-count">{students.length} học sinh</span>
+                      <span>{t("management_page.profile.class")} {className}</span>
+                      <span className="ql-class-count">{t("management_page.scores.student_meta", { count: students.length })}</span>
                     </div>
                     <div className="ql-student-list">
                       {students.map((student) => (
@@ -965,8 +968,11 @@ export default function QuanLyHeThong() {
                             <div className="ql-student-info">
                               <span className="ql-student-name">{student.full_name}</span>
                               <span className="ql-student-meta">
-                                {student.scores.length} lượt chơi
-                                {student.scores.length > 0 ? ` · Cao nhất: ${Math.max(...student.scores.map(s => s.score))} điểm · TB: ${(student.scores.reduce((sum, s) => sum + s.score, 0) / student.scores.length).toFixed(1)} điểm` : ''}
+                                {t("management_page.scores.student_meta", { count: student.scores.length })}
+                                {student.scores.length > 0 ? t("management_page.scores.student_meta_ext", { 
+                                  best: Math.max(...student.scores.map(s => s.score)), 
+                                  avg: (student.scores.reduce((sum, s) => sum + s.score, 0) / student.scores.length).toFixed(1) 
+                                }) : ''}
                               </span>
                             </div>
                             <i className={`fa-solid fa-chevron-${expandedStudentId === student.id ? 'up' : 'down'}`}></i>
@@ -978,19 +984,21 @@ export default function QuanLyHeThong() {
                                 {buildGameStatus(student).map(g => (
                                   <div className={`ql-game-item ${g.played ? 'played' : 'not-played'}`} key={g.game_id}>
                                     <div className="ql-game-item-head">
-                                      <span className="ql-game-item-name">{toGameLabel(g.game_id)}</span>
+                                      <span className="ql-game-item-name">{toGameLabel(g.game_id, t)}</span>
                                       <span className={`ql-game-item-badge ${g.played ? 'yes' : 'no'}`}>
-                                        {g.played ? 'Đã chơi' : 'Chưa chơi'}
+                                        {g.played ? t("management_page.scores.game_played") : t("management_page.scores.game_not_played")}
                                       </span>
                                     </div>
                                     {g.played ? (
                                       <div className="ql-game-item-stats">
-                                        <span><strong>{g.bestScore}</strong> điểm</span>
-                                        <span>{g.totalAttempts} lượt</span>
-                                        <span>{formatDate(g.lastPlayed)}</span>
+                                        <span dangerouslySetInnerHTML={{ __html: t("management_page.scores.game_stats", { 
+                                          score: g.bestScore, 
+                                          attempts: g.totalAttempts, 
+                                          time: formatDate(g.lastPlayed, i18n) 
+                                        }) }} />
                                       </div>
                                     ) : (
-                                      <div className="ql-game-item-stats muted">Chưa có dữ liệu</div>
+                                      <div className="ql-game-item-stats muted">{t("management_page.scores.game_no_data")}</div>
                                     )}
                                   </div>
                                 ))}
@@ -1008,7 +1016,7 @@ export default function QuanLyHeThong() {
             {/* ─── HISTORY VIEW (teacher) ─── */}
             {!loadingScores && role === 'teacher' && scoreViewMode === 'history' ? (
               <div className="ql-student-groups">
-                {sortedStudentRows.length === 0 ? <p>Chưa có học sinh hoặc chưa có điểm.</p> : null}
+                {sortedStudentRows.length === 0 ? <p>{t("management_page.scores.no_score_data")}</p> : null}
                 {(classFilter ? sortedStudentRows.filter(s => s.class_name === classFilter) : sortedStudentRows).map((student) => (
                   <div className="ql-student-block" key={student.id}>
                     <h3>
@@ -1019,25 +1027,25 @@ export default function QuanLyHeThong() {
                         ? student.scores.filter(s => s.game_id === gameFilter)
                         : student.scores;
                       return filtered.length === 0 ? (
-                        <p>Không có dữ liệu phù hợp.</p>
+                        <p>{t("management_page.scores.empty_history")}</p>
                       ) : (
                         <div className="ql-table-wrap">
                           <table>
                             <thead>
                               <tr>
-                                <th>Game</th>
-                                <th>Điểm</th>
-                                <th>Lượt</th>
-                                <th>Thời gian</th>
+                                <th>{t("management_page.scores.table_head_game")}</th>
+                                <th>{t("management_page.scores.table_head_score")}</th>
+                                <th>{t("management_page.scores.table_head_attempts")}</th>
+                                <th>{t("management_page.scores.table_head_time")}</th>
                               </tr>
                             </thead>
                             <tbody>
                               {filtered.map((score, index) => (
                                 <tr key={`${student.id}-${score.game_id}-${index}`}>
-                                  <td>{toGameLabel(score.game_id)}</td>
+                                  <td>{toGameLabel(score.game_id, t)}</td>
                                   <td>{score.score}</td>
                                   <td>{score.attempts}</td>
-                                  <td>{formatDate(score.completed_at)}</td>
+                                  <td>{formatDate(score.completed_at, i18n)}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1056,28 +1064,28 @@ export default function QuanLyHeThong() {
                 <table>
                   <thead>
                     <tr>
-                      {role !== 'student' ? <th>Học sinh</th> : null}
-                      {role !== 'student' ? <th>Lớp</th> : null}
-                      <th>Game</th>
-                      <th>Điểm</th>
-                      <th>Lượt</th>
-                      <th>Thời gian</th>
+                      {role !== 'student' ? <th>{t("management_page.scores.table_head_student")}</th> : null}
+                      {role !== 'student' ? <th>{t("management_page.scores.table_head_class")}</th> : null}
+                      <th>{t("management_page.scores.table_head_game")}</th>
+                      <th>{t("management_page.scores.table_head_score")}</th>
+                      <th>{t("management_page.scores.table_head_attempts")}</th>
+                      <th>{t("management_page.scores.table_head_time")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredScoreRows.length === 0 ? (
                       <tr>
-                        <td colSpan={role === 'student' ? 4 : 6}>Chưa có dữ liệu điểm.</td>
+                        <td colSpan={role === 'student' ? 4 : 6}>{t("management_page.scores.no_score_data")}</td>
                       </tr>
                     ) : (
                       filteredScoreRows.map((score, index) => (
                         <tr key={`${score.game_id || 'game'}-${score.completed_at || index}-${index}`}>
                           {role !== 'student' ? <td>{score.full_name || '-'}</td> : null}
                           {role !== 'student' ? <td>{score.class_name || '-'}</td> : null}
-                          <td>{toGameLabel(score.game_id)}</td>
+                          <td>{toGameLabel(score.game_id, t)}</td>
                           <td>{score.score}</td>
                           <td>{score.attempts}</td>
-                          <td>{formatDate(score.completed_at)}</td>
+                          <td>{formatDate(score.completed_at, i18n)}</td>
                         </tr>
                       ))
                     )}
@@ -1091,10 +1099,10 @@ export default function QuanLyHeThong() {
         {transferDraft.classId ? (
           <div className="ql-modal-overlay" role="dialog" aria-modal="true">
             <div className="ql-modal-card">
-              <h3>Chuyển lớp cho giáo viên khác</h3>
-              <p>Chọn giáo viên nhận lớp. Yêu cầu này sẽ chờ nhà trường duyệt.</p>
+              <h3>{t("management_page.transfer_modal.title")}</h3>
+              <p>{t("management_page.transfer_modal.desc")}</p>
               <select value={transferDraft.targetTeacherId} onChange={handleTransferDraftChange}>
-                <option value="">Chọn giáo viên</option>
+                <option value="">{t("management_page.transfer_modal.select_teacher")}</option>
                 {teachersInSchool
                   .filter((teacher) => teacher.id !== user?.id)
                   .map((teacher) => (
@@ -1105,10 +1113,10 @@ export default function QuanLyHeThong() {
               </select>
               <div className="ql-modal-actions">
                 <button type="button" onClick={handleRequestTransfer} disabled={submitting}>
-                  Gửi yêu cầu
+                  {t("management_page.transfer_modal.btn_submit")}
                 </button>
                 <button type="button" className="ghost" onClick={closeTransferModal}>
-                  Hủy
+                  {t("management_page.transfer_modal.btn_cancel")}
                 </button>
               </div>
             </div>

@@ -1,36 +1,39 @@
 import './TaiLieuHocTap.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const DOCUMENTS = [
-  {
-    id: 1,
-    title: "Tài Liệu Học Tập TP. Hồ Chí Minh",
-    description: "Khám phá vùng đất năng động, di tích lịch sử và văn hóa đa dạng của Thành phố Hồ Chí Minh.",
-    fileUrl: "/documents/LOP 4 - TP. HO CHI MINH.pdf",
-    coverImage: "/images/tailieu_hoctap_3.png",
-    tags: ["TP.HCM", "Giáo dục địa phương"]
-  },
-  {
-    id: 2,
-    title: "Tài Liệu Học Tập Bà Rịa - Vũng Tàu",
-    description: "Tìm hiểu vùng đất biển Bà Rịa - Vũng Tàu qua góc nhìn lịch sử, địa lí và đặc sản nổi tiếng.",
-    fileUrl: "/documents/LOP 4 - BA RIA - VUNG TAU.pdf",
-    coverImage: "/images/tailieu_hoctap_4.png",
-    tags: ["Bà Rịa - Vũng Tàu", "Địa lí"]
-  },
-  {
-    id: 3,
-    title: "Tài Liệu Học Tập Bình Dương",
-    description: "Học tập về sự giao thoa văn hóa, kinh tế công nghiệp và đời sống con người tỉnh Bình Dương.",
-    fileUrl: "/documents/LOP 4 - BINH DUONG.pdf",
-    coverImage: "/images/tailieu_hoctap_5.png",
-    tags: ["Bình Dương", "Lịch sử"]
-  }
-];
 
 export default function TaiLieuHocTap() {
+  const { t } = useTranslation();
   const [activeDoc, setActiveDoc] = useState(null);
   const canvasRef = useRef(null);
+
+  const DOCUMENTS = useMemo(() => [
+    {
+      id: 1,
+      title: t("learning_page.documents.list.hcm_title"),
+      description: t("learning_page.documents.list.hcm_desc"),
+      fileUrl: "/documents/LOP 4 - TP. HO CHI MINH.pdf",
+      coverImage: "/images/tailieu_hoctap_3.png",
+      tags: [ t("common.regions.hcm"), t("learning_page.documents.category_local_education") ]
+    },
+    {
+      id: 2,
+      title: t("learning_page.documents.list.brvt_title"),
+      description: t("learning_page.documents.list.brvt_desc"),
+      fileUrl: "/documents/LOP 4 - BA RIA - VUNG TAU.pdf",
+      coverImage: "/images/tailieu_hoctap_4.png",
+      tags: [t("common.regions.brvt"), t("header.geography")]
+    },
+    {
+      id: 3,
+      title: t("learning_page.documents.list.bd_title"),
+      description: t("learning_page.documents.list.bd_desc"),
+      fileUrl: "/documents/LOP 4 - BINH DUONG.pdf",
+      coverImage: "/images/tailieu_hoctap_5.png",
+      tags: [t("common.regions.bd"), t("header.history")]
+    }
+  ], [t]);
 
   useEffect(() => {
     document.body.classList.add('page-tai-lieu-active');
@@ -90,39 +93,39 @@ export default function TaiLieuHocTap() {
 
         <div className="container section-wrapper tl-hero-inner">
           <div className="tl-hero-badge reveal fade-up">
-            <span>Góc Học Tập</span>
+            <span>{t("learning_page.badge_corner")}</span>
             <span className="tl-dot">·</span>
-            <span className="tl-badge-accent">Tài Liệu</span>
+            <span className="tl-badge-accent">{t("learning_page.badge_doc")}</span>
           </div>
 
           <h1 className="tl-hero-title reveal fade-up delay-100">
-            Tài Liệu <span className="tl-highlight">Học Tập</span>
+            {t("learning_page.documents.hero_title")} <span className="tl-highlight">{t("learning_page.documents.hero_highlight")}</span>
           </h1>
 
           <p className="tl-hero-desc reveal fade-up delay-200">
-            Thư viện tri thức thu nhỏ giúp bạn khám phá trọn vẹn về địa lí, lịch sử và văn hóa đa dạng của vùng đất Nam Bộ yêu thương.
+            {t("learning_page.documents.hero_desc")}
           </p>
 
           <div className="tl-hero-stats reveal fade-up delay-300">
             <div className="tl-stat">
               <i className="fas fa-book-open"></i>
               <div>
-                <strong>Phong phú</strong>
-                <span>Đa dạng chủ đề</span>
+                <strong>{t("learning_page.documents.stat1_title")}</strong>
+                <span>{t("learning_page.documents.stat1_desc")}</span>
               </div>
             </div>
             <div className="tl-stat">
               <i className="fas fa-graduation-cap"></i>
               <div>
-                <strong>Lớp 4</strong>
-                <span>Chuẩn kiến thức</span>
+                <strong>{t("learning_page.documents.stat2_title")}</strong>
+                <span>{t("learning_page.documents.stat2_desc")}</span>
               </div>
             </div>
             <div className="tl-stat">
               <i className="fas fa-microscope"></i>
               <div>
-                <strong>Khám phá</strong>
-                <span>Mở rộng tư duy</span>
+                <strong>{t("learning_page.documents.stat3_title")}</strong>
+                <span>{t("learning_page.documents.stat3_desc")}</span>
               </div>
             </div>
           </div>
@@ -137,8 +140,8 @@ export default function TaiLieuHocTap() {
           <section className="tl-documents-section">
             <div className="container">
               <div className="tl-section-head reveal fade-up">
-                <span className="tl-tag">Kho Tàng Tri Thức</span>
-                <h2 className="tl-section-title">Danh Sách Tài Liệu</h2>
+                <span className="tl-tag">{t("learning_page.documents.sec_tag")}</span>
+                <h2 className="tl-section-title">{t("learning_page.documents.sec_title")}</h2>
               </div>
 
               <div className="tl-grid reveal fade-up delay-200">
@@ -147,8 +150,8 @@ export default function TaiLieuHocTap() {
                     <div className="tl-card-image-wrap">
                       <img src={doc.coverImage} alt={doc.title} className="tl-card-img" />
                       <div className="tl-card-overlay">
-                        <span className="tl-btn-read">
-                          <i className="fa-solid fa-book-open"></i> Xem Thử
+                       <span className="tl-btn-read">
+                          <i className="fa-solid fa-book-open"></i> {t("learning_page.documents.btn_preview")}
                         </span>
                       </div>
                     </div>
@@ -169,28 +172,28 @@ export default function TaiLieuHocTap() {
           <section className="tl-canvas" ref={canvasRef}>
             <div className="container">
               <div className="tl-canvas-intro reveal fade-up">
-                <h3>Không gian đọc tài liệu</h3>
-                <p>Mở rộng trải nghiệm, đọc trực tiếp với đầy đủ công cụ của trình duyệt.</p>
+                <h3>{t("learning_page.documents.canvas_title")}</h3>
+                <p>{t("learning_page.documents.canvas_desc")}</p>
               </div>
 
               {!activeDoc ? (
                 <div className="tl-canvas-empty reveal fade-up delay-200">
                   <div className="tl-empty-icon"><i className="fa-solid fa-file-pdf"></i></div>
-                  <h4>Chưa chọn tài liệu</h4>
-                  <p>Vui lòng chọn một tài liệu từ danh sách phía trên để xem nội dung.</p>
+                  <h4>{t("learning_page.documents.empty_title")}</h4>
+                  <p>{t("learning_page.documents.empty_desc")}</p>
                 </div>
               ) : (
                 <div className="tl-canvas-frame reveal fade-up delay-200">
                   <div className="tl-canvas-toolbar">
                     <div className="tl-canvas-title">
-                      <i className="fa-solid fa-book-open-reader"></i> Đang xem: {activeDoc.title}
+                      <i className="fa-solid fa-book-open-reader"></i> {t("learning_page.documents.viewing", { title: activeDoc.title })}
                     </div>
                     <div className="tl-canvas-actions">
-                      <a href={activeDoc.fileUrl} target="_blank" rel="noreferrer" className="tl-btn-external" title="Mở trang mới đầy đủ">
-                        <i className="fa-solid fa-arrow-up-right-from-square"></i> Mở tab mới
+                      <a href={activeDoc.fileUrl} target="_blank" rel="noreferrer" className="tl-btn-external" title={t("learning_page.documents.btn_new_tab")}>
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i> {t("learning_page.documents.btn_new_tab")}
                       </a>
-                      <button className="tl-btn-close" onClick={() => setActiveDoc(null)} title="Đóng trình xem này">
-                        Xóa xem
+                      <button className="tl-btn-close" onClick={() => setActiveDoc(null)} title={t("learning_page.documents.btn_close")}>
+                        {t("learning_page.documents.btn_close")}
                       </button>
                     </div>
                   </div>

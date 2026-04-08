@@ -1,8 +1,10 @@
 import './DanCu.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function DanCu() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-dan-cu-active');
     return () => {
@@ -53,19 +55,17 @@ export default function DanCu() {
 
         <div className="container dc-hero-inner">
           <span className="dc-hero-badge reveal fade-up">
-            Địa Lí
+            {t("geography_page.population.badge_geo")}
             <span className="dc-dot">·</span>
-            <span className="dc-badge-accent">Dân Cư</span>
+            <span className="dc-badge-accent">{t("geography_page.population.badge_dc")}</span>
           </span>
 
           <h1 className="dc-hero-title reveal fade-up delay-100">
-            Địa Lí<br /><span className="dc-highlight">Dân Cư</span>
+            {t("geography_page.population.hero_title")}<br /><span className="dc-highlight">{t("geography_page.population.highlight")}</span>
           </h1>
 
           <p className="dc-hero-desc reveal fade-up delay-200">
-            Khám phá bức tranh dân số sống động của Thành phố Hồ Chí Minh -
-            đô thị đặc biệt với hơn 14 triệu cư dân, 168 đơn vị hành chính
-            và sự hòa quyện của 54 dân tộc anh em.
+            {t("geography_page.population.hero_desc")}
           </p>
 
           {/* Dashboard stat bar — grouped with hero content */}
@@ -74,7 +74,7 @@ export default function DanCu() {
               <i className="fas fa-users"></i>
               <div>
                 <span className="dc-bar-num">14+</span>
-                <span className="dc-bar-label">Triệu dân</span>
+                <span className="dc-bar-label">{t("geography_page.population.bar1_label")}</span>
               </div>
             </div>
             <div className="dc-bar-divider"></div>
@@ -82,15 +82,15 @@ export default function DanCu() {
               <i className="fas fa-map-location-dot"></i>
               <div>
                 <span className="dc-bar-num">168</span>
-                <span className="dc-bar-label">Đơn vị hành chính</span>
+                <span className="dc-bar-label">{t("geography_page.population.bar2_label")}</span>
               </div>
             </div>
             <div className="dc-bar-divider"></div>
             <div className="dc-bar-item">
               <i className="fas fa-city"></i>
               <div>
-                <span className="dc-bar-num">TP Đặc biệt</span>
-                <span className="dc-bar-label">Đô thị loại đặc biệt</span>
+                <span className="dc-bar-num">{t("geography_page.population.bar3_num")}</span>
+                <span className="dc-bar-label">{t("geography_page.population.bar3_label")}</span>
               </div>
             </div>
             <div className="dc-bar-divider"></div>
@@ -98,7 +98,7 @@ export default function DanCu() {
               <i className="fas fa-people-group"></i>
               <div>
                 <span className="dc-bar-num">54</span>
-                <span className="dc-bar-label">Dân tộc anh em</span>
+                <span className="dc-bar-label">{t("geography_page.population.bar4_label")}</span>
               </div>
             </div>
           </div>
@@ -113,8 +113,8 @@ export default function DanCu() {
           <section className="dc-stats">
             <div className="container">
               <div className="dc-stats-head">
-                <span className="dc-tag reveal fade-up">Tổng Quan</span>
-                <h2 className="dc-section-title reveal fade-up delay-100">Dân Số & Hành Chính</h2>
+                <span className="dc-tag reveal fade-up">{t("geography_page.population.stat_tag")}</span>
+                <h2 className="dc-section-title reveal fade-up delay-100">{t("geography_page.population.stat_title")}</h2>
               </div>
 
               <div className="dc-stats-grid reveal fade-up delay-200">
@@ -122,11 +122,10 @@ export default function DanCu() {
                   <div className="dc-stat-icon">
                     <i className="fas fa-city"></i>
                   </div>
-                  <span className="dc-stat-num">TP Đặc biệt</span>
-                  <span className="dc-stat-label">Phân loại đô thị</span>
+                  <span className="dc-stat-num">{t("geography_page.population.st1_num")}</span>
+                  <span className="dc-stat-label">{t("geography_page.population.st1_label")}</span>
                   <p>
-                    TP.HCM là đô thị đặc biệt trực thuộc Trung ương,
-                    giữ vai trò trung tâm kinh tế lớn nhất cả nước với tốc độ phát triển vượt trội.
+                    {t("geography_page.population.st1_desc")}
                   </p>
                 </div>
 
@@ -134,11 +133,10 @@ export default function DanCu() {
                   <div className="dc-stat-icon">
                     <i className="fas fa-users"></i>
                   </div>
-                  <span className="dc-stat-num">14+ triệu</span>
-                  <span className="dc-stat-label">Quy mô dân số</span>
+                  <span className="dc-stat-num">{t("geography_page.population.st2_num")}</span>
+                  <span className="dc-stat-label">{t("geography_page.population.st2_label")}</span>
                   <p>
-                    Hơn 14 triệu người sinh sống, làm việc và học tập,
-                    tạo nên đô thị sôi động bậc nhất Việt Nam.
+                    {t("geography_page.population.st2_desc")}
                   </p>
                 </div>
 
@@ -146,11 +144,10 @@ export default function DanCu() {
                   <div className="dc-stat-icon">
                     <i className="fas fa-map"></i>
                   </div>
-                  <span className="dc-stat-num">168</span>
-                  <span className="dc-stat-label">Đơn vị hành chính</span>
+                  <span className="dc-stat-num">{t("geography_page.population.st3_num")}</span>
+                  <span className="dc-stat-label">{t("geography_page.population.st3_label")}</span>
                   <p>
-                    Gồm các quận, thành phố trực thuộc, phường và xã -
-                    hệ thống hành chính hoàn chỉnh.
+                    {t("geography_page.population.st3_desc")}
                   </p>
                 </div>
 
@@ -158,11 +155,10 @@ export default function DanCu() {
                   <div className="dc-stat-icon">
                     <i className="fas fa-people-group"></i>
                   </div>
-                  <span className="dc-stat-num">54 dân tộc</span>
-                  <span className="dc-stat-label">Đa dạng sắc tộc</span>
+                  <span className="dc-stat-num">{t("geography_page.population.st4_num")}</span>
+                  <span className="dc-stat-label">{t("geography_page.population.st4_label")}</span>
                   <p>
-                    Dân tộc Kinh chiếm đa số, cùng 53 dân tộc thiểu số
-                    khác cùng sinh sống hài hòa.
+                    {t("geography_page.population.st4_desc")}
                   </p>
                 </div>
               </div>
@@ -173,58 +169,52 @@ export default function DanCu() {
           <section className="dc-ethnic">
             <div className="container">
               <div className="dc-ethnic-head">
-                <span className="dc-tag reveal fade-up">Đa Dạng</span>
-                <h2 className="dc-section-title reveal fade-up delay-100">Bức Tranh Dân Tộc</h2>
+                <span className="dc-tag reveal fade-up">{t("geography_page.population.eth_tag")}</span>
+                <h2 className="dc-section-title reveal fade-up delay-100">{t("geography_page.population.eth_title")}</h2>
               </div>
 
               <div className="dc-ethnic-grid reveal fade-up delay-200">
                 <div className="dc-ethnic-card dc-ethnic-main">
                   <div className="dc-ethnic-icon"><i className="fas fa-flag"></i></div>
-                  <h3>Dân tộc Kinh</h3>
+                  <h3>{t("geography_page.population.eth1_title")}</h3>
                   <p>
-                    Chiếm tỉ lệ đa số trong cơ cấu dân số thành phố,
-                    đóng vai trò chủ đạo trong phát triển kinh tế - xã hội
-                    và văn hóa đô thị.
+                    {t("geography_page.population.eth1_desc")}
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
 
                 <div className="dc-ethnic-card">
                   <div className="dc-ethnic-icon"><i className="fas fa-torii-gate"></i></div>
-                  <h3>Người Hoa</h3>
+                  <h3>{t("geography_page.population.eth2_title")}</h3>
                   <p>
-                    Cộng đồng dân tộc thiểu số lớn nhất,
-                    tập trung chủ yếu ở thành phố Hồ Chí Minh với nền văn hóa phong phú
+                    {t("geography_page.population.eth2_desc")}
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
 
                 <div className="dc-ethnic-card">
                   <div className="dc-ethnic-icon"><i className="fas fa-mosque"></i></div>
-                  <h3>Người Chăm</h3>
+                  <h3>{t("geography_page.population.eth3_title")}</h3>
                   <p>
-                    Mang theo di sản văn hóa Chăm-pa độc đáo,
-                    góp phần tạo nên sự đa dạng văn hóa cho thành phố.
+                    {t("geography_page.population.eth3_desc")}
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
 
                 <div className="dc-ethnic-card">
                   <div className="dc-ethnic-icon"><i className="fas fa-gopuram"></i></div>
-                  <h3>Người Khmer</h3>
+                  <h3>{t("geography_page.population.eth4_title")}</h3>
                   <p>
-                    Cộng đồng người Khmer với bản sắc văn hóa đặc trưng
-                    và các lễ hội truyền thống riêng biệt.
+                    {t("geography_page.population.eth4_desc")}
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
 
                 <div className="dc-ethnic-card">
                   <div className="dc-ethnic-icon"><i className="fas fa-mountain-sun"></i></div>
-                  <h3>Người Tày & Các dân tộc khác</h3>
+                  <h3>{t("geography_page.population.eth5_title")}</h3>
                   <p>
-                    Cùng nhiều dân tộc khác từ khắp mọi miền,
-                    tạo nên bức tranh cộng đồng đa sắc tộc phong phú.
+                    {t("geography_page.population.eth5_desc")}
                   </p>
                   <div className="dc-deco-motif" aria-hidden="true"></div>
                 </div>
@@ -236,8 +226,8 @@ export default function DanCu() {
           <section className="dc-canvas">
             <div className="container">
               <div className="dc-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Toàn bộ nội dung trực quan về địa lí dân cư Thành phố Hồ Chí Minh.</p>
+                <h3>{t("geography_page.canvas_intro_title")}</h3>
+                <p>{t("geography_page.population.canvas_intro_desc")}</p>
               </div>
               <div className="dc-canvas-frame reveal fade-up delay-200">
                 <div className="dc-canvas-embed">
@@ -252,7 +242,7 @@ export default function DanCu() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-dan-cu" gameName="Quán ăn hạnh phúc" />
+            <GameRedirect to="/tro-choi-dan-cu" gameName={t("learning_page.quiz.games.dan_cu.title")} />
           </section>
         </div>
       </main>

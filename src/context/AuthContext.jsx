@@ -10,12 +10,31 @@ import {
 const AUTH_TOKEN_KEY = 'khampha_auth_token';
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000').replace(/\/$/, '');
 
-export const ROLE_LABELS = {
-  admin: 'Quản trị hệ thống',
-  school: 'Nhà trường',
-  teacher: 'Giáo viên',
-  student: 'Học sinh',
-};
+function safeStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return '';
+  }
+}
+
+function safeStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage write failure in strict privacy contexts.
+  }
+}
+
+function safeStorageRemove(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // Ignore storage remove failure in strict privacy contexts.
+  }
+}
+
+/** Role labels are now handled via i18n in components */
 
 const AuthContext = createContext(null);
 
@@ -31,12 +50,12 @@ async function readJson(response) {
 }
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => localStorage.getItem(AUTH_TOKEN_KEY) || '');
+  const [token, setToken] = useState(() => safeStorageGet(AUTH_TOKEN_KEY) || '');
   const [user, setUser] = useState(null);
   const [isBootstrapping, setIsBootstrapping] = useState(true);
 
   const logout = useCallback(() => {
-    localStorage.removeItem(AUTH_TOKEN_KEY);
+    safeStorageRemove(AUTH_TOKEN_KEY);
     setToken('');
     setUser(null);
   }, []);
@@ -53,10 +72,10 @@ export function AuthProvider({ children }) {
 
     const payload = await readJson(response);
     if (!response.ok) {
-      throw new Error(payload.message || 'Đăng nhập thất bại.');
+      throw new Error(payload.message || 'Login failed.');
     }
 
-    localStorage.setItem(AUTH_TOKEN_KEY, payload.token);
+    safeStorageSet(AUTH_TOKEN_KEY, payload.token);
     setToken(payload.token);
     setUser(payload.user || null);
     return payload.user;
@@ -77,7 +96,7 @@ export function AuthProvider({ children }) {
 
       const payload = await readJson(response);
       if (!response.ok) {
-        throw new Error(payload.message || 'Không thể lấy thông tin người dùng.');
+        throw new Error(payload.message || 'Could not fetch user profile.');
       }
 
       setUser(payload.user || null);
@@ -88,9 +107,10 @@ export function AuthProvider({ children }) {
 
   const authRequest = useCallback(
     async (path, options = {}) => {
-      const activeToken = token || localStorage.getItem(AUTH_TOKEN_KEY);
+      const tokenFromStorage = safeStorageGet(AUTH_TOKEN_KEY);
+      const activeToken = token || tokenFromStorage;
       if (!activeToken) {
-        throw new Error('Bạn chưa đăng nhập.');
+        throw new Error('Not authenticated.');
       }
 
       const isFormData = options.body instanceof FormData;
@@ -112,7 +132,7 @@ export function AuthProvider({ children }) {
       }
 
       if (!response.ok) {
-        throw new Error(payload.message || 'Yêu cầu thất bại.');
+        throw new Error(payload.message || 'Request failed.');
       }
 
       return payload;
@@ -172,7 +192,7 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth phải được dùng trong AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 }

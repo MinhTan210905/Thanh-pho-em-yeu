@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { GAME_DEFS } from "./gameDefs";
 import "./BaiTap.css";
 
@@ -60,18 +61,39 @@ function getSessionProgress(def) {
   return { answered: 0, hasSession: false, sessionScore: 0 };
 }
 
-function buildGames(progress) {
+function buildGames(progress, t) {
   return GAME_DEFS.map((def) => {
+    // Map def.id to i18n key used in translation.json
+    const rawGameKey = def.id.replace("tro-choi-", "").replace(/-/g, "_");
+    const gameKey = {
+      dia_li_tu_nhien: "tu_nhien",
+      di_tich_lich_su: "di_tich",
+      nhan_vat_lich_su: "nhan_vat",
+    }[rawGameKey] || rawGameKey;
+    
+    // Set category based on parent folder or map it
+    let cat = def.category;
+    if (def.route.includes('/dia-ly') || def.id.includes('dia-li') || def.id.includes('vi-tri') || def.id.includes('kinh-te') || def.id.includes('dan-cu')) {
+      cat = t("header.geography");
+    } else if (def.route.includes('/lich-su') || def.id.includes('lich-su')) {
+      cat = t("header.history");
+    } else if (def.route.includes('/van-hoa') || def.id.includes('am-thuc') || def.id.includes('lang-nghe') || def.id.includes('le-hoi')) {
+      cat = t("header.culture");
+    }
+
     const p = progress[def.id] || { answered: 0, correctCount: 0, score: 0, attempts: 0 };
     const session = getSessionProgress(def);
     const answered = Math.max(p.answered || 0, session.answered || 0);
     const displayAnswered = session.hasSession ? session.answered : answered;
-    /* session score: nếu null (di tích) thì fallback tính từ progress */
     const sessionScore = session.sessionScore !== null && session.sessionScore !== undefined
       ? session.sessionScore
       : (p.score || 0);
+      
     return {
       ...def,
+      title: t(`learning_page.quiz.games.${gameKey}.title`, { defaultValue: def.title }),
+      description: t(`learning_page.quiz.games.${gameKey}.desc`, { defaultValue: def.description }),
+      category: cat,
       ...p,
       answered,
       displayAnswered,
@@ -95,10 +117,11 @@ function getGameStatus(game) {
 }
 
 export default function BaiTap() {
+  const { t } = useTranslation();
   const [progress, setProgress] = useState(loadProgress);
   const [filter, setFilter] = useState("all");
   const [animKey, setAnimKey] = useState(0);
-  const games = useMemo(() => buildGames(progress), [progress]);
+  const games = useMemo(() => buildGames(progress, t), [progress, t]);
 
   /* White header override + hide chatbot */
   useEffect(() => {
@@ -161,14 +184,13 @@ export default function BaiTap() {
       <section className="bt-hero">
         <div className="bt-hero-badge">
           <i className="fa-solid fa-gamepad" />
-          Trung tâm Bài tập
+          {t("learning_page.quiz.hero_badge")}
         </div>
         <h1>
-          Quản lí <span>Trò chơi Ôn tập</span>
+          {t("learning_page.quiz.hero_title")} <span>{t("learning_page.quiz.hero_highlight")}</span>
         </h1>
         <p>
-          Theo dõi tiến trình học tập, điểm số và số lần thử của bạn. Hoàn thành tất cả thử thách để trở
-          thành chuyên gia Sài Gòn!
+          {t("learning_page.quiz.hero_desc")}
         </p>
 
 
@@ -178,17 +200,17 @@ export default function BaiTap() {
             <div className="bt-stat-number">
               {stats.played}/{stats.totalGames}
             </div>
-            <div className="bt-stat-label">Đã chơi</div>
+            <div className="bt-stat-label">{t("learning_page.quiz.stat_played")}</div>
           </div>
           <div className="bt-stat-card">
             <div className="bt-stat-number">
               {stats.totalCorrect}/{stats.totalQuestions}
             </div>
-            <div className="bt-stat-label">Câu đúng</div>
+            <div className="bt-stat-label">{t("learning_page.quiz.stat_correct")}</div>
           </div>
           <div className="bt-stat-card">
             <div className="bt-stat-number">{stats.avgScore}</div>
-            <div className="bt-stat-label">Điểm TB</div>
+            <div className="bt-stat-label">{t("learning_page.quiz.stat_avg")}</div>
           </div>
         </div>
       </section>
@@ -198,32 +220,32 @@ export default function BaiTap() {
         <div className="bt-games-header">
           <h2>
             <i className="fa-solid fa-list-check" />
-            Danh sách trò chơi
+            {t("learning_page.quiz.list_title")}
           </h2>
           <div className="bt-filter-pills">
             <button
               className={`bt-pill ${filter === "all" ? "active" : ""}`}
               onClick={() => handleFilterChange("all")}
             >
-              Tất cả ({games.length})
+              {t("learning_page.quiz.filter_all")} ({games.length})
             </button>
             <button
               className={`bt-pill ${filter === "not-started" ? "active" : ""}`}
               onClick={() => handleFilterChange("not-started")}
             >
-              Chưa làm ({statusCounts.notStarted})
+              {t("learning_page.quiz.filter_new")} ({statusCounts.notStarted})
             </button>
             <button
               className={`bt-pill ${filter === "in-progress" ? "active" : ""}`}
               onClick={() => handleFilterChange("in-progress")}
             >
-              Đang làm ({statusCounts.inProgress})
+              {t("learning_page.quiz.filter_progress")} ({statusCounts.inProgress})
             </button>
             <button
               className={`bt-pill ${filter === "completed" ? "active" : ""}`}
               onClick={() => handleFilterChange("completed")}
             >
-              Hoàn thành ({statusCounts.completed})
+              {t("learning_page.quiz.filter_done")} ({statusCounts.completed})
             </button>
           </div>
         </div>
@@ -243,7 +265,7 @@ export default function BaiTap() {
                     className={`bt-card-badge ${status === "completed" ? "completed" : status === "in-progress" ? "progress" : "new"
                       }`}
                   >
-                    {status === "completed" ? "Hoàn thành" : status === "in-progress" ? "Đang làm" : "Chưa làm"}
+                    {status === "completed" ? t("learning_page.quiz.status_done") : status === "in-progress" ? t("learning_page.quiz.status_progress") : t("learning_page.quiz.status_new")}
                   </span>
                 </div>
 
@@ -258,7 +280,7 @@ export default function BaiTap() {
                     {game.bestScore > 0 && (
                       <div className="bt-best-score">
                         <i className="fa-solid fa-trophy" />
-                        <span>Điểm cao nhất: {game.bestScore}</span>
+                        <span>{t("learning_page.quiz.best_score", { score: game.bestScore })}</span>
                       </div>
                     )}
 
@@ -266,9 +288,9 @@ export default function BaiTap() {
                     <div className="bt-progress-wrap">
                       <div className="bt-progress-info">
                         <span>
-                          Tiến độ: {displayAnswered}/{game.totalQuestions}
+                          {t("learning_page.quiz.progress_label", { current: displayAnswered, total: game.totalQuestions })}
                         </span>
-                        <span className="bt-score">{game.sessionScore} điểm</span>
+                        <span className="bt-score">{t("learning_page.quiz.score_label", { score: game.sessionScore })}</span>
                       </div>
                       <div className="bt-progress-bar">
                         <div
@@ -282,23 +304,23 @@ export default function BaiTap() {
                     <div className="bt-card-footer">
                       <span className="bt-attempts">
                         <i className="fa-solid fa-rotate" />
-                        {game.attempts}/{MAX_ATTEMPTS} lượt
+                        {t("learning_page.quiz.attempts_label", { current: game.attempts, total: MAX_ATTEMPTS })}
                       </span>
                       <div className="bt-card-actions">
                         {status === "completed" ? (
                           <Link to={game.route} className="bt-play-btn result">
                             <i className="fa-solid fa-chart-column" />
-                            Xem kết quả
+                            {t("learning_page.quiz.btn_result")}
                           </Link>
                         ) : outOfAttempts ? (
                           <Link to={game.route} className="bt-play-btn result">
                             <i className="fa-solid fa-chart-column" />
-                            Xem kết quả
+                            {t("learning_page.quiz.btn_result")}
                           </Link>
                         ) : (
                           <Link to={game.route} className="bt-play-btn">
                             <i className="fa-solid fa-play" />
-                            {status === "in-progress" ? "Tiếp tục" : "Bắt đầu"}
+                            {status === "in-progress" ? t("learning_page.quiz.btn_continue") : t("learning_page.quiz.btn_start")}
                           </Link>
                         )}
                       </div>
@@ -311,7 +333,7 @@ export default function BaiTap() {
           {filteredGames.length === 0 && (
             <div className="bt-empty">
               <i className="fa-solid fa-filter-circle-xmark" />
-              <p>Không có trò chơi nào trong mục này</p>
+              <p>{t("learning_page.quiz.empty_msg")}</p>
             </div>
           )}
         </div>

@@ -1,8 +1,10 @@
 import './KinhTe.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function KinhTe() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-kinh-te-active');
     return () => {
@@ -49,42 +51,39 @@ export default function KinhTe() {
 
         <div className="container section-wrapper kt-hero-inner">
           <div className="kt-hero-badge reveal fade-up">
-            <span>Địa Lí</span>
+            <span>{t("geography_page.economy.badge_geo")}</span>
             <span className="kt-dot">·</span>
-            <span className="kt-badge-accent">Kinh Tế</span>
+            <span className="kt-badge-accent">{t("geography_page.economy.badge_kt")}</span>
           </div>
 
           <h1 className="kt-hero-title reveal fade-up delay-100">
-            Địa Lí Kinh Tế <span className="kt-highlight">TP.HCM</span>
+            {t("geography_page.economy.hero_title")} <span className="kt-highlight">{t("geography_page.economy.highlight")}</span>
           </h1>
 
           <p className="kt-hero-desc reveal fade-up delay-200">
-            Thành phố Hồ chí Minh là trung tâm kinh tế lớn nhất cả nước
-            với 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp
-            quy mô lớn và nông nghiệp ứng dụng công nghệ cao, giữ vai trò
-            đầu tàu phát triển kinh tế quốc gia.
+            {t("geography_page.economy.hero_desc")}
           </p>
 
           <div className="kt-hero-pills reveal fade-up delay-300">
             <div className="kt-pill">
               <i className="fas fa-briefcase"></i>
               <div>
-                <strong>Dịch vụ</strong>
-                <span>Trung tâm hàng đầu</span>
+                <strong>{t("geography_page.economy.pill1_title")}</strong>
+                <span>{t("geography_page.economy.pill1_desc")}</span>
               </div>
             </div>
             <div className="kt-pill">
               <i className="fas fa-industry"></i>
               <div>
-                <strong>Công nghiệp</strong>
-                <span>10+ KCN lớn</span>
+                <strong>{t("geography_page.economy.pill2_title")}</strong>
+                <span>{t("geography_page.economy.pill2_desc")}</span>
               </div>
             </div>
             <div className="kt-pill">
               <i className="fas fa-seedling"></i>
               <div>
-                <strong>Nông nghiệp</strong>
-                <span>Công nghệ cao</span>
+                <strong>{t("geography_page.economy.pill3_title")}</strong>
+                <span>{t("geography_page.economy.pill3_desc")}</span>
               </div>
             </div>
           </div>
@@ -102,24 +101,24 @@ export default function KinhTe() {
                 <div className="kt-kpi">
                   <div className="kt-kpi-number">3</div>
                   <div className="kt-kpi-text">
-                    <span>Khu vực</span>
-                    <span>Kinh tế chủ lực</span>
+                    <span>{t("geography_page.economy.kpi1_top")}</span>
+                    <span>{t("geography_page.economy.kpi1_bot")}</span>
                   </div>
                 </div>
                 <div className="kt-kpi-divider"></div>
                 <div className="kt-kpi">
                   <div className="kt-kpi-number">10+</div>
                   <div className="kt-kpi-text">
-                    <span>Khu CN</span>
-                    <span>Quy mô lớn</span>
+                    <span>{t("geography_page.economy.kpi2_top")}</span>
+                    <span>{t("geography_page.economy.kpi2_bot")}</span>
                   </div>
                 </div>
                 <div className="kt-kpi-divider"></div>
                 <div className="kt-kpi">
                   <div className="kt-kpi-number">No.1</div>
                   <div className="kt-kpi-text">
-                    <span>Đầu tàu</span>
-                    <span>Kinh tế quốc gia</span>
+                    <span>{t("geography_page.economy.kpi3_top")}</span>
+                    <span>{t("geography_page.economy.kpi3_bot")}</span>
                   </div>
                 </div>
               </div>
@@ -130,8 +129,8 @@ export default function KinhTe() {
           <section className="kt-sectors">
             <div className="container">
               <div className="kt-sectors-head reveal fade-up">
-                <span className="kt-tag">Ba Trụ Cột</span>
-                <h2 className="kt-section-title">Cơ Cấu Kinh Tế Đa Dạng</h2>
+                <span className="kt-tag">{t("geography_page.economy.sector_tag")}</span>
+                <h2 className="kt-section-title">{t("geography_page.economy.sector_title")}</h2>
               </div>
 
               <div className="kt-bento reveal fade-up delay-200">
@@ -140,11 +139,9 @@ export default function KinhTe() {
                   <div className="kt-bento-icon-wrap">
                     <i className="fas fa-concierge-bell"></i>
                   </div>
-                  <h3>Dịch vụ</h3>
+                  <h3>{t("geography_page.economy.sec1_title")}</h3>
                   <p>
-                    Thành phố là trung tâm dịch vụ lớn nhất cả nước. Một số ngành
-                    nổi bật: giao thông vận tải, thương mại, du lịch, bất động sản,
-                    tài chính – ngân hàng…
+                    {t("geography_page.economy.sec1_desc")}
                   </p>
                   <div className="kt-deco-motif" aria-hidden="true"></div>
                 </article>
@@ -154,12 +151,9 @@ export default function KinhTe() {
                   <div className="kt-bento-icon-wrap">
                     <i className="fas fa-hard-hat"></i>
                   </div>
-                  <h3>Công nghiệp – Xây dựng</h3>
+                  <h3>{t("geography_page.economy.sec2_title")}</h3>
                   <p>
-                    Thu hút hàng nghìn doanh nghiệp; nổi bật ở cơ khí, dệt may,
-                    giày da, nhựa – cao su, điện tử, chế biến thực phẩm và
-                    thủy – hải sản. Nhiều KCN lớn: Hiệp Phước, Vĩnh Lộc,
-                    Tân Phú Trung, Linh Trung…
+                    {t("geography_page.economy.sec2_desc")}
                   </p>
                   <div className="kt-deco-motif" aria-hidden="true"></div>
                 </article>
@@ -168,11 +162,9 @@ export default function KinhTe() {
                   <div className="kt-bento-icon-wrap">
                     <i className="fas fa-leaf"></i>
                   </div>
-                  <h3>Nông nghiệp</h3>
+                  <h3>{t("geography_page.economy.sec3_title")}</h3>
                   <p>
-                    Trồng rau màu, hoa lan, cây kiểng, lúa; chăn nuôi bò, lợn,
-                    gia cầm. Ứng dụng nhà màng, nhà lưới, thủy canh, cảm biến
-                    nhiệt – ẩm, năng lượng mặt trời.
+                    {t("geography_page.economy.sec3_desc")}
                   </p>
                   <div className="kt-deco-motif" aria-hidden="true"></div>
                 </article>
@@ -186,13 +178,9 @@ export default function KinhTe() {
               <div className="kt-outlook-box">
                 <div className="kt-outlook-icon"><i className="fas fa-rocket"></i></div>
                 <div className="kt-outlook-content">
-                  <h3>Tầm nhìn & Thách thức</h3>
+                  <h3>{t("geography_page.economy.outlook_title")}</h3>
                   <p>
-                    Thành phố tiếp tục mở rộng nghiên cứu khoa học trong lĩnh vực công nghệ,
-                    đẩy mạnh liên kết vùng và phấn đấu giữ vững vai trò đầu tàu kinh tế cả nước.
-                    Song song đó, TP.HCM đang đối mặt thách thức môi trường - ô nhiễm nước,
-                    không khí, rác thải - và đẩy mạnh giải pháp đô thị xanh, đô thị thông minh,
-                    phát triển phương tiện công cộng.
+                    {t("geography_page.economy.outlook_desc")}
                   </p>
                 </div>
               </div>
@@ -203,8 +191,8 @@ export default function KinhTe() {
           <section className="kt-canvas">
             <div className="container">
               <div className="kt-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Tổng quan cấu trúc kinh tế, các khu công nghiệp và tiềm năng phát triển của TP.HCM.</p>
+                <h3>{t("geography_page.canvas_intro_title")}</h3>
+                <p>{t("geography_page.economy.canvas_intro_desc")}</p>
               </div>
               <div className="kt-canvas-frame reveal fade-up delay-200">
                 <div className="kt-canvas-embed">
@@ -219,7 +207,7 @@ export default function KinhTe() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-kinh-te" gameName="Truy tìm ô chữ" />
+            <GameRedirect to="/tro-choi-kinh-te" gameName={t("learning_page.quiz.games.kinh_te.title")} />
           </section>
         </div>
       </main>

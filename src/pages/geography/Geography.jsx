@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import './Geography.css';
 
 export default function Geography() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -18,29 +20,29 @@ export default function Geography() {
     {
       id: 1,
       image: "/images/dia_ly_1.jfif",
-      title: "Vị trí địa lí",
-      description: "Khám phá vị trí chiến lược của Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
+      title: t("geography_page.overview.item1_title"),
+      description: t("geography_page.overview.item1_desc"),
       route: "/vi-tri"
     },
     {
       id: 2,
       image: "/images/dia_ly_3.jpg",
-      title: "Địa lí kinh tế",
-      description: "Khám phá các ngành kinh tế chủ lực của thành phố",
+      title: t("geography_page.overview.item2_title"),
+      description: t("geography_page.overview.item2_desc"),
       route: "/kinh-te"
     },
     {
       id: 3,
       image: "/images/dia_ly_2.svg",
-      title: "Địa lí tự nhiên",
-      description: "Tìm hiểu về địa hình, khí hậu, hệ thống sông ngòi, kênh rạch, biển, sinh vật, đất và khoáng sản",
+      title: t("geography_page.overview.item3_title"),
+      description: t("geography_page.overview.item3_desc"),
       route: "/tu-nhien"
     },
     {
       id: 4,
       image: "/images/dia_ly_4.jpg",
-      title: "Địa lí dân cư",
-      description: "Tìm hiểu phân bố dân cư và đặc điểm đô thị của Thành phố Hồ Chí Minh",
+      title: t("geography_page.overview.item4_title"),
+      description: t("geography_page.overview.item4_desc"),
       route: "/dan-cu"
     }
   ];
@@ -146,14 +148,14 @@ export default function Geography() {
           <p>{currentHero.description}</p>
           {currentRoute ? (
             <Link to={currentRoute} className="geography-read-more">
-              Đọc thêm
+              {t("geography_page.btn_read_more")}
               <span className="geography-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
             </Link>
           ) : (
             <button className="geography-read-more">
-              Đọc thêm
+              {t("geography_page.btn_read_more")}
               <span className="geography-read-more-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>

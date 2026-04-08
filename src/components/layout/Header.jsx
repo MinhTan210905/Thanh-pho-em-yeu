@@ -1,46 +1,48 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { useAuth, ROLE_LABELS } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from 'react-i18next';
 
-// Dữ liệu submenu cho từng mục
+// Dữ liệu submenu cho từng mục (Sử dụng key cho đa ngôn ngữ)
+/** Role labels are now handled via i18n in components */
 const NAV_ITEMS = [
-  { id: "trang-chu", label: "Trang chủ", to: "/", subPages: [] },
+  { id: "trang-chu", labelKey: "header.home", to: "/", subPages: [] },
   {
     id: "dia-ly",
-    label: "Địa lí",
+    labelKey: "header.geography",
     to: "/dia-ly",
     activeRoutes: ["/dia-ly", "/vi-tri", "/kinh-te", "/tu-nhien", "/dan-cu"],
     subPages: [
-      { label: "Vị trí", to: "/vi-tri" },
-      { label: "Kinh tế", to: "/kinh-te" },
-      { label: "Tự nhiên", to: "/tu-nhien" },
-      { label: "Dân cư", to: "/dan-cu" },
+      { labelKey: "header.sub_geo_location", to: "/vi-tri" },
+      { labelKey: "header.sub_geo_economy", to: "/kinh-te" },
+      { labelKey: "header.sub_geo_nature", to: "/tu-nhien" },
+      { labelKey: "header.sub_geo_population", to: "/dan-cu" },
     ],
   },
   {
     id: "lich-su",
-    label: "Lịch sử",
+    labelKey: "header.history",
     to: "/lich-su",
     activeRoutes: ["/lich-su", "/di-tich", "/nhan-vat"],
     subPages: [
-      { label: "Di tích lịch sử", to: "/di-tich" },
-      { label: "Nhân vật lịch sử", to: "/nhan-vat" },
+      { labelKey: "header.sub_his_relics", to: "/di-tich" },
+      { labelKey: "header.sub_his_figures", to: "/nhan-vat" },
     ],
   },
   {
     id: "van-hoa",
-    label: "Văn hóa",
+    labelKey: "header.culture",
     to: "/van-hoa",
     activeRoutes: ["/van-hoa", "/lang-nghe", "/am-thuc", "/le-hoi"],
     subPages: [
-      { label: "Ẩm thực", to: "/am-thuc" },
-      { label: "Làng nghề", to: "/lang-nghe" },
-      { label: "Lễ hội", to: "/le-hoi" },
+      { labelKey: "header.sub_cul_food", to: "/am-thuc" },
+      { labelKey: "header.sub_cul_crafts", to: "/lang-nghe" },
+      { labelKey: "header.sub_cul_festivals", to: "/le-hoi" },
     ],
   },
   {
     id: "hoc-tap",
-    label: "Góc học tập",
+    labelKey: "header.learning",
     to: "/hoc-tap",
     activeRoutes: [
       "/hoc-tap", "/bai-tap", "/tai-lieu",
@@ -51,21 +53,36 @@ const NAV_ITEMS = [
       "/tro-choi-vi-tri",
     ],
     subPages: [
-      { label: "Tài liệu học tập", to: "/tai-lieu" },
-      { label: "Trò chơi ôn tập", to: "/bai-tap" },
+      { labelKey: "header.sub_learn_documents", to: "/tai-lieu" },
+      { labelKey: "header.sub_learn_games", to: "/bai-tap" },
     ],
   },
 ];
 
+function safeGetSelectedLang() {
+  try {
+    return localStorage.getItem('selectedLang');
+  } catch {
+    return null;
+  }
+}
+
+function safeSetSelectedLang(lang) {
+  try {
+    localStorage.setItem('selectedLang', lang);
+  } catch {
+    // Ignore storage write failure in strict privacy contexts.
+  }
+}
+
 export default function Header({ currentPage }) {
+  const { t, i18n } = useTranslation();
   const { isAuthenticated, user, logout } = useAuth();
   const canOpenManagement = user?.role === 'admin' || user?.role === 'school' || user?.role === 'teacher';
   const navigate = useNavigate();
   const [currentLang, setCurrentLang] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('selectedLang') || "VIE";
-    }
-    return "VIE";
+    const saved = safeGetSelectedLang();
+    return saved === 'en' ? 'ENG' : 'VIE';
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
@@ -177,38 +194,17 @@ export default function Header({ currentPage }) {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const changeLang = (lang) => {
-    setCurrentLang(lang);
-    localStorage.setItem('selectedLang', lang);
+  const changeLang = (langCode) => {
+    // 'VIE' = 'vi', 'ENG' = 'en'
+    const newLang = langCode === 'ENG' ? 'en' : 'vi';
+    
+    // Tức thời đổi text trên giao diện thông qua react-i18next
+    i18n.changeLanguage(newLang);
+    
+    // Lưu lại cấu hình
+    setCurrentLang(langCode);
+    safeSetSelectedLang(newLang);
     setIsDropdownOpen(false);
-
-    const loadingScreen = document.getElementById('translate-loading');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'flex';
-
-      const spinner = document.getElementById('spinner');
-      if (spinner) {
-        spinner.innerHTML = '<div class="spinner-circle1"></div>';
-      }
-
-      if (lang === 'ENG') {
-        const select = document.querySelector('.goog-te-combo');
-        if (select) {
-          select.value = 'en';
-          select.dispatchEvent(new Event('change'));
-        }
-      } else if (lang === 'VIE') {
-        const select = document.querySelector('.goog-te-combo');
-        if (select) {
-          select.value = 'vi';
-          select.dispatchEvent(new Event('change'));
-        }
-      }
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    }
   };
 
   const isNavActive = (item) => {
@@ -243,7 +239,7 @@ export default function Header({ currentPage }) {
                   onClick={item.id === 'trang-chu' ? goTop : undefined}
                   className={isNavActive(item) ? "active" : ""}
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
 
                 {/* Submenu dropdown */}
@@ -257,7 +253,7 @@ export default function Header({ currentPage }) {
                             className={location.pathname === sub.to ? 'sub-active' : ''}
                             onClick={() => setOpenNav(null)}
                           >
-                            {sub.label}
+                            {t(sub.labelKey)}
                           </Link>
                         </li>
                       ))}
@@ -272,7 +268,7 @@ export default function Header({ currentPage }) {
         <div className="search-wrapper">
           <div className="search-box">
             <i className="fas fa-search"></i>
-            <input type="text" placeholder="Tìm kiếm..." />
+            <input type="text" placeholder={t("header.search")} />
           </div>
         </div>
 
@@ -287,18 +283,18 @@ export default function Header({ currentPage }) {
           <div className="close-btn" id="closeBtn"><i className="fas fa-times"></i></div>
         </div>
         <ul className="mobile-nav-links">
-          <li><Link to="/" onClick={() => { goTop(); closeMobileMenu(); }}>Trang chủ</Link></li>
-          <li><Link to="/dia-ly" onClick={closeMobileMenu}>Địa lí</Link></li>
-          <li><Link to="/lich-su" onClick={closeMobileMenu}>Lịch sử</Link></li>
-          <li><Link to="/van-hoa" onClick={closeMobileMenu}>Văn hóa</Link></li>
-          <li><Link to="/hoc-tap" onClick={closeMobileMenu}>Góc học tập</Link></li>
+          <li><Link to="/" onClick={() => { goTop(); closeMobileMenu(); }}>{t("header.home")}</Link></li>
+          <li><Link to="/dia-ly" onClick={closeMobileMenu}>{t("header.geography")}</Link></li>
+          <li><Link to="/lich-su" onClick={closeMobileMenu}>{t("header.history")}</Link></li>
+          <li><Link to="/van-hoa" onClick={closeMobileMenu}>{t("header.culture")}</Link></li>
+          <li><Link to="/hoc-tap" onClick={closeMobileMenu}>{t("header.learning")}</Link></li>
           {isAuthenticated ? (
             <>
-              {canOpenManagement ? <li><Link to="/quan-ly" onClick={closeMobileMenu}>Trang quản lí</Link></li> : null}
-              <li><button type="button" className="mobile-logout-btn" onClick={handleLogout}>Đăng xuất</button></li>
+              {canOpenManagement ? <li><Link to="/quan-ly" onClick={closeMobileMenu}>{t("header.management")}</Link></li> : null}
+              <li><button type="button" className="mobile-logout-btn" onClick={handleLogout}>{t("header.logout")}</button></li>
             </>
           ) : (
-            <li><Link to="/dang-nhap" onClick={closeMobileMenu}>Đăng nhập</Link></li>
+            <li><Link to="/dang-nhap" onClick={closeMobileMenu}>{t("header.login")}</Link></li>
           )}
         </ul>
         <div className="mobile-socials">
@@ -323,15 +319,15 @@ export default function Header({ currentPage }) {
               <>
                 <span className="auth-user-name">
                   {user?.full_name || user?.username}
-                  {user?.role ? ` (${ROLE_LABELS[user.role] || user.role})` : ''}
+                  {user?.role ? ` (${t(`common.roles.${user.role}`)})` : ''}
                 </span>
-                {canOpenManagement ? <Link to="/quan-ly" className="auth-quick-link">Quản lí</Link> : null}
+                {canOpenManagement ? <Link to="/quan-ly" className="auth-quick-link">{t("header.management")}</Link> : null}
                 <button type="button" className="auth-quick-link auth-quick-logout" onClick={handleLogout}>
-                  Đăng xuất
+                  {t("header.logout")}
                 </button>
               </>
             ) : (
-              <Link to="/dang-nhap" className="auth-quick-link">Đăng nhập</Link>
+              <Link to="/dang-nhap" className="auth-quick-link">{t("header.login")}</Link>
             )}
           </div>
 
@@ -342,7 +338,7 @@ export default function Header({ currentPage }) {
               <img
                 src={currentLang === "VIE"
                   ? "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg"
-                  : "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"}
+                  : "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"}
                 className="flag-img"
                 alt={currentLang}
               />
@@ -355,7 +351,7 @@ export default function Header({ currentPage }) {
                 Tiếng Việt
               </div>
               <div className="lang-option notranslate" onClick={() => changeLang('ENG')}>
-                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US" />
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK" />
                 English
               </div>
             </div>

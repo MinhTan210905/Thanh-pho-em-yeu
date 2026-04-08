@@ -1,8 +1,10 @@
 import './LeHoi.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function LeHoi() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-le-hoi-active');
     return () => {
@@ -51,39 +53,39 @@ export default function LeHoi() {
 
         <div className="container section-wrapper lh-hero-inner">
           <div className="lh-hero-badge reveal fade-up">
-            <span>Văn Hóa</span>
+            <span>{t("culture_page.festival.badge_cul")}</span>
             <span className="lh-dot">·</span>
-            <span className="lh-badge-accent">Lễ Hội</span>
+            <span className="lh-badge-accent">{t("culture_page.festival.badge_fest")}</span>
           </div>
 
           <h1 className="lh-hero-title reveal fade-up delay-100">
-            Lễ Hội <span className="lh-highlight">TP.HCM</span>
+            {t("culture_page.festival.hero_title")} <span className="lh-highlight">{t("culture_page.festival.highlight")}</span>
           </h1>
 
           <p className="lh-hero-desc reveal fade-up delay-200">
-            Đa dạng, kết hợp giữa truyền thống và hiện đại - phản ánh đời sống văn&nbsp;hóa phong phú, sôi động của người dân thành phố.
+            {t("culture_page.festival.hero_desc")}
           </p>
 
           <div className="lh-hero-chips reveal fade-up delay-300">
             <div className="lh-chip">
               <i className="fas fa-fire"></i>
               <div>
-                <strong>Truyền thống</strong>
-                <span>Lễ hội dân gian lâu đời</span>
+                <strong>{t("culture_page.festival.chip1_title")}</strong>
+                <span>{t("culture_page.festival.chip1_desc")}</span>
               </div>
             </div>
             <div className="lh-chip">
               <i className="fas fa-city"></i>
               <div>
-                <strong>Hiện đại</strong>
-                <span>Sự kiện quốc tế, đô thị</span>
+                <strong>{t("culture_page.festival.chip2_title")}</strong>
+                <span>{t("culture_page.festival.chip2_desc")}</span>
               </div>
             </div>
             <div className="lh-chip">
               <i className="fas fa-users"></i>
               <div>
-                <strong>Cộng đồng</strong>
-                <span>Gắn kết mọi thế hệ</span>
+                <strong>{t("culture_page.festival.chip3_title")}</strong>
+                <span>{t("culture_page.festival.chip3_desc")}</span>
               </div>
             </div>
           </div>
@@ -97,32 +99,29 @@ export default function LeHoi() {
           <section className="lh-features">
             <div className="container">
               <div className="lh-features-head reveal fade-up">
-                <span className="lh-tag">Đặc Sắc Lễ Hội</span>
-                <h2 className="lh-section-title">Sắc Màu Thành Phố</h2>
+                <span className="lh-tag">{t("culture_page.festival.sec_tag")}</span>
+                <h2 className="lh-section-title">{t("culture_page.festival.sec_title")}</h2>
               </div>
 
               <div className="lh-strip reveal fade-up delay-200">
                 <div className="lh-strip-card lh-strip-wide">
-                  <div className="lh-strip-num">01</div>
-                  <h3>Kết hợp truyền thống và hiện đại</h3>
+                  <div className="lh-strip-num">{t("culture_page.festival.str1_num")}</div>
+                  <h3>{t("culture_page.festival.str1_title")}</h3>
                   <p>
-                    Từ lễ hội Nguyên Tiêu, Tết Nguyên Đán, lễ hội Nghinh&nbsp;Ông đến
-                    những sự kiện âm nhạc quốc tế, hội chợ đa văn hóa - tất cả
-                    hòa quyện với nhịp sống thành phố.
+                    {t("culture_page.festival.str1_desc")}
                   </p>
                 </div>
                 <div className="lh-strip-card">
-                  <div className="lh-strip-num">02</div>
-                  <h3>Đời sống văn hóa phong phú</h3>
+                  <div className="lh-strip-num">{t("culture_page.festival.str2_num")}</div>
+                  <h3>{t("culture_page.festival.str2_title")}</h3>
                   <p>
-                    Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian
-                    để mọi&nbsp;người cùng tôn vinh, trải nghiệm và chia sẻ.
+                    {t("culture_page.festival.str2_desc")}
                   </p>
                 </div>
                 <div className="lh-strip-card lh-strip-accent">
-                  <div className="lh-strip-num">03</div>
-                  <h3>Sôi động quanh năm</h3>
-                  <p>Gần như tháng nào cũng có lễ hội, sự kiện văn hóa lớn nhỏ diễn ra khắp thành phố.</p>
+                  <div className="lh-strip-num">{t("culture_page.festival.str3_num")}</div>
+                  <h3>{t("culture_page.festival.str3_title")}</h3>
+                  <p>{t("culture_page.festival.str3_desc")}</p>
                 </div>
               </div>
             </div>
@@ -132,8 +131,8 @@ export default function LeHoi() {
           <section className="lh-canvas">
             <div className="container">
               <div className="lh-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM.</p>
+                <h3>{t("culture_page.canvas_intro_title")}</h3>
+                <p>{t("culture_page.festival.canvas_desc")}</p>
               </div>
               <div className="lh-canvas-frame reveal fade-up delay-200">
                 <div className="lh-canvas-embed">
@@ -148,7 +147,7 @@ export default function LeHoi() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-le-hoi" gameName="Dấu ấn lễ hội địa phương" />
+            <GameRedirect to="/tro-choi-le-hoi" gameName={t("learning_page.quiz.games.le_hoi.title")} />
           </section>
         </div>
       </main>

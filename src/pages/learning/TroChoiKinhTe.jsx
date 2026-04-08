@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiKinhTe.css";
 
@@ -25,18 +26,9 @@ const playAudio = (type) => {
   }
 };
 
-const TARGET_WORDS = [
-  { id: 0, text: "GIAOTHÔNGVẬNTẢI", display: "Giao thông vận tải" },
-  { id: 1, text: "DULỊCH", display: "Du lịch" },
-  { id: 2, text: "CƠKHÍ", display: "Cơ khí" },
-  { id: 3, text: "CHĂNNUÔI", display: "Chăn nuôi" },
-  { id: 4, text: "TRỒNGTRỌT", display: "Trồng trọt" }
-];
-
-const VI_ALPHABET = "AĂÂBCDĐEÊGHIKLMNOÔƠPQRSTUƯVXYÁÀẢÃẠẮẰẲẴẶẤẦẨẪẬÉÈẺẼẸẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌỐỒỔỖỘỚỜỞỠỢÚÙỦŨỤỨỪỬỮỰÝỲỶỸỴ".split("");
-
-function generateWordSearch(wordsObjArray, size = 15) {
+function generateWordSearch(wordsObjArray, alphabet, size = 15) {
   const grid = Array.from({ length: size }, () => Array(size).fill(null));
+  const alphabetArray = alphabet.split("");
   
   // Dành cho tiểu học: chỉ cho phép các hướng cơ bản (trái->phải, trên->dưới, chéo xuống)
   const dirs = [
@@ -84,16 +76,15 @@ function generateWordSearch(wordsObjArray, size = 15) {
   for (let r = 0; r < size; r++) {
     for (let c = 0; c < size; c++) {
       if (grid[r][c] === null) {
-        grid[r][c] = VI_ALPHABET[Math.floor(Math.random() * VI_ALPHABET.length)];
+        grid[r][c] = alphabetArray[Math.floor(Math.random() * alphabetArray.length)];
       }
     }
   }
   return grid;
 }
 
-const TOTAL = TARGET_WORDS.length;
 const GAME_ID = "tro-choi-kinh-te";
-const STATE_KEY = "tc_kinh_te_state_v2";
+const STATE_KEY = "tc_kinh_te_state_v3"; // Incremented version to force clear old state
 const BT_KEY = "bt_game_progress";
 const MAX_ATTEMPTS = 3;
 
@@ -127,9 +118,9 @@ function incrementAttempts() {
   } catch { /* ignore */ }
 }
 
-function syncProgress(results) {
+function syncProgress(results, total) {
   const correctCount = results.filter((r) => r === true).length;
-  const score = Math.round((correctCount / TOTAL) * 100);
+  const score = Math.round((correctCount / total) * 100);
   try {
     const data = JSON.parse(sessionStorage.getItem(BT_KEY)) || {};
     const prev = data[GAME_ID] || { answered: 0, correctCount: 0, score: 0, attempts: 0 };
@@ -143,7 +134,6 @@ function syncProgress(results) {
   } catch { /* ignore */ }
 }
 
-// Helpers for line drawing
 function getLineCells(r1, c1, r2, c2) {
   let dr = r2 - r1;
   let dc = c2 - c1;
@@ -170,10 +160,21 @@ function getLineCells(r1, c1, r2, c2) {
 }
 
 export default function TroChoiKinhTe() {
-  const saved = useMemo(() => loadState(), []);
+  const { t, i18n } = useTranslation();
 
-  const [grid, setGrid] = useState(saved?.grid || generateWordSearch(TARGET_WORDS));
-  const [screen, setScreen] = useState(saved?.screen ?? "play"); // play -> finish
+  const TARGET_WORDS = useMemo(() => t("minigames.kinh_te.words", { returnObjects: true }), [t]);
+  const ALPHABET = useMemo(() => t("minigames.kinh_te.alphabet"), [t]);
+  const TOTAL = TARGET_WORDS.length;
+
+  const saved = useMemo(() => {
+    const s = loadState();
+    // If language changed, we shouldn't use the old grid
+    if (s && s.lng !== i18n.language) return null;
+    return s;
+  }, [i18n.language]);
+
+  const [grid, setGrid] = useState(saved?.grid || generateWordSearch(TARGET_WORDS, ALPHABET));
+  const [screen, setScreen] = useState(saved?.screen ?? "play");
   const [results, setResults] = useState(saved?.results ?? Array(TOTAL).fill(null));
   const [foundPaths, setFoundPaths] = useState(saved?.foundPaths ?? []);
   
@@ -203,7 +204,6 @@ export default function TroChoiKinhTe() {
     }
   }, []);
 
-  // Tự động phát nhạc nếu đang trong game
   useEffect(() => {
     if (screen !== "finish") {
       playBGM();
@@ -227,9 +227,9 @@ export default function TroChoiKinhTe() {
   }, []);
 
   useEffect(() => {
-    saveState({ screen, results, foundPaths, grid, finishedOnce: finishedRef.current });
-    syncProgress(results);
-  }, [screen, results, foundPaths, grid]);
+    saveState({ screen, results, foundPaths, grid, finishedOnce: finishedRef.current, lng: i18n.language });
+    syncProgress(results, TOTAL);
+  }, [screen, results, foundPaths, grid, i18n.language, TOTAL]);
 
   const handleViewSummary = useCallback(() => {
     if (!finishedRef.current) {
@@ -242,35 +242,38 @@ export default function TroChoiKinhTe() {
     setScreen("finish");
   }, [stopBGM]);
 
-
-
   const doRestart = useCallback(() => {
     sessionStorage.removeItem(STATE_KEY);
     finishedRef.current = false;
     setScreen("play");
     setResults(Array(TOTAL).fill(null));
     setFoundPaths([]);
-    setGrid(generateWordSearch(TARGET_WORDS));
+    setGrid(generateWordSearch(TARGET_WORDS, ALPHABET));
     setIsTwoClickMode(false);
     setJustFinished(false);
     playBGM();
-  }, [playBGM]);
+  }, [playBGM, TOTAL, TARGET_WORDS, ALPHABET]);
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
     if (attempts >= MAX_ATTEMPTS) {
-      setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho trò này!" });
+      setDialog({ 
+        open: true, 
+        type: "alert", 
+        title: t("minigames.kinh_te.dialog_out_of_attempts_title"), 
+        message: t("minigames.kinh_te.dialog_out_of_attempts_msg") 
+      });
       return;
     }
     const remaining = MAX_ATTEMPTS - attempts - 1;
     setDialog({
       open: true,
       type: "confirm",
-      title: "Bắt đầu lượt mới?",
-      message: `Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn ${remaining} lượt nữa.`,
+      title: t("minigames.kinh_te.dialog_restart_title"),
+      message: t("minigames.kinh_te.dialog_restart_msg", { count: remaining }),
       action: "restart",
     });
-  }, []);
+  }, [t]);
 
   const closeDialog = useCallback(() => setDialog({ open: false, type: "", title: "", message: "", action: "" }), []);
 
@@ -279,18 +282,15 @@ export default function TroChoiKinhTe() {
     closeDialog();
   }, [dialog, doRestart, closeDialog]);
 
-  // UI drag/click handlers
   const handlePointerDown = (r, c) => {
     if (screen !== "play") return;
 
     if (isTwoClickMode && dragStart) {
-      // This is the second click in Two-Click mode
       const finalEnd = { r, c };
       processWord(dragStart, finalEnd);
       return;
     }
 
-    // Start a new potential selection (could be drag or start of two-click)
     setIsDragging(true);
     setIsTwoClickMode(false);
     setDragStart({ r, c });
@@ -340,11 +340,9 @@ export default function TroChoiKinhTe() {
     const isSameCell = dragStart.r === dragEnd.r && dragStart.c === dragEnd.c;
 
     if (isSameCell) {
-      // It was a simple click, enter Two-Click mode
       setIsDragging(false);
       setIsTwoClickMode(true);
     } else {
-      // It was a drag, process immediately
       processWord(dragStart, dragEnd);
     }
   };
@@ -399,47 +397,42 @@ export default function TroChoiKinhTe() {
           <div className="tk-done-icon">
             <i className="fa-solid fa-gamepad" />
           </div>
-          <h2>
-            Hoàn thành <span>Truy Tìm Ô Chữ!</span>
-          </h2>
-          <p>
-            Bạn đã tìm được <strong>{correctCount}/{TOTAL} từ khóa</strong> ẩn trong bài.
-          </p>
+          <h2 dangerouslySetInnerHTML={{ __html: t("minigames.kinh_te.end_title") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("minigames.kinh_te.end_stat_words", { correct: correctCount, total: TOTAL }) }} />
           
           <div className="tk-done-stats">
               <div className="tk-done-stat">
                   <div className="tk-done-stat-num">{score}</div>
-                  <div className="tk-done-stat-label">Điểm</div>
+                  <div className="tk-done-stat-label">{t("minigames.kinh_te.end_stat_score_label")}</div>
               </div>
               <div className="tk-done-stat">
                   <div className="tk-done-stat-num">{correctCount}/{TOTAL}</div>
-                  <div className="tk-done-stat-label">Từ khóa</div>
+                  <div className="tk-done-stat-label">{t("minigames.kinh_te.end_stat_correct_label")}</div>
               </div>
               <div className="tk-done-stat">
                   <div className="tk-done-stat-num">
                       {stars === 3 ? "⭐⭐⭐" : stars === 2 ? "⭐⭐" : stars === 1 ? "⭐" : "—"}
                   </div>
-                  <div className="tk-done-stat-label">Đánh giá</div>
+                  <div className="tk-done-stat-label">{t("minigames.kinh_te.end_stat_rating_label")}</div>
               </div>
           </div>
 
           <div className="tk-done-actions">
             {attemptsLeft > 0 ? (
               <button className="tk-btn primary" onClick={handleRestart}>
-                <i className="fa-solid fa-rotate-right" /> Chơi lại ({attemptsLeft} lượt)
+                <i className="fa-solid fa-rotate-right" /> {t("minigames.kinh_te.btn_play_again", { count: attemptsLeft })}
               </button>
             ) : (
               <span className="tk-btn disabled">
-                <i className="fa-solid fa-lock" /> Hết lượt
+                <i className="fa-solid fa-lock" /> {t("minigames.kinh_te.btn_out_of_attempts")}
               </span>
             )}
             <Link to="/bai-tap" className="tk-btn ghost">
-              <i className="fa-solid fa-arrow-left" /> Quay về Bài tập
+              <i className="fa-solid fa-arrow-left" /> {t("minigames.kinh_te.btn_back_learning")}
             </Link>
           </div>
         </div>
 
-        {/* Dialog Layer for Reset Confirmation */}
         {dialog.open && (
             <div className="tk-dialog-overlay" onClick={closeDialog}>
                 <div className="tk-dialog" onClick={(e) => e.stopPropagation()}>
@@ -448,11 +441,11 @@ export default function TroChoiKinhTe() {
                     <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
                         {dialog.type === "confirm" && (
                             <button className="tk-dlg-btn ghost" onClick={closeDialog}>
-                                Hủy
+                                {t("minigames.kinh_te.dialog_btn_cancel")}
                             </button>
                         )}
                         <button className="tk-dlg-btn blue" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                            {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                            {dialog.type === "confirm" ? t("minigames.kinh_te.dialog_btn_confirm") : t("minigames.kinh_te.dialog_btn_ok")}
                         </button>
                     </div>
                 </div>
@@ -471,16 +464,16 @@ export default function TroChoiKinhTe() {
             </Link>
             <div>
                 <h1>
-                    <i className="fa-solid fa-search" /> Truy Tìm Ô Chữ
+                    <i className="fa-solid fa-search" /> {t("minigames.kinh_te.title")}
                 </h1>
-                <p>Kéo chọn hoặc nhấn điểm đầu - điểm cuối để tìm {TOTAL} từ khóa Địa lí kinh tế</p>
+                <p>{t("minigames.kinh_te.subtitle", { count: TOTAL })}</p>
             </div>
         </div>
         <div className="tk-topbar-right">
             <div className="tk-chip tk-chip-score">
                 <i className="fa-solid fa-circle-check" /> {correctCount}/{TOTAL}
             </div>
-            <button className="tk-chip" onClick={handleRestart} style={{cursor: "pointer", border: "1px dashed var(--tk-primary)"}} title="Chơi lại từ đầu">
+            <button className="tk-chip" onClick={handleRestart} style={{cursor: "pointer", border: "1px dashed var(--tk-primary)"}} title={t("minigames.kinh_te.chip_attempts")}>
                 <i className="fa-solid fa-rotate" /> {getAttempts()}/{MAX_ATTEMPTS}
             </button>
         </div>
@@ -519,10 +512,10 @@ export default function TroChoiKinhTe() {
 
               {/* Sidebar Words */}
               <div className="tk-sidebar">
-                  <h3 className="tk-sidebar-title">Danh sách từ khóa</h3>
+                  <h3 className="tk-sidebar-title">{t("minigames.kinh_te.sidebar_title")}</h3>
                   <ul className="tk-word-list">
                       {TARGET_WORDS.map((w, i) => (
-                          <li key={w.id} className={`tk-word-item ${results[i] ? "found" : ""}`}>
+                          <li key={i} className={`tk-word-item ${results[i] ? "found" : ""}`}>
                               {results[i] ? <i className="fa-solid fa-check-circle tk-word-check"></i> : <i className="fa-regular fa-circle tk-word-uncheck"></i>}
                               <span>{w.display}</span>
                           </li>
@@ -532,7 +525,7 @@ export default function TroChoiKinhTe() {
                   {correctCount === TOTAL && (
                       <div className="tk-play-actions">
                           <button className="tk-btn primary tk-summary-btn glow" onClick={handleViewSummary}>
-                              <i className="fa-solid fa-star" /> Xem kết quả
+                              <i className="fa-solid fa-star" /> {t("minigames.kinh_te.btn_view_result")}
                           </button>
                       </div>
                   )}
@@ -548,11 +541,11 @@ export default function TroChoiKinhTe() {
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
                     {dialog.type === "confirm" && (
                         <button className="tk-dlg-btn ghost" onClick={closeDialog}>
-                            Hủy
+                            {t("minigames.kinh_te.dialog_btn_cancel")}
                         </button>
                     )}
                     <button className="tk-dlg-btn blue" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                        {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                        {dialog.type === "confirm" ? t("minigames.kinh_te.dialog_btn_confirm") : t("minigames.kinh_te.dialog_btn_ok")}
                     </button>
                 </div>
             </div>

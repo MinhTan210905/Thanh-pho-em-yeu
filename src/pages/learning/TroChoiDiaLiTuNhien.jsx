@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiDiaLiTuNhien.css";
 
@@ -25,94 +26,6 @@ const playAudio = (type) => {
     audio.play().catch(e => console.log("Audio play failed:", e));
   }
 };
-
-const QUESTIONS = [
-  {
-    question: "Các dạng địa hình chính của Thành phố Hồ Chí Minh?",
-    options: [
-      "Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển.",
-      "Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi cao; Địa hình ven biển.",
-      "Đồng bằng thấp; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển.",
-      "Đồng bằng thấp, trũng, đầm lầy; Cao nguyên; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển.",
-    ],
-    correctIndex: 0,
-  },
-  {
-    question: "Thành phố Hồ Chí Minh có bao nhiêu mùa trong năm?",
-    options: ["1", "2", "3", "4"],
-    correctIndex: 1,
-  },
-  {
-    question: "Những dòng sông nào chảy qua Thành phố Hồ Chí Minh?",
-    options: [
-      "Sông Sài Gòn, Sông Hồng",
-      "Sông Đồng Nai, Sông Hồng",
-      "Sông Sài Gòn, Sông Đồng Nai",
-      "Sông Hồng, Sông Hương",
-    ],
-    correctIndex: 2,
-  },
-  {
-    question: "Bãi Trước còn có tên gọi khác là gì?",
-    options: ["Tầm Dương", "Thuỳ Vân", "Mũi Né", "Tuần Châu"],
-    correctIndex: 0,
-  },
-  {
-    question: "Bãi Sau còn có tên gọi khác là gì?",
-    options: ["Tầm Dương", "Thuỳ Vân", "Mũi Né", "Tuần Châu"],
-    correctIndex: 1,
-  },
-  {
-    question: "Nơi nào ở Thành phố Hồ Chí Minh được UNESCO công nhận là Khu dự trữ sinh quyển thế giới?",
-    options: [
-      "Vườn chim Thủ Đức",
-      "Rừng nguyên sinh Núi Cậu",
-      "Rừng nguyên sinh Kiến An",
-      "Rừng ngập mặn Cần Giờ",
-    ],
-    correctIndex: 3,
-  },
-  {
-    question: "Nền địa chất của Thành phố Hồ Chí Minh có đặc điểm gì?",
-    options: [
-      "Không ổn định",
-      "Dễ sạt lở",
-      "Ổn định và có độ chịu lực cao",
-      "Chủ yếu là đầm lầy",
-    ],
-    correctIndex: 2,
-  },
-  {
-    question: "Khoáng sản có vai trò như thế nào đối với Thành phố?",
-    options: [
-      "Không quan trọng",
-      "Chỉ dùng để trang trí",
-      "Là nguồn tài nguyên quan trọng thúc đẩy kinh tế",
-      "Chỉ phục vụ sinh hoạt gia đình",
-    ],
-    correctIndex: 2,
-  },
-  {
-    question: "Đất phù sa có đặc điểm gì nổi bật?",
-    options: [
-      "Khô cằn, ít chất dinh dưỡng",
-      "Độ phì nhiêu cao",
-      "Nhiều sỏi đá",
-      "Khó trồng cây",
-    ],
-    correctIndex: 1,
-  },
-  {
-    question: "Vì sao đất phèn khó trồng cây khi chưa cải tạo?",
-    options: [
-      "Vì đất quá khô",
-      "Vì đất rất chua và nghèo dinh dưỡng",
-      "Vì đất quá nhiều nước",
-      "Vì đất có nhiều đá",
-    ],
-    correctIndex: 1,
-  },
-];
 
 const BAG_COLORS = [
   {
@@ -149,7 +62,6 @@ const BAG_COLORS = [
   },
 ];
 
-const TOTAL = QUESTIONS.length;
 const STATE_KEY = "tc_dia_li_tu_nhien_state_v2";
 const BT_KEY = "bt_game_progress";
 const GAME_ID = "tro-choi-dia-li-tu-nhien";
@@ -164,10 +76,10 @@ function shuffle(arr) {
   return a;
 }
 
-function buildColorSequence() {
+function buildColorSequence(total) {
   const base = BAG_COLORS.map((c) => c.id);
   const colors = [...base, ...base];
-  while (colors.length < TOTAL) {
+  while (colors.length < total) {
     colors.push(base[Math.floor(Math.random() * base.length)]);
   }
   let candidate = colors;
@@ -185,8 +97,8 @@ function buildColorSequence() {
   return shuffle(candidate);
 }
 
-function initBags(questionOrder) {
-  const colors = buildColorSequence();
+function initBags(questionOrder, total) {
+  const colors = buildColorSequence(total);
   return colors.map((colorId, idx) => ({
     id: `bag-${idx}`,
     questionIndex: questionOrder[idx],
@@ -273,14 +185,27 @@ function playRipSound(audioCtxRef) {
 }
 
 export default function TroChoiDiaLiTuNhien() {
+  const { t } = useTranslation();
+
+  const QUESTIONS = useMemo(() => {
+    const questions = t("minigames.tu_nhien.questions", { returnObjects: true });
+    const correctIndices = [0, 1, 2, 0, 1, 3, 2, 2, 1, 1]; // From original QUESTIONS
+    return questions.map((q, i) => ({
+      ...q,
+      correctIndex: correctIndices[i] || 0
+    }));
+  }, [t]);
+
+  const TOTAL = QUESTIONS.length;
+
   const saved = useMemo(() => loadState(), []);
   const [questionOrder] = useState(() => saved?.questionOrder || shuffle(QUESTIONS.map((_, i) => i)));
-  const [bags, setBags] = useState(() => saved?.bags || initBags(questionOrder));
+  const [bags, setBags] = useState(() => saved?.bags || initBags(questionOrder, TOTAL));
   const [stage, setStage] = useState(() => saved?.stage || "bags");
   const [activeBagId, setActiveBagId] = useState(() => saved?.activeBagId ?? null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [results, setResults] = useState(() => saved?.results || Array(TOTAL).fill(null));
-  const [dialog, setDialog] = useState({ open: false, message: "" });
+  const [dialog, setDialog] = useState({ open: false, type: "alert", message: "" });
   const audioCtxRef = useRef(null);
   const finishedRef = useRef(
     saved?.results ? saved.results.filter((r) => r !== null).length === TOTAL : false
@@ -333,7 +258,7 @@ export default function TroChoiDiaLiTuNhien() {
 
   useEffect(() => {
     saveState({ bags, stage, activeBagId, results, questionOrder });
-  }, [bags, stage, activeBagId, results]);
+  }, [bags, stage, activeBagId, results, questionOrder]);
 
   useEffect(() => {
     syncProgress(results);
@@ -401,32 +326,30 @@ export default function TroChoiDiaLiTuNhien() {
     }
     setStage("bags");
     setActiveBagId(null);
-  }, [allDone]);
-
-
+  }, [allDone, stopBGM]);
 
   const handleRestart = useCallback(() => {
     const attempts = getAttempts();
     if (attempts >= MAX_ATTEMPTS) {
-      setDialog({ open: true, type: "alert", message: "Bạn đã hết lượt chơi cho trò này!" });
+      setDialog({ open: true, type: "alert", message: t("minigames.tu_nhien.dialog_out_of_attempts") });
       return;
     }
     const remaining = MAX_ATTEMPTS - attempts - 1;
     setDialog({
       open: true,
       type: "confirm",
-      message: `Đây sẽ là lượt chơi mới. Sau lượt này, bạn còn ${remaining} lượt nữa.`,
+      message: t("minigames.tu_nhien.dialog_restart_confirm", { count: remaining }),
     });
-  }, []);
+  }, [t]);
 
-  const closeDialog = useCallback(() => setDialog({ open: false, message: "" }), []);
+  const closeDialog = useCallback(() => setDialog({ open: false, type: "alert", message: "" }), []);
 
   const confirmDialog = useCallback(() => {
     if (!finishedRef.current) {
       incrementAttempts();
     }
     const newOrder = shuffle(QUESTIONS.map((_, i) => i));
-    setBags(initBags(newOrder));
+    setBags(initBags(newOrder, TOTAL));
     setResults(Array(TOTAL).fill(null));
     setStage("bags");
     setActiveBagId(null);
@@ -435,7 +358,7 @@ export default function TroChoiDiaLiTuNhien() {
     sessionStorage.removeItem(STATE_KEY);
     closeDialog();
     playBGM();
-  }, [closeDialog, playBGM]);
+  }, [closeDialog, playBGM, TOTAL, QUESTIONS]);
 
   const attemptsLeft = MAX_ATTEMPTS - getAttempts();
 
@@ -450,9 +373,9 @@ export default function TroChoiDiaLiTuNhien() {
             <div>
               <h1 className="dlt-title-text">
                 <i className="fa-solid fa-leaf" style={{ color: '#22c55e', textShadow: 'none', WebkitTextFillColor: 'initial' }} />
-                <span>Truy Tìm Bí Ẩn Tự Nhiên!</span>
+                <span>{t("minigames.tu_nhien.title")}</span>
               </h1>
-              <p>Chọn túi mù, xé bí ẩn và trả lời câu hỏi địa lí</p>
+              <p>{t("minigames.tu_nhien.subtitle")}</p>
             </div>
           </div>
           <div className="dlt-topbar-right">
@@ -464,7 +387,6 @@ export default function TroChoiDiaLiTuNhien() {
               <i className="fa-solid fa-circle-check" />
               {correctCount}
             </div>
-
           </div>
         </div>
       )}
@@ -472,8 +394,8 @@ export default function TroChoiDiaLiTuNhien() {
       {stage === "bags" && (
         <section className="dlt-bags">
           <div className="dlt-bags-head">
-            <h2>Chọn một túi mù để xé</h2>
-            <span className="dlt-bags-sub">Còn lại {TOTAL - answeredCount} túi</span>
+            <h2>{t("minigames.tu_nhien.bags_head")}</h2>
+            <span className="dlt-bags-sub">{t("minigames.tu_nhien.bags_sub", { count: TOTAL - answeredCount })}</span>
           </div>
           <div className="dlt-bag-grid">
             {bags.map((bag, idx) => {
@@ -492,7 +414,7 @@ export default function TroChoiDiaLiTuNhien() {
                     <img className="bag-left" src={color?.left} alt="" />
                     <img className="bag-right" src={color?.right} alt="" />
                   </div>
-                  <div className="dlt-bag-label">Túi {idx + 1}</div>
+                  <div className="dlt-bag-label">{t("minigames.tu_nhien.bag_label", { count: idx + 1 })}</div>
                   {bag.status === "done" && (
                     <div className="dlt-bag-done">
                       <i className="fa-solid fa-check" />
@@ -509,7 +431,7 @@ export default function TroChoiDiaLiTuNhien() {
         <section className="dlt-question">
           <div className="dlt-question-card">
             <div className="dlt-question-label">
-              Câu hỏi {activeBag?.questionIndex + 1}/{TOTAL}
+              {t("minigames.tu_nhien.q_label", { current: (activeBag?.questionIndex || 0) + 1, total: TOTAL })}
             </div>
             <h3>{currentQuestion.question}</h3>
             <div className="dlt-options">
@@ -537,10 +459,10 @@ export default function TroChoiDiaLiTuNhien() {
             {selectedAnswer !== null && (
               <div className="dlt-question-actions">
                 <div className={`dlt-result ${selectedAnswer === currentQuestion.correctIndex ? "ok" : "fail"}`}>
-                  {selectedAnswer === currentQuestion.correctIndex ? "Đúng rồi!" : "Sai rồi, thử túi khác nha!"}
+                  {selectedAnswer === currentQuestion.correctIndex ? t("minigames.tu_nhien.feedback_correct") : t("minigames.tu_nhien.feedback_wrong")}
                 </div>
                 <button className="dlt-btn" onClick={handleBackToBags}>
-                  {allDone ? "Xem tổng kết" : "Quay lại túi mù"}
+                  {allDone ? t("minigames.tu_nhien.btn_view_summary") : t("minigames.tu_nhien.btn_back_bags")}
                 </button>
               </div>
             )}
@@ -555,23 +477,21 @@ export default function TroChoiDiaLiTuNhien() {
             <div className="dlt-done-icon">
               <i className="fa-solid fa-trophy" />
             </div>
-            <h2>Hoàn Thành <span>Truy Tìm Bí Ẩn Tự Nhiên!</span></h2>
-            <p>
-              Bạn trả lời đúng <strong>{correctCount}/{TOTAL}</strong> câu hỏi.
-            </p>
+            <h2 dangerouslySetInnerHTML={{ __html: t("minigames.tu_nhien.end_title") }} />
+            <p dangerouslySetInnerHTML={{ __html: t("minigames.tu_nhien.end_stat_correct", { correct: correctCount, total: TOTAL }) }} />
 
             <div className="dlt-done-stats">
               <div className="dlt-done-stat">
                 <div className="dlt-done-stat-num">{correctCount * 10}</div>
-                <div className="dlt-done-stat-label">Điểm</div>
+                <div className="dlt-done-stat-label">{t("minigames.tu_nhien.end_stat_score_label")}</div>
               </div>
               <div className="dlt-done-stat">
                 <div className="dlt-done-stat-num">{correctCount}/{TOTAL}</div>
-                <div className="dlt-done-stat-label">Câu đúng</div>
+                <div className="dlt-done-stat-label">{t("minigames.tu_nhien.end_stat_correct_label")}</div>
               </div>
               <div className="dlt-done-stat">
                 <div className="dlt-done-stat-num">{correctCount >= 8 ? "⭐⭐⭐" : correctCount >= 5 ? "⭐⭐" : correctCount >= 3 ? "⭐" : "—"}</div>
-                <div className="dlt-done-stat-label">Đánh giá</div>
+                <div className="dlt-done-stat-label">{t("minigames.tu_nhien.end_stat_rating_label")}</div>
               </div>
             </div>
 
@@ -579,17 +499,17 @@ export default function TroChoiDiaLiTuNhien() {
               {attemptsLeft > 0 ? (
                 <button className="dlt-btn primary" onClick={handleRestart}>
                   <i className="fa-solid fa-rotate-right" />
-                  Chơi lại ({attemptsLeft} lượt)
+                  {t("minigames.tu_nhien.btn_play_again", { count: attemptsLeft })}
                 </button>
               ) : (
                 <span className="dlt-btn disabled">
                   <i className="fa-solid fa-lock" />
-                  Hết lượt
+                  {t("minigames.tu_nhien.btn_out_of_attempts")}
                 </span>
               )}
               <Link to="/bai-tap" className="dlt-btn ghost">
                 <i className="fa-solid fa-arrow-left" />
-                Quay về Bài tập
+                {t("minigames.tu_nhien.btn_back_learning")}
               </Link>
             </div>
           </div>
@@ -599,16 +519,16 @@ export default function TroChoiDiaLiTuNhien() {
       {dialog.open && (
         <div className="dlt-dialog-overlay" onClick={closeDialog}>
           <div className="dlt-dialog" onClick={(e) => e.stopPropagation()}>
-            <h3>Thông báo</h3>
+            <h3>{t("minigames.tu_nhien.dialog_restart_title")}</h3>
             <p>{dialog.message}</p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
               {dialog.type === "confirm" && (
                 <button className="dlt-btn ghost" style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #cbd5e1' }} onClick={closeDialog}>
-                  Hủy
+                  {t("minigames.tu_nhien.dialog_btn_cancel")}
                 </button>
               )}
               <button className="dlt-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                {dialog.type === "confirm" ? t("minigames.tu_nhien.dialog_btn_confirm") : t("minigames.tu_nhien.dialog_btn_ok")}
               </button>
             </div>
           </div>

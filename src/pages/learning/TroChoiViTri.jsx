@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fireConfetti } from "./confettiEffect";
 import "./TroChoiViTri.css";
 
@@ -48,65 +49,7 @@ const ASSETS = {
   ]
 };
 
-const QUESTIONS = [
-  {
-    id: 1,
-    question: "Sau sáp nhập, Thành phố Hồ Chí Minh giáp với các tỉnh/vùng nào sau đây?",
-    options: [
-      "Đồng Nai, Tây Ninh, Bình Dương, Bà Rịa - Vũng Tàu.",
-      "Đồng Nai, Tây Ninh, Tiền Giang, Long An và Biển Đông",
-      "Đồng Nai, Đồng Tháp, Tây Ninh, Tiền Giang và Biển Đông.",
-      "Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông."
-    ],
-    correct: 3 // D
-  },
-  {
-    id: 2,
-    question: "Sau sáp nhập, thành phố Hồ Chí Minh có bao nhiêu đơn vị hành chính cấp xã?",
-    options: [
-      "165 đơn vị hành chính cấp xã",
-      "175 đơn vị hành chính cấp xã",
-      "168 đơn vị hành chính cấp xã",
-      "178 đơn vị hành chính cấp xã"
-    ],
-    correct: 2 // C
-  },
-  {
-    id: 3,
-    question: "Sau sáp nhập Thành phố Hồ Chí Minh có diện tích là bao nhiêu km²?",
-    options: [
-      "6.772,59 km²",
-      "7.772,59 km²",
-      "8.772,59 km²",
-      "9.772,59 km²"
-    ],
-    correct: 0 // A
-  },
-  {
-    id: 4,
-    question: "Sau sáp nhập, Thành phố Hồ Chí Minh được sáp nhập với các tỉnh thành nào?",
-    options: [
-      "Bình Dương, Long An",
-      "Bình Dương, Bà Rịa - Vũng Tàu",
-      "Bà Rịa - Vũng Tàu, Đồng Nai",
-      "Bà Rịa - Vũng Tàu, Long An"
-    ],
-    correct: 1 // B
-  },
-  {
-    id: 5,
-    question: "Quy mô dân số của TP. Hồ Chí Minh sau sáp nhập khoảng bao nhiêu người?",
-    options: [
-      "Hơn 14 triệu người",
-      "Hơn 12 triệu người",
-      "Hơn 15 triệu người",
-      "Hơn 13 triệu người"
-    ],
-    correct: 0 // A
-  }
-];
-
-const TOTAL = QUESTIONS.length;
+const TOTAL = 5;
 
 function loadState() {
   try {
@@ -156,9 +99,21 @@ function syncProgress(results) {
 }
 
 export default function TroChoiViTri() {
+  const { t } = useTranslation();
+
+  const QUESTIONS = useMemo(() => {
+    const questions = t("minigames.vi_tri.questions", { returnObjects: true }) || [];
+    return questions.map((q, i) => ({
+      ...q,
+      correct: [1, 2, 0, 3, 0][i]
+    }));
+  }, [t]);
+
+  const TOTAL = QUESTIONS.length;
+
   const saved = useMemo(() => loadState(), []);
 
-  const [screen, setScreen] = useState(saved?.screen ?? "intro"); // intro, story, play, finish
+  const [screen, setScreen] = useState(saved?.screen ?? "intro");
   const [currentQ, setCurrentQ] = useState(saved?.currentQ ?? 0);
   const [results, setResults] = useState(() => saved?.results ?? Array(TOTAL).fill(null));
 
@@ -211,8 +166,8 @@ export default function TroChoiViTri() {
 
   useEffect(() => {
     saveState({ screen, currentQ, results, animState, picked, reveal, showNextObj, finishedOnce: finishedRef.current });
-    syncProgress(results);
-  }, [screen, currentQ, results, animState, picked, reveal, showNextObj]);
+    syncProgress(results, TOTAL);
+  }, [screen, currentQ, results, animState, picked, reveal, showNextObj, TOTAL]);
 
   // Rút ngắn thời gian chạy của Táo xuống còn 1.2s vì chướng ngại vật gần hơn
   useEffect(() => {
@@ -226,7 +181,7 @@ export default function TroChoiViTri() {
 
   const handleStart = () => {
     if (attemptsLeft <= 0 && !finishedRef.current) {
-      setDialog({ open: true, type: "alert", title: "Hết lượt chơi", message: "Bạn đã hết lượt chơi cho trò này!" });
+      setDialog({ open: true, type: "alert", title: t("minigames.vi_tri.dialog_max_title"), message: t("minigames.vi_tri.dialog_max_desc") });
       return;
     }
     playBGM(); // Phát nhạc nền thay cho playAudio("start")
@@ -339,11 +294,11 @@ export default function TroChoiViTri() {
     setDialog({
       open: true,
       type: "confirm",
-      title: "Chơi lại từ đầu?",
-      message: `Đây sẽ là lượt chơi mới, không giữ lại kết quả cũ. Sau lượt này, bạn còn ${remaining} lượt nữa.`,
+      title: t("minigames.vi_tri.dialog_restart_title"),
+      message: t("minigames.vi_tri.dialog_restart_desc", { count: remaining }),
       action: "restart",
     });
-  }, []);
+  }, [t]);
 
   const closeDialog = useCallback(() => setDialog({ open: false, type: "", title: "", message: "", action: "" }), []);
 
@@ -377,9 +332,9 @@ export default function TroChoiViTri() {
             </Link>
             <div className="vt-topbar-title">
               <h1>
-                <i className="fa-solid fa-apple-whole" /> CUỘC PHIÊU LƯU CỦA TÁO ĐỎ
+                <i className="fa-solid fa-apple-whole" /> {t("minigames.vi_tri.title").toUpperCase()}
               </h1>
-              <p>Chúc mừng bạn đã hoàn thành chuyến đi!</p>
+              <p>{t("minigames.vi_tri.finish_subtitle")}</p>
             </div>
           </div>
           <div className="vt-topbar-right">
@@ -409,16 +364,20 @@ export default function TroChoiViTri() {
                 <img src={ASSETS.taoWait} alt="Táo Đỏ" />
               </div>
 
-              <h2>{greeting}</h2>
-              <p>{message}</p>
+              <h2>
+                {stars === 3 ? t("minigames.vi_tri.finish_greeting_3") : (stars === 2 ? t("minigames.vi_tri.finish_greeting_2") : t("minigames.vi_tri.finish_greeting_else"))}
+              </h2>
+              <p>
+                {stars === 3 ? t("minigames.vi_tri.finish_message_3") : (stars === 2 ? t("minigames.vi_tri.finish_message_2") : t("minigames.vi_tri.finish_message_else"))}
+              </p>
 
               <div className="vt-done-stats">
                 <div className="vt-done-stat" style={{ animationDelay: '0.5s' }}>
-                  <div className="vt-done-stat-label">Điểm số</div>
+                  <div className="vt-done-stat-label">{t("minigames.vi_tri.stat_score")}</div>
                   <div className="vt-done-stat-num">{score}</div>
                 </div>
                 <div className="vt-done-stat" style={{ animationDelay: '0.6s' }}>
-                  <div className="vt-done-stat-label">Câu đúng</div>
+                  <div className="vt-done-stat-label">{t("minigames.vi_tri.stat_correct")}</div>
                   <div className="vt-done-stat-num">{correctCount}/{TOTAL}</div>
                 </div>
               </div>
@@ -429,10 +388,10 @@ export default function TroChoiViTri() {
                   onClick={handleRestart}
                   style={{ background: 'linear-gradient(135deg, #ff4d4d, #dc3545)' }}
                 >
-                  <i className="fa-solid fa-rotate-right" /> Chơi lại lần nữa
+                  <i className="fa-solid fa-rotate-right" /> {t("minigames.vi_tri.btn_play_again")}
                 </button>
                 <Link to="/bai-tap" className="vt-btn ghost">
-                  <i className="fa-solid fa-house" /> Về trang chủ
+                  <i className="fa-solid fa-house" /> {t("minigames.vi_tri.btn_back_home")}
                 </Link>
               </div>
             </div>
@@ -446,10 +405,10 @@ export default function TroChoiViTri() {
               <p>{dialog.message}</p>
               <div className="vt-dlg-actions">
                 {dialog.type === "confirm" && (
-                  <button className="vt-dlg-btn ghost" onClick={closeDialog}>Hủy</button>
+                  <button className="vt-dlg-btn ghost" onClick={closeDialog}>{t("minigames.vi_tri.dialog_btn_cancel")}</button>
                 )}
                 <button className="vt-dlg-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                  {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                  {dialog.type === "confirm" ? t("minigames.vi_tri.dialog_btn_start_new") : t("minigames.vi_tri.dialog_btn_ok")}
                 </button>
               </div>
             </div>
@@ -475,9 +434,9 @@ export default function TroChoiViTri() {
             </Link>
             <div className="vt-topbar-title">
               <h1>
-                <i className="fa-solid fa-apple-whole" /> CUỘC PHIÊU LƯU CỦA TÁO ĐỎ
+                <i className="fa-solid fa-apple-whole" /> {t("minigames.vi_tri.title").toUpperCase()}
               </h1>
-              <p>Hãy giải đố để giúp Táo Đỏ vượt qua chướng ngại vật nhé!</p>
+              <p>{t("minigames.vi_tri.subtitle")}</p>
             </div>
           </div>
           <div className="vt-topbar-right">
@@ -495,13 +454,10 @@ export default function TroChoiViTri() {
         <section className="vt-stage vt-intro">
           <div className="vt-intro-main-row">
             <div className="vt-intro-sign-wrap">
-              <div className="vt-intro-sign">
-                <span>Cuộc Phiêu Lưu Của</span>
-                <strong>Táo Đỏ</strong>
-              </div>
+              <div className="vt-intro-sign" dangerouslySetInnerHTML={{ __html: t("minigames.vi_tri.title_html") || `<span>Cuộc Phiêu Lưu Của</span><strong>Táo Đỏ</strong>` }} />
               <div className="vt-intro-actions">
                 <button className="vt-btn primary vt-big-btn" onClick={handleStart}>
-                  <i className="fa-solid fa-play" /> Bắt đầu phiêu lưu
+                  <i className="fa-solid fa-play" /> {t("minigames.vi_tri.btn_start")}
                 </button>
               </div>
             </div>
@@ -521,12 +477,10 @@ export default function TroChoiViTri() {
             </div>
             <div className="vt-story-bubble-new">
               <p>
-                Mình đang trên đường phiêu lưu đến vùng đất thần kì.
-                Nhưng trên đường đi mình gặp rất nhiều chướng ngại vật.
-                Các bạn hãy giải đáp những câu hỏi để loại bỏ các chướng ngại vật đó giúp mình nhé!
+                {t("minigames.vi_tri.story_bubble")}
               </p>
               <button className="vt-btn primary" onClick={handleContinueToPlay}>
-                <i className="fa-solid fa-arrow-right" /> Lên đường thôi!
+                <i className="fa-solid fa-arrow-right" /> {t("minigames.vi_tri.btn_story_next")}
               </button>
             </div>
           </div>
@@ -538,7 +492,7 @@ export default function TroChoiViTri() {
           <div className="vt-play-frame">
             <div className="vt-board-area">
               <div className="vt-question-board">
-                <div className="vt-qb-badge"><i className="fa-solid fa-star" /> Câu hỏi {currentQ + 1}</div>
+                <div className="vt-qb-badge"><i className="fa-solid fa-star" /> {t("minigames.vi_tri.q_label", { count: currentQ + 1 })}</div>
                 <h3>{q.question}</h3>
               </div>
 
@@ -573,7 +527,7 @@ export default function TroChoiViTri() {
               <div className="vt-next-btn-wrap">
                 {showNextObj && (
                   <button className="vt-btn primary animate-pop" onClick={advanceQuestion}>
-                    {currentQ < TOTAL - 1 ? "Đến chướng ngại vật tiếp theo" : "Xem kết quả cuối cùng"}
+                    {currentQ < TOTAL - 1 ? t("minigames.vi_tri.btn_next_obstacle") : t("minigames.vi_tri.btn_view_result")}
                     <i className="fa-solid fa-chevron-right" style={{ marginLeft: "8px" }} />
                   </button>
                 )}
@@ -610,10 +564,10 @@ export default function TroChoiViTri() {
             <p>{dialog.message}</p>
             <div className="vt-dlg-actions">
               {dialog.type === "confirm" && (
-                <button className="vt-dlg-btn ghost" onClick={closeDialog}>Hủy</button>
+                <button className="vt-dlg-btn ghost" onClick={closeDialog}>{t("minigames.vi_tri.dialog_btn_cancel")}</button>
               )}
               <button className="vt-dlg-btn primary" onClick={dialog.type === "confirm" ? confirmDialog : closeDialog}>
-                {dialog.type === "confirm" ? "Bắt đầu lượt mới" : "Đã hiểu"}
+                {dialog.type === "confirm" ? t("minigames.vi_tri.dialog_btn_start_new") : t("minigames.vi_tri.dialog_btn_ok")}
               </button>
             </div>
           </div>

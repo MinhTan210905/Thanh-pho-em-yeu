@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer-area">
       <div className="footer-container">
@@ -16,35 +19,35 @@ export default function Footer() {
             </div>
 
             <div className="footer-info">
-              <h4>TRƯỜNG ĐẠI HỌC SƯ PHẠM TP.HỒ CHÍ MINH</h4>
-              <p>280 An Dương Vương, Phường Chợ Quán, TP.HCM</p>
+              <h4>{t("footer.university")}</h4>
+              <p>{t("footer.address")}</p>
 
               <br />
 
-              <h4>KHOA GIÁO DỤC TIỂU HỌC</h4>
-              <a href="#" className="footer-link">Website thuộc nhóm NCKH khoa Giáo dục Tiểu học</a>
-              <p>Liên hệ công tác: (0394) 952 938</p>
+              <h4>{t("footer.faculty")}</h4>
+              <a href="#" className="footer-link">{t("footer.project")}</a>
+              <p>{t("footer.contact")}</p>
             </div>
           </div>
 
           <div className="footer-col middle">
             <ul className="footer-links">
-              <li><Link to="/">Trang chủ</Link></li>
-              <li><Link to="/dia-ly">Địa lí</Link></li>
-              <li><Link to="/lich-su">Lịch sử</Link></li>
-              <li><Link to="/van-hoa">Văn hóa</Link></li>
-              <li><Link to="/hoc-tap">Góc học tập</Link></li>
+              <li><Link to="/">{t("header.home")}</Link></li>
+              <li><Link to="/dia-ly">{t("header.geography")}</Link></li>
+              <li><Link to="/lich-su">{t("header.history")}</Link></li>
+              <li><Link to="/van-hoa">{t("header.culture")}</Link></li>
+              <li><Link to="/hoc-tap">{t("header.learning")}</Link></li>
             </ul>
           </div>
 
           <div className="footer-col right">
-            <h3>ĐĂNG KÝ NHẬN TÀI LIỆU MỚI</h3>
-            <p>Nhận những tài liệu mới nhất về Lịch sử, Văn hóa - Xã hội, Địa lí Thành phố Hồ Chí Minh gửi trực tiếp vào hộp thư của bạn!</p>
+            <h3>{t("footer.subscribe_title")}</h3>
+            <p>{t("footer.subscribe_desc")}</p>
 
             <form className="subscribe-form">
-              <input type="email" placeholder="Nhập email của bạn..." />
+              <input type="email" placeholder={t("footer.email_placeholder")} />
               <button type="submit">
-                Đăng ký <i className="fas fa-arrow-right"></i>
+                {t("footer.btn_subscribe")} <i className="fas fa-arrow-right"></i>
               </button>
             </form>
           </div>
@@ -53,8 +56,8 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="footer-container bottom-row">
-          <p>Designed by Primary Education student researchers.</p>
-          <p>&copy; 2026 HCMUE. All rights reserved.</p>
+          <p>{t("footer.designed_by")}</p>
+          <p>{t("footer.copyright")}</p>
         </div>
       </div>
     </footer>

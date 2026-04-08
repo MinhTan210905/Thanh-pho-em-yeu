@@ -1,0 +1,1427 @@
+{
+  "header": {
+    "home": "Trang chủ",
+    "geography": "Địa lí",
+    "sub_geo_location": "Vị trí",
+    "sub_geo_economy": "Kinh tế",
+    "sub_geo_nature": "Tự nhiên",
+    "sub_geo_population": "Dân cư",
+    "history": "Lịch sử",
+    "sub_his_relics": "Di tích lịch sử",
+    "sub_his_figures": "Nhân vật lịch sử",
+    "culture": "Văn hóa",
+    "sub_cul_food": "Ẩm thực",
+    "sub_cul_crafts": "Làng nghề",
+    "sub_cul_festivals": "Lễ hội",
+    "learning": "Góc học tập",
+    "sub_learn_documents": "Tài liệu học tập",
+    "sub_learn_games": "Trò chơi ôn tập",
+    "management": "Trang quản lí",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "search": "Tìm kiếm..."
+  },
+  "footer": {
+    "university": "TRƯỜNG ĐẠI HỌC SƯ PHẠM TP.HỒ CHÍ MINH",
+    "address": "280 An Dương Vương, Phường Chợ Quán, TP.HCM",
+    "faculty": "KHOA GIÁO DỤC TIỂU HỌC",
+    "project": "Website thuộc nhóm NCKH khoa Giáo dục Tiểu học",
+    "contact": "Liên hệ công tác: (0379) 033 327",
+    "subscribe_title": "ĐĂNG KÝ NHẬN TÀI LIỆU MỚI",
+    "subscribe_desc": "Nhận những tài liệu mới nhất về Lịch sử, Văn hóa - Xã hội, Địa lí Thành phố Hồ Chí Minh gửi trực tiếp vào hộp thư của bạn!",
+    "email_placeholder": "Nhập email của bạn...",
+    "btn_subscribe": "Đăng ký",
+    "designed_by": "Designed by Primary Education student researchers.",
+    "copyright": "© 2026 HCMUE. All rights reserved."
+  },
+  "home": {
+    "music_pause": "Tạm dừng nhạc",
+    "music_play": "Phát nhạc",
+    "slider": {
+      "bitexco_title": "Tòa tháp Bitexco",
+      "bitexco_desc": "Biểu tượng hiện đại của Sài Gòn",
+      "benthanh_title": "Chợ Bến Thành",
+      "benthanh_desc": "Ngôi chợ trăm năm tuổi",
+      "hungking_title": "Đền Tưởng niệm các Vua Hùng (Công viên Tao Đàn)",
+      "hungking_desc": "Văn hóa tâm linh cội nguồn",
+      "notredame_title": "Nhà thờ Đức Bà",
+      "notredame_desc": "Kiệt tác kiến trúc giữa lòng phố",
+      "museum_title": "Bảo tàng TP. Hồ Chí Minh",
+      "museum_desc": "Nơi lưu giữ kí ức lịch sử",
+      "independence_title": "Dinh Độc Lập",
+      "independence_desc": "Di tích Quốc gia đặc biệt",
+      "starlight_title": "Hồ Bán Nguyệt",
+      "starlight_desc": "Vẻ đẹp lãng mạn lúc hoàng hôn",
+      "postoffice_title": "Bưu điện Trung tâm",
+      "postoffice_desc": "Dấu ấn kiến trúc Pháp độc đáo",
+      "tandinh_title": "Nhà thờ Tân Định",
+      "tandinh_desc": "Nhà thờ màu hồng tuyệt đẹp",
+      "suoitien_title": "KDL Văn hóa Suối Tiên",
+      "suoitien_desc": "Thiên đường vui chơi giải trí",
+      "anhsao_title": "Cầu Ánh Sao",
+      "anhsao_desc": "Lung linh sắc màu về đêm"
+    },
+    "about": {
+      "exp_badge": "Năm hình thành<br />và phát triển",
+      "greeting": "XIN CHÀO!",
+      "title_1": "Khám phá Thành phố",
+      "title_2": "Hồ Chí Minh",
+      "desc_1": "Chào mừng bạn đến với website <strong>Thành Phố Em Yêu</strong>, một không gian học tập trực tuyến sinh động về lịch sử, địa lí, văn hóa - xã hội của thành phố mang tên Bác.",
+      "desc_2": "Website được thiết kế dành cho giáo viên, học sinh và những ai yêu thích tìm hiểu về vùng đất này. Tại đây, bạn sẽ được bước vào hành trình khám phá những trang sử hào hùng, các đặc điểm địa lí nổi bật và nét đẹp trong đời sống của người dân nơi đây.",
+      "btn_more": "Tìm hiểu thêm"
+    },
+    "geo": {
+      "subtitle": "TỔNG QUAN",
+      "title_1": "Địa Lí Thành phố",
+      "title_2": "Hồ Chí Minh",
+      "desc_1": "Khám phá Thành phố Hồ Chí Minh qua lăng kính địa lí đầy sống động – nơi những bản đồ trực quan mở ra trước mắt bạn một hành trình hiểu sâu về địa hình, khí hậu, sông ngòi và nhịp phát triển đô thị không ngừng của thành phố.",
+      "desc_2": "Website mang đến kho tư liệu phong phú với hình ảnh, video và dữ liệu thông tin bổ ích, giúp bạn cảm nhận rõ nét sự chuyển mình của không gian đô thị; tìm hiểu từng phường, từng xã và thấy được vai trò trọng yếu của Thành phố Hồ Chí Minh trong vùng kinh tế động lực phía Nam.",
+      "btn_explore": "Khám phá ngay",
+      "tag_location": "Vị trí",
+      "tag_nature": "Tự nhiên",
+      "tag_economy": "Kinh tế",
+      "tag_population": "Dân cư"
+    },
+    "history": {
+      "subtitle": "DÒNG CHẢY THỜI GIAN",
+      "title": "Lịch sử hào hùng",
+      "desc": "Khám phá chiều sâu lịch sử Thành phố Hồ Chí Minh là một hành trình ngược dòng thời gian đầy thú vị, đưa bạn trở về với những bước chân khai phá đầu tiên để chứng kiến sự hình thành, phát triển của một vùng đất kiên cường. Trải qua bao biến cố, mảnh đất ấy đã viết nên những trang sử vàng trong công cuộc đấu tranh giành độc lập dân tộc.",
+      "relic_title": "Di tích<br />Lịch sử",
+      "relic_desc": "Những công trình kiến trúc ghi dấu ấn thời gian.",
+      "figure_title": "Nhân vật<br />Lịch sử",
+      "figure_desc": "Những người con ưu tú đã làm rạng danh vùng đất này.",
+      "btn_detail": "Xem chi tiết",
+      "btn_more": "Tìm hiểu thêm"
+    },
+    "culture": {
+      "subtitle": "ĐA DẠNG và BẢN SẮC",
+      "title": "Văn hóa - Xã hội",
+      "desc_1": "Không chỉ là đầu tàu kinh tế của cả nước, Thành phố Hồ Chí Minh còn là bức tranh sống động nơi bản sắc truyền thống hòa quyện cùng nhịp sống hiện đại. Từ những ngôi chùa cổ kính nép mình bên tòa nhà chọc trời, đến gánh hàng rong bánh đa giữa phố thị phồn hoa.",
+      "desc_2": "Hãy cùng khám phá chiều sâu văn hóa của vùng đất này, nơi mỗi góc phố đều chứa đựng những dấu ấn và câu chuyện thú vị về phong tục, lễ hội, cùng sự hào sảng, nghĩa tình của người dân nơi đây.",
+      "btn_explore": "Khám phá ngay",
+      "tag_food": "Ẩm thực",
+      "tag_festival": "Lễ hội",
+      "tag_craft": "Làng nghề"
+    },
+    "learning": {
+      "subtitle": "KHO TÀNG TRI THỨC",
+      "title": "Tài liệu & Ôn tập",
+      "desc": "Truy cập kho tàng tài liệu phong phú từ sách tham khảo đến các trò chơi ôn tập kiến thức đầy hấp dẫn.",
+      "doc_title": "Thư viện tài liệu",
+      "doc_desc": "Tổng hợp sách, bài báo và tư liệu quý về lịch sử, văn hóa Sài Gòn xưa và nay.",
+      "btn_view": "Xem ngay",
+      "game_title": "Trò chơi ôn tập",
+      "game_desc": "Thử thách kiến thức qua các bài Quiz vui nhộn, vừa học vừa chơi cực đã.",
+      "btn_play": "Chơi ngay"
+    }
+  },
+  "geography_page": {
+    "btn_read_more": "Đọc thêm",
+    "canvas_intro_title": "Khám phá trọn vẹn qua bản trình bày",
+    "overview": {
+      "item1_title": "Vị trí địa lí",
+      "item1_desc": "Khám phá vị trí chiến lược của Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
+      "item2_title": "Địa lí kinh tế",
+      "item2_desc": "Khám phá các ngành kinh tế chủ lực của thành phố",
+      "item3_title": "Địa lí tự nhiên",
+      "item3_desc": "Tìm hiểu về địa hình, khí hậu, hệ thống sông ngòi, kênh rạch, biển, sinh vật, đất và khoáng sản",
+      "item4_title": "Địa lí dân cư",
+      "item4_desc": "Tìm hiểu phân bố dân cư và đặc điểm đô thị của Thành phố Hồ Chí Minh"
+    },
+    "location": {
+      "badge_geo": "Địa Lí",
+      "badge_vt": "Vị Trí",
+      "hero_title": "Vị Trí Địa Lí",
+      "highlight": "TP.HCM",
+      "hero_desc": "TP.HCM giáp các tỉnh Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông; tạo động lực phát triển của khu vực đồng bằng Đông Nam Bộ, Tây Nam Bộ và cả nước.",
+      "pill1_title": "Diện tích",
+      "pill1_desc": "~6.772 km²",
+      "pill2_title": "Dân số",
+      "pill2_desc": "Hơn 14 triệu người",
+      "pill3_title": "Hành chính",
+      "pill3_desc": "168 đơn vị cấp xã",
+      "stat_tag": "Tổng Quan",
+      "stat_title": "Bức Tranh Địa Lí Mở Rộng",
+      "stat_desc": "Quy mô mới của TP.HCM sau sắp xếp hành chính với diện tích lớn, dân số cao và mạng lưới đơn vị cơ sở dày đặc.",
+      "stat_area_label": "Tổng diện tích sau sáp nhập",
+      "stat_admin_label": "Đơn vị hành chính",
+      "stat_admin_breakdown": "113 phường · 54 xã · 1 đặc khu",
+      "stat_pop_label": "Dân số sau sáp nhập",
+      "stat_admin_unit": "Đơn vị cấp xã",
+      "stat_pop_unit": "Triệu người",
+      "hl_tag": "Đặc Điểm Nổi Bật",
+      "hl_title": "Lợi Thế Chiến Lược",
+      "hl1_title": "Vị trí liên kết vùng",
+      "hl1_desc": "TP.HCM giáp Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông, tạo trục kết nối liên hoàn giữa cao nguyên, đồng bằng và biển.",
+      "hl2_title": "Hệ thống sông ngòi",
+      "hl2_desc": "Sông Sài Gòn, sông Đồng Nai cùng mạng lưới kênh rạch dày đặc tạo hệ thống giao thông đường thủy phong phú.",
+      "hl3_title": "Đầu mối giao thông",
+      "hl3_desc": "Sân bay Tân Sơn Nhất, cảng Cát Lái, hệ thống quốc lộ — một trong những đầu mối giao thương quốc tế quan trọng của phía Nam.",
+      "hl4_title": "Cửa ngõ quốc tế",
+      "hl4_desc": "Kết nối Đông Nam Á và thế giới, là một trong những đô thị năng động của khu vực với hạ tầng hiện đại đang phát triển mạnh.",
+      "canvas_intro_desc": "Tổng hợp thông tin vị trí địa lí, đặc điểm tự nhiên và đơn vị hành chính TP.HCM."
+    },
+    "economy": {
+      "badge_geo": "Địa Lí",
+      "badge_kt": "Kinh Tế",
+      "hero_title": "Địa Lí Kinh Tế",
+      "highlight": "TP.HCM",
+      "hero_desc": "Thành phố Hồ Chí Minh là trung tâm kinh tế lớn nhất cả nước với 3 khu vực kinh tế chủ lực, hơn 10 hệ thống khu công nghiệp quy mô lớn và nông nghiệp ứng dụng công nghệ cao, giữ vai trò đầu tàu phát triển kinh tế quốc gia.",
+      "pill1_title": "Dịch vụ",
+      "pill1_desc": "Trung tâm hàng đầu",
+      "pill2_title": "Công nghiệp",
+      "pill2_desc": "10+ KCN lớn",
+      "pill3_title": "Nông nghiệp",
+      "pill3_desc": "Công nghệ cao",
+      "kpi1_top": "Khu vực",
+      "kpi1_bot": "Kinh tế chủ lực",
+      "kpi2_top": "Khu CN",
+      "kpi2_bot": "Quy mô lớn",
+      "kpi3_top": "Đầu tàu",
+      "kpi3_bot": "Kinh tế quốc gia",
+      "sector_tag": "Ba Trụ Cột",
+      "sector_title": "Cơ Cấu Kinh Tế Đa Dạng",
+      "sec1_title": "Dịch vụ",
+      "sec1_desc": "Thành phố là trung tâm dịch vụ lớn nhất cả nước. Một số ngành nổi bật: giao thông vận tải, thương mại, du lịch, bất động sản, tài chính – ngân hàng…",
+      "sec2_title": "Công nghiệp – Xây dựng",
+      "sec2_desc": "Thu hút hàng nghìn doanh nghiệp; nổi bật ở cơ khí, dệt may, giày da, nhựa – cao su, điện tử, chế biến thực phẩm và thủy – hải sản. Nhiều KCN lớn: Hiệp Phước, Vĩnh Lộc, Tân Phú Trung, Linh Trung…",
+      "sec3_title": "Nông nghiệp",
+      "sec3_desc": "Trồng rau màu, hoa lan, cây kiểng, lúa; chăn nuôi bò, lợn, gia cầm. Ứng dụng nhà màng, nhà lưới, thủy canh, cảm biến nhiệt – ẩm, năng lượng mặt trời.",
+      "outlook_title": "Tầm nhìn & Thách thức",
+      "outlook_desc": "Thành phố tiếp tục mở rộng nghiên cứu khoa học trong lĩnh vực công nghệ, đẩy mạnh liên kết vùng và phấn đấu giữ vững vai trò đầu tàu kinh tế cả nước. Song song đó, TP.HCM đang đối mặt thách thức môi trường - ô nhiễm nước, không khí, rác thải - và đẩy mạnh giải pháp đô thị xanh, đô thị thông minh, phát triển phương tiện công cộng.",
+      "canvas_intro_desc": "Tổng quan cấu trúc kinh tế, các khu công nghiệp và tiềm năng phát triển của TP.HCM."
+    },
+    "nature": {
+      "badge_geo": "Địa Lí",
+      "badge_tn": "Tự Nhiên",
+      "hero_title": "Địa Lí",
+      "highlight": "Tự Nhiên",
+      "hero_desc": "Khám phá hệ sinh thái phong phú, địa hình đa dạng, khí hậu nhiệt đới và mạng lưới sông ngòi dày đặc của TP.HCM.",
+      "point1": "5 dạng địa hình đặc trưng",
+      "point2": "2000+ loài sinh vật",
+      "point3": "5+ sông ngòi & 7+ kênh rạch",
+      "panel1": "Loài sinh vật",
+      "panel2": "Loại khoáng sản",
+      "panel3": "Nhiệt độ TB",
+      "panel4": "Kênh rạch",
+      "biome_tag": "Khám Phá",
+      "biome_title": "Hệ Sinh Thái & Tài Nguyên",
+      "chip1": "Sinh vật",
+      "chip2": "Đất",
+      "chip3": "Khoáng sản",
+      "chip4": "Địa hình",
+      "chip5": "Khí hậu",
+      "chip6": "Sông ngòi",
+      "chip7": "Biển",
+      "mo1_title": "Sinh vật",
+      "mo1_desc": "Hơn 2.000 loài sinh vật đa dạng, bao gồm thực vật, động vật và vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.",
+      "mo1_badge": "2000+ loài",
+      "mo2_title": "Đất",
+      "mo2_desc": "Nhiều loại đất khác nhau phù hợp nông nghiệp, xây dựng và phát triển đô thị.",
+      "mo2_badge": "Đa dạng",
+      "mo3_title": "Khoáng sản",
+      "mo3_desc": "Tài nguyên khoáng sản gồm cát, sỏi, đá, sét và nhiều loại khác phục vụ xây dựng, công nghiệp.",
+      "mo3_badge": "8+ loại",
+      "mo4_title": "Khí hậu",
+      "mo4_desc": "Thành phố Hồ Chí Minh chỉ có hai mùa: mùa khô và mùa mưa, chịu ảnh hưởng của gió mùa.",
+      "mo4_badge": "27.6°C · 1.500–1.979 mm",
+      "mo5_title": "Địa hình",
+      "mo5_desc": "Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi thấp;  Địa hình ven biển, tạo nên cảnh quan đa dạng.",
+      "mo5_badge": "5 dạng",
+      "mo6_title": "Sông ngòi & Kênh rạch",
+      "mo6_desc": "Hệ thống sông ngòi, kênh rạch vô cùng đa dạng thuận lợi cho các hoạt động giao thông đường thủy, sản xuất nông nghiệp, du lịch sinh thái…",
+      "mo6_badge": "5+ sông · 7+ kênh",
+      "mo7_title": "Biển",
+      "mo7_desc": "Tiếp giáp biển Đông với hơn 2 vùng biển, tạo điều kiện phát triển kinh tế biển và giao thương quốc tế.",
+      "mo7_badge": "2+ vùng",
+      "canvas_intro_desc": "Toàn bộ nội dung trực quan về địa lí tự nhiên Thành phố Hồ Chí Minh."
+    },
+    "population": {
+      "badge_geo": "Địa Lí",
+      "badge_dc": "Dân Cư",
+      "hero_title": "Địa Lí",
+      "highlight": "Dân Cư",
+      "hero_desc": "Khám phá bức tranh dân số sống động của Thành phố Hồ Chí Minh - đô thị đặc biệt với hơn 14 triệu cư dân, 168 đơn vị hành chính và sự hòa quyện của 54 dân tộc anh em.",
+      "bar1_label": "Triệu dân",
+      "bar2_label": "Đơn vị hành chính",
+      "bar3_num": "TP Đặc biệt",
+      "bar3_label": "Đô thị loại đặc biệt",
+      "bar4_label": "Dân tộc anh em",
+      "stat_tag": "Tổng Quan",
+      "stat_title": "Dân Số & Hành Chính",
+      "st1_num": "TP Đặc biệt",
+      "st1_label": "Phân loại đô thị",
+      "st1_desc": "TP.HCM là đô thị đặc biệt trực thuộc Trung ương, giữ vai trò trung tâm kinh tế lớn nhất cả nước với tốc độ phát triển vượt trội.",
+      "st2_num": "14+ triệu",
+      "st2_label": "Quy mô dân số",
+      "st2_desc": "Hơn 14 triệu người sinh sống, làm việc và học tập, tạo nên đô thị sôi động bậc nhất Việt Nam.",
+      "st3_num": "168",
+      "st3_label": "Đơn vị hành chính",
+      "st3_desc": "Gồm các quận, thành phố trực thuộc, phường và xã - hệ thống hành chính hoàn chỉnh.",
+      "st4_num": "54 dân tộc",
+      "st4_label": "Đa dạng sắc tộc",
+      "st4_desc": "Dân tộc Kinh chiếm đa số, cùng 53 dân tộc thiểu số khác cùng sinh sống hài hòa.",
+      "eth_tag": "Đa Dạng",
+      "eth_title": "Bức Tranh Dân Tộc",
+      "eth1_title": "Dân tộc Kinh",
+      "eth1_desc": "Chiếm tỉ lệ đa số trong cơ cấu dân số thành phố, đóng vai trò chủ đạo trong phát triển kinh tế - xã hội và văn hóa đô thị.",
+      "eth2_title": "Người Hoa",
+      "eth2_desc": "Cộng đồng dân tộc thiểu số lớn nhất, tập trung chủ yếu ở Thành phố Hồ Chí Minh với nền văn hóa phong phú.",
+      "eth3_title": "Người Chăm",
+      "eth3_desc": "Mang theo di sản văn hóa Chăm-pa độc đáo, góp phần tạo nên sự đa dạng văn hóa cho thành phố.",
+      "eth4_title": "Người Khmer",
+      "eth4_desc": "Cộng đồng người Khmer với bản sắc văn hóa đặc trưng và các lễ hội truyền thống riêng biệt.",
+      "eth5_title": "Người Tày & Các dân tộc khác",
+      "eth5_desc": "Cùng nhiều dân tộc khác từ khắp mọi miền, tạo nên bức tranh cộng đồng đa sắc tộc phong phú.",
+      "canvas_intro_desc": "Toàn bộ nội dung trực quan về địa lí dân cư Thành phố Hồ Chí Minh."
+    }
+  },
+  "history_page": {
+    "btn_read_more": "Đọc thêm",
+    "aria_open_detail": "Mở chi tiết nội dung lịch sử",
+    "canvas_intro_title": "Khám phá trọn vẹn qua bản trình bày",
+    "overview": {
+      "item1_title": "Di tích lịch sử",
+      "item1_desc": "Những công trình kiến trúc ghi dấu ấn thời gian",
+      "item2_title": "Nhân vật lịch sử",
+      "item2_desc": "Những người con ưu tú đã làm rạng danh vùng đất này"
+    },
+    "relics": {
+      "badge_his": "Lịch Sử",
+      "badge_relics": "Di Tích",
+      "hero_title": "Di Tích Lịch Sử",
+      "highlight": "TP.HCM",
+      "hero_desc": "Di tích lịch sử – văn hoá là những công trình, địa điểm và hiện vật có giá trị lịch sử, văn hoá, khoa học được xếp hạng và bảo tồn qua các thời kì.",
+      "pill1_title": "Di sản",
+      "pill1_desc": "Quý giá qua thời gian",
+      "pill2_title": "4 Thời kì",
+      "pill2_desc": "Dòng chảy lịch sử",
+      "pill3_title": "Bảo tồn",
+      "pill3_desc": "Gìn giữ cho mai sau",
+      "tl_tag": "Dòng Chảy Thời Gian",
+      "tl_title": "Các Thời Kì Lịch Sử",
+      "era1_tag": "Thời kì I",
+      "era1_title": "Thời kì Óc Eo",
+      "era1_desc": "Nền văn hóa Óc Eo phát triển từ thế kỉ I đến thế kỉ VII, để lại nhiều di tích khảo cổ quý giá trên vùng đất Nam Bộ - minh chứng cho sự giao thương và phát triển sớm của cộng đồng cư dân cổ.",
+      "era2_tag": "Thời kì II",
+      "era2_title": "Khai phá vùng đất phương Nam",
+      "era2_desc": "Từ cuối thế kỉ XVI, các lưu dân người Việt bắt đầu khai hoang lập ấp, mở rộng lãnh thổ về phía Nam, hình thành nên vùng đất Sài Gòn – Gia Định với những công trình, đình chùa ghi dấu buổi đầu lập nghiệp.",
+      "era3_tag": "Thời kì III",
+      "era3_title": "Kháng chiến chống Pháp",
+      "era3_desc": "Trong gần một thế kỉ đô hộ của thực dân Pháp, nhiều phong trào yêu nước đã nổ ra, để lại những di tích gắn liền với tinh thần bất khuất của nhân dân Sài Gòn – Chợ Lớn.",
+      "era4_tag": "Thời kì IV",
+      "era4_title": "Kháng chiến chống Mỹ",
+      "era4_desc": "Giai đoạn 1954 – 1975, Sài Gòn là trung tâm của cuộc đấu tranh giải phóng miền Nam, với nhiều di tích lịch sử như Dinh Độc Lập, Địa đạo Củ Chi ghi dấu chiến thắng vẻ vang.",
+      "canvas_intro_desc": "Hình ảnh và câu chuyện về các di tích lịch sử nổi bật tại TP.HCM."
+    },
+    "figures": {
+      "badge_his": "Lịch Sử",
+      "badge_figures": "Nhân Vật",
+      "hero_title": "Nhân Vật Lịch Sử",
+      "highlight": "TP.HCM",
+      "hero_desc": "Thành phố Hồ Chí Minh — vùng đất giàu truyền thống lịch sử, có đóng góp to lớn trong công cuộc xây dựng và bảo vệ Tổ quốc.",
+      "pill1_title": "Anh hùng",
+      "pill1_desc": "Chiến đấu kiên cường",
+      "pill2_title": "Danh nhân",
+      "pill2_desc": "Văn hóa & giáo dục",
+      "pill3_title": "Cống hiến",
+      "pill3_desc": "Xây dựng Tổ quốc",
+      "tribute_tag": "Vinh Danh",
+      "tribute_title": "Những Người Con Ưu Tú",
+      "quote_line1": "Dân ta phải biết sử ta,",
+      "quote_line2": "Cho tường gốc tích nước nhà Việt Nam.",
+      "quote_line3": "Kể năm hơn bốn ngàn năm,",
+      "quote_line4": "Tổ tiên rực rỡ, anh em thuận hòa.",
+      "quote_author": "Hồ Chí Minh",
+      "card1_title": "Anh hùng dân tộc",
+      "card1_desc": "Những vị tướng, chiến sĩ kiên trung đã chiến đấu và hy sinh vì Tổ quốc.",
+      "card2_title": "Nhà văn hóa – giáo dục",
+      "card2_desc": "Những trí thức lớn đã góp phần khai sáng, phát triển văn hóa, giáo dục thành phố.",
+      "card3_title": "Lãnh đạo cách mạng",
+      "card3_desc": "Những nhà lãnh đạo tiên phong, dẫn dắt phong trào đấu tranh giành độc lập.",
+      "canvas_intro_desc": "Chân dung và câu chuyện về các nhân vật lịch sử nổi bật tại TP.HCM."
+    }
+  },
+  "culture_page": {
+    "btn_read_more": "Đọc thêm",
+    "canvas_intro_title": "Khám phá trọn vẹn qua bản trình bày",
+    "canvas_intro_detail": "Khám phá chi tiết qua bản trình bày",
+    "overview": {
+      "item1_title": "Ẩm thực Thành\u00A0phố\u00A0Hồ\u00A0Chí\u00A0Minh",
+      "item1_desc": "Khám phá những hương vị đặc trưng của thành\u00A0phố",
+      "item2_title": "Làng nghề truyền thống",
+      "item2_desc": "Giữ gìn những nghề thủ công cổ xưa",
+      "item3_title": "Lễ hội truyền thống",
+      "item3_desc": "Những sự kiện văn hóa sôi động trong năm",
+      "aria_dot": "Chuyển đến thẻ nội dung số {{count}}",
+      "aria_food": "Mở trang Ẩm thực",
+      "aria_craft": "Mở trang Làng nghề",
+      "aria_festival": "Mở trang Lễ hội"
+    },
+    "food": {
+      "badge_cul": "Văn Hóa",
+      "badge_food": "Ẩm Thực",
+      "hero_title": "Ẩm Thực TP.HCM",
+      "hero_desc": "Top 20 thành phố có ẩm thực ngon nhất thế giới. Nơi đây là sự kết tinh, hội tụ tinh hoa ẩm thực Bắc - Trung - Nam và cả sắc vị phương Đông.",
+      "point1": "• Đa dạng món ăn đường phố",
+      "point2": "• Giao thoa văn hóa vị giác",
+      "point3": "• Năng động, hiện đại, bản sắc",
+      "stat1_label": "Xếp hạng quốc tế",
+      "stat1_val": "Top 20",
+      "stat2_label": "Hội tụ vùng miền",
+      "stat2_val": "Bắc · Trung · Nam",
+      "stat3_label": "Bản sắc",
+      "stat3_val": "Phương Đông",
+      "sec_tag": "Ẩm Thực Đô Thị",
+      "sec_title": "Tươi Mới, Phóng Khoáng, Kết Nối",
+      "bento_badge": "Top 20 Thế Giới",
+      "bento_title": "Top 20 thành phố có ẩm thực ngon nhất thế giới",
+      "bento_desc": "Ẩm thực nơi đây là sự kết tinh, hội tụ nền ẩm thực từ khắp mọi miền Bắc - Trung - Nam và cả ẩm thực phương Đông.",
+      "north": "Bắc",
+      "central": "Trung",
+      "south": "Nam",
+      "orient": "Phương Đông",
+      "card1_title": "Độ phủ món ngon",
+      "card1_desc": "Sáng, trưa, tối đều có lựa chọn từ bình dân đến cao cấp.",
+      "card2_title": "Nhịp sống thành phố",
+      "card2_desc": "Ẩm thực gắn với văn hóa đường phố, nhanh, tiện nhưng vẫn đậm vị.",
+      "card3_title": "Điểm đặc trưng",
+      "card3_desc": "Đa vùng miền · Dễ tiếp cận · Liên tục sáng tạo",
+      "canvas_desc": "Toàn bộ nội dung trực quan về hành trình ẩm thực TP.HCM."
+    },
+    "craft": {
+      "badge_cul": "Văn Hóa",
+      "badge_craft": "Làng Nghề",
+      "hero_title": "Làng Nghề",
+      "highlight": "Truyền Thống",
+      "hero_desc": "Những làng nghề lâu đời tại TP.HCM lưu giữ kỹ thuật thủ công tinh xảo, mang\u00A0đậm giá trị văn hóa và kinh tế địa phương.",
+      "pill1_title": "Bề dày",
+      "pill1_desc": "100+ năm lịch sử",
+      "pill2_title": "Nổi bật",
+      "pill2_desc": "4 làng nghề tiêu biểu",
+      "pill3_title": "Giá trị",
+      "pill3_desc": "Di sản và tinh thần",
+      "sec_tag": "Giá Trị Cốt Lõi",
+      "sec_title": "Bản Sắc Làng Nghề TP.HCM",
+      "rib1_title": "Thủ công tỉ mỉ",
+      "rib1_desc": "Quy trình sản xuất trải qua nhiều công\u00A0đoạn thủ công, đòi hỏi sự kiên nhẫn và kỹ thuật cao từ nghệ nhân.",
+      "rib1_badge": "Kỹ thuật",
+      "rib2_title": "Nguyên liệu bản địa",
+      "rib2_desc": "Sử dụng nguyên liệu gần gũi thiên nhiên, khai thác từ nguồn tài nguyên địa phương, gắn liền với vùng đất.",
+      "rib2_badge": "Tự nhiên",
+      "rib3_title": "Giá trị văn hóa & kinh tế",
+      "rib3_desc": "Sản phẩm mang giá trị văn hóa truyền đời, đồng thời tạo sinh kế ổn định và mở rộng ra thị trường trong nước, xuất khẩu.",
+      "rib3_badge": "Di sản",
+      "ins1_top": "Văn hóa",
+      "ins1_bot": "Lưu giữ kỹ thuật truyền đời",
+      "ins2_top": "Kinh tế",
+      "ins2_bot": "Sinh kế cho hộ gia đình",
+      "ins3_top": "Thị trường",
+      "ins3_bot": "Mở rộng trong & ngoài nước",
+      "canvas_desc": "Toàn bộ nội dung trực quan về hành trình làng nghề TP.HCM."
+    },
+    "festival": {
+      "badge_cul": "Văn Hóa",
+      "badge_fest": "Lễ Hội",
+      "hero_title": "Lễ Hội",
+      "highlight": "TP.HCM",
+      "hero_desc": "Đa dạng, kết hợp giữa truyền thống và hiện đại - phản ánh đời sống văn\u00A0hóa phong phú, sôi động của người dân thành phố.",
+      "chip1_title": "Truyền thống",
+      "chip1_desc": "Lễ hội dân gian lâu đời",
+      "chip2_title": "Hiện đại",
+      "chip2_desc": "Sự kiện quốc tế, đô thị",
+      "chip3_title": "Cộng đồng",
+      "chip3_desc": "Gắn kết mọi thế hệ",
+      "sec_tag": "Đặc Sắc Lễ Hội",
+      "sec_title": "Sắc Màu Thành Phố",
+      "str1_num": "01",
+      "str1_title": "Kết hợp truyền thống và hiện đại",
+      "str1_desc": "Từ lễ hội Nguyên Tiêu, Tết Nguyên Đán, lễ hội Nghinh\u00A0Ông đến những sự kiện âm nhạc quốc tế, hội chợ đa văn hóa - tất cả hòa quyện với nhịp sống thành phố.",
+      "str2_num": "02",
+      "str2_title": "Đời sống văn hóa phong phú",
+      "str2_desc": "Lễ hội phản ánh bản sắc đa dân tộc, đa tôn giáo, tạo không gian để mọi người cùng tôn vinh, trải nghiệm và chia sẻ.",
+      "str3_num": "03",
+      "str3_title": "Sôi động quanh năm",
+      "str3_desc": "Gần như tháng nào cũng có lễ hội, sự kiện văn hóa lớn nhỏ diễn ra khắp thành phố.",
+      "canvas_desc": "Hình ảnh và câu chuyện về các lễ hội nổi bật tại TP.HCM."
+    }
+  },
+  "learning_page": {
+    "badge_corner": "Góc Học Tập",
+    "badge_doc": "Tài Liệu",
+    "badge_quiz": "Trò Chơi Ôn Tập",
+    "btn_read_more": "Đọc thêm",
+    "overview": {
+      "item1_title": "Tài liệu học tập",
+      "item1_desc": "Hệ thống bài giảng, tài liệu tham khảo giúp bạn tìm hiểu sâu về TP.HCM",
+      "item2_title": "Trò chơi ôn tập",
+      "item2_desc": "Ôn luyện kiến thức qua các trò chơi tương tác thú vị và bài tập trắc nghiệm",
+      "aria_open": "Mở trang {{title}}",
+      "aria_dot": "Chuyển ảnh {{count}}"
+    },
+    "documents": {
+      "hero_title": "Tài Liệu",
+      "hero_highlight": "Học Tập",
+      "hero_desc": "Thư viện tri thức thu nhỏ giúp bạn khám phá trọn vẹn về địa lí, lịch sử và văn hóa đa dạng của vùng đất Nam Bộ yêu thương.",
+      "stat1_title": "Phong phú",
+      "stat1_desc": "Đa dạng chủ đề",
+      "stat2_title": "Lớp 4",
+      "stat2_desc": "Chuẩn kiến thức",
+      "stat3_title": "Khám phá",
+      "stat3_desc": "Mở rộng tư duy",
+      "sec_tag": "Kho Tàng Tri Thức",
+      "sec_title": "Danh Sách Tài Liệu",
+      "btn_preview": "Xem Thử",
+      "category_local_education": "Giáo dục địa phương",
+      "canvas_title": "Không gian đọc tài liệu",
+      "canvas_desc": "Mở rộng trải nghiệm, đọc trực tiếp với đầy đủ công cụ của trình duyệt.",
+      "empty_title": "Chưa chọn tài liệu",
+      "empty_desc": "Vui lòng chọn một tài liệu từ danh sách phía trên để xem nội dung.",
+      "viewing": "Đang xem: {{title}}",
+      "btn_new_tab": "Mở tab mới",
+      "btn_close": "Xóa xem",
+      "list": {
+        "hcm_title": "Tài Liệu Học Tập TP. Hồ Chí Minh",
+        "hcm_desc": "Khám phá vùng đất năng động, di tích lịch sử và văn hóa đa dạng của Thành phố Hồ Chí Minh.",
+        "brvt_title": "Tài Liệu Học Tập Bà Rịa - Vũng Tàu",
+        "brvt_desc": "Tìm hiểu vùng đất biển Bà Rịa - Vũng Tàu qua góc nhìn lịch sử, địa lí và đặc sản nổi tiếng.",
+        "bd_title": "Tài Liệu Học Tập Bình Dương",
+        "bd_desc": "Học tập về sự giao thoa văn hóa, kinh tế công nghiệp và đời sống con người tỉnh Bình Dương."
+      }
+    },
+    "quiz": {
+      "hero_badge": "Trung tâm Bài tập",
+      "hero_title": "Quản lí",
+      "hero_highlight": "Trò chơi Ôn tập",
+      "hero_desc": "Theo dõi tiến trình học tập, điểm số và số lần thử của bạn. Hoàn thành tất cả thử thách để trở thành chuyên gia Sài Gòn!",
+      "stat_played": "Đã chơi",
+      "stat_correct": "Câu đúng",
+      "stat_avg": "Điểm TB",
+      "list_title": "Danh sách trò chơi",
+      "filter_all": "Tất cả",
+      "filter_new": "Chưa làm",
+      "filter_progress": "Đang làm",
+      "filter_done": "Hoàn thành",
+      "status_done": "Hoàn thành",
+      "status_progress": "Đang làm",
+      "status_new": "Chưa làm",
+      "best_score": "Điểm cao nhất: {{score}}",
+      "progress_label": "Tiến độ: {{current}}/{{total}}",
+      "score_label": "{{score}} điểm",
+      "attempts_label": "{{current}}/{{total}} lượt",
+      "btn_result": "Xem kết quả",
+      "btn_continue": "Tiếp tục",
+      "btn_start": "Bắt đầu",
+      "empty_msg": "Không có trò chơi nào trong mục này",
+      "games": {
+        "vi_tri": {
+          "title": "Cuộc Phiêu Lưu Của Táo Đỏ",
+          "desc": "Kiểm tra kiến thức của bạn về vị trí địa lí mới nhất của TP.HCM sau sáp nhập qua 5 câu hỏi thú vị."
+        },
+        "kinh_te": {
+          "title": "Truy Tìm Ô Chữ",
+          "desc": "Tìm 5 từ khóa về địa lí kinh tế được ẩn giấu trong bảng chữ cái."
+        },
+        "tu_nhien": {
+          "title": "Truy Tìm Bí Ẩn Tự Nhiên",
+          "desc": "Xé túi mù khám phá 10 câu hỏi địa lí tự nhiên về TP.HCM. Chọn đáp án đúng để ghi điểm!"
+        },
+        "dan_cu": {
+          "title": "Quán Ăn Hạnh Phúc",
+          "desc": "Chọn món ăn và trả lời 5 câu hỏi về dân cư TP.HCM. Đúng thì hoàn thiện món, sai thì… khay vỡ!"
+        },
+        "di_tich": {
+          "title": "Phân Loại Di Tích",
+          "desc": "Phân loại 9 di tích lịch sử vào đúng thời kì. Rèn luyện kiến thức lịch sử qua trò chơi tương tác!"
+        },
+        "nhan_vat": {
+          "title": "Giải Mã Bí Ẩn",
+          "desc": "Đọc các gợi ý gợi nhớ lịch sử hào hùng và sắp xếp lại các chữ cái bị xáo trộn để tìm ra tên nhân vật."
+        },
+        "am_thuc": {
+          "title": "Đuổi Hình Bắt Chữ",
+          "desc": "Nhìn hình ảnh món ăn Sài Gòn và đoán tên chính xác. Thử thách vốn hiểu biết ẩm thực của bạn!"
+        },
+        "lang_nghe": {
+          "title": "Tìm Đúng Làng - Đoán Đúng Nghề",
+          "desc": "Ghép hình ảnh làng nghề và tên nghề truyền thống. Càng nhiều cặp đúng, điểm càng cao!"
+        },
+        "le_hoi": {
+          "title": "Dấu Ấn Lễ Hội Địa Phương Em",
+          "desc": "Chọn từ khóa đúng cho 8 lễ hội truyền thống. Ôn tập kiến thức văn hóa lễ hội Việt Nam!"
+        }
+      }
+    }
+  },
+  "auth_page": {
+    "login": {
+      "banner_title": "Thành phố em yêu",
+      "banner_desc": "Hệ thống học tập và khám phá vẻ đẹp của Thành phố Hồ Chí Minh. Dành cho quản trị viên, nhà trường, giáo viên và học sinh.",
+      "feature1": "Tạo và quản lí tài khoản theo phân cấp",
+      "feature2": "Theo dõi kết quả học tập tự động",
+      "feature3": "Phân quyền truy cập rõ ràng",
+      "explore": "Khám phá:",
+      "nav_home": "Trang chủ",
+      "nav_geo": "Địa lí",
+      "nav_his": "Lịch sử",
+      "nav_cul": "Văn hóa",
+      "form_title": "Đăng nhập",
+      "form_desc": "Nhập tài khoản của bạn để tiếp tục truy cập vào hệ thống.",
+      "label_username": "Tên đăng nhập",
+      "label_password": "Mật khẩu",
+      "btn_login": "ĐĂNG NHẬP",
+      "btn_submitting": "ĐANG ĐĂNG NHẬP...",
+      "back_home": "Quay lại trang chủ",
+      "error_failed": "Đăng nhập thất bại.",
+      "unauthorized": {
+        "title": "Bạn không có quyền truy cập",
+        "desc": "Tài khoản hiện tại không có quyền mở trang này. Vui lòng đăng nhập bằng tài khoản phù hợp.",
+        "btn_management": "Về trang quản lí",
+        "btn_home": "Về trang chủ"
+      }
+    }
+  },
+  "common": {
+    "game_redirect": {
+      "challenge_now": "Thử thách ngay",
+      "explore": "Khám phá"
+    },
+    "roles": {
+      "admin": "Quản trị viên",
+      "school": "Trường học",
+      "teacher": "Giáo viên",
+      "student": "Học sinh"
+    },
+    "regions": {
+      "hcm": "TP.HCM",
+      "brvt": "Bà Rịa - Vũng Tàu",
+      "bd": "Bình Dương"
+    }
+  },
+  "management_page": {
+    "title": "Quản lí tài khoản và kết quả học tập",
+    "breadcrumb": "Trang quản lí",
+    "role_badge": "Bạn đang đăng nhập với vai trò",
+    "btn_home": "Về trang chính",
+    "btn_refresh": "Làm mới dữ liệu",
+    "btn_logout": "Đăng xuất",
+    "alerts": {
+      "refresh_success": "Dữ liệu đã được cập nhật.",
+      "load_users_error": "Không thể tải danh sách tài khoản.",
+      "load_scores_error": "Không thể tải dữ liệu điểm.",
+      "load_classes_error": "Không thể tải dữ liệu lớp học.",
+      "create_user_success": "Tạo tài khoản thành công.",
+      "create_user_error": "Không thể tạo tài khoản.",
+      "update_user_success": "Cập nhật tài khoản thành công.",
+      "update_user_error": "Không thể cập nhật tài khoản.",
+      "delete_confirm": "Bạn có chắc muốn xóa tài khoản này?",
+      "delete_success": "Xóa tài khoản thành công.",
+      "delete_error": "Không thể xóa tài khoản.",
+      "create_class_success": "Tạo lớp thành công.",
+      "create_class_error": "Không thể tạo lớp.",
+      "approve_class_success": "Đã cập nhật trạng thái lớp.",
+      "approve_class_error": "Không thể duyệt lớp.",
+      "request_unassign_success": "Đã gửi yêu cầu rời lớp.",
+      "request_unassign_error": "Không thể gửi yêu cầu rời lớp.",
+      "request_transfer_success": "Đã gửi yêu cầu chuyển lớp.",
+      "request_transfer_error": "Không thể chuyển giao lớp.",
+      "cancel_request_confirm": "Bạn có chắc chắn muốn hủy yêu cầu này?",
+      "cancel_request_success": "Đã hủy yêu cầu thành công.",
+      "cancel_request_error": "Không thể hủy yêu cầu.",
+      "review_transfer_success": "Đã xử lí yêu cầu chuyển lớp.",
+      "review_transfer_error": "Không thể xử lí yêu cầu chuyển lớp."
+    },
+    "profile": {
+      "title": "Thông tin tài khoản",
+      "full_name": "Họ tên",
+      "username": "Tên đăng nhập",
+      "role": "Vai trò",
+      "class": "Lớp",
+      "school_id": "Mã trường"
+    },
+    "users": {
+      "create_title": "Tạo tài khoản {{role}}",
+      "select_role": "Chọn vai trò",
+      "select_school": "Chọn trường thuộc về",
+      "select_teacher": "Chọn giáo viên phụ trách",
+      "placeholder_full_name": "Họ và tên",
+      "placeholder_school_name": "Tên trường",
+      "placeholder_username": "Tên đăng nhập",
+      "placeholder_password": "Mật khẩu",
+      "placeholder_class": "Lớp học (vd: 5A)",
+      "toggle_show_pwd": "Hiện mật khẩu",
+      "toggle_hide_pwd": "Ẩn mật khẩu",
+      "btn_create": "Tạo tài khoản",
+      "btn_submitting": "Đang xử lí...",
+      "filter_role": "Lọc Vai trò:",
+      "filter_role_all": "Tất cả vai trò",
+      "filter_school": "Lọc Trường:",
+      "filter_school_all": "Tất cả trường",
+      "table_head_name": "Họ tên / Tên trường",
+      "table_head_username": "Tài khoản",
+      "table_head_role": "Vai trò",
+      "table_head_school": "Thuộc trường",
+      "table_head_class": "Lớp",
+      "table_head_date": "Ngày tạo",
+      "table_head_actions": "Hành động",
+      "loading_users": "Đang tải danh sách tài khoản...",
+      "empty_users": "Chưa có tài khoản con nào.",
+      "btn_edit": "Sửa",
+      "btn_delete": "Xóa",
+      "btn_save": "Lưu",
+      "btn_cancel": "Hủy",
+      "placeholder_new_pwd": "Mật khẩu mới (tuỳ chọn)"
+    },
+    "classes": {
+      "title": "Quản lí lớp học",
+      "placeholder_class_name": "Tên lớp (vd: 5A)",
+      "placeholder_select_teacher": "Chọn giáo viên phụ trách (tuỳ chọn)",
+      "btn_create_class": "Tạo lớp",
+      "btn_request_class": "Gửi yêu cầu tạo lớp",
+      "table_head_class": "Lớp",
+      "table_head_teacher": "Giáo viên phụ trách",
+      "table_head_status": "Trạng thái duyệt",
+      "table_head_creator": "Người tạo",
+      "table_head_actions": "Hành động",
+      "status_pending": "Chờ duyệt",
+      "status_approved": "Đã duyệt",
+      "status_rejected": "Từ chối",
+      "loading_classes": "Đang tải dữ liệu lớp...",
+      "empty_classes": "Chưa có lớp nào.",
+      "btn_approve": "Duyệt",
+      "btn_reject": "Từ chối",
+      "btn_request_transfer": "Xin chuyển lớp",
+      "btn_request_unassign": "Xin rời lớp"
+    },
+    "requests": {
+      "title": "Yêu cầu chuyển/rời lớp",
+      "loading_requests": "Đang tải yêu cầu...",
+      "empty_requests": "Chưa có yêu cầu chuyển/rời lớp.",
+      "table_head_class": "Lớp",
+      "table_head_action": "Yêu cầu",
+      "table_head_sender": "Người gửi",
+      "table_head_receiver": "Giáo viên nhận",
+      "table_head_status": "Trạng thái",
+      "table_head_actions": "Hành động",
+      "action_transfer": "Chuyển lớp",
+      "action_unassign": "Rời lớp",
+      "btn_cancel_request": "Hủy yêu cầu"
+    },
+    "scores": {
+      "title": "Kết quả học tập",
+      "tab_class": "Theo lớp",
+      "tab_history": "Lịch sử",
+      "filter_class": "Lớp:",
+      "filter_class_all": "Tất cả lớp",
+      "filter_game": "Trò chơi:",
+      "filter_game_all": "Tất cả trò chơi",
+      "loading_scores": "Đang tải dữ liệu điểm...",
+      "empty_students": "Chưa có học sinh.",
+      "empty_history": "Không có dữ liệu phù hợp.",
+      "student_meta": "{{count}} lượt chơi",
+      "student_meta_ext": " · Cao nhất: {{best}} điểm · TB: {{avg}} điểm",
+      "game_played": "Đã chơi",
+      "game_not_played": "Chưa chơi",
+      "game_stats": "<strong>{{score}}</strong> điểm · {{attempts}} lượt · {{time}}",
+      "game_no_data": "Chưa có dữ liệu",
+      "table_head_student": "Học sinh",
+      "table_head_class": "Lớp",
+      "table_head_game": "Game",
+      "table_head_score": "Điểm",
+      "table_head_attempts": "Lượt",
+      "table_head_time": "Thời gian",
+      "no_score_data": "Chưa có dữ liệu điểm."
+    },
+    "transfer_modal": {
+      "title": "Chuyển lớp cho giáo viên khác",
+      "desc": "Chọn giáo viên nhận lớp. Yêu cầu này sẽ chờ nhà trường duyệt.",
+      "select_teacher": "Chọn giáo viên",
+      "btn_submit": "Gửi yêu cầu",
+      "btn_cancel": "Hủy"
+    }
+  },
+  "minigames": {
+    "am_thuc": {
+      "title": "Đuổi Hình Bắt Chữ",
+      "subtitle": "Nhìn hình đoán tên món ăn Sài Gòn",
+      "hints": "Gợi ý",
+      "select_letters": "Chọn chữ cái",
+      "answer_label": "Đáp án",
+      "feedback_correct": "Chính xác! 🎉",
+      "feedback_wrong": "Sai rồi! Đáp án: {{answer}}",
+      "btn_check": "Kiểm tra",
+      "btn_clear": "Xoá hết",
+      "btn_next": "Câu tiếp theo",
+      "btn_result": "Xem kết quả",
+      "btn_restart": "Chơi lại từ đầu",
+      "end_title": "Hoàn Thành",
+      "end_subtitle": "Đuổi Hình Bắt Chữ!",
+      "end_desc": "Bạn đã trả lời đúng <strong>{{correct}}/{{total}}</strong> câu hỏi về các món ăn đặc trưng của Sài Gòn.",
+      "stat_score": "Điểm",
+      "stat_correct": "Câu đúng",
+      "stat_rating": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt còn lại)",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_restart_desc": "Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_max_title": "Hết lượt chơi",
+      "dialog_max_desc": "Bạn đã hết lượt chơi cho Đuổi hình bắt chữ!",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "questions": [
+        "CƠM TẤM",
+        "CHÈ THÁI",
+        "LẨU CÁ ĐUỐI",
+        "CHÈ HỘT GÀ",
+        "KEM CHIÊN",
+        "BÁNH BÔNG LAN TRỨNG MUỐI",
+        "CHÈ CHUỐI",
+        "GỎI GÀ MĂNG CỤT",
+        "BÁNH KHỌT",
+        "PHỞ"
+      ]
+    },
+    "dan_cu": {
+      "title": "Quán Ăn Hạnh Phúc",
+      "subtitle": "Chọn món, trả lời câu hỏi để hoàn thiện thực đơn",
+      "btn_enter": "Vào quán",
+      "sign_line1": "QUÁN ĂN",
+      "sign_line2": "HẠNH PHÚC",
+      "welcome_greeting": "Chào mừng bạn đến với:",
+      "welcome_desc": "Hãy giải đáp các câu hỏi để chuẩn bị thực đơn phục vụ khách hàng nhé!",
+      "btn_start": "Cùng chọn món ăn",
+      "menu_bubble": "Hãy chọn một món ăn để chế biến thực đơn nhé!",
+      "dish_default_label": "Món ăn {{count}}",
+      "btn_summary": "Xem tổng kết",
+      "q_label": "Câu hỏi",
+      "feedback_correct": "Chính xác! Món ăn đã hoàn thiện.",
+      "feedback_wrong": "Chưa đúng rồi! Khay bị vỡ mất…",
+      "btn_back_menu": "Quay lại chọn món",
+      "end_badge": "Hoàn thành thực đơn",
+      "end_title": "Bạn đã hoàn thành <span>Quán Ăn Hạnh Phúc</span>",
+      "end_stat_correct": "Số câu đúng",
+      "end_stat_score": "Điểm",
+      "btn_play_again": "Chơi lại",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Chơi lại",
+      "dialog_restart_desc": "Bạn có chắc chắn muốn chơi lại từ đầu không? Toàn bộ tiến trình hiện tại sẽ bị xóa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Đồng ý",
+      "dialog_btn_ok": "Đã hiểu",
+      "dialog_btn_start_new": "Bắt đầu lượt mới",
+      "dishes": ["Mì ý", "Pizza", "Gà quay", "Canh bò", "Bò bít tết"],
+      "questions": [
+        {
+          "prompt": "Sau sáp nhập, Thành phố Hồ Chí Minh có dân số khoảng bao nhiêu người?",
+          "answers": [
+            "Trên 12 triệu người.",
+            "Trên 13 triệu người.",
+            "Trên 14 triệu người.",
+            "Trên 15 triệu người."
+          ]
+        },
+        {
+          "prompt": "Hiện nay, Thành phố Hồ Chí Minh có bao nhiêu dân tộc thiểu số sinh sống?",
+          "answers": ["52", "53", "54", "55"]
+        },
+        {
+          "prompt": "Dân cư ở Thành phố Hồ Chí Minh phân bố như thế nào?",
+          "answers": [
+            "Chỉ tập trung ở trung tâm thành phố",
+            "Chỉ tập trung ở vùng ven",
+            "Đồng đều giữa các khu vực",
+            "Không đồng đều giữa các khu vực"
+          ]
+        },
+        {
+          "prompt": "Người dân Thành phố Hồ Chí Minh được miêu tả với đặc điểm nào sau đây?",
+          "answers": [
+            "Khép kín, ít giao tiếp",
+            "Phóng khoáng, tự tin và năng động",
+            "Bảo thủ, ít thay đổi",
+            "Chậm chạp, thụ động"
+          ]
+        },
+        {
+          "prompt": "Những dân tộc thiểu số nào chiếm phần lớn trong cộng đồng dân tộc thiểu số ở Thành phố Hồ Chí Minh?",
+          "answers": [
+            "Hoa, Khmer, Chăm, Tày",
+            "Mường, Nùng, Dao, Thái",
+            "Ê-đê, Gia-rai, Ba-na",
+            "H’Mông, Xơ-đăng, Cơ-tu"
+          ]
+        }
+      ]
+    },
+    "vi_tri": {
+      "title": "Cuộc Phiêu Lưu Của Táo Đỏ",
+      "title_html": "<span>Cuộc Phiêu Lưu Của</span><strong>Táo Đỏ</strong>",
+      "subtitle": "Hãy giải đố để giúp Táo Đỏ vượt qua chướng ngại vật nhé!",
+      "btn_start": "Bắt đầu phiêu lưu",
+      "story_bubble": "Mình đang trên đường phiêu lưu đến vùng đất thần kì. Nhưng trên đường đi mình gặp rất nhiều chướng ngại vật. Các bạn hãy giải đáp những câu hỏi để loại bỏ các chướng ngại vật đó giúp mình nhé!",
+      "btn_story_next": "Lên đường thôi!",
+      "q_label": "Câu hỏi {{count}}",
+      "btn_next_obstacle": "Đến chướng ngại vật tiếp theo",
+      "btn_view_result": "Xem kết quả cuối cùng",
+      "finish_subtitle": "Chúc mừng bạn đã hoàn thành chuyến đi!",
+      "finish_greeting_3": "Xuất sắc!",
+      "finish_message_3": "Bạn là một nhà thám hiểm tài ba! Táo Đỏ đã về đích an toàn nhờ sự thông minh của bạn.",
+      "finish_greeting_2": "Làm tốt lắm!",
+      "finish_message_2": "Bạn đã giúp Táo Đỏ vượt qua hầu hết các thử thách. Một chút nữa thôi là hoàn hảo rồi!",
+      "finish_greeting_else": "Cố gắng lên!",
+      "finish_message_else": "Táo Đỏ vẫn cần bạn giúp sức thêm để vượt qua các chướng ngại vật đấy. Đừng bỏ cuộc nhé!",
+      "stat_score": "Điểm số",
+      "stat_correct": "Câu đúng",
+      "btn_play_again": "Chơi lại lần nữa",
+      "btn_back_home": "Về trang chủ",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_restart_desc": "Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_max_title": "Hết lượt chơi",
+      "dialog_max_desc": "Bạn đã hết lượt chơi cho Cuộc phiêu lưu của Táo Đỏ!",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_start_new": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "questions": [
+        {
+          "question": "Sau sáp nhập, Thành phố Hồ Chí Minh giáp với các tỉnh/vùng nào sau đây?",
+          "options": [
+            "Đồng Nai, Tây Ninh, Bình Dương, Bà Rịa - Vũng Tàu.",
+            "Đồng Nai, Tây Ninh, Tiền Giang, Long An và Biển Đông",
+            "Đồng Nai, Đồng Tháp, Tây Ninh, Tiền Giang và Biển Đông.",
+            "Đồng Nai, Đồng Tháp, Lâm Đồng, Tây Ninh và Biển Đông."
+          ]
+        },
+        {
+          "question": "Sau sáp nhập, thành phố Hồ Chí Minh có bao nhiêu đơn vị hành chính cấp xã?",
+          "options": [
+            "165 đơn vị hành chính cấp xã",
+            "175 đơn vị hành chính cấp xã",
+            "168 đơn vị hành chính cấp xã",
+            "178 đơn vị hành chính cấp xã"
+          ]
+        },
+        {
+          "question": "Sau sáp nhập Thành phố Hồ Chí Minh có diện tích là bao nhiêu km²?",
+          "options": [
+            "6.772,59 km²",
+            "7.772,59 km²",
+            "8.772,59 km²",
+            "9.772,59 km²"
+          ]
+        },
+        {
+          "question": "Sau sáp nhập, Thành phố Hồ Chí Minh được sáp nhập với các tỉnh thành nào?",
+          "options": [
+            "Bình Dương, Long An",
+            "Bình Dương, Bà Rịa - Vũng Tàu",
+            "Bà Rịa - Vũng Tàu, Đồng Nai",
+            "Bà Rịa - Vũng Tàu, Long An"
+          ]
+        },
+        {
+          "question": "Quy mô dân số của TP. Hồ Chí Minh sau sáp nhập khoảng bao nhiêu người?",
+          "options": [
+            "Hơn 14 triệu người",
+            "Hơn 12 triệu người",
+            "Hơn 15 triệu người",
+            "Hơn 13 triệu người"
+          ]
+        }
+      ]
+    },
+    "di_tich": {
+      "title": "Phân Loại Di Tích",
+      "subtitle": "Chọn di tích và xếp vào đúng giai đoạn lịch sử",
+      "instruction_active": "Nhấn vào giai đoạn phía trên hoặc kéo thả để xếp di tích",
+      "instruction_idle": "Hãy chọn hoặc kéo thả di tích vào ô giai đoạn phù hợp",
+      "era_empty": "Kéo thả hoặc nhấn để đặt di tích vào đây",
+      "remove_btn": "Xóa",
+      "pool_label": "Di tích chưa phân loại",
+      "btn_check": "Kiểm tra kết quả",
+      "btn_finish": "Xem tổng kết",
+      "done_title": "Hoàn thành",
+      "done_highlight": "Phân Loại Di Tích!",
+      "done_desc": "Bạn đã phân loại đúng <strong>{{correct}}/{{total}}</strong> di tích vào đúng giai đoạn lịch sử.",
+      "stat_score": "Điểm",
+      "stat_time": "Thời gian",
+      "stat_rating": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt còn lại)",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_restart_desc": "Sau lượt này, bạn còn {{count}} lượt chơi nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_start": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "error_max_attempts": "Bạn đã hết lượt chơi cho trò Phân loại di tích!",
+      "error_max_title": "Hết lượt chơi",
+      "eras": {
+        "oc_eo": { "name": "Thời kì Óc Eo", "period": "Thế kỉ I - VII" },
+        "khai_pha": {
+          "name": "Khai phá phương Nam",
+          "period": "Thế kỉ XVII - XIX"
+        },
+        "chong_phap_my": {
+          "name": "Kháng chiến",
+          "period": "1858 - 1975"
+        }
+      },
+      "sites": {
+        "chua_hoi_son": "Chùa Hội Sơn",
+        "giong_ca_vo": "Giồng Cá Vồ",
+        "bung_bac": "Bưng Bạc",
+        "dinh_thang_tam": "Đình Thần Thắng Tam",
+        "chua_long_ban": "Chùa Long Bàn",
+        "nha_luu_niem": "Nhà lưu niệm Chủ tịch Hồ Chí Minh",
+        "chien_khu": "Chiến khu Thuận An Hòa",
+        "dia_dao": "Địa đạo Kim Long",
+        "can_cu": "Căn cứ Minh Đạm"
+      }
+    },
+    "tu_nhien": {
+      "title": "Truy Tìm Bí Ẩn Tự Nhiên!",
+      "subtitle": "Chọn túi mù, xé bí ẩn và trả lời câu hỏi địa lí",
+      "bags_head": "Chọn một túi mù để xé",
+      "bags_sub": "Còn lại {{count}} túi",
+      "bag_label": "Túi {{count}}",
+      "q_label": "Câu hỏi {{current}}/{{total}}",
+      "feedback_correct": "Đúng rồi!",
+      "feedback_wrong": "Sai rồi, thử túi khác nha!",
+      "btn_back_bags": "Quay lại túi mù",
+      "btn_view_summary": "Xem tổng kết",
+      "end_title": "Hoàn Thành <span>Truy Tìm Bí Ẩn Tự Nhiên!</span>",
+      "end_stat_correct": "Bạn trả lời đúng <strong>{{correct}}/{{total}}</strong> câu hỏi.",
+      "end_stat_score_label": "Điểm",
+      "end_stat_correct_label": "Câu đúng",
+      "end_stat_rating_label": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt)",
+      "btn_out_of_attempts": "Hết lượt",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Thông báo",
+      "dialog_out_of_attempts": "Bạn đã hết lượt chơi cho trò này!",
+      "dialog_restart_confirm": "Đây sẽ là lượt chơi mới. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "questions": [
+        {
+          "question": "Các dạng địa hình chính của Thành phố Hồ Chí Minh?",
+          "options": [
+            "Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển.",
+            "Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi cao; Địa hình ven biển.",
+            "Đồng bằng thấp; Gò cao lượn sóng; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển.",
+            "Đồng bằng thấp, trũng, đầm lầy; Cao nguyên; Đồng bằng phẳng, thấp; Đồi núi thấp; Địa hình ven biển."
+          ]
+        },
+        {
+          "question": "Thành phố Hồ Chí Minh có bao nhiêu mùa trong năm?",
+          "options": ["1", "2", "3", "4"]
+        },
+        {
+          "question": "Những dòng sông nào chảy qua Thành phố Hồ Chí Minh?",
+          "options": [
+            "Sông Sài Gòn, Sông Hồng",
+            "Sông Đồng Nai, Sông Hồng",
+            "Sông Sài Gòn, Sông Đồng Nai",
+            "Sông Hồng, Sông Hương"
+          ]
+        },
+        {
+          "question": "Bãi Trước còn có tên gọi khác là gì?",
+          "options": ["Tầm Dương", "Thuỳ Vân", "Mũi Né", "Tuần Châu"]
+        },
+        {
+          "question": "Bãi Sau còn có tên gọi khác là gì?",
+          "options": ["Tầm Dương", "Thuỳ Vân", "Mũi Né", "Tuần Châu"]
+        },
+        {
+          "question": "Nơi nào ở Thành phố Hồ Chí Minh được UNESCO công nhận là Khu dự trữ sinh quyển thế giới?",
+          "options": [
+            "Vườn chim Thủ Đức",
+            "Rừng nguyên sinh Núi Cậu",
+            "Rừng nguyên sinh Kiến An",
+            "Rừng ngập mặn Cần Giờ"
+          ]
+        },
+        {
+          "question": "Nền địa chất của Thành phố Hồ Chí Minh có đặc điểm gì?",
+          "options": [
+            "Không ổn định",
+            "Dễ sạt lở",
+            "Ổn định và có độ chịu lực cao",
+            "Chủ yếu là đầm lầy"
+          ]
+        },
+        {
+          "question": "Khoáng sản có vai trò như thế nào đối với Thành phố?",
+          "options": [
+            "Không quan trọng",
+            "Chỉ dùng để trang trí",
+            "Là nguồn tài nguyên quan trọng thúc đẩy kinh tế",
+            "Chủ phục vụ sinh hoạt gia đình"
+          ]
+        },
+        {
+          "question": "Đất phù sa có đặc điểm gì nổi bật?",
+          "options": [
+            "Khô cằn, ít chất dinh dưỡng",
+            "Độ phì nhiêu cao",
+            "Nhiều sỏi đá",
+            "Khó trồng cây"
+          ]
+        },
+        {
+          "question": "Vì sao đất phèn khó trồng cây khi chưa cải tạo?",
+          "options": [
+            "Vì đất quá khô",
+            "Vì đất rất chua và nghèo dinh dưỡng",
+            "Vì đất quá nhiều nước",
+            "Vì đất có nhiều đá"
+          ]
+        }
+      ]
+    },
+    "kinh_te": {
+      "title": "Truy Tìm Ô Chữ!",
+      "subtitle": "Kéo chọn hoặc nhấn điểm đầu - điểm cuối để tìm {{count}} từ khóa Địa lí kinh tế",
+      "chip_attempts": "Lượt chơi",
+      "sidebar_title": "Danh sách từ khóa",
+      "btn_view_result": "Xem kết quả",
+      "end_title": "Hoàn thành <span>Truy Tìm Ô Chữ!</span>",
+      "end_stat_words": "Bạn đã tìm được <strong>{{correct}}/{{total}} từ khóa</strong> ẩn trong bài.",
+      "end_stat_score_label": "Điểm",
+      "end_stat_correct_label": "Từ khóa",
+      "end_stat_rating_label": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt)",
+      "btn_out_of_attempts": "Hết lượt",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_out_of_attempts_title": "Hết lượt chơi",
+      "dialog_out_of_attempts_msg": "Bạn đã hết lượt chơi cho trò này!",
+      "dialog_restart_msg": "Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "alphabet": "AĂÂBCDĐEÊGHIKLMNOÔƠPQRSTUƯVXYÁÀẢÃẠẮẰẲẴẶẤẦẨẪẬÉÈẺẼẸẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌỐỒỔỖỘỚỜỞỠỢÚÙỦŨỤỨỪỬỮỰÝỲỶỸỴ",
+      "words": [
+        { "text": "GIAOTHÔNGVẬNTẢI", "display": "Giao thông vận tải" },
+        { "text": "DULỊCH", "display": "Du lịch" },
+        { "text": "CƠKHÍ", "display": "Cơ khí" },
+        { "text": "CHĂNNUÔI", "display": "Chăn nuôi" },
+        { "text": "TRỒNGTRỌT", "display": "Trồng trọt" }
+      ]
+    },
+    "lang_nghe": {
+      "title": "Tìm Đúng Làng - Đoán Đúng Nghề",
+      "subtitle": "Chọn một ảnh sau đó chọn tên nghề để ghép thành cặp",
+      "card_badge_linked": "Đã nối",
+      "btn_check": "Kiểm tra kết quả",
+      "remaining_msg": "Hãy ghép đủ {{count}} cặp nữa để có thể Kiểm tra",
+      "feedback_perfect": "Xuất sắc! Bạn đã nối đúng toàn bộ! 🎉",
+      "feedback_partial": "Bạn nối đúng {{correct}}/{{total}} cặp. Xem lại kết quả bên trên nhé!",
+      "btn_view_summary": "Xem tổng kết",
+      "end_title": "Hoàn Thành <span>Tìm Đúng Làng - Đoán Đúng Nghề</span>",
+      "end_stat_pairs": "Bạn đã ghép đúng <strong>{{correct}}/{{total}}</strong> cặp nghề truyền thống.",
+      "end_stat_score_label": "Điểm",
+      "end_stat_correct_label": "Cặp đúng",
+      "end_stat_rating_label": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt)",
+      "btn_out_of_attempts": "Hết lượt",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_restart_title": "Thông báo",
+      "dialog_out_of_attempts_msg": "Bạn đã hết lượt chơi cho trò này!",
+      "dialog_restart_msg": "Đây sẽ là lượt chơi mới. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "pairs": [
+        { "id": "lang_nghe_01", "name": "Làng nghề se nhang" },
+        { "id": "lang_nghe_02", "name": "Làng nghề đan lát" },
+        { "id": "lang_nghe_03", "name": "Làng nghề đúc lư đồng" },
+        { "id": "lang_nghe_04", "name": "Nghề làm heo đất" },
+        { "id": "lang_nghe_05", "name": "Đan lát lục bình" }
+      ]
+    },
+    "le_hoi": {
+      "title": "Dấu Ấn Lễ Hội Địa Phương Em",
+      "subtitle": "Chọn đúng các từ khóa xoay quanh lễ hội",
+      "tags_label": "Chọn các từ khóa đúng cho lễ hội này",
+      "feedback_correct": "Chính xác! 🎉",
+      "feedback_wrong": "Sai rồi! Các từ khóa đúng có giáp viền xanh lá.",
+      "btn_check": "Kiểm tra Giải mã",
+      "btn_clear": "Xoá chọn",
+      "btn_next": "Câu tiếp theo",
+      "btn_summary": "Xem tổng kết",
+      "btn_restart_game": "Chơi lại từ đầu",
+      "end_title": "Hoàn thành <span>Dấu Ấn Lễ Hội Địa Phương Em!</span>",
+      "end_stat_msg": "Bạn đã trả lời đúng <strong>{{correct}}/{{total}}</strong> lễ hội truyền thống.",
+      "end_stat_score_label": "Điểm",
+      "end_stat_correct_label": "Câu đúng",
+      "end_stat_rating_label": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt còn lại)",
+      "btn_out_of_attempts": "Hết lượt chơi",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_out_of_attempts_title": "Hết lượt chơi",
+      "dialog_out_of_attempts_msg": "Bạn đã hết lượt chơi cho Dấu ấn lễ hội địa phương em!",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_restart_msg": "Đây sẽ là lượt chơi mới. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "festivals": [
+        {
+          "id": 1,
+          "name": "Lễ hội Yang Va",
+          "options": [
+            { "text": "Người Chơ Ro", "isCorrect": true },
+            { "text": "Người Tày", "isCorrect": false },
+            { "text": "Người Ê đê", "isCorrect": false },
+            { "text": "Tháng 3 đến tháng 4 âm lịch", "isCorrect": true },
+            { "text": "Tháng 5 đến tháng 6 âm lịch", "isCorrect": false },
+            { "text": "Thờ thần Lúa", "isCorrect": true },
+            { "text": "Thờ thần Rừng", "isCorrect": false },
+            { "text": "Thờ Thần Lửa", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Lễ hội Nghinh Cô",
+          "options": [
+            {
+              "text": "Ngày 10 đến ngày 12 tháng 2 âm lịch",
+              "isCorrect": true
+            },
+            {
+              "text": "Ngày 10 đến ngày 12 tháng 4 âm lịch",
+              "isCorrect": false
+            },
+            { "text": "Ước nguyện bội thu tôm cá", "isCorrect": true },
+            { "text": "Ước nguyện lúa nảy hạt, ra bông", "isCorrect": false },
+            { "text": "Lăng Cá Ông", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Lễ hội Đình Thắng Tam",
+          "options": [
+            { "text": "Lăng Ông Nam Hải", "isCorrect": true },
+            { "text": "Đình thần Thắng Tam", "isCorrect": true },
+            { "text": "Miếu Bà Ngũ Hành", "isCorrect": true },
+            { "text": "Chùa bà Thiên Hậu", "isCorrect": false },
+            { "text": "Lăng Cá Ông", "isCorrect": false },
+            { "text": "Miếu Nổi Phù Châu", "isCorrect": false },
+            {
+              "text": "Ngày 17 đến ngày 19 tháng 2 âm lịch",
+              "isCorrect": true
+            },
+            {
+              "text": "Ngày 20 đến ngày 22 tháng 2 âm lịch",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Lễ hội chùa Ông",
+          "options": [
+            {
+              "text": "Lễ thỉnh và cung nghinh các vị thần, thánh như Nguyễn Hữu Cảnh, Thiên Hậu Thánh Mẫu,…",
+              "isCorrect": true
+            },
+            {
+              "text": "Thờ thần Rừng, thần Lửa, thần Lúa",
+              "isCorrect": false
+            },
+            { "text": "Ngày 24 tháng 6 âm lịch hằng năm", "isCorrect": true },
+            {
+              "text": "Ngày 20 đến ngày 22 tháng 2 âm lịch",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Lễ hội đường hoa Nguyễn Huệ",
+          "options": [
+            { "text": "Dịp Tết Nguyên đán hằng năm", "isCorrect": true },
+            {
+              "text": "Ngày 24 tháng 6 âm lịch hằng năm",
+              "isCorrect": false
+            },
+            {
+              "text": "Tạo không gian giải trí, hoạt động văn hóa vui xuân dịp tết đến, xuân về.",
+              "isCorrect": true
+            },
+            { "text": "Ước nguyện lúa nảy hạt, ra bông", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Lễ Kỳ Yên",
+          "options": [
+            {
+              "text": "Lễ thỉnh và cung nghinh các vị thần, thánh như Nguyễn Hữu Cảnh, Thiên Hậu Thánh Mẫu,…",
+              "isCorrect": false
+            },
+            { "text": "Lễ cầu an và lễ tế Thành hoàng", "isCorrect": true },
+            {
+              "text": "Ngày 16 đến ngày 18 tháng Giêng âm lịch hằng năm",
+              "isCorrect": true
+            },
+            { "text": "Ngày 24 tháng 6 âm lịch hằng năm", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Lễ hội Chùa Bà Thiên Hậu",
+          "options": [
+            {
+              "text": "Ngày rằm tháng Giêng âm lịch hằng năm",
+              "isCorrect": true
+            },
+            {
+              "text": "Ngày 16 đến ngày 18 tháng Giêng âm lịch hằng năm",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Lễ hội Lái Thiêu mùa trái chín",
+          "options": [
+            {
+              "text": "Dịp tết Đoan ngọ - mồng 5 tháng 5 âm lịch hằng năm.",
+              "isCorrect": true
+            },
+            { "text": "Dịp Tết Nguyên đán hằng năm", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    "lich_su": {
+      "title": "Giải Mã Bí Ẩn",
+      "subtitle": "Sắp xếp chữ cái để tìm tên nhân vật lịch sử",
+      "clue_header": "Gợi ý nhân vật #{{count}}",
+      "btn_hint": "Gợi ý",
+      "tiles_label": "Kéo thả chữ cái",
+      "answer_label": "Đáp án",
+      "feedback_correct": "Chính xác! 🎉",
+      "feedback_wrong": "Sai rồi! Đáp án: {{answer}}",
+      "btn_check": "Kiểm tra",
+      "btn_clear": "Xoá hết",
+      "btn_next": "Câu tiếp theo",
+      "btn_summary": "Xem kết quả",
+      "btn_restart_game": "Chơi lại từ đầu",
+      "end_title": "Hoàn thành <span>Giải Mã Bí Ẩn!</span>",
+      "end_stat_msg": "Bạn đã trả lời đúng <strong>{{correct}}/{{total}}</strong> câu hỏi về các nhân vật lịch sử.",
+      "end_stat_score_label": "Điểm",
+      "end_stat_correct_label": "Câu đúng",
+      "end_stat_rating_label": "Đánh giá",
+      "btn_play_again": "Chơi lại ({{count}} lượt còn lại)",
+      "btn_out_of_attempts": "Hết lượt chơi",
+      "btn_back_learning": "Quay về Bài tập",
+      "dialog_out_of_attempts_title": "Hết lượt chơi",
+      "dialog_out_of_attempts_msg": "Bạn đã hết lượt chơi cho Giải mã bí ẩn!",
+      "dialog_restart_title": "Bắt đầu lượt mới?",
+      "dialog_restart_msg": "Đây sẽ là lượt chơi mới, không phải làm lại lượt cũ. Sau lượt này, bạn còn {{count}} lượt nữa.",
+      "dialog_btn_cancel": "Hủy",
+      "dialog_btn_confirm": "Bắt đầu lượt mới",
+      "dialog_btn_ok": "Đã hiểu",
+      "questions": [
+        {
+          "clue": "Tuổi chưa tròn mười bảy\nTóc chưa chấm ngang vai\nMột thiếu nữ mảnh mai\nNhưng hiên ngang, bất khuất\nCả nước đều quen biết\nTên chị nữ anh hùng.\nĐó là ai?",
+          "answer": "VÕ THỊ SÁU"
+        },
+        {
+          "clue": "Nhân vật nào được gọi là “Ông tổ” đặc công?",
+          "answer": "TRẦN CÔNG AN"
+        },
+        {
+          "clue": "Trong lễ kỉ niệm Cách mạng tháng mười Nga, Ông phát biểu kêu gọi nhân dân ủng hộ Liên bang Xô viết, kêu gọi tinh thần Cách mạng tháng Mười Nga và tinh thần yêu nước, chống Pháp. Sau đó, Ông bị bắt và phải lãnh án 5 năm tù giam, 10 năm đày biệt xứ.\nĐó là ai?",
+          "answer": "NGUYỄN VĂN TIẾT"
+        },
+        {
+          "clue": "Nhân vật nào từng giữ những chức vụ quan trọng của Đảng và Nhà nước như:\n- Bí thư Xứ uỷ Nam Bộ (1945)\n- Chủ tịch Uỷ ban Toàn quốc Mặt trận Liên Việt (1951 – 1955)\n- Trưởng ban Thường trực Quốc hội (1955 – 1960)\n- Chủ tịch nước (1969 – 1980)\nĐó là ai?",
+          "answer": "TÔN ĐỨC THẮNG"
+        },
+        {
+          "clue": "“Thà hi sinh chứ không để thương binh bị thương lần thứ hai”\nNgười đã nói câu nói này là ai?",
+          "answer": "ĐOÀN THỊ LIÊN"
+        },
+        {
+          "clue": "Năm 1943, ông là Bí thư Tỉnh uỷ (lâm thời) Thủ Dầu Một, đã lãnh đạo nhân dân trong tỉnh nổi dậy giành chính quyền thành công trong cách mạng tháng Tám năm 1945.\nĐó là ai?",
+          "answer": "VĂN CÔNG KHAI"
+        },
+        {
+          "clue": "Ngày 5/6/1911, từ bến cảng Nhà Rồng, có một người thanh niên yêu nước đã quyết định lên con tàu Amiral Latouche Tréville và ra đi tìm đường cứu nước. Đó là ai?",
+          "answer": "HỒ CHÍ MINH"
+        },
+        {
+          "clue": "Nhân vật nào được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân vào năm 2001?",
+          "answer": "TRẦN VĂN THƯỢNG"
+        },
+        {
+          "clue": "Ngày 10 – 4 – 2001, được truy tặng danh hiệu Anh hùng lực lượng vũ trang nhân dân. Tên của bà đã được dùng để đặt tên cho công viên, trường học,… tại Thành phố Hồ Chí Minh. Đó là ai?",
+          "answer": "LÊ THỊ RIÊNG"
+        },
+        {
+          "clue": "Nhân vật nào vào năm 1929 được kết nạp vào Đảng và trở thành Tổng Bí thư của Đảng từ tháng 3 – 1938. Đó là ai?",
+          "answer": "NGUYỄN VĂN CỪ"
+        },
+        {
+          "clue": "Năm 1955 – 1956, khi phong trào cách mạng của miền Nam bắt đầu phát triển trở lại, cả gia đình Cô tiếp tục tham gia vận động móc nối xây dựng cơ sở cách mạng, cũng như trực tiếp che giấu cán bộ. Dù tuổi nhỏ nhưng Cô không ngại hiểm nguy để canh gác, dò la tình hình quân địch, rải truyền đơn.\nĐó là ai?",
+          "answer": "HUỲNH THỊ CHẤU"
+        },
+        {
+          "clue": "Nhân vật nào là tác giả của bộ Gia Định thành thông chí - bộ sách lịch sử, địa lí, văn hóa ra đời sớm và giá trị nhất về miền Nam Bộ thời bấy giờ?",
+          "answer": "TRỊNH HOÀI ĐỨC"
+        },
+        {
+          "clue": "Ông được UNESCO chính thức vinh danh là nhà thơ, nhà văn hóa lớn của nhân loại vào cuối tháng 11/2021",
+          "answer": "NGUYỄN ĐÌNH CHIỂU"
+        },
+        {
+          "clue": "Ngày 20 – 12 – 1994, được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân. Đó là ai?",
+          "answer": "CHÂU VĂN BIẾC"
+        }
+      ]
+    }
+  },
+  "chatbot": {
+    "name": "Thành phố kể em nghe",
+    "status_online": "Sẵn sàng hỗ trợ",
+    "input_placeholder": "Nhập câu hỏi...",
+    "attach_tooltip": "Đính kèm tệp",
+    "send_tooltip": "Gửi tin nhắn",
+    "close_tooltip": "Đóng đoạn chat",
+    "file_sent_prefix": "📄 Đã gửi tài liệu: ",
+    "error_msg": "Hệ thống trợ lý ảo đang tạm thời quá tải lượt truy cập, bạn vui lòng thử lại sau ít phút nhé!",
+    "error_config": "Thiếu cấu hình API Key. Bạn hãy tạo VITE_GEMINI_API_KEY trong file .env.",
+    "error_process": "Mình chưa xử lí được yêu cầu này. Bạn thử lại hoặc kiểm tra kết nối mạng nhé.",
+    "limit_file_size": "Vui lòng chọn file nhỏ hơn 5MB.",
+    "limit_doc_format": "Định dạng .doc hiện chưa hỗ trợ trực tiếp. Bạn hãy lưu sang .docx hoặc .pdf rồi gửi lại.",
+    "limit_word_parse": "Không đọc được nội dung file Word. Bạn thử file khác hoặc chuyển sang PDF.",
+    "limit_word_error": "Có lỗi khi đọc file Word. Bạn thử lại hoặc chuyển sang PDF.",
+    "no_response": "Không có phản hồi",
+    "default_summary_request": "Hãy tóm tắt tài liệu và nêu các ý chính giúp mình.",
+    "word_document_label": "Nội dung tài liệu Word người dùng gửi",
+    "attached_file_label": "Người dùng đã đính kèm tệp",
+    "attached_file_instruction": "Hãy phản hồi lịch sự và hỏi thêm thông tin nếu cần.",
+    "prompt_knowledge_label": "CƠ SỞ TRI THỨC CỦA TRỢ LÝ",
+    "prompt_user_request_label": "Yêu cầu của người dùng",
+    "prompt_reminder": "Nhắc lại: Trả lời tự nhiên, không nhắc đến tài liệu nguồn. Nếu câu hỏi hoàn toàn không liên quan đến TP.HCM, hãy trả về đúng chuỗi này:",
+    "greetings": [
+      "Xin chào! Mình là 'Thành phố kể em nghe' - trợ lí thông tin TP.HCM đây. Hôm nay bạn muốn khám phá ngõ ngách nào của Sài Gòn nè?",
+      "Chào bạn nha! Cần tìm chỗ ăn chơi, lặn lội di tích hay hóng chuyện lịch sử Sài Gòn thì cứ hú 'Thành phố kể em nghe' một tiếng!",
+      "Hello bạn! 'Thành phố kể em nghe' đã sẵn sàng. Bạn đang tò mò về địa danh hay món ngon nào ở Sài Gòn vậy?",
+      "Dạ chào bạn! Mình là thổ địa Sài Gòn đây. Bạn muốn đi đâu, ăn gì hay nghe kể chuyện ngày xưa thì cứ nhắn mình nha!"
+    ],
+    "rejections": [
+      "Trời ơi, câu này hơi nằm ngoài vùng phủ sóng của mình rồi! 😅 Mình là Trợ lí Sài Gòn nên chỉ rành về du lịch, văn hóa và ẩm thực thôi. Hỏi chủ đề khác nha!",
+      "Món này khó quá mình xin lùi bước nha! 🤣 Tui chỉ là 'thổ địa' Sài Gòn thôi, rành ăn rành chơi chứ mấy vụ này tui mù tịt. Hỏi tui đi chơi đâu ngon đi!",
+      "Ây da, vụ này hông thuộc chuyên môn của mình rồi! 🥲 Bạn hỏi gì về đường sá, di tích hay đồ ăn Sài Gòn thì mình bao cân hết nha!",
+      "Chết dở, câu này làm khó thổ địa Sài Gòn rồi! 😂 Mình chỉ biết kể chuyện thành phố thôi, mấy cái khác mình hông dám chém gió đâu nha bạn ơi."
+    ],
+    "system_prompt": "Bạn là \"Trợ lí Sài Gòn\" - một hướng dẫn viên du lịch người bản địa cực kỳ am hiểu, thân thiện, xưng hô \"mình\" và \"bạn\".\n\nQUY TẮC TRẢ LỜI:\n\nKIẾN THỨC CỐT LÕI: Luôn âm thầm ưu tiên dùng thông tin trong CHATBOT_KNOWLEDGE_BASE. Trả lời tự nhiên, tuyệt đối KHÔNG ĐƯỢC dùng các từ như \"Theo dữ liệu nội bộ\", \"Theo CHATBOT_KNOWLEDGE_BASE\" hay \"Tài liệu cho biết\".\n\nKIẾN THỨC MỞ RỘNG (ẨM THỰC, ĐỊA ĐIỂM HOT): Nếu người dùng hỏi về quán ăn, món ngon, lịch trình đi chơi... mà trong dữ liệu không có, BẠN ĐƯỢC PHÉP tự tin dùng kiến thức ngoài để gợi ý nhiệt tình như một người Sài Gòn thứ thiệt!\n\nCHỐNG LẠC ĐỀ: CHỈ KHI người dùng hỏi những chủ đề hoàn toàn không liên quan đến TP.HCM (ví dụ: giải toán, viết code, chính trị, địa lí nước ngoài...), bạn mới trả về ĐÚNG MỘT CHUỖI DUY NHẤT: OUT_OF_KB\n\nTrình bày dễ nhìn, in đậm các ý chính, ngắn gọn."
+  }
+}

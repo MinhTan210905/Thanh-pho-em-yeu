@@ -1,8 +1,10 @@
 import './Home.css';
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
   const sliderTrackRef = useRef(null);
   const counterRef = useRef(null);
   const videoWrapperRef = useRef(null); // Ref for the video section
@@ -89,15 +91,18 @@ export default function Home() {
 
     startAutoSlide();
 
-    nextBtn.addEventListener('click', () => {
+    const handleNextClick = () => {
       next();
       startAutoSlide();
-    });
+    };
 
-    prevBtn.addEventListener('click', () => {
+    const handlePrevClick = () => {
       prev();
       startAutoSlide();
-    });
+    };
+
+    nextBtn.addEventListener('click', handleNextClick);
+    prevBtn.addEventListener('click', handlePrevClick);
 
     const handleVisibilityChange = () => {
       if (document.hidden) clearInterval(autoSlideInterval);
@@ -110,10 +115,10 @@ export default function Home() {
       clearInterval(autoSlideInterval);
       track.removeEventListener('transitionend', handleTransitionEnd);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      nextBtn.removeEventListener('click', next);
-      prevBtn.removeEventListener('click', prev);
+      nextBtn.removeEventListener('click', handleNextClick);
+      prevBtn.removeEventListener('click', handlePrevClick);
     };
-  }, []);
+  }, [i18n.resolvedLanguage]);
 
   useEffect(() => {
     // === COUNTER ANIMATION ===
@@ -203,7 +208,8 @@ export default function Home() {
   // === AUDIO LOGIC ===
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const userPaused = useRef(false); // Lưu trạng thái người dùng chủ động tắt
+  // Khôi phục trạng thái "tạm dừng" từ session nếu có
+  const isSessionPaused = () => sessionStorage.getItem('khampha_home_music_session_paused') === 'true';
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -211,19 +217,23 @@ export default function Home() {
 
     // Luôn bắt đầu lại từ đầu khi vào trang chủ (chạy chung với video background)
     audio.currentTime = 0;
-    userPaused.current = false; // Reset trạng thái khi vào lại trang
+    
+    // KHÔNG reset trạng thái ở đây để giữ "trí nhớ" khi chuyển trang
+    const currentlyPaused = isSessionPaused();
 
     const checkPlayState = () => setIsPlaying(!audio.paused);
     audio.addEventListener('play', checkPlayState);
     audio.addEventListener('pause', checkPlayState);
 
-    // Cố gắng phát ngay từ đầu cùng với video
-    audio.play().catch(() => console.log('Chờ tương tác để phát nhạc...'));
+    // Cố gắng phát ngay từ đầu cùng với video (nếu không bị pause từ trước)
+    if (!isSessionPaused()) {
+      audio.play().catch(() => console.log('Chờ tương tác để phát nhạc...'));
+    }
 
     // Chờ người dùng chạm/nhấp vào trang để vượt rào chặn autoplay của trình duyệt
     const forcePlayOnInteraction = () => {
-      // Chỉ tự động phát nếu người dùng chưa bấm nút Tắt
-      if (audio.paused && !userPaused.current) {
+      // Chỉ tự động phát nếu người dùng chưa bấm nút Tắt trong phiên này
+      if (audio.paused && !isSessionPaused()) {
         audio.play().catch(() => {});
       }
       document.removeEventListener('click', forcePlayOnInteraction);
@@ -238,7 +248,7 @@ export default function Home() {
         audio.pause();
       } else {
         // Chỉ phát lại nếu người dùng không chủ động tắt trước đó
-        if (!userPaused.current) {
+        if (!isSessionPaused()) {
           audio.play().catch(() => {});
         }
       }
@@ -262,9 +272,9 @@ export default function Home() {
 
     if (!audio.paused) {
       audio.pause();
-      userPaused.current = true; // Đánh dấu là người dùng chủ động tắt
+      sessionStorage.setItem('khampha_home_music_session_paused', 'true');
     } else {
-      userPaused.current = false; // Đánh dấu là muốn nghe tiếp
+      sessionStorage.setItem('khampha_home_music_session_paused', 'false');
       audio.play().catch(() => {});
     }
   };
@@ -276,7 +286,6 @@ export default function Home() {
         ref={audioRef} 
         src="/audio/The_City_Wakes_In_Red.mp3" 
         loop={true} 
-        autoPlay={true}
         preload="auto"
       />
       
@@ -285,7 +294,7 @@ export default function Home() {
         <button 
           className="audio-toggle-btn-bottomleft" 
           onClick={togglePlay} 
-          title={isPlaying ? "Tạm dừng nhạc" : "Phát nhạc"}
+          title={isPlaying ? t("home.music_pause") : t("home.music_play")}
         >
           {isPlaying ? <i className="fas fa-volume-up"></i> : <i className="fas fa-volume-mute"></i>}
         </button>
@@ -297,7 +306,7 @@ export default function Home() {
               style={{ width: "100%", height: "100%", border: "none" }}
               allow="autoplay"
               allowFullScreen
-              title="YouTube video background"
+              title="Video nền YouTube"
             ></iframe>
           </div>
           <div className="overlay"></div>
@@ -314,90 +323,91 @@ export default function Home() {
                     <div className="slider-window">
                       <div className="slider-track" id="sliderTrack" ref={sliderTrackRef}>
                         <div className="slide-item">
-                          <img src="/images/trang_chu_1.png" alt="Tòa tháp Bitexco về đêm" />
+                          <img src="/images/trang_chu_1.png" alt={t("home.slider.bitexco_title")} />
                           <div className="slide-caption">
-                            <h3>Tòa tháp Bitexco</h3>
-                            <p>Biểu tượng hiện đại của Sài Gòn</p>
+                            <h3>{t("home.slider.bitexco_title")}</h3>
+                            <p>{t("home.slider.bitexco_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_2.jpg" alt="Chợ Bến Thành biểu tượng Sài Gòn" />
+                          <img src="/images/trang_chu_2.jpg" alt={t("home.slider.benthanh_title")} />
                           <div className="slide-caption">
-                            <h3>Chợ Bến Thành</h3>
-                            <p>Ngôi chợ trăm năm tuổi</p>
+                            <h3>{t("home.slider.benthanh_title")}</h3>
+                            <p>{t("home.slider.benthanh_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_3.png" alt="Đền Tưởng niệm các Vua Hùng" />
+                          <img src="/images/trang_chu_3.png" alt={t("home.slider.hungking_title")} />
                           <div className="slide-caption">
-                            <h3>Đền Tưởng niệm các Vua Hùng (Công viên Tao Đàn)</h3>
-                            <p>Văn hóa tâm linh cội nguồn</p>
+                            <h3>{t("home.slider.hungking_title")}</h3>
+                            <p>{t("home.slider.hungking_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_4.jpg" alt="Nhà thờ Đức Bà cổ kính" />
+                          <img src="/images/trang_chu_4.jpg" alt={t("home.slider.notredame_title")} />
                           <div className="slide-caption">
-                            <h3>Nhà thờ Đức Bà</h3>
-                            <p>Kiệt tác kiến trúc giữa lòng phố</p>
+                            <h3>{t("home.slider.notredame_title")}</h3>
+                            <p>{t("home.slider.notredame_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_5.jpg" alt="Bảo tàng Thành phố Hồ Chí Minh" />
+                          <img src="/images/trang_chu_5.jpg" alt={t("home.slider.museum_title")} />
                           <div className="slide-caption">
-                            <h3>Bảo tàng TP. Hồ Chí Minh</h3>
-                            <p>Nơi lưu giữ kí ức lịch sử</p>
+                            <h3>{t("home.slider.museum_title")}</h3>
+                            <p>{t("home.slider.museum_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_6.jpg" alt="Dinh Độc Lập lịch sử" />
+                          <img src="/images/trang_chu_6.jpg" alt={t("home.slider.independence_title")} />
                           <div className="slide-caption">
-                            <h3>Dinh Độc Lập</h3>
-                            <p>Di tích Quốc gia đặc biệt</p>
+                            <h3>{t("home.slider.independence_title")}</h3>
+                            <p>{t("home.slider.independence_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_7.png" alt="Hoàng hôn bên Hồ Bán Nguyệt" />
+                          <img src="/images/trang_chu_7.png" alt={t("home.slider.starlight_title")} />
                           <div className="slide-caption">
-                            <h3>Hồ Bán Nguyệt</h3>
-                            <p>Vẻ đẹp lãng mạn lúc hoàng hôn</p>
+                            <h3>{t("home.slider.starlight_title")}</h3>
+                            <p>{t("home.slider.starlight_desc")}</p>
+                          </div>
+                        </div>
+
+
+                        <div className="slide-item">
+                          <img src="/images/trang_chu_8.jpg" alt={t("home.slider.postoffice_title")} />
+                          <div className="slide-caption">
+                            <h3>{t("home.slider.postoffice_title")}</h3>
+                            <p>{t("home.slider.postoffice_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_8.jpg" alt="Bưu điện Trung tâm Sài Gòn" />
+                          <img src="/images/trang_chu_9.jpg" alt={t("home.slider.tandinh_title")} />
                           <div className="slide-caption">
-                            <h3>Bưu điện Trung tâm</h3>
-                            <p>Dấu ấn kiến trúc Pháp độc đáo</p>
+                            <h3>{t("home.slider.tandinh_title")}</h3>
+                            <p>{t("home.slider.tandinh_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_9.jpg" alt="Nhà thờ Tân Định màu hồng độc đáo" />
+                          <img src="/images/trang_chu_10.jpg" alt={t("home.slider.suoitien_title")} />
                           <div className="slide-caption">
-                            <h3>Nhà thờ Tân Định</h3>
-                            <p>Nhà thờ màu hồng tuyệt đẹp</p>
+                            <h3>{t("home.slider.suoitien_title")}</h3>
+                            <p>{t("home.slider.suoitien_desc")}</p>
                           </div>
                         </div>
 
                         <div className="slide-item">
-                          <img src="/images/trang_chu_10.jpg" alt="Khu du lịch văn hóa Suối Tiên" />
+                          <img src="/images/trang_chu_11.jpg" alt={t("home.slider.anhsao_title")} />
                           <div className="slide-caption">
-                            <h3>KDL Văn hóa Suối Tiên</h3>
-                            <p>Thiên đường vui chơi giải trí</p>
-                          </div>
-                        </div>
-
-                        <div className="slide-item">
-                          <img src="/images/trang_chu_11.jpg" alt="Công viên Cầu Ánh Sao" />
-                          <div className="slide-caption">
-                            <h3>Cầu Ánh Sao</h3>
-                            <p>Lung linh sắc màu về đêm</p>
+                            <h3>{t("home.slider.anhsao_title")}</h3>
+                            <p>{t("home.slider.anhsao_desc")}</p>
                           </div>
                         </div>
                       </div>
@@ -410,33 +420,27 @@ export default function Home() {
                         <span className="badge-num count" data-start="0" data-target="300" ref={counterRef}>0</span>
                         <span className="badge-plus">+</span>
                       </div>
-                      <span className="badge-text">Năm hình thành<br />và phát triển</span>
+                      <span className="badge-text" dangerouslySetInnerHTML={{ __html: t("home.about.exp_badge") }}></span>
                     </div>
                   </div>
                 </div>
 
                 <div className="about-content">
-                  <h4 className="sub-title fade-up delay-100">XIN CHÀO!</h4>
+                  <h4 className="sub-title fade-up delay-100">{t("home.about.greeting")}</h4>
 
                   <h2 className="main-title">
-                    <span className="split-text fade-up delay-200">Khám phá Thành phố</span> <br />
-                    <span className="split-text fade-up delay-300">Hồ Chí Minh</span>
+                    <span className="split-text fade-up delay-200">{t("home.about.title_1")}</span> <br />
+                    <span className="split-text fade-up delay-300">{t("home.about.title_2")}</span>
                   </h2>
 
-                  <p className="desc-text fade-up delay-400">
-                    Chào mừng bạn đến với website <strong>Thành Phố Em Yêu</strong>, một
-                    không gian học tập trực tuyến sinh động về lịch sử, địa lí, văn hóa - xã hội của thành
-                    phố mang tên Bác.
-                  </p>
+                  <p className="desc-text fade-up delay-400" dangerouslySetInnerHTML={{ __html: t("home.about.desc_1") }}></p>
 
                   <p className="desc-text fade-up delay-500">
-                    Website được thiết kế dành cho giáo viên, học sinh và những ai yêu thích tìm hiểu về vùng
-                    đất này. Tại đây, bạn sẽ được bước vào hành trình khám phá những trang sử hào hùng, các
-                    đặc điểm địa lí nổi bật và nét đẹp trong đời sống của người dân nơi đây.
+                    {t("home.about.desc_2")}
                   </p>
 
                   <div className="btn-wrapper fade-up delay-600">
-                    <a href="#" className="btn-primary">Tìm hiểu thêm <i className="fas fa-arrow-right"></i></a>
+                    <a href="#" className="btn-primary">{t("home.about.btn_more")} <i className="fas fa-arrow-right"></i></a>
                   </div>
                 </div>
               </div>
@@ -449,29 +453,23 @@ export default function Home() {
             <div className="container">
               <div className="geo-wrapper">
                 <div className="geo-content">
-                  <h4 className="sub-title fade-up">TỔNG QUAN</h4>
+                  <h4 className="sub-title fade-up">{t("home.geo.subtitle")}</h4>
 
                   <h2 className="main-title">
-                    <span className="split-text fade-up delay-100">Địa Lí Thành phố</span> <br />
-                    <span className="split-text fade-up delay-200">Hồ Chí Minh</span>
+                    <span className="split-text fade-up delay-100">{t("home.geo.title_1")}</span> <br />
+                    <span className="split-text fade-up delay-200">{t("home.geo.title_2")}</span>
                   </h2>
 
                   <p className="desc-text fade-up delay-300">
-                    Khám phá Thành phố Hồ Chí Minh qua lăng kính địa lí đầy sống động –
-                    nơi những bản đồ trực quan mở ra trước mắt bạn một hành trình hiểu sâu
-                    về địa hình, khí hậu, sông ngòi và nhịp phát triển đô thị không ngừng của thành phố.
+                    {t("home.geo.desc_1")}
                   </p>
 
                   <p className="desc-text fade-up delay-400">
-                    Website mang đến kho tư liệu phong phú với hình ảnh,
-                    video và dữ liệu thông tin bổ ích. Giúp bạn cảm nhận rõ nét
-                    sự chuyển mình của không gian đô thị; tìm hiểu từng phường,
-                    từng xã, và thấy được vai trò trọng yếu của Thành phố Hồ Chí Minh
-                    trong vùng kinh tế động lực phía Nam.
+                    {t("home.geo.desc_2")}
                   </p>
 
                   <div className="fade-up delay-500">
-                    <Link to="/dia-ly" className="btn-primary btn-outline">Khám phá ngay <i className="fas fa-arrow-right"></i></Link>
+                    <Link to="/dia-ly" className="btn-primary btn-outline">{t("home.geo.btn_explore")} <i className="fas fa-arrow-right"></i></Link>
                   </div>
                 </div>
 
@@ -480,7 +478,7 @@ export default function Home() {
                     <img src="/images/dia_ly_1.jfif" alt="Vị trí địa lí" />
                     <div className="geo-tag">
                       <i className="fas fa-map-marked-alt"></i>
-                      <span>Vị trí</span>
+                      <span>{t("home.geo.tag_location")}</span>
                     </div>
                   </Link>
 
@@ -488,7 +486,7 @@ export default function Home() {
                     <img src="/images/dia_ly_2.svg" alt="Đặc điểm tự nhiên" />
                     <div className="geo-tag">
                       <i className="fas fa-tree"></i>
-                      <span>Tự nhiên</span>
+                      <span>{t("home.geo.tag_nature")}</span>
                     </div>
                   </Link>
 
@@ -496,7 +494,7 @@ export default function Home() {
                     <img src="/images/dia_ly_3.jpg" alt="Kinh tế phát triển" />
                     <div className="geo-tag">
                       <i className="fas fa-chart-line"></i>
-                      <span>Kinh tế</span>
+                      <span>{t("home.geo.tag_economy")}</span>
                     </div>
                   </Link>
 
@@ -504,7 +502,7 @@ export default function Home() {
                     <img src="/images/dia_ly_4.jpg" alt="Dân cư" />
                     <div className="geo-tag">
                       <i className="fas fa-users"></i>
-                      <span>Dân cư</span>
+                      <span>{t("home.geo.tag_population")}</span>
                     </div>
                   </Link>
                 </div>
@@ -521,13 +519,11 @@ export default function Home() {
                   className="sub-title fade-up"
                   style={{ color: "#ffcc00", borderColor: "#ffcc00" }}
                 >
-                  DÒNG CHẢY THỜI GIAN
+                  {t("home.history.subtitle")}
                 </h4>
-                <h2 className="main-title text-white fade-up delay-200">Lịch sử hào hùng</h2>
+                <h2 className="main-title text-white fade-up delay-200">{t("home.history.title")}</h2>
                 <p className="desc-text text-white-50 fade-up delay-400">
-                  Khám phá chiều sâu lịch sử Thành phố Hồ Chí Minh là một hành trình ngược dòng thời gian đầy thú vị.
-                  Nơi đưa bạn trở về với những bước chân khai phá đầu tiên để chứng kiến sự hình thành, phát triển của một vùng đất kiên cường.
-                  Trải qua bao biến cố, mảnh đất ấy đã viết nên những trang sử vàng trong công cuộc đấu tranh giành độc lập dân tộc.
+                  {t("home.history.desc")}
                 </p>
               </div>
 
@@ -536,9 +532,9 @@ export default function Home() {
                   <Link to="/di-tich" className="history-link">
                     <img src="/images/lich_su_2.jpg" alt="Di tích lịch sử" />
                     <div className="history-overlay">
-                      <h3>Di tích<br />Lịch sử</h3>
-                      <p>Những công trình kiến trúc ghi dấu ấn thời gian.</p>
-                      <span className="btn-link">Xem chi tiết <i className="fas fa-arrow-right"></i></span>
+                      <h3 dangerouslySetInnerHTML={{ __html: t("home.history.relic_title") }}></h3>
+                      <p>{t("home.history.relic_desc")}</p>
+                      <span className="btn-link">{t("home.history.btn_detail")} <i className="fas fa-arrow-right"></i></span>
                     </div>
                   </Link>
                 </div>
@@ -547,16 +543,16 @@ export default function Home() {
                   <Link to="/nhan-vat" className="history-link">
                     <img src="/images/lich_su_3.jpg" alt="Nhân vật lịch sử" />
                     <div className="history-overlay">
-                      <h3>Nhân vật<br />Lịch sử</h3>
-                      <p>Những người con ưu tú đã làm rạng danh vùng đất này.</p>
-                      <span className="btn-link">Xem chi tiết <i className="fas fa-arrow-right"></i></span>
+                      <h3 dangerouslySetInnerHTML={{ __html: t("home.history.figure_title") }}></h3>
+                      <p>{t("home.history.figure_desc")}</p>
+                      <span className="btn-link">{t("home.history.btn_detail")} <i className="fas fa-arrow-right"></i></span>
                     </div>
                   </Link>
                 </div>
               </div>
 
               <div className="history-footer fade-up delay-1200">
-                <Link to="/lich-su" className="btn-primary btn-history">Tìm hiểu thêm <i className="fas fa-arrow-right"></i></Link>
+                <Link to="/lich-su" className="btn-primary btn-history">{t("home.history.btn_more")} <i className="fas fa-arrow-right"></i></Link>
               </div>
             </div>
           </div>
@@ -567,16 +563,16 @@ export default function Home() {
             <div className="container">
               <div className="culture-wrapper">
                 <div className="culture-content">
-                  <h4 className="sub-title fade-up">ĐA DẠNG và BẢN SẮC</h4>
-                  <h2 className="main-title fade-up delay-200">Văn hóa - Xã hội</h2>
+                  <h4 className="sub-title fade-up">{t("home.culture.subtitle")}</h4>
+                  <h2 className="main-title fade-up delay-200">{t("home.culture.title")}</h2>
                   <p className="desc-text fade-up delay-400">
-                    Không chỉ là đầu tàu kinh tế của cả nước, Thành phố Hồ Chí Minh còn là bức tranh sống động nơi bản sắc truyền thống hòa quyện cùng nhịp sống hiện đại. Từ những ngôi chùa cổ kính nép mình bên tòa nhà chọc trời, đến gánh hàng rong bánh đa giữa phố thị phồn hoa.
+                    {t("home.culture.desc_1")}
                   </p>
                   <p className="desc-text fade-up delay-600">
-                    Hãy cùng khám phá chiều sâu văn hóa của vùng đất này, nơi mỗi góc phố dấu ấn chứa những câu chuyện thú vị về phong tục, lễ hội và sự hào sảng, nghĩa tình của người dân nơi đây.
+                    {t("home.culture.desc_2")}
                   </p>
                   <div className="fade-up delay-700">
-                    <Link to="/van-hoa" className="btn-primary">Khám phá ngay <i className="fas fa-arrow-right"></i></Link>
+                    <Link to="/van-hoa" className="btn-primary">{t("home.culture.btn_explore")} <i className="fas fa-arrow-right"></i></Link>
                   </div>
                 </div>
 
@@ -584,21 +580,21 @@ export default function Home() {
                   <div className="culture-item fade-up delay-1000">
                     <Link to="/am-thuc" className="culture-link">
                       <img src="/images/vanhoa_xahoi_1.jpg" alt="Ẩm thực Sài Gòn" />
-                      <div className="culture-tag">🍜 Ẩm thực</div>
+                      <div className="culture-tag">🍜 {t("home.culture.tag_food")}</div>
                     </Link>
                   </div>
 
                   <div className="culture-item fade-up delay-1200">
                     <Link to="/le-hoi" className="culture-link">
                       <img src="/images/vanhoa_xahoi_3.svg" alt="Lễ hội truyền thống" />
-                      <div className="culture-tag">🎉 Lễ hội</div>
+                      <div className="culture-tag">🎉 {t("home.culture.tag_festival")}</div>
                     </Link>
                   </div>
 
                   <div className="culture-item fade-up delay-1400">
                     <Link to="/lang-nghe" className="culture-link">
                       <img src="/images/vanhoa_xahoi_4.svg" alt="Làng nghề truyền thống" />
-                      <div className="culture-tag">🎨 Làng nghề</div>
+                      <div className="culture-tag">🎨 {t("home.culture.tag_craft")}</div>
                     </Link>
                   </div>
                 </div>
@@ -612,10 +608,10 @@ export default function Home() {
           <div className="section-wrapper reveal fade-up">
             <div className="container">
               <div className="learning-header">
-                <h4 className="sub-title fade-up">KHO TÀNG TRI THỨC</h4>
-                <h2 className="main-title fade-up delay-200">Tài liệu và Ôn tập</h2>
+                <h4 className="sub-title fade-up">{t("home.learning.subtitle")}</h4>
+                <h2 className="main-title fade-up delay-200">{t("home.learning.title")}</h2>
                 <p className="desc-text fade-up delay-400">
-                  Truy cập kho tàng tài liệu phong phú từ sách tham khảo đến các trò chơi ôn tập kiến thức đầy hấp dẫn.
+                  {t("home.learning.desc")}
                 </p>
               </div>
 
@@ -625,9 +621,9 @@ export default function Home() {
                   <div className="overlay-dark"></div>
                   <div className="card-content">
                     <div className="icon-small"><i className="fas fa-book-reader"></i></div>
-                    <h3>Thư viện tài liệu</h3>
-                    <p>Tổng hợp sách, bài báo và tư liệu quý về lịch sử, văn hóa Sài Gòn xưa và nay.</p>
-                    <a href="#" className="btn-outline-white">Xem ngay <i className="fas fa-arrow-right"></i></a>
+                    <h3>{t("home.learning.doc_title")}</h3>
+                    <p>{t("home.learning.doc_desc")}</p>
+                    <a href="#" className="btn-outline-white">{t("home.learning.btn_view")} <i className="fas fa-arrow-right"></i></a>
                   </div>
                 </div>
 
@@ -636,9 +632,9 @@ export default function Home() {
                   <div className="overlay-dark"></div>
                   <div className="card-content">
                     <div className="icon-small"><i className="fas fa-gamepad"></i></div>
-                    <h3>Trò chơi ôn tập</h3>
-                    <p>Thử thách kiến thức qua các bài Quiz vui nhộn, vừa học vừa chơi cực đã.</p>
-                    <Link to="/bai-tap" className="btn-outline-white">Chơi ngay <i className="fas fa-arrow-right"></i></Link>
+                    <h3>{t("home.learning.game_title")}</h3>
+                    <p>{t("home.learning.game_desc")}</p>
+                    <Link to="/bai-tap" className="btn-outline-white">{t("home.learning.btn_play")} <i className="fas fa-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>

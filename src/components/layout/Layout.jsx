@@ -6,6 +6,22 @@ import Footer from "./Footer";
 const SCROLL_KEY = "khampha_scroll_pos";
 const PATH_KEY = "khampha_scroll_path";
 
+function safeSessionGet(key) {
+  try {
+    return sessionStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeSessionSet(key, value) {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    // Ignore session storage write errors.
+  }
+}
+
 const Layout = () => {
   const location = useLocation();
   const lastGoodScrollY = useRef(0);
@@ -14,16 +30,16 @@ const Layout = () => {
 
   // 1. Quản lý Route Change (Lưu & khôi phục khi chuyển trang)
   useEffect(() => {
-    const savedPath = sessionStorage.getItem(PATH_KEY);
-    const savedScroll = sessionStorage.getItem(SCROLL_KEY);
+    const savedPath = safeSessionGet(PATH_KEY);
+    const savedScroll = safeSessionGet(SCROLL_KEY);
 
     if (savedPath === location.pathname && savedScroll) {
       window.scrollTo(0, parseInt(savedScroll, 10));
       lastGoodScrollY.current = parseInt(savedScroll, 10);
     } else {
       window.scrollTo(0, 0);
-      sessionStorage.setItem(PATH_KEY, location.pathname);
-      sessionStorage.setItem(SCROLL_KEY, "0");
+      safeSessionSet(PATH_KEY, location.pathname);
+      safeSessionSet(SCROLL_KEY, "0");
       lastGoodScrollY.current = 0;
     }
   }, [location.pathname]);
@@ -52,7 +68,7 @@ const Layout = () => {
 
       // Lưu tọa độ "sạch"
       lastGoodScrollY.current = window.scrollY;
-      sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString());
+      safeSessionSet(SCROLL_KEY, window.scrollY.toString());
     };
 
     const handleFullscreenChange = () => {
@@ -69,7 +85,7 @@ const Layout = () => {
         const targetY = lastGoodScrollY.current;
 
         // Bắt nó nằm im ở vị trí cũ
-        window.scrollTo({ top: targetY, left: 0, behavior: "instant" });
+        window.scrollTo({ top: targetY, left: 0, behavior: "auto" });
 
         // Cử "vệ sĩ" canh gác trong 1 giây
         let ticks = 0;
@@ -78,7 +94,7 @@ const Layout = () => {
         rescueTimer.current = setInterval(() => {
           // Nếu phát hiện trình duyệt ngoan cố kéo lên top (< 50px), giật nó về lại targetY
           if (window.scrollY < 50 && targetY > 50) {
-            window.scrollTo({ top: targetY, left: 0, behavior: "instant" });
+            window.scrollTo({ top: targetY, left: 0, behavior: "auto" });
           }
           
           ticks++;

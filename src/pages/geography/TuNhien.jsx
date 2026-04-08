@@ -1,8 +1,10 @@
 import './TuNhien.css';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import GameRedirect from '../../components/common/GameRedirect';
 
 export default function TuNhien() {
+  const { t } = useTranslation();
   useEffect(() => {
     document.body.classList.add('page-tu-nhien-active');
     return () => {
@@ -61,32 +63,31 @@ export default function TuNhien() {
           {/* Left: Copy */}
           <div className="tn-hero-copy">
             <span className="tn-hero-badge reveal fade-up">
-              Địa Lí
+              {t("geography_page.nature.badge_geo")}
               <span className="tn-dot">·</span>
-              <span className="tn-badge-accent">Tự Nhiên</span>
+              <span className="tn-badge-accent">{t("geography_page.nature.badge_tn")}</span>
             </span>
 
             <h1 className="tn-title reveal fade-up delay-100">
-              Địa Lí<br /><span className="tn-highlight">Tự Nhiên</span>
+              {t("geography_page.nature.hero_title")}<br /><span className="tn-highlight">{t("geography_page.nature.highlight")}</span>
             </h1>
 
             <p className="tn-subtitle reveal fade-up delay-200">
-              Khám phá hệ sinh thái phong phú, địa hình đa dạng, khí hậu
-              nhiệt đới và mạng lưới sông ngòi dày đặc của TP.HCM.
+              {t("geography_page.nature.hero_desc")}
             </p>
 
             <div className="tn-hero-points reveal fade-up delay-300">
               <div className="tn-point">
                 <i className="fas fa-mountain"></i>
-                <span>5 dạng địa hình đặc trưng</span>
+                <span>{t("geography_page.nature.point1")}</span>
               </div>
               <div className="tn-point">
                 <i className="fas fa-seedling"></i>
-                <span>2000+ loài sinh vật</span>
+                <span>{t("geography_page.nature.point2")}</span>
               </div>
               <div className="tn-point">
                 <i className="fas fa-water"></i>
-                <span>5+ sông ngòi & 7+ kênh rạch</span>
+                <span>{t("geography_page.nature.point3")}</span>
               </div>
             </div>
           </div>
@@ -95,19 +96,19 @@ export default function TuNhien() {
           <div className="tn-hero-panel reveal zoom-in delay-300">
             <div className="tn-panel-card">
               <span className="tn-panel-num">2000+</span>
-              <span className="tn-panel-label">Loài sinh vật</span>
+              <span className="tn-panel-label">{t("geography_page.nature.panel1")}</span>
             </div>
             <div className="tn-panel-card">
               <span className="tn-panel-num">8+</span>
-              <span className="tn-panel-label">Loại khoáng sản</span>
+              <span className="tn-panel-label">{t("geography_page.nature.panel2")}</span>
             </div>
             <div className="tn-panel-card tn-panel-accent">
               <span className="tn-panel-num">27.6°C</span>
-              <span className="tn-panel-label">Nhiệt độ TB</span>
+              <span className="tn-panel-label">{t("geography_page.nature.panel3")}</span>
             </div>
             <div className="tn-panel-card">
               <span className="tn-panel-num">7+</span>
-              <span className="tn-panel-label">Kênh rạch</span>
+              <span className="tn-panel-label">{t("geography_page.nature.panel4")}</span>
             </div>
           </div>
         </div>
@@ -121,17 +122,17 @@ export default function TuNhien() {
           <section className="tn-biomes">
             <div className="container">
               <div className="tn-biomes-head reveal fade-up">
-                <span className="tn-tag">Khám Phá</span>
-                <h2 className="tn-section-title">Hệ Sinh Thái & Tài Nguyên</h2>
+                <span className="tn-tag">{t("geography_page.nature.biome_tag")}</span>
+                <h2 className="tn-section-title">{t("geography_page.nature.biome_title")}</h2>
               </div>
               <div className="tn-biome-chips reveal fade-up delay-100">
-                <div className="tn-chip"><i className="fas fa-paw"></i><span>Sinh vật</span></div>
-                <div className="tn-chip"><i className="fas fa-layer-group"></i><span>Đất</span></div>
-                <div className="tn-chip"><i className="fas fa-gem"></i><span>Khoáng sản</span></div>
-                <div className="tn-chip"><i className="fas fa-mountain"></i><span>Địa hình</span></div>
-                <div className="tn-chip"><i className="fas fa-cloud-sun"></i><span>Khí hậu</span></div>
-                <div className="tn-chip"><i className="fas fa-water"></i><span>Sông ngòi</span></div>
-                <div className="tn-chip"><i className="fas fa-ship"></i><span>Biển</span></div>
+                <div className="tn-chip"><i className="fas fa-paw"></i><span>{t("geography_page.nature.chip1")}</span></div>
+                <div className="tn-chip"><i className="fas fa-layer-group"></i><span>{t("geography_page.nature.chip2")}</span></div>
+                <div className="tn-chip"><i className="fas fa-gem"></i><span>{t("geography_page.nature.chip3")}</span></div>
+                <div className="tn-chip"><i className="fas fa-mountain"></i><span>{t("geography_page.nature.chip4")}</span></div>
+                <div className="tn-chip"><i className="fas fa-cloud-sun"></i><span>{t("geography_page.nature.chip5")}</span></div>
+                <div className="tn-chip"><i className="fas fa-water"></i><span>{t("geography_page.nature.chip6")}</span></div>
+                <div className="tn-chip"><i className="fas fa-ship"></i><span>{t("geography_page.nature.chip7")}</span></div>
               </div>
             </div>
           </section>
@@ -143,71 +144,63 @@ export default function TuNhien() {
                 {/* Row 1: Wide + Small */}
                 <div className="tn-mosaic-card tn-mosaic-wide">
                   <div className="tn-mosaic-icon"><i className="fas fa-paw"></i></div>
-                  <h3>Sinh vật</h3>
+                  <h3>{t("geography_page.nature.mo1_title")}</h3>
                   <p>
-                    Hơn 2.000 loài sinh vật đa dạng, bao gồm thực vật, động vật
-                    và vi sinh vật, tạo nên hệ sinh thái phong phú cho thành phố.
+                    {t("geography_page.nature.mo1_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">2000+ loài</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo1_badge")}</span>
                 </div>
                 <div className="tn-mosaic-card">
                   <div className="tn-mosaic-icon"><i className="fas fa-layer-group"></i></div>
-                  <h3>Đất</h3>
+                  <h3>{t("geography_page.nature.mo2_title")}</h3>
                   <p>
-                    Nhiều loại đất khác nhau phù hợp nông nghiệp, xây dựng
-                    và phát triển đô thị.
+                    {t("geography_page.nature.mo2_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">Đa dạng</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo2_badge")}</span>
                 </div>
 
                 {/* Row 2: Small accent + Wide */}
                 <div className="tn-mosaic-card tn-mosaic-accent">
                   <div className="tn-mosaic-icon"><i className="fas fa-gem"></i></div>
-                  <h3>Khoáng sản</h3>
+                  <h3>{t("geography_page.nature.mo3_title")}</h3>
                   <p>
-                    Tài nguyên khoáng sản gồm cát, sỏi, đá, sét và nhiều loại
-                    khác phục vụ xây dựng, công nghiệp.
+                    {t("geography_page.nature.mo3_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">8+ loại</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo3_badge")}</span>
                 </div>
                 <div className="tn-mosaic-card tn-mosaic-wide">
                   <div className="tn-mosaic-icon"><i className="fas fa-cloud-sun"></i></div>
-                  <h3>Khí hậu</h3>
+                  <h3>{t("geography_page.nature.mo4_title")}</h3>
                   <p>
-                    Thành phố Hồ chí Minh chỉ có hai mùa: mùa khô và mùa mưa,
-                    chịu ảnh hưởng của gió mùa.
+                    {t("geography_page.nature.mo4_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">27.6°C · 1.500–1.979 mm</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo4_badge")}</span>
                 </div>
 
                 {/* Row 3: 3 small */}
                 <div className="tn-mosaic-card">
                   <div className="tn-mosaic-icon"><i className="fas fa-mountain"></i></div>
-                  <h3>Địa hình</h3>
+                  <h3>{t("geography_page.nature.mo5_title")}</h3>
                   <p>
-                    Đồng bằng thấp, trũng, đầm lầy; Gò cao lượn sóng; Đồng bằng phẳng,
-                    thấp; Đồi núi thấp;  Địa hình ven biển, tạo nên cảnh quan đa dạng.
+                    {t("geography_page.nature.mo5_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">5 dạng</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo5_badge")}</span>
                 </div>
                 <div className="tn-mosaic-card">
                   <div className="tn-mosaic-icon"><i className="fas fa-water"></i></div>
-                  <h3>Sông ngòi & Kênh rạch</h3>
+                  <h3>{t("geography_page.nature.mo6_title")}</h3>
                   <p>
-                    Hệ thống sông ngòi, kênh rạch vô cùng đa dạng thuận lợi cho
-                    các hoạt động giao thông đường thủy,
-                    sản xuất nông nghiệp, du lịch sinh thái…
+                    {t("geography_page.nature.mo6_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">5+ sông · 7+ kênh</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo6_badge")}</span>
                 </div>
                 <div className="tn-mosaic-card">
                   <div className="tn-mosaic-icon"><i className="fas fa-ship"></i></div>
-                  <h3>Biển</h3>
+                  <h3>{t("geography_page.nature.mo7_title")}</h3>
                   <p>
-                    Tiếp giáp biển Đông với hơn 2 vùng biển, tạo điều kiện
-                    phát triển kinh tế biển và giao thương quốc tế.
+                    {t("geography_page.nature.mo7_desc")}
                   </p>
-                  <span className="tn-mosaic-badge">2+ vùng</span>
+                  <span className="tn-mosaic-badge">{t("geography_page.nature.mo7_badge")}</span>
                 </div>
               </div>
             </div>
@@ -217,8 +210,8 @@ export default function TuNhien() {
           <section className="tn-canvas">
             <div className="container">
               <div className="tn-canvas-intro reveal fade-up">
-                <h3>Khám phá trọn vẹn qua bản trình bày</h3>
-                <p>Toàn bộ nội dung trực quan về địa lí tự nhiên Thành phố Hồ Chí Minh.</p>
+                <h3>{t("geography_page.canvas_intro_title")}</h3>
+                <p>{t("geography_page.nature.canvas_intro_desc")}</p>
               </div>
               <div className="tn-canvas-frame reveal fade-up delay-200">
                 <div className="tn-canvas-embed">
@@ -233,7 +226,7 @@ export default function TuNhien() {
               </div>
             </div>
 
-            <GameRedirect to="/tro-choi-dia-li-tu-nhien" gameName="Truy tìm bí ẩn tự nhiên" />
+            <GameRedirect to="/tro-choi-dia-li-tu-nhien" gameName={t("learning_page.quiz.games.tu_nhien.title")} />
           </section>
         </div>
       </main>

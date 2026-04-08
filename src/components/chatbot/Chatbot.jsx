@@ -1,63 +1,66 @@
-// Nhớ tạo file .env với VITE_GEMINI_API_KEY=... và thêm .env vào .gitignore.
-import { useState, useRef, useEffect } from "react";
-import "./Chatbot.css";
-import mammoth from "mammoth";
+import { useEffect, useRef, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { CHATBOT_KNOWLEDGE_BASE } from "../../constants/chatbotKnowledge";
+import mammoth from "mammoth";
+import { useTranslation } from "react-i18next";
+import { CHATBOT_KNOWLEDGE_BASE as KB_VI } from "../../constants/chatbotKnowledge";
+import { CHATBOT_KNOWLEDGE_BASE as KB_EN } from "../../constants/chatbotKnowledgeEn";
+import "./Chatbot.css";
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
-const MODEL_FALLBACKS = [
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-];
+const MODEL_FALLBACKS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
 const MAX_WORD_EXTRACT_CHARS = 50000;
 const OUT_OF_KB_MARKER = "__OUT_OF_KB__";
-const SYSTEM_PROMPT = `
-Bạn là "Trợ lí Sài Gòn" - một hướng dẫn viên du lịch người bản địa cực kỳ am hiểu, thân thiện, xưng hô "mình" và "bạn".
 
-QUY TẮC TRẢ LỜI:
+function getCurrentTime() {
+  const now = new Date();
+  return `${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}`;
+}
 
-KIẾN THỨC CỐT LÕI: Luôn âm thầm ưu tiên dùng thông tin trong CHATBOT_KNOWLEDGE_BASE. Trả lời tự nhiên, tuyệt đối KHÔNG ĐƯỢC dùng các từ như "Theo dữ liệu nội bộ", "Theo CHATBOT_KNOWLEDGE_BASE" hay "Tài liệu cho biết".
+function formatBotMessage(text) {
+  if (!text) {
+    return text;
+  }
 
-KIẾN THỨC MỞ RỘNG (ẨM THỰC, ĐỊA ĐIỂM HOT): Nếu người dùng hỏi về quán ăn, món ngon, lịch trình đi chơi... mà trong dữ liệu không có, BẠN ĐƯỢC PHÉP tự tin dùng kiến thức ngoài để gợi ý nhiệt tình như một người Sài Gòn thứ thiệt!
+  let formattedText = text.replace(/### (.*)/g, "<br><b style='font-size: 16px; color: #e65100;'>$1</b>");
+  formattedText = formattedText.replace(/## (.*)/g, "<br><b style='font-size: 18px; color: #e65100;'>$1</b>");
+  formattedText = formattedText.replace(/(?:^|\n)[*-] (.*)/g, "<br>&bull; $1");
+  formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+  formattedText = formattedText.replace(/\n/g, "<br>");
+  formattedText = formattedText.replace(/^(<br>)+/, "");
 
-CHỐNG LẠC ĐỀ: CHỈ KHI người dùng hỏi những chủ đề hoàn toàn không liên quan đến TP.HCM (ví dụ: giải toán, viết code, chính trị, địa lí nước ngoài...), bạn mới trả về ĐÚNG MỘT CHUỖI DUY NHẤT: OUT_OF_KB
-
-Trình bày dễ nhìn, in đậm các ý chính, ngắn gọn.
-`.trim();
-
-const GREETINGS = [
-  "Xin chào! Mình là 'Thành phố kể em nghe' - trợ lí thông tin TP.HCM đây. Hôm nay bạn muốn khám phá ngõ ngách nào của Sài Gòn nè?",
-  "Chào bạn nha! Cần tìm chỗ ăn chơi, lặn lội di tích hay hóng chuyện lịch sử Sài Gòn thì cứ hú 'Thành phố kể em nghe' một tiếng!",
-  "Hello bạn! 'Thành phố kể em nghe' đã sẵn sàng. Bạn đang tò mò về địa danh hay món ngon nào ở Sài Gòn vậy?",
-  "Dạ chào bạn! Mình là thổ địa Sài Gòn đây. Bạn muốn đi đâu, ăn gì hay nghe kể chuyện ngày xưa thì cứ nhắn mình nha!"
-];
-
-const REJECTIONS = [
-  "Trời ơi, câu này hơi nằm ngoài vùng phủ sóng của mình rồi! 😅 Mình là Trợ lí Sài Gòn nên chỉ rành về du lịch, văn hóa và ẩm thực thôi. Hỏi chủ đề khác nha!",
-  "Món này khó quá mình xin lùi bước nha! 🤣 Tui chỉ là 'thổ địa' Sài Gòn thôi, rành ăn rành chơi chứ mấy vụ này tui mù tịt. Hỏi tui đi chơi đâu ngon đi!",
-  "Ây da, vụ này hông thuộc chuyên môn của mình rồi! 🥲 Bạn hỏi gì về đường sá, di tích hay đồ ăn Sài Gòn thì mình bao cân hết nha!",
-  "Chết dở, câu này làm khó thổ địa Sài Gòn rồi! 😂 Mình chỉ biết kể chuyện thành phố thôi, mấy cái khác mình hông dám chém gió đâu nha bạn ơi."
-];
+  return formattedText;
+}
 
 export default function Chatbot() {
-  const [messages, setMessages] = useState([
+  const { t, i18n } = useTranslation();
+  const currentLang = (i18n.resolvedLanguage || i18n.language || "vi").split("-")[0];
+  const knowledgeBase = currentLang === "en" ? KB_EN : KB_VI;
+  const greetings = t("chatbot.greetings", { returnObjects: true }) || [];
+  const rejections = t("chatbot.rejections", { returnObjects: true }) || [];
+  const systemPrompt = t("chatbot.system_prompt");
+  const previousLangRef = useRef(currentLang);
+  const chatBoxRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const getRandomGreeting = () =>
+    greetings[Math.floor(Math.random() * greetings.length)] || t("chatbot.no_response");
+
+  const [messages, setMessages] = useState(() => [
     {
       type: "bot",
-      content: GREETINGS[Math.floor(Math.random() * GREETINGS.length)],
+      content: getRandomGreeting(),
       time: getCurrentTime(),
     },
   ]);
   const [userInput, setUserInput] = useState("");
   const [fileData, setFileData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const chatBoxRef = useRef(null);
-  const fileInputRef = useRef(null);
 
   function isQuotaOrRateLimitError(error) {
     const status = error?.status;
     const message = (error?.message || "").toLowerCase();
+
     return (
       status === 429 ||
       message.includes("429") ||
@@ -68,19 +71,15 @@ export default function Chatbot() {
 
   async function fetchAIResponse(userText) {
     if (!genAI) {
-      return "Thiếu cấu hình API Key. Bạn hãy tạo VITE_GEMINI_API_KEY trong file .env.";
+      return t("chatbot.error_config");
     }
 
     const fullPrompt =
-      `${SYSTEM_PROMPT}\n\n` +
-      `KIẾN THỨC NỀN CỦA TRỢ LÝ:\n${CHATBOT_KNOWLEDGE_BASE}\n\n` +
-      `Yêu cầu của người dùng: ${userText}\n\n` +
-      `Nhắc nhở: Trả lời tự nhiên, không nhắc đến tài liệu. Nếu câu hỏi hoàn toàn lạc đề khỏi TP.HCM, chỉ trả về chuỗi: ${OUT_OF_KB_MARKER}`;
+      `${systemPrompt}\n\n` +
+      `${t("chatbot.prompt_knowledge_label")}:\n${knowledgeBase}\n\n` +
+      `${t("chatbot.prompt_user_request_label")}: ${userText}\n\n` +
+      `${t("chatbot.prompt_reminder")} ${OUT_OF_KB_MARKER}`;
 
-    // Thuật toán fallback "vét máng" 2 tầng:
-    // - Duyệt model theo thứ tự ưu tiên từ cao xuống thấp.
-    // - Nếu model hiện tại bị quota/rate limit thì tự động rơi xuống model tiếp theo.
-    // - Chỉ cần một model trả kết quả thành công thì dừng ngay và trả về cho UI.
     for (const modelName of MODEL_FALLBACKS) {
       try {
         const model = genAI.getGenerativeModel({ model: modelName });
@@ -91,23 +90,18 @@ export default function Chatbot() {
           return responseText;
         }
 
-        throw new Error("Model trả về phản hồi rỗng");
+        throw new Error("Model returned empty response");
       } catch (error) {
         if (isQuotaOrRateLimitError(error)) {
-          console.warn(`[Fallback] ${modelName} bị giới hạn lượt (quota/rate limit), chuyển model kế tiếp...`, error);
+          console.warn(`[Fallback] ${modelName} rate limited, switching...`, error);
           continue;
         }
 
-        console.warn(`[Fallback] ${modelName} lỗi không phải quota, chuyển model kế tiếp...`, error);
+        console.warn(`[Fallback] ${modelName} error, switching...`, error);
       }
     }
 
-    return "Hệ thống trợ lý ảo đang tạm thời quá tải lượt truy cập, bạn vui lòng thử lại sau ít phút nhé!";
-  }
-
-  function getCurrentTime() {
-    const now = new Date();
-    return now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0");
+    return t("chatbot.error_msg");
   }
 
   useEffect(() => {
@@ -116,12 +110,34 @@ export default function Chatbot() {
     }
   }, [messages]);
 
-  async function handleFileSelect(e) {
-    const file = e.target.files?.[0];
+  useEffect(() => {
+    if (previousLangRef.current === currentLang) {
+      return;
+    }
+
+    previousLangRef.current = currentLang;
+
+    setMessages((prev) => {
+      if (prev.length !== 1 || prev[0]?.type !== "bot") {
+        return prev;
+      }
+
+      return [
+        {
+          ...prev[0],
+          content: getRandomGreeting(),
+          time: getCurrentTime(),
+        },
+      ];
+    });
+  }, [currentLang, greetings]);
+
+  async function handleFileSelect(event) {
+    const file = event.target.files?.[0];
     if (!file) return;
 
     if (file.size > 5 * 1024 * 1024) {
-      alert("Vui lòng chọn file nhỏ hơn 5MB.");
+      alert(t("chatbot.limit_file_size"));
       return;
     }
 
@@ -132,7 +148,7 @@ export default function Chatbot() {
     const isLegacyDoc = file.type === "application/msword" || fileName.endsWith(".doc");
 
     if (isLegacyDoc && !isDocx) {
-      alert("Định dạng .doc hiện chưa hỗ trợ trực tiếp. Bạn hãy lưu sang .docx hoặc .pdf rồi gửi lại.");
+      alert(t("chatbot.limit_doc_format"));
       return;
     }
 
@@ -143,7 +159,7 @@ export default function Chatbot() {
         const extractedText = result.value?.trim();
 
         if (!extractedText) {
-          alert("Không đọc được nội dung file Word. Bạn thử file khác hoặc chuyển sang PDF.");
+          alert(t("chatbot.limit_word_parse"));
           return;
         }
 
@@ -156,16 +172,17 @@ export default function Chatbot() {
         });
       } catch (error) {
         console.error("DOCX parse error:", error);
-        alert("Có lỗi khi đọc file Word. Bạn thử lại hoặc chuyển sang PDF.");
+        alert(t("chatbot.limit_word_error"));
       }
+
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = function (ev) {
-      const base64 = ev.target?.result?.split(",")[1];
+    reader.onload = (loadEvent) => {
+      const base64 = loadEvent.target?.result?.split(",")[1];
       setFileData({
-        base64: base64,
+        base64,
         mimeType: file.type,
         name: file.name,
         isImage: file.type.startsWith("image/"),
@@ -176,7 +193,9 @@ export default function Chatbot() {
 
   function removeFile() {
     setFileData(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   }
 
   async function handleSendMessage() {
@@ -184,6 +203,7 @@ export default function Chatbot() {
     if (!text && !fileData) return;
 
     let userDisplayContent = text;
+
     if (fileData) {
       if (fileData.isImage) {
         userDisplayContent = (
@@ -200,8 +220,16 @@ export default function Chatbot() {
       } else {
         userDisplayContent = (
           <>
-            <div style={{ background: "rgba(255,255,255,0.2)", padding: "5px 10px", borderRadius: "5px", display: "inline-block", marginBottom: "5px" }}>
-              📄 Đã gửi tài liệu: {fileData.name}
+            <div
+              style={{
+                background: "rgba(255,255,255,0.2)",
+                padding: "5px 10px",
+                borderRadius: "5px",
+                display: "inline-block",
+                marginBottom: "5px",
+              }}
+            >
+              {t("chatbot.file_sent_prefix")} {fileData.name}
             </div>
             <br />
             {text}
@@ -225,44 +253,28 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      let userQuestion = text || "Hãy tóm tắt tài liệu và nêu các ý chính.";
+      let userQuestion = text || t("chatbot.default_summary_request");
+
       if (fileDataToSend?.isWordText) {
-        userQuestion += `\n\nNội dung tài liệu Word người dùng gửi:\n${fileDataToSend.extractedText.slice(0, MAX_WORD_EXTRACT_CHARS)}`;
+        userQuestion += `\n\n${t("chatbot.word_document_label")}:\n${fileDataToSend.extractedText.slice(0, MAX_WORD_EXTRACT_CHARS)}`;
       } else if (fileDataToSend) {
-        userQuestion += `\n\nNgười dùng có đính kèm file: ${fileDataToSend.name}. Hãy phản hồi lịch sự và hỏi thêm nếu cần làm rõ nội dung file.`;
+        userQuestion += `\n\n${t("chatbot.attached_file_label")}: ${fileDataToSend.name}. ${t("chatbot.attached_file_instruction")}`;
       }
 
       let aiText = await fetchAIResponse(userQuestion);
 
-      if (typeof aiText === "string" && aiText.includes("OUT_OF_KB")) {
-        aiText = REJECTIONS[Math.floor(Math.random() * REJECTIONS.length)];
+      if (typeof aiText === "string" && aiText.includes(OUT_OF_KB_MARKER)) {
+        aiText = rejections[Math.floor(Math.random() * rejections.length)] || t("chatbot.error_msg");
       }
 
-      let formattedText = aiText || "Không có phản hồi";
-      if (formattedText !== "Không có phản hồi") {
-        // 1. Dịch dấu ### và ## thành tiêu đề in đậm, cỡ chữ to hơn, có màu
-        formattedText = formattedText.replace(/### (.*)/g, "<br><b style='font-size: 16px; color: #e65100;'>$1</b>");
-        formattedText = formattedText.replace(/## (.*)/g, "<br><b style='font-size: 18px; color: #e65100;'>$1</b>");
-
-        // 2. Dịch dấu * hoặc - ở đầu dòng thành dấu chấm tròn (bullet point)
-        formattedText = formattedText.replace(/(?:^|\n)[*-] (.*)/g, "<br>• $1");
-
-        // 3. Dịch dấu ** thành in đậm bình thường
-        formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
-
-        // 4. Đổi toàn bộ dấu xuống dòng còn lại thành thẻ <br>
-        formattedText = formattedText.replace(/\n/g, "<br>");
-
-        // 5. Dọn dẹp mấy thẻ <br> dư thừa ở đầu câu
-        formattedText = formattedText.replace(/^(<br>)+/, "");
-      }
-      const botReply = formattedText;
+      const fallbackText = t("chatbot.no_response");
+      const formattedText = aiText ? formatBotMessage(aiText) : fallbackText;
 
       setMessages((prev) => [
         ...prev,
         {
           type: "bot",
-          content: botReply,
+          content: formattedText || fallbackText,
           time: getCurrentTime(),
         },
       ]);
@@ -272,7 +284,7 @@ export default function Chatbot() {
         ...prev,
         {
           type: "bot",
-          content: "Mình chưa xử lí được yêu cầu này. Bạn thử lại hoặc kiểm tra kết nối mạng nhé.",
+          content: t("chatbot.error_process"),
           time: getCurrentTime(),
         },
       ]);
@@ -281,40 +293,47 @@ export default function Chatbot() {
     }
   }
 
-  function handleEnter(e) {
-    if (e.key === "Enter" && !isLoading) {
+  function handleEnter(event) {
+    if (event.key === "Enter" && !isLoading) {
       handleSendMessage();
     }
   }
 
   return (
     <>
-      <div className="chatbot-toggler-wrapper" onClick={() => document.body.classList.toggle("show-chatbot")}>
+      <div
+        className="chatbot-toggler-wrapper"
+        onClick={() => document.body.classList.toggle("show-chatbot")}
+      >
         <button className="chatbot-toggler">
-          <img src="/images/chat_bot.svg" alt="Thành phố kể em nghe" />
+          <img src="/images/chat_bot.svg" alt={t("chatbot.name")} />
         </button>
       </div>
 
       <div className="chatbot-window">
         <div className="chat-header">
           <div className="bot-avatar">
-            <img src="/images/chat_bot.svg" alt="Thành phố kể em nghe" />
+            <img src="/images/chat_bot.svg" alt={t("chatbot.name")} />
           </div>
           <div>
-            <h3>Thành phố kể em nghe</h3>
+            <h3>{t("chatbot.name")}</h3>
             <p className="chat-status">
               <span className="status-dot"></span>
-              <span className="status-text">Sẵn sàng hỗ trợ</span>
+              <span className="status-text">{t("chatbot.status_online")}</span>
             </p>
           </div>
-          <div className="close-chat" onClick={() => document.body.classList.remove("show-chatbot")}>
+          <div
+            className="close-chat"
+            onClick={() => document.body.classList.remove("show-chatbot")}
+            title={t("chatbot.close_tooltip")}
+          >
             <i className="fas fa-times"></i>
           </div>
         </div>
 
         <div className="chat-box" ref={chatBoxRef}>
-          {messages.map((msg, idx) => (
-            <div key={idx} className={`message-wrapper ${msg.type}-wrapper`}>
+          {messages.map((msg, index) => (
+            <div key={index} className={`message-wrapper ${msg.type}-wrapper`}>
               <div className={`message ${msg.type}-msg`}>
                 {typeof msg.content === "string" ? (
                   <div dangerouslySetInnerHTML={{ __html: msg.content }} />
@@ -337,15 +356,48 @@ export default function Chatbot() {
         </div>
 
         {fileData && (
-          <div style={{ padding: "10px 15px", background: "#f1f5f9", borderTop: "1px solid #e2e8f0", fontSize: "13px", color: "#555" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "#fff", padding: "5px 10px", borderRadius: "8px", border: "1px solid #ddd", width: "fit-content" }}>
+          <div
+            style={{
+              padding: "10px 15px",
+              background: "#f1f5f9",
+              borderTop: "1px solid #e2e8f0",
+              fontSize: "13px",
+              color: "#555",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                background: "#fff",
+                padding: "5px 10px",
+                borderRadius: "8px",
+                border: "1px solid #ddd",
+                width: "fit-content",
+              }}
+            >
               <span>{fileData.isImage ? "🖼️" : "📄"}</span>
-              <span style={{ maxWidth: "150px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              <span
+                style={{
+                  maxWidth: "150px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
                 {fileData.name}
               </span>
               <button
                 onClick={removeFile}
-                style={{ background: "none", border: "none", color: "#999", cursor: "pointer", fontSize: "16px", marginLeft: "5px" }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#999",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  marginLeft: "5px",
+                }}
               >
                 ×
               </button>
@@ -361,22 +413,30 @@ export default function Chatbot() {
             accept="image/*, application/pdf, text/plain, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             onChange={handleFileSelect}
           />
-          <button className="attach-btn" onClick={() => fileInputRef.current?.click()}>
+          <button
+            className="attach-btn"
+            onClick={() => fileInputRef.current?.click()}
+            title={t("chatbot.attach_tooltip")}
+          >
             <i className="fas fa-paperclip"></i>
           </button>
           <input
             type="text"
             value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyPress={handleEnter}
-            placeholder="Nhập câu hỏi..."
+            onChange={(event) => setUserInput(event.target.value)}
+            onKeyDown={handleEnter}
+            placeholder={t("chatbot.input_placeholder")}
             disabled={isLoading}
           />
-          <button onClick={handleSendMessage} disabled={isLoading}>
+          <button
+            onClick={handleSendMessage}
+            disabled={isLoading}
+            title={t("chatbot.send_tooltip")}
+          >
             <i className="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
     </>
   );
-} 
+}

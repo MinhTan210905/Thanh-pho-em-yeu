@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './GameRedirect.css';
 
 /**
@@ -9,6 +10,8 @@ import './GameRedirect.css';
  * @param {string} props.gameName - The display name of the game
  */
 const GameRedirect = ({ to, gameName }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="gr-container">
       <div className="gr-wrapper">
@@ -17,12 +20,12 @@ const GameRedirect = ({ to, gameName }) => {
             <i className="fas fa-gamepad"></i>
           </div>
           <div className="gr-text">
-            <span>Thử thách ngay</span>
+            <span>{t("common.game_redirect.challenge_now")}</span>
             <h4>{gameName}</h4>
           </div>
         </div>
         <Link to={to} className="gr-button">
-          <span>Khám phá</span>
+          <span>{t("common.game_redirect.explore")}</span>
           <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
