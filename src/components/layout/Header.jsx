@@ -84,6 +84,7 @@ export default function Header({ currentPage }) {
     const saved = safeGetSelectedLang();
     return saved === 'en' ? 'ENG' : 'VIE';
   });
+  const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
 
@@ -161,6 +162,16 @@ export default function Header({ currentPage }) {
     isAnyOpenRef.current = openNav !== null;
   }, [openNav]);
 
+  useEffect(() => {
+    if (location.pathname === '/tim-kiem' || location.pathname === '/search') {
+      const nextParams = new URLSearchParams(location.search);
+      setSearchTerm(nextParams.get('q') || '');
+      return;
+    }
+
+    setSearchTerm('');
+  }, [location.pathname, location.search]);
+
   const handleNavMouseEnter = (itemId) => {
     // Xóa timer cũ nếu có
     if (hoverTimerRef.current) {
@@ -210,6 +221,18 @@ export default function Header({ currentPage }) {
   const isNavActive = (item) => {
     if (item.id === 'trang-chu') return location.pathname === '/';
     return item.activeRoutes?.includes(location.pathname);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    const query = searchTerm.trim();
+    if (!query) {
+      navigate('/tim-kiem');
+      return;
+    }
+
+    navigate(`/tim-kiem?q=${encodeURIComponent(query)}`);
   };
 
   return (
@@ -266,13 +289,32 @@ export default function Header({ currentPage }) {
         </nav>
 
         <div className="search-wrapper">
-          <div className="search-box">
-            <i className="fas fa-search"></i>
-            <input type="text" placeholder={t("header.search")} />
-          </div>
+          <form className="search-box" role="search" onSubmit={handleSearchSubmit}>
+            <button type="submit" className="search-submit" aria-label={t("search_page.submit_aria")}>
+              <i className="fas fa-search"></i>
+            </button>
+            <input
+              type="text"
+              placeholder={t("header.search")}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
         </div>
 
-        <div className="mobile-search-icon">
+        <div
+          className="mobile-search-icon"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/tim-kiem')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              navigate('/tim-kiem');
+            }
+          }}
+          aria-label={t("search_page.open_search_aria")}
+        >
           <i className="fas fa-search"></i>
         </div>
       </header>

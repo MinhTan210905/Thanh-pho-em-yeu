@@ -30,6 +30,7 @@ import TroChoiKinhTe from "./pages/learning/TroChoiKinhTe";
 import TroChoiViTri from "./pages/learning/TroChoiViTri";
 import Chatbot from "./components/chatbot/Chatbot";
 import TaiLieuHocTap from "./pages/learning/TaiLieuHocTap";
+import Search from "./pages/search/Search";
 import Login from "./pages/auth/Login";
 import Unauthorized from "./pages/auth/Unauthorized";
 import QuanLyHeThong from "./pages/management/QuanLyHeThong";
@@ -103,6 +104,8 @@ function App() {
             <Route path="/hoc-tap" element={<Learning />} />
             <Route path="/tai-lieu" element={<TaiLieuHocTap />} />
             <Route path="/bai-tap" element={<BaiTap />} />
+            <Route path="/tim-kiem" element={<Search />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/khong-co-quyen" element={<Unauthorized />} />
             <Route path="/tro-choi-am-thuc" element={<TroChoiAmThuc />} />
             <Route path="/tro-choi-di-tich-lich-su" element={<TroChoiDiTichLichSu />} />

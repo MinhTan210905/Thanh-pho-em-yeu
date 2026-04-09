@@ -296,6 +296,7 @@ header {
 
 .mobile-search-icon {
     display: none;
+    cursor: pointer;
 }
 
 .mobile-menu-overlay {
@@ -556,6 +557,28 @@ header.sticky nav ul li a.active:hover::after {
     align-items: center;
     width: 280px;
     transition: 0.3s;
+}
+
+.search-submit {
+    border: none;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.search-submit i {
+    margin-right: 0;
+}
+
+.search-submit:focus-visible {
+    outline: 2px solid #ffcc00;
+    outline-offset: 2px;
+    border-radius: 50%;
 }
 
 .search-box i {
