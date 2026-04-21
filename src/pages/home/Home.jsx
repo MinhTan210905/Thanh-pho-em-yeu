@@ -623,7 +623,7 @@ export default function Home() {
                     <div className="icon-small"><i className="fas fa-book-reader"></i></div>
                     <h3>{t("home.learning.doc_title")}</h3>
                     <p>{t("home.learning.doc_desc")}</p>
-                    <a href="#" className="btn-outline-white">{t("home.learning.btn_view")} <i className="fas fa-arrow-right"></i></a>
+                    <Link to="/tai-lieu" className="btn-outline-white">{t("home.learning.btn_view")} <i className="fas fa-arrow-right"></i></Link>
                   </div>
                 </div>
 

@@ -1,86 +1,88 @@
-﻿# Thành phố em yêu
+# KHÁM PHÁ TP.HCM // Thành Phố Em Yêu
 
-## 1. Tổng quan
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![AI Gemini](https://img.shields.io/badge/AI-Gemini-blue?style=for-the-badge&logo=google-gemini&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-**Thành phố em yêu** là một trang web giáo dục tương tác, được thiết kế đặc biệt cho trẻ em, nhằm mục đích giới thiệu và khám phá các địa điểm nổi tiếng của Thành phố Hồ Chí Minh. Trang web kết hợp giữa yếu tố giải trí (trò chơi) và giáo dục (kiến thức lịch sử, văn hóa), giúp trẻ em học hỏi một cách tự nhiên và thú vị.
+📖 Giới thiệu (Introduction)
+----------------------------
+**KhamPhaTPHCM** là một nền tảng giáo dục tương tác hiện đại, được thiết kế dành riêng cho trẻ em để khám phá vẻ đẹp, lịch sử và văn hóa của Thành phố Hồ Chí Minh. Dự án kết hợp giữa công nghệ Web tiên tiến và trí tuệ nhân tạo để tạo ra một môi trường học tập "vừa chơi vừa học" đầy thú vị, thông qua:
 
-## 2. Tính năng chính
+*   **Hệ thống tri thức số hóa**: Tích lũy dữ liệu về Địa lí, Lịch sử và Văn hóa được trình bày sinh động.
+*   **Trí tuệ nhân tạo (Gemini AI)**: Tích hợp Chatbot thông minh giúp giải đáp mọi thắc mắc và dẫn dắt trẻ em trong hành trình khám phá thành phố.
 
-### 2.1. Trang chủ (Home)
-- **Giao diện thân thiện**: Thiết kế rực rỡ, bắt mắt với hình ảnh minh họa sinh động, phù hợp với trẻ em.
-- **Điều hướng dễ dàng**: Menu điều hướng rõ ràng, cho phép truy cập nhanh đến các mục chính: Khám phá, Trò chơi, và Giới thiệu.
-- **Carousel địa điểm**: Hiển thị các địa điểm nổi bật của TP.HCM với hình ảnh lớn và mô tả ngắn gọn.
+✨ Tính năng nổi bật (Key Features)
+---------------------------------
+*   🔍 **Hub Khám Phá Đa Chiều**: Phân chia kiến thức thành các mảng Địa lí (Vị trí, Kinh tế, Tự nhiên), Lịch sử (Di tích, Nhân vật) và Văn hóa (Ẩm thực, Làng nghề, Lễ hội).
+*   🤖 **Trợ lý ảo thông minh (Gemini Agent)**: Chatbot AI được huấn luyện với kho tri thức chuyên sâu về TP.HCM, sẵn sàng tương tác và trả lời câu hỏi 24/7.
+*   🎮 **Hệ sinh thái 8 Mini-games**: Chuỗi trò chơi ôn tập kiến thức (Đuổi hình bắt chữ, Túi mù, Kết nối làng nghề...) với hiệu ứng `canvas-confetti` bắt mắt.
+*   👓 **Tham quan thực tế ảo (VR360)**: Tích hợp công nghệ VR giúp trẻ em "đi du lịch" qua màn ảnh nhỏ, ngắm nhìn toàn cảnh các địa danh nổi tiếng.
+*   📱 **Giao diện Responsive**: Tối ưu hóa trải nghiệm trên mọi thiết bị từ máy tính bảng đến điện thoại di động.
 
-### 2.2. Khám phá (Explore)
-- **Danh sách địa điểm**: Trình bày các địa điểm dưới dạng danh sách với hình ảnh, tên gọi và mô tả chi tiết.
-- **Trang chi tiết địa điểm**: Mỗi địa điểm có một trang riêng với thông tin đầy đủ, bao gồm:
-    - Hình ảnh và video minh họa.
-    - Lịch sử hình thành và phát triển.
-    - Ý nghĩa văn hóa, xã hội.
-    - Thông tin thực tế (địa chỉ, giờ mở cửa - nếu có).
-
-### 2.3. Trò chơi (Games)
-Trang trò chơi cung cấp các hoạt động tương tác để củng cố kiến thức đã học:
-- **Trò chơi ghép hình (Jigsaw Puzzle)**:
-    - Ghép các mảnh ghép để hoàn thiện hình ảnh địa điểm.
-    - Có nhiều cấp độ khó khác nhau.
-- **Trò chơi tìm điểm khác biệt (Spot the Difference)**:
-    - So sánh hai hình ảnh và tìm ra các điểm khác biệt.
-    - Giúp rèn luyện khả năng quan sát.
-- **Trò chơi đố vui (Quiz)**:
-    - Trả lời câu hỏi trắc nghiệm về các địa điểm.
-    - Cung cấp phản hồi ngay lập tức và điểm số.
-
-## 3. Công nghệ sử dụng
-
-- **Frontend**: React, Vite
-- **Styling**: CSS, SCSS
-- **Assets**: Hình ảnh và video minh họa về các địa điểm tại TP.HCM.
-
-## 4. Hướng dẫn sử dụng
-
-### 4.1. Cài đặt
-1. Clone repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Cài đặt dependencies:
-   ```bash
-   cd Thanh-pho-em-yeu
-   npm install
-   ```
-
-### 4.2. Chạy ứng dụng
-- Chế độ phát triển:
-  ```bash
-  npm run dev
-  ```
-- Build production:
-  ```bash
-  npm run build
-  ```
-- Xem trước bản build:
-  ```bash
-  npm run preview
-  ```
-
-## 5. Cấu trúc dự án
-
-```
+📂 Kiến trúc hệ thống (Repository)
+---------------------------------
+```text
 src/
-├── components/        # Các component tái sử dụng
-├── pages/             # Các trang của ứng dụng
-│   ├── Home.jsx
-│   ├── Explore.jsx
-│   ├── Games.jsx
-│   └── ...
-├── styles/            # Các file style
-├── assets/            # Hình ảnh, video và các tài nguyên khác
-└── App.jsx            # Component chính
+├── App.jsx              # Router chính // Điều hướng toàn bộ ứng dụng
+├── main.jsx             # Entry point // Khởi tạo React & Style
+├── components/          # Shared Components
+│   ├── layout/          # Giao diện khung (Header, Footer, Layout)
+│   └── chatbot/         # Module AI Chatbot (Gemini Integration)
+├── pages/               # Các trạm nội dung chính
+│   ├── home/            # Trang chủ sinh động
+│   ├── geography/       # Hub Địa lí (4 trạm nội dung)
+│   ├── history/         # Hub Lịch sử (2 trạm nội dung)
+│   ├── culture/         # Hub Văn hóa (3 trạm nội dung)
+│   ├── learning/        # Trung tâm học tập & 8 Trò chơi
+│   └── vr360/           # Trạm tham quan thực tế ảo
+├── constants/           # Dữ liệu tĩnh & Knowledge Base cho AI
+├── services/            # Kết nối API (Gemini Service)
+└── styles/              # Design System (Global & Variables)
 ```
 
-## 6. Ghi chú
+🚀 Khởi chạy hệ thống (Quick Start)
+----------------------------------
+Dự án được xây dựng trên nền tảng **Vite**, đảm bảo tốc độ phản hồi cực nhanh trong quá trình phát triển.
 
-- Trang web được thiết kế với giao diện mobile-first nhưng cũng hỗ trợ tốt trên desktop.
-- Các trò chơi sử dụng thư viện `react-easy-crop` và `react-konva` để tạo trải nghiệm tương tác mượt mà.
-- Tất cả nội dung và hình ảnh đều được chọn lọc kỹ lưỡng để phù hợp với đối tượng trẻ em.
+1.  **Clone dự án & Cài đặt**:
+    ```bash
+    git clone <repository-url>
+    cd KhamPhaTPHCM
+    npm install
+    ```
+
+2.  **Cấu hình môi trường**:
+    Tạo file `.env` tại thư mục gốc và cung cấp API Key:
+    ```env
+    VITE_GEMINI_API_KEY=your_api_key_here
+    ```
+
+3.  **Lên sóng máy chủ phát triển**:
+    ```bash
+    npm run dev
+    ```
+    Truy cập tại: 👉 `http://localhost:5173`
+
+🧰 Kịch bản sử dụng (Operation Protocol)
+---------------------------------------
+*   **Hành trình khám phá**: Truy cập các mục Địa lí/Lịch sử/Văn hóa từ Header để xem thông tin chi tiết về từng địa danh.
+*   **Hỏi đáp với AI**: Nhấn vào biểu tượng Chatbot ở góc màn hình để đặt câu hỏi về thành phố (ví dụ: "Bưu điện Thành phố xây năm nào?").
+*   **Ôn tập qua Game**: Vào mục "Góc học tập" để thử thách bản thân với 8 trò chơi tương tác, thu thập điểm số và hiệu ứng pháo hoa khi chiến thắng.
+
+🎮 Danh sách 8 Trò chơi ôn tập
+-----------------------------
+| # | Tên trò chơi | Chủ đề | Công nghệ |
+|---|---|---|---|
+| 1 | **Đuổi Hình Bắt Chữ** | Văn hóa/Ẩm thực | React State |
+| 2 | **Phân Loại Di Tích** | Lịch sử | Drag & Drop |
+| 3 | **Túi Mù Bí Ẩn** | Địa lí/Tự nhiên | Random Logic |
+| 4 | **Kết Nối Làng Nghề** | Văn hóa | Matching |
+| 5 | **Giải Mã Lễ Hội** | Văn hóa | Cipher |
+| 6 | **Đảo Chữ Thông Thái** | Lịch sử | String Manipulation |
+| 7 | **Quán Ăn Hạnh Phúc** | Địa lí/Dân cư | UI Interaction |
+| 8 | **Truy Tìm Ô Chữ** | Địa lí/Kinh tế | Puzzle Logic |
+
+---
+*Dự án được phát triển nhằm lan tỏa tình yêu quê hương và kiến thức bổ ích cho thế hệ trẻ.*
