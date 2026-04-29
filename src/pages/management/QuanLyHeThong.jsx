@@ -714,7 +714,7 @@ export default function QuanLyHeThong() {
                                 managedUser.class_name || '-'
                               )}
                             </td>
-                            <td>{formatDate(managedUser.created_at)}</td>
+                            <td>{formatDate(managedUser.created_at, i18n)}</td>
                             <td className="ql-actions-cell">
                               {isEditing ? (
                                 <>
