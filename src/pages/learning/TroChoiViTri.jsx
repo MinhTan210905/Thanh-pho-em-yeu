@@ -105,7 +105,7 @@ export default function TroChoiViTri() {
     const questions = t("minigames.vi_tri.questions", { returnObjects: true }) || [];
     return questions.map((q, i) => ({
       ...q,
-      correct: [1, 2, 0, 3, 0][i]
+      correct: [1, 2, 0, 1, 0][i]
     }));
   }, [t]);
 
